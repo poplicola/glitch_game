@@ -2148,9 +2148,9 @@ c_MyApp.prototype.p_OnCreate=function(){
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<23>";
 	bb_app_SetUpdateRate(60);
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<25>";
-	this.m_dwarf_one=c_Dwarf.m_new.call(new c_Dwarf,30,454);
+	this.m_dwarf_one=c_Dwarf.m_new.call(new c_Dwarf,1,30.0,454.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<26>";
-	this.m_dwarf_two=c_Dwarf.m_new.call(new c_Dwarf,400,454);
+	this.m_dwarf_two=c_Dwarf.m_new.call(new c_Dwarf,2,400.0,454.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<28>";
 	pop_err();
 	return 0;
@@ -3470,15 +3470,18 @@ function bb_app_SetUpdateRate(t_hertz){
 }
 function c_Dwarf(){
 	Object.call(this);
+	this.m_player=0;
 	this.m_x=.0;
 	this.m_y=.0;
 }
-c_Dwarf.m_new=function(t_Start_x,t_Start_y){
+c_Dwarf.m_new=function(t_Player,t_Start_x,t_Start_y){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<11>";
-	dbg_object(this).m_x=(t_Start_x);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<11>";
-	dbg_object(this).m_y=(t_Start_y);
+	dbg_object(this).m_player=t_Player;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<12>";
+	dbg_object(this).m_x=t_Start_x;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<13>";
+	dbg_object(this).m_y=t_Start_y;
 	pop_err();
 	return this;
 }
@@ -3490,22 +3493,40 @@ c_Dwarf.m_new2=function(){
 }
 c_Dwarf.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<16>";
-	if((bb_input_KeyDown(39))!=0){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<17>";
-		this.m_x=this.m_x+10.0;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<18>";
+	if(this.m_player==1){
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<19>";
+		if((bb_input_KeyDown(68))!=0){
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<20>";
+			this.m_x=this.m_x+10.0;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<21>";
+			if((bb_input_KeyDown(65))!=0){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<22>";
+				this.m_x=this.m_x-10.0;
+			}
+		}
 	}else{
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<18>";
-		if((bb_input_KeyDown(37))!=0){
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<19>";
-			this.m_x=this.m_x-10.0;
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<24>";
+		if(this.m_player==2){
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<25>";
+			if((bb_input_KeyDown(39))!=0){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<26>";
+				this.m_x=this.m_x+10.0;
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<27>";
+				if((bb_input_KeyDown(37))!=0){
+					err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<28>";
+					this.m_x=this.m_x-10.0;
+				}
+			}
 		}
 	}
 	pop_err();
 }
 c_Dwarf.prototype.p_OnRender=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<24>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<36>";
 	bb_graphics_DrawRect(this.m_x,this.m_y,30.0,50.0);
 	pop_err();
 }

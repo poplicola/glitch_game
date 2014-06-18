@@ -22,8 +22,8 @@ Class MyApp Extends App
 	Method OnCreate:Int()
 		SetUpdateRate(60)
 		
-		dwarf_one = New Dwarf(30,454)
-		dwarf_two = New Dwarf(400,454)
+		dwarf_one = New Dwarf(1,30,454)
+		dwarf_two = New Dwarf(2,400,454)
 		
 		Return 0
 	End
