@@ -10,15 +10,11 @@ Class Universe
 	Field width:Int = 640
     Field height:Int = 480
 	
-	
     Const frameRate:Int = 30
     Const physicsRate:Int = 60
     Const physicsFrameMS:Float = 1000.0/physicsRate
     Const physicsFramesPerRender:Int = Float(physicsRate)/frameRate
     Field nextFrame:Float = 0.0
-	
-	
-
 	
 	Field m_display:FlashSprite
 	Field m_sprite:FlashSprite
@@ -28,7 +24,6 @@ Class Universe
     Field m_velocityIterations:Int = 10
     Field m_positionIterations:Int = 10
     Field m_timeStep:Float = 1.0/physicsRate
-    Field m_physScale:Float = 30
 	
 	Method New()
 		m_display = New FlashSprite()
@@ -63,54 +58,41 @@ Class Universe
         Local wallB :b2Body
         
         '// Left
-        wallBd.position.Set( -95 / m_physScale, height / m_physScale / 2)
-        wall.SetAsBox(100/m_physScale, height+100/m_physScale/2)
+        wallBd.position.Set( -95 / Physics.SCALE, height / Physics.SCALE / 2)
+        wall.SetAsBox(100/Physics.SCALE, height+100/Physics.SCALE/2)
         wallB = m_world.CreateBody(wallBd)
         wallB.CreateFixture2(wall)
         '// Right
-        wallBd.position.Set((width+95) / m_physScale, height / m_physScale / 2)
+        wallBd.position.Set((width+95) / Physics.SCALE, height / Physics.SCALE / 2)
         wallB = m_world.CreateBody(wallBd)
         wallB.CreateFixture2(wall)
         '// Top
-        wallBd.position.Set(width / m_physScale / 2, -95 / m_physScale)
-        wall.SetAsBox(width+100/m_physScale/2, 100/m_physScale)
+        wallBd.position.Set(width / Physics.SCALE / 2, -95 / Physics.SCALE)
+        wall.SetAsBox(width+100/Physics.SCALE/2, 100/Physics.SCALE)
         wallB = m_world.CreateBody(wallBd)
         wallB.CreateFixture2(wall)
         '// Bottom
-        wall.SetAsBox(width+100/m_physScale/2, 100/m_physScale)
-        wallBd.position.Set(width / m_physScale / 2, (height + 95) / m_physScale)
+        wall.SetAsBox(width+100/Physics.SCALE/2, 100/Physics.SCALE)
+        wallBd.position.Set(width / Physics.SCALE / 2, (height + 95) / Physics.SCALE)
         wallB = m_world.CreateBody(wallBd)
         wallB.CreateFixture2(wall)
 	End
-	
-	Method Initialize:Void()
-		MakeDwarf( APP.dwarf_one, m_world )
-		MakeDwarf( APP.dwarf_two, m_world )
-	End
-	
-    Field ddensity:Float = 0.7
-    Const dfriction:Float = 0.6
 	
 	Method MakeDwarf:Void( dwarf:Dwarf, world:b2World )
 		Local x:Float = dwarf.x, y:Float = dwarf.y
 		
-		
 		Local shapeDefinition:b2PolygonShape = New b2PolygonShape()
-		shapeDefinition.SetAsBox( 0.5 * Dwarf.WIDTH / m_physScale, 0.5 * Dwarf.HEIGHT / m_physScale )
-		
-		Local shapeDefinition2:b2CircleShape = New b2CircleShape( 0.5 * Dwarf.WIDTH / m_physScale )
-		shapeDefinition2.SetLocalPosition( New b2Vec2( 0, 0.5 * Dwarf.HEIGHT / m_physScale ) )
-		
+		shapeDefinition.SetAsBox( 0.5 * Dwarf.WIDTH / Physics.SCALE, 0.5 * Dwarf.HEIGHT / Physics.SCALE )
 		
         Local fixtureDefinition:b2FixtureDef = New b2FixtureDef()
-        fixtureDefinition.density = ddensity
-        fixtureDefinition.friction = dfriction
-        fixtureDefinition.restitution = 0.2
+        fixtureDefinition.density = Physics.DWARF_DENSITY
+        fixtureDefinition.friction = Physics.DWARF_FRICTION
+        fixtureDefinition.restitution = Physics.DWARF_RESTITUTION
         fixtureDefinition.shape = shapeDefinition
 		
 		Local bodyDefinition:b2BodyDef = New b2BodyDef()
         bodyDefinition.type = b2Body.b2_Body
-		bodyDefinition.position.Set( x / m_physScale, y / m_physScale)
+		bodyDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
 		
         Local myBody := world.CreateBody( bodyDefinition )
         myBody.CreateFixture( fixtureDefinition )
@@ -119,40 +101,32 @@ Class Universe
 	End
 	
 	Method OnRender:Void()
-		PhysicsUpdate()
-		_OnRender()
-		m_sprite.OnRender(0,0)
+		'GLICTH UpdatePhysics() 'have this here instead of Update, rendering is a frame behind
+		m_world.DrawDebugData()
+		m_sprite.OnRender( 0, 0 )
 	End
 	
-    Method _OnRender:Void()
-        '// Render
-        m_world.DrawDebugData()
-    End
-	
-	Method PhysicsUpdate:Void()
+	Method OnUpdate:Void()
 		Local ms:Int = Millisecs()
 		
-        If nextFrame = 0.0 Or (ms - nextFrame) > (physicsFramesPerRender*physicsFrameMS)
-            nextFrame = Float(ms)-physicsFramesPerRender*physicsFrameMS
+        If ( nextFrame = 0.0 ) Or ( ms - nextFrame > physicsFramesPerRender * physicsFrameMS )
+            nextFrame = Float( ms ) - physicsFramesPerRender * physicsFrameMS
         End
 		
-        While nextFrame < ms 
+        While ( nextFrame < ms )
          '// update current test
-         Update()'''m_currTest.Update()
+         Update()
          nextFrame += physicsFrameMS
         End
 	End
 	
-	Method Update : void ()
-        '// Update mouse joint
+	Method Update:Void()
         UpdateMouseWorld()
         MouseDestroy()
         MouseDrag()
-        '// Update physics
-        '''FpsCounter.testInstance.StartPhysics()
-        m_world.TimeStep(m_timeStep, m_velocityIterations, m_positionIterations)
+		
+        m_world.TimeStep( m_timeStep, m_velocityIterations, m_positionIterations )
         m_world.ClearForces()
-        '''FpsCounter.testInstance.EndPhysics()
     End
 	
 	
@@ -168,8 +142,8 @@ Class Universe
     '//===========
     Method UpdateMouseWorld : void ()
         
-        mouseXWorldPhys = (MouseX())/m_physScale
-        mouseYWorldPhys = (MouseY())/m_physScale
+        mouseXWorldPhys = (MouseX())/Physics.SCALE
+        mouseYWorldPhys = (MouseY())/Physics.SCALE
         mouseXWorld = (MouseX())
         mouseYWorld = (MouseY())
     End

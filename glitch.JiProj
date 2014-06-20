@@ -386,139 +386,6 @@
         <Y>0</Y>
       </CursorPos>
     </Document>
-    <Document Filename=".\box2d\demo\tests\test.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testbreakable.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testbridge.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testbuoyancy.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testccd.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testcompound.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testcrankgearspulley.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testdominostack.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testedges.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testonesidedplatform.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testragdoll.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testraycast.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\tests.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testsensor.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\teststack.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\tests\testtheojansen.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\demo.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\fpscounter.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
-    <Document Filename=".\box2d\demo\maindemo.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
-      <DocGUID />
-      <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
-      </CursorPos>
-    </Document>
     <Document Filename=".\box2d\dynamics\contacts\b2circlecontact.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
       <DocGUID />
       <CursorPos>
@@ -981,7 +848,21 @@
         <Y>0</Y>
       </CursorPos>
     </Document>
+    <Document Filename=".\glue.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
+      <DocGUID />
+      <CursorPos>
+        <X>0</X>
+        <Y>0</Y>
+      </CursorPos>
+    </Document>
     <Document Filename=".\main.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
+      <DocGUID />
+      <CursorPos>
+        <X>0</X>
+        <Y>0</Y>
+      </CursorPos>
+    </Document>
+    <Document Filename=".\physics.monkey" Open="false" SplitView="false" SplitIsVertical="false" SplitSize="150">
       <DocGUID />
       <CursorPos>
         <X>0</X>

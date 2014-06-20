@@ -16,11 +16,20 @@ Import box2d.demo
 
 
 Import dwarf
+Import glue
+Import physics
 Import world
 
 
 
 Global APP:MyApp
+
+
+
+Const CATEGORY_PLAYER_1:Int = 1
+Const CATEGORY_PLAYER_2:Int = 2
+Const CATEGORY_BRICK:Int = 3
+Const CATEGORY_BOUNDARY:Int = 4
 
 
 
@@ -36,22 +45,22 @@ Class MyApp Extends App
 	Field dwarf_one:Dwarf, dwarf_two:Dwarf
 	
 	Method OnCreate:Int()
-		SetUpdateRate(60)
-		
-		dwarf_one = New Dwarf(0,30,454)
-		dwarf_two = New Dwarf(1,400,454)
-		
-		universe = New Universe()
-		universe.Initialize()
+		SetUpdateRate( 60 )
 		
 		Dwarf.image = LoadImage( "dwarf.png" )
-		'exclude for GLITCH
-		Dwarf.image.SetHandle( Dwarf.image.Width() / 2.0, Dwarf.image.Height() / 2.0 )
+		Dwarf.image.SetHandle( Dwarf.image.Width() / 2.0, Dwarf.image.Height() / 2.0 ) 'exclude for GLITCH
+		
+		universe = New Universe()
+		'universe.Initialize()
+		
+		dwarf_one = New Dwarf( 0, 30, 454 )
+		dwarf_two = New Dwarf( 1, 400, 454 )
 		
 		Return 0
 	End
 	
 	Method OnUpdate:Int()
+		universe.OnUpdate()
 		dwarf_one.OnUpdate();
 		dwarf_two.OnUpdate();
 		
