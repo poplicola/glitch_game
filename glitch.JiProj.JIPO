@@ -13493,8 +13493,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\dwarf.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>54</X>
-        <Y>26</Y>
+        <X>0</X>
+        <Y>13</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
@@ -13757,8 +13757,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\main.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>3</X>
-        <Y>53</Y>
+        <X>9</X>
+        <Y>37</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
