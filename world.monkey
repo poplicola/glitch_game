@@ -88,9 +88,7 @@ Class Universe
 		MakeDwarf( APP.dwarf_two, m_world )
 	End
 	
-    Const dwidth := 
-    Const dheight := Dwarf.HEIGHT
-    Field ddensity:Float
+    Field ddensity:Float = 0.7
     Const dfriction:Float = 0.6
 	
 	Method MakeDwarf:Void( dwarf:Dwarf, world:b2World )
@@ -98,7 +96,11 @@ Class Universe
 		
 		
 		Local shapeDefinition:b2PolygonShape = New b2PolygonShape()
-		shapeDefinition.SetAsBox( 0.5 * Dwarf.WIDTH / m_physScale, 0.5 * Dwarf.WIDTH / m_physScale )
+		shapeDefinition.SetAsBox( 0.5 * Dwarf.WIDTH / m_physScale, 0.5 * Dwarf.HEIGHT / m_physScale )
+		
+		Local shapeDefinition2:b2CircleShape = New b2CircleShape( 0.5 * Dwarf.WIDTH / m_physScale )
+		shapeDefinition2.SetLocalPosition( New b2Vec2( 0, 0.5 * Dwarf.HEIGHT / m_physScale ) )
+		
 		
         Local fixtureDefinition:b2FixtureDef = New b2FixtureDef()
         fixtureDefinition.density = ddensity
@@ -108,13 +110,10 @@ Class Universe
 		
 		Local bodyDefinition:b2BodyDef = New b2BodyDef()
         bodyDefinition.type = b2Body.b2_Body
-		bodyDefinition.position.Set( x/m_physScale, y/m_physScale)
+		bodyDefinition.position.Set( x / m_physScale, y / m_physScale)
 		
-        Local myBody := world.CreateBody(bodyDefinition)
-        myBody.CreateFixture(fixtureDefinition)
-		
-		
-		
+        Local myBody := world.CreateBody( bodyDefinition )
+        myBody.CreateFixture( fixtureDefinition )
 		
 		dwarf.body = myBody
 	End

@@ -273,7 +273,7 @@ Class b2DebugDraw
     End
     
     Method Clear:Void()
-        Cls 0,0,0
+        '''Cls 0,0,0
     End
     
     Field m_drawFlags:Int

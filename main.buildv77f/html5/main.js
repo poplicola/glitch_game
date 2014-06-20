@@ -18,7 +18,7 @@ CFG_TEXT_FILES="*.txt|*.xml|*.json";
 //${CONFIG_END}
 
 //${METADATA_BEGIN}
-var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n";
+var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[dwarf.png];type=image/png;width=30;height=50;\n";
 //${METADATA_END}
 
 //${TRANSCODE_BEGIN}
@@ -1769,7 +1769,7 @@ function c_MyApp(){
 	c_App.call(this);
 	this.m_dwarf_one=null;
 	this.m_dwarf_two=null;
-	this.m_world=null;
+	this.m_universe=null;
 }
 c_MyApp.prototype=extend_class(c_App);
 c_MyApp.m_new=function(){
@@ -1789,34 +1789,38 @@ c_MyApp.prototype.p_OnCreate=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<42>";
 	this.m_dwarf_two=c_Dwarf.m_new.call(new c_Dwarf,1,400.0,454.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<44>";
-	this.m_world=c_World.m_new.call(new c_World);
+	this.m_universe=c_Universe.m_new.call(new c_Universe);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<45>";
-	this.m_world.p_Initialize();
+	this.m_universe.p_Initialize();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<47>";
+	c_Dwarf.m_image=bb_graphics_LoadImage("dwarf.png",1,c_Image.m_DefaultFlags);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<49>";
+	c_Dwarf.m_image.p_SetHandle((c_Dwarf.m_image.p_Width())/2.0,(c_Dwarf.m_image.p_Height())/2.0);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<51>";
 	pop_err();
 	return 0;
 }
 c_MyApp.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<51>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<55>";
 	this.m_dwarf_one.p_OnUpdate();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<52>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<56>";
 	this.m_dwarf_two.p_OnUpdate();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<54>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<58>";
 	pop_err();
 	return 0;
 }
 c_MyApp.prototype.p_OnRender=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<58>";
-	bb_graphics_Cls(0.0,0.0,0.0);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<60>";
-	this.m_dwarf_one.p_OnRender();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<61>";
-	this.m_dwarf_two.p_OnRender();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<62>";
-	this.m_world.p_OnRender();
+	bb_graphics_Cls(0.0,0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<64>";
+	this.m_dwarf_one.p_OnRender();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<65>";
+	this.m_dwarf_two.p_OnRender();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<66>";
+	this.m_universe.p_OnRender();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<68>";
 	pop_err();
 	return 0;
 }
@@ -2127,6 +2131,18 @@ c_Image.prototype.p_Init2=function(t_surf,t_x,t_y,t_iwidth,t_iheight,t_nframes,t
 	pop_err();
 	return this;
 }
+c_Image.prototype.p_Width=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<85>";
+	pop_err();
+	return this.m_width;
+}
+c_Image.prototype.p_Height=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<89>";
+	pop_err();
+	return this.m_height;
+}
 function c_GraphicsContext(){
 	Object.call(this);
 	this.m_defaultFont=null;
@@ -2150,6 +2166,7 @@ function c_GraphicsContext(){
 	this.m_scissor_y=.0;
 	this.m_scissor_width=.0;
 	this.m_scissor_height=.0;
+	this.m_matrixStack=new_number_array(192);
 }
 c_GraphicsContext.m_new=function(){
 	push_err();
@@ -2521,18 +2538,6 @@ c_InputDevice.prototype.p_KeyDown=function(t_key){
 	pop_err();
 	return false;
 }
-c_InputDevice.prototype.p_MouseX=function(){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/inputdevice.monkey<69>";
-	pop_err();
-	return this.m__mouseX;
-}
-c_InputDevice.prototype.p_MouseY=function(){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/inputdevice.monkey<73>";
-	pop_err();
-	return this.m__mouseY;
-}
 c_InputDevice.prototype.p_KeyHit=function(t_key){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/inputdevice.monkey<52>";
@@ -2544,6 +2549,18 @@ c_InputDevice.prototype.p_KeyHit=function(t_key){
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/inputdevice.monkey<53>";
 	pop_err();
 	return 0;
+}
+c_InputDevice.prototype.p_MouseX=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/inputdevice.monkey<69>";
+	pop_err();
+	return this.m__mouseX;
+}
+c_InputDevice.prototype.p_MouseY=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/inputdevice.monkey<73>";
+	pop_err();
+	return this.m__mouseY;
 }
 function c_JoyState(){
 	Object.call(this);
@@ -3141,17 +3158,14 @@ function c_Dwarf(){
 	this.m_x=.0;
 	this.m_y=.0;
 	this.m_body=null;
-	this.m_xPull=.0;
-	this.m_m_mouseJoint=null;
-	this.m_yPull=.0;
 }
 c_Dwarf.m_new=function(t_Player,t_Start_x,t_Start_y){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<46>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<29>";
 	dbg_object(this).m_player=t_Player;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<47>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<30>";
 	dbg_object(this).m_x=t_Start_x;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<48>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<31>";
 	dbg_object(this).m_y=t_Start_y;
 	pop_err();
 	return this;
@@ -3162,75 +3176,43 @@ c_Dwarf.m_new2=function(){
 	pop_err();
 	return this;
 }
-c_Dwarf.prototype.p_UpdateBody=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<28>";
-	if(this.m_xPull!=0.0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<29>";
-		if(this.m_m_mouseJoint==null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<30>";
-			var t_md=c_b2MouseJointDef.m_new.call(new c_b2MouseJointDef);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<31>";
-			dbg_object(t_md).m_bodyA=dbg_object(dbg_object(bb_main_APP).m_world).m_m_world.p_GetGroundBody();
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<32>";
-			dbg_object(t_md).m_bodyB=this.m_body;
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<33>";
-			dbg_object(t_md).m_target.p_Set2((dbg_object(this.m_body.p_GetLocalCenter()).m_x+this.m_xPull)/dbg_object(dbg_object(bb_main_APP).m_world).m_m_physScale,(dbg_object(this.m_body.p_GetLocalCenter()).m_y+this.m_yPull)/dbg_object(dbg_object(bb_main_APP).m_world).m_m_physScale);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<34>";
-			dbg_object(t_md).m_collideConnected=true;
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<35>";
-			dbg_object(t_md).m_maxForce=300.0*this.m_body.p_GetMass();
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<36>";
-			this.m_m_mouseJoint=object_downcast((dbg_object(dbg_object(bb_main_APP).m_world).m_m_world.p_CreateJoint(t_md)),c_b2MouseJoint);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<37>";
-			this.m_body.p_SetAwake(true);
-		}else{
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<39>";
-			var t_p2=c_b2Vec2.m_new.call(new c_b2Vec2,dbg_object(this.m_body.p_GetLocalCenter()).m_x+this.m_xPull,dbg_object(this.m_body.p_GetLocalCenter()).m_y+this.m_yPull);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<40>";
-			this.m_m_mouseJoint.p_SetTarget(t_p2);
-		}
-	}
-	pop_err();
-}
+c_Dwarf.m_image=null;
 c_Dwarf.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<53>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<36>";
 	if((bb_input_KeyDown(dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],1)[dbg_index]))!=0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<54>";
-		this.m_x=this.m_x+10.0;
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<55>";
-		this.m_xPull=10.0;
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<37>";
+		this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,60.0,0.0),this.m_body.p_GetWorldCenter());
 	}else{
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<56>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<38>";
 		if((bb_input_KeyDown(dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],3)[dbg_index]))!=0){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<57>";
-			this.m_x=this.m_x-10.0;
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<58>";
-			this.m_xPull=-10.0;
-		}else{
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<60>";
-			this.m_xPull=0.0;
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<61>";
-			if(this.m_m_mouseJoint!=null){
-				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<61>";
-				dbg_object(dbg_object(bb_main_APP).m_world).m_m_world.p_DestroyJoint(this.m_m_mouseJoint);
-			}
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<62>";
-			this.m_m_mouseJoint=null;
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<39>";
+			this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,-60.0,0.0),this.m_body.p_GetWorldCenter());
 		}
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<65>";
-	this.p_UpdateBody();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<42>";
+	if((bb_input_KeyHit(dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],0)[dbg_index]))!=0){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<43>";
+		this.m_body.p_ApplyImpulse(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,-20.0),this.m_body.p_GetWorldCenter());
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<46>";
+	if((bb_input_KeyDown(dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],2)[dbg_index]))!=0){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<47>";
+		this.m_body.p_ApplyTorque(10.0);
+	}
 	pop_err();
 }
 c_Dwarf.prototype.p_OnRender=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<69>";
-	bb_graphics_DrawRect(this.m_x,this.m_y,30.0,50.0);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<52>";
+	var t_center=this.m_body.p_GetWorldCenter();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<55>";
+	var t_orientation=-this.m_body.p_GetAngle()/3.1415*180.0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<56>";
+	bb_graphics_DrawImage2(c_Dwarf.m_image,dbg_object(t_center).m_x*dbg_object(dbg_object(bb_main_APP).m_universe).m_m_physScale,dbg_object(t_center).m_y*dbg_object(dbg_object(bb_main_APP).m_universe).m_m_physScale,t_orientation,1.0,1.0,0);
 	pop_err();
 }
-function c_World(){
+function c_Universe(){
 	Object.call(this);
 	this.m_m_display=null;
 	this.m_m_sprite=null;
@@ -3238,7 +3220,7 @@ function c_World(){
 	this.m_m_physScale=30.0;
 	this.m_height=480;
 	this.m_width=640;
-	this.m_ddensity=.0;
+	this.m_ddensity=0.7;
 	this.m_nextFrame=0.0;
 	this.m_mousePVec=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
 	this.m_m_mouseJoint=null;
@@ -3246,7 +3228,7 @@ function c_World(){
 	this.m_m_velocityIterations=10;
 	this.m_m_positionIterations=10;
 }
-c_World.m_new=function(){
+c_Universe.m_new=function(){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<34>";
 	this.m_m_display=c_FlashSprite.m_new.call(new c_FlashSprite);
@@ -3323,41 +3305,45 @@ c_World.m_new=function(){
 	pop_err();
 	return this;
 }
-c_World.prototype.p_MakeDwarf=function(t_dwarf,t_world){
+c_Universe.prototype.p_MakeDwarf=function(t_dwarf,t_world){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<97>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<95>";
 	var t_x=dbg_object(t_dwarf).m_x;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<97>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<95>";
 	var t_y=dbg_object(t_dwarf).m_y;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<100>";
-	var t_sd=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<98>";
+	var t_shapeDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<99>";
+	t_shapeDefinition.p_SetAsBox(15.0/this.m_m_physScale,25.0/this.m_m_physScale);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<101>";
-	var t_fd=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
+	var t_shapeDefinition2=c_b2CircleShape.m_new.call(new c_b2CircleShape,15.0/this.m_m_physScale);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<102>";
-	var t_bd=c_b2BodyDef.m_new.call(new c_b2BodyDef);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<103>";
-	dbg_object(t_bd).m_type=2;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<104>";
-	t_sd.p_SetAsBox(15.0/this.m_m_physScale,25.0/this.m_m_physScale);
+	t_shapeDefinition2.p_SetLocalPosition(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,25.0/this.m_m_physScale));
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<105>";
-	dbg_object(t_fd).m_density=this.m_ddensity;
+	var t_fixtureDefinition=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<106>";
-	dbg_object(t_fd).m_friction=0.6;
+	dbg_object(t_fixtureDefinition).m_density=this.m_ddensity;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<107>";
-	dbg_object(t_fd).m_restitution=0.2;
+	dbg_object(t_fixtureDefinition).m_friction=0.6;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<108>";
-	dbg_object(t_fd).m_shape=(t_sd);
+	dbg_object(t_fixtureDefinition).m_restitution=0.2;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<109>";
-	dbg_object(t_bd).m_position.p_Set2(t_x/this.m_m_physScale,t_y/this.m_m_physScale);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<110>";
-	var t_myBody=t_world.p_CreateBody(t_bd);
+	dbg_object(t_fixtureDefinition).m_shape=(t_shapeDefinition);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<111>";
-	t_myBody.p_CreateFixture(t_fd);
+	var t_bodyDefinition=c_b2BodyDef.m_new.call(new c_b2BodyDef);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<112>";
+	dbg_object(t_bodyDefinition).m_type=2;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<113>";
+	dbg_object(t_bodyDefinition).m_position.p_Set2(t_x/this.m_m_physScale,t_y/this.m_m_physScale);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<115>";
+	var t_myBody=t_world.p_CreateBody(t_bodyDefinition);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<116>";
+	t_myBody.p_CreateFixture(t_fixtureDefinition);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<118>";
 	dbg_object(t_dwarf).m_body=t_myBody;
 	pop_err();
 }
-c_World.prototype.p_Initialize=function(){
+c_Universe.prototype.p_Initialize=function(){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<87>";
 	this.p_MakeDwarf(dbg_object(bb_main_APP).m_dwarf_one,this.m_m_world);
@@ -3365,51 +3351,51 @@ c_World.prototype.p_Initialize=function(){
 	this.p_MakeDwarf(dbg_object(bb_main_APP).m_dwarf_two,this.m_m_world);
 	pop_err();
 }
-c_World.m_mouseXWorldPhys=0;
-c_World.m_mouseYWorldPhys=0;
-c_World.m_mouseXWorld=0;
-c_World.m_mouseYWorld=0;
-c_World.prototype.p_UpdateMouseWorld=function(){
+c_Universe.m_mouseXWorldPhys=0;
+c_Universe.m_mouseYWorldPhys=0;
+c_Universe.m_mouseXWorld=0;
+c_Universe.m_mouseYWorld=0;
+c_Universe.prototype.p_UpdateMouseWorld=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<169>";
-	c_World.m_mouseXWorldPhys=bb_input_MouseX()/this.m_m_physScale;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<170>";
-	c_World.m_mouseYWorldPhys=bb_input_MouseY()/this.m_m_physScale;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<171>";
-	c_World.m_mouseXWorld=bb_input_MouseX();
+	c_Universe.m_mouseXWorldPhys=bb_input_MouseX()/this.m_m_physScale;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<172>";
-	c_World.m_mouseYWorld=bb_input_MouseY();
+	c_Universe.m_mouseYWorldPhys=bb_input_MouseY()/this.m_m_physScale;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<173>";
+	c_Universe.m_mouseXWorld=bb_input_MouseX();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<174>";
+	c_Universe.m_mouseYWorld=bb_input_MouseY();
 	pop_err();
 }
-c_World.prototype.p_GetBodyAtMouse=function(t_includeStatic){
+c_Universe.prototype.p_GetBodyAtMouse=function(t_includeStatic){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<233>";
-	this.m_mousePVec.p_Set2(c_World.m_mouseXWorldPhys,c_World.m_mouseYWorldPhys);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<234>";
-	var t_aabb=c_b2AABB.m_new.call(new c_b2AABB);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<235>";
+	this.m_mousePVec.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<236>";
-	dbg_object(t_aabb).m_lowerBound.p_Set2(c_World.m_mouseXWorldPhys-0.001,c_World.m_mouseYWorldPhys-0.001);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<237>";
-	dbg_object(t_aabb).m_upperBound.p_Set2(c_World.m_mouseXWorldPhys+0.001,c_World.m_mouseYWorldPhys+0.001);
+	var t_aabb=c_b2AABB.m_new.call(new c_b2AABB);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<238>";
+	dbg_object(t_aabb).m_lowerBound.p_Set2(c_Universe.m_mouseXWorldPhys-0.001,c_Universe.m_mouseYWorldPhys-0.001);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<239>";
+	dbg_object(t_aabb).m_upperBound.p_Set2(c_Universe.m_mouseXWorldPhys+0.001,c_Universe.m_mouseYWorldPhys+0.001);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<241>";
 	var t_callback=c_TestQueryAABBCallback.m_new.call(new c_TestQueryAABBCallback,t_includeStatic,this.m_mousePVec);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<240>";
-	var t_fixture=null;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<242>";
+	var t_fixture=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<244>";
 	this.m_m_world.p_QueryAABB((t_callback),t_aabb);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<243>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<245>";
 	pop_err();
 	return dbg_object(t_callback).m_body;
 }
-c_World.prototype.p_MouseDestroy=function(){
+c_Universe.prototype.p_MouseDestroy=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<216>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<218>";
 	if(!((bb_input_MouseDown(0))!=0) && bb_input_KeyHit(68)>0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<217>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<219>";
 		var t_body=this.p_GetBodyAtMouse(true);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<218>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<220>";
 		if((t_body)!=null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<220>";
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<222>";
 			this.m_m_world.p_DestroyBody(t_body);
 			pop_err();
 			return;
@@ -3417,96 +3403,96 @@ c_World.prototype.p_MouseDestroy=function(){
 	}
 	pop_err();
 }
-c_World.prototype.p_MouseDrag=function(){
+c_Universe.prototype.p_MouseDrag=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<180>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<182>";
 	if(((bb_input_MouseDown(0))!=0) && !((this.m_m_mouseJoint)!=null)){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<181>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<183>";
 		var t_body=this.p_GetBodyAtMouse(false);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<182>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<184>";
 		if((t_body)!=null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<184>";
-			var t_md=c_b2MouseJointDef.m_new.call(new c_b2MouseJointDef);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<185>";
-			dbg_object(t_md).m_bodyA=this.m_m_world.p_GetGroundBody();
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<186>";
-			dbg_object(t_md).m_bodyB=t_body;
+			var t_md=c_b2MouseJointDef.m_new.call(new c_b2MouseJointDef);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<187>";
-			dbg_object(t_md).m_target.p_Set2(c_World.m_mouseXWorldPhys,c_World.m_mouseYWorldPhys);
+			dbg_object(t_md).m_bodyA=this.m_m_world.p_GetGroundBody();
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<188>";
-			dbg_object(t_md).m_collideConnected=true;
+			dbg_object(t_md).m_bodyB=t_body;
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<189>";
-			dbg_object(t_md).m_maxForce=300.0*t_body.p_GetMass();
+			dbg_object(t_md).m_target.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<190>";
-			this.m_m_mouseJoint=object_downcast((this.m_m_world.p_CreateJoint(t_md)),c_b2MouseJoint);
+			dbg_object(t_md).m_collideConnected=true;
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<191>";
+			dbg_object(t_md).m_maxForce=300.0*t_body.p_GetMass();
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<192>";
+			this.m_m_mouseJoint=object_downcast((this.m_m_world.p_CreateJoint(t_md)),c_b2MouseJoint);
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<193>";
 			t_body.p_SetAwake(true);
 		}
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<195>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<197>";
 	if(!((bb_input_MouseDown(0))!=0)){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<197>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<199>";
 		if((this.m_m_mouseJoint)!=null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<199>";
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<201>";
 			this.m_m_world.p_DestroyJoint(this.m_m_mouseJoint);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<200>";
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<202>";
 			this.m_m_mouseJoint=null;
 		}
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<204>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<206>";
 	if((this.m_m_mouseJoint)!=null){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<206>";
-		var t_p2=c_b2Vec2.m_new.call(new c_b2Vec2,c_World.m_mouseXWorldPhys,c_World.m_mouseYWorldPhys);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<207>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<208>";
+		var t_p2=c_b2Vec2.m_new.call(new c_b2Vec2,c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<209>";
 		this.m_m_mouseJoint.p_SetTarget(t_p2);
 	}
 	pop_err();
 }
-c_World.prototype.p_Update=function(){
+c_Universe.prototype.p_Update=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<146>";
-	this.p_UpdateMouseWorld();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<147>";
-	this.p_MouseDestroy();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<148>";
+	this.p_UpdateMouseWorld();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<149>";
+	this.p_MouseDestroy();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<150>";
 	this.p_MouseDrag();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<151>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<153>";
 	this.m_m_world.p_TimeStep(this.m_m_timeStep,this.m_m_velocityIterations,this.m_m_positionIterations);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<152>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<154>";
 	this.m_m_world.p_ClearForces();
 	pop_err();
 }
-c_World.prototype.p_PhysicsUpdate=function(){
+c_Universe.prototype.p_PhysicsUpdate=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<131>";
-	var t_ms=bb_app_Millisecs();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<133>";
+	var t_ms=bb_app_Millisecs();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<135>";
 	if(this.m_nextFrame==0.0 || (t_ms)-this.m_nextFrame>33.333333333333336){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<134>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<136>";
 		this.m_nextFrame=(t_ms)-33.333333333333336;
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<137>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<139>";
 	while(this.m_nextFrame<(t_ms)){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<139>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<141>";
 		this.p_Update();
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<140>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<142>";
 		this.m_nextFrame+=16.666666666666668;
 	}
 	pop_err();
 }
-c_World.prototype.p__OnRender=function(){
+c_Universe.prototype.p__OnRender=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<127>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<129>";
 	this.m_m_world.p_DrawDebugData();
 	pop_err();
 }
-c_World.prototype.p_OnRender=function(){
+c_Universe.prototype.p_OnRender=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<120>";
-	this.p_PhysicsUpdate();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<121>";
-	this.p__OnRender();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<122>";
+	this.p_PhysicsUpdate();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<123>";
+	this.p__OnRender();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<124>";
 	this.m_m_sprite.p_OnRender2(0,0);
 	pop_err();
 }
@@ -3977,6 +3963,14 @@ c_b2World.prototype.p_SetDebugDraw=function(t_debugDraw){
 	this.m_m_debugDraw=t_debugDraw;
 	pop_err();
 }
+c_b2World.prototype.p_QueryAABB=function(t_callback,t_aabb){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<791>";
+	var t_broadPhase=dbg_object(this.m_m_contactManager).m_m_broadPhase;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<793>";
+	t_broadPhase.p_Query((c_WorldQueryAABBCallback.m_new.call(new c_WorldQueryAABBCallback,t_broadPhase,t_callback)),t_aabb);
+	pop_err();
+}
 c_b2World.prototype.p_DestroyJoint=function(t_j){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<504>";
@@ -4061,90 +4055,6 @@ c_b2World.prototype.p_DestroyJoint=function(t_j){
 			t_edge=dbg_object(t_edge).m_nextItem;
 		}
 	}
-	pop_err();
-}
-c_b2World.prototype.p_GetGroundBody=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<706>";
-	pop_err();
-	return this.m_m_groundBody;
-}
-c_b2World.prototype.p_CreateJoint=function(t_def){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<447>";
-	var t_j=c_b2Joint.m_Create(t_def,null);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<449>";
-	dbg_object(t_j).m_m_prev=null;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<450>";
-	dbg_object(t_j).m_m_next=this.m_m_jointList;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<451>";
-	if((this.m_m_jointList)!=null){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<453>";
-		dbg_object(this.m_m_jointList).m_m_prev=t_j;
-	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<456>";
-	this.m_m_jointList=t_j;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<457>";
-	this.m_m_jointCount+=1;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<460>";
-	dbg_object(dbg_object(t_j).m_m_edgeA).m_joint=t_j;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<461>";
-	dbg_object(dbg_object(t_j).m_m_edgeA).m_other=dbg_object(t_j).m_m_bodyB;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<462>";
-	dbg_object(dbg_object(t_j).m_m_edgeA).m_prevItem=null;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<463>";
-	dbg_object(dbg_object(t_j).m_m_edgeA).m_nextItem=dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<464>";
-	if((dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList)!=null){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<465>";
-		dbg_object(dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList).m_prevItem=dbg_object(t_j).m_m_edgeA;
-	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<467>";
-	dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList=dbg_object(t_j).m_m_edgeA;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<468>";
-	dbg_object(dbg_object(t_j).m_m_edgeB).m_joint=t_j;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<469>";
-	dbg_object(dbg_object(t_j).m_m_edgeB).m_other=dbg_object(t_j).m_m_bodyA;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<470>";
-	dbg_object(dbg_object(t_j).m_m_edgeB).m_prevItem=null;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<471>";
-	dbg_object(dbg_object(t_j).m_m_edgeB).m_nextItem=dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<472>";
-	if((dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList)!=null){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<473>";
-		dbg_object(dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList).m_prevItem=dbg_object(t_j).m_m_edgeB;
-	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<475>";
-	dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList=dbg_object(t_j).m_m_edgeB;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<476>";
-	var t_bodyA=dbg_object(t_def).m_bodyA;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<477>";
-	var t_bodyB=dbg_object(t_def).m_bodyB;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<479>";
-	if(dbg_object(t_def).m_collideConnected==false){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<481>";
-		var t_edge=t_bodyB.p_GetContactList();
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<482>";
-		while((t_edge)!=null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<484>";
-			if(dbg_object(t_edge).m_other==t_bodyA){
-				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<488>";
-				dbg_object(t_edge).m_contact.p_FlagForFiltering();
-			}
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<490>";
-			t_edge=dbg_object(t_edge).m_nextItem;
-		}
-	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<494>";
-	pop_err();
-	return t_j;
-}
-c_b2World.prototype.p_QueryAABB=function(t_callback,t_aabb){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<791>";
-	var t_broadPhase=dbg_object(this.m_m_contactManager).m_m_broadPhase;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<793>";
-	t_broadPhase.p_Query((c_WorldQueryAABBCallback.m_new.call(new c_WorldQueryAABBCallback,t_broadPhase,t_callback)),t_aabb);
 	pop_err();
 }
 c_b2World.prototype.p_DestroyBody=function(t_b){
@@ -4234,6 +4144,82 @@ c_b2World.prototype.p_DestroyBody=function(t_b){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<434>";
 	this.m_m_bodyCount-=1;
 	pop_err();
+}
+c_b2World.prototype.p_GetGroundBody=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<706>";
+	pop_err();
+	return this.m_m_groundBody;
+}
+c_b2World.prototype.p_CreateJoint=function(t_def){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<447>";
+	var t_j=c_b2Joint.m_Create(t_def,null);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<449>";
+	dbg_object(t_j).m_m_prev=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<450>";
+	dbg_object(t_j).m_m_next=this.m_m_jointList;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<451>";
+	if((this.m_m_jointList)!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<453>";
+		dbg_object(this.m_m_jointList).m_m_prev=t_j;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<456>";
+	this.m_m_jointList=t_j;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<457>";
+	this.m_m_jointCount+=1;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<460>";
+	dbg_object(dbg_object(t_j).m_m_edgeA).m_joint=t_j;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<461>";
+	dbg_object(dbg_object(t_j).m_m_edgeA).m_other=dbg_object(t_j).m_m_bodyB;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<462>";
+	dbg_object(dbg_object(t_j).m_m_edgeA).m_prevItem=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<463>";
+	dbg_object(dbg_object(t_j).m_m_edgeA).m_nextItem=dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<464>";
+	if((dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList)!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<465>";
+		dbg_object(dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList).m_prevItem=dbg_object(t_j).m_m_edgeA;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<467>";
+	dbg_object(dbg_object(t_j).m_m_bodyA).m_m_jointList=dbg_object(t_j).m_m_edgeA;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<468>";
+	dbg_object(dbg_object(t_j).m_m_edgeB).m_joint=t_j;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<469>";
+	dbg_object(dbg_object(t_j).m_m_edgeB).m_other=dbg_object(t_j).m_m_bodyA;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<470>";
+	dbg_object(dbg_object(t_j).m_m_edgeB).m_prevItem=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<471>";
+	dbg_object(dbg_object(t_j).m_m_edgeB).m_nextItem=dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<472>";
+	if((dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList)!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<473>";
+		dbg_object(dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList).m_prevItem=dbg_object(t_j).m_m_edgeB;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<475>";
+	dbg_object(dbg_object(t_j).m_m_bodyB).m_m_jointList=dbg_object(t_j).m_m_edgeB;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<476>";
+	var t_bodyA=dbg_object(t_def).m_bodyA;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<477>";
+	var t_bodyB=dbg_object(t_def).m_bodyB;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<479>";
+	if(dbg_object(t_def).m_collideConnected==false){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<481>";
+		var t_edge=t_bodyB.p_GetContactList();
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<482>";
+		while((t_edge)!=null){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<484>";
+			if(dbg_object(t_edge).m_other==t_bodyA){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<488>";
+				dbg_object(t_edge).m_contact.p_FlagForFiltering();
+			}
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<490>";
+			t_edge=dbg_object(t_edge).m_nextItem;
+		}
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<494>";
+	pop_err();
+	return t_j;
 }
 c_b2World.m_s_timestep2=null;
 c_b2World.prototype.p_Solve=function(t_timeStep){
@@ -5139,33 +5125,33 @@ c_b2World.prototype.p_DrawDebugData=function(){
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1559>";
 				if(t_b.p_IsActive()==false){
 					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1561>";
-					t_color.p_Set8(0.5,0.5,0.3);
+					t_color.p_Set9(0.5,0.5,0.3);
 					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1562>";
 					this.p_DrawShape(t_s,t_xf,t_color);
 				}else{
 					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1563>";
 					if(t_b.p_GetType()==0){
 						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1566>";
-						t_color.p_Set8(0.5,0.9,0.5);
+						t_color.p_Set9(0.5,0.9,0.5);
 						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1567>";
 						this.p_DrawShape(t_s,t_xf,t_color);
 					}else{
 						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1568>";
 						if(t_b.p_GetType()==1){
 							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1571>";
-							t_color.p_Set8(0.5,0.5,0.9);
+							t_color.p_Set9(0.5,0.5,0.9);
 							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1572>";
 							this.p_DrawShape(t_s,t_xf,t_color);
 						}else{
 							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1573>";
 							if(t_b.p_IsAwake()==false){
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1576>";
-								t_color.p_Set8(0.6,0.6,0.6);
+								t_color.p_Set9(0.6,0.6,0.6);
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1577>";
 								this.p_DrawShape(t_s,t_xf,t_color);
 							}else{
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1581>";
-								t_color.p_Set8(0.9,0.7,0.7);
+								t_color.p_Set9(0.9,0.7,0.7);
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1582>";
 								this.p_DrawShape(t_s,t_xf,t_color);
 							}
@@ -5206,7 +5192,7 @@ c_b2World.prototype.p_DrawDebugData=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1605>";
 	if((t_flags&c_b2DebugDraw.m_e_pairBit)!=0){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1607>";
-		t_color.p_Set8(0.3,0.9,0.9);
+		t_color.p_Set9(0.3,0.9,0.9);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1608>";
 		var t_contact=this.m_m_contactList;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1609>";
@@ -5354,8 +5340,6 @@ c_b2DebugDraw.prototype.p_SetFlags=function(t_flags){
 }
 c_b2DebugDraw.prototype.p_Clear=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2debugdraw.monkey<276>";
-	bb_graphics_Cls(0.0,0.0,0.0);
 	pop_err();
 }
 c_b2DebugDraw.prototype.p_GetFlags=function(){
@@ -5731,6 +5715,19 @@ c_b2Body.prototype.p_CreateFixture2=function(t_shape,t_density){
 	pop_err();
 	return t_;
 }
+c_b2Body.prototype.p_GetWorldCenter=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<384>";
+	pop_err();
+	return dbg_object(this.m_m_sweep).m_c;
+}
+c_b2Body.prototype.p_IsAwake=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1036>";
+	var t_=(this.m_m_flags&2)==2;
+	pop_err();
+	return t_;
+}
 c_b2Body.prototype.p_SetAwake=function(t_flag){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1013>";
@@ -5755,17 +5752,73 @@ c_b2Body.prototype.p_SetAwake=function(t_flag){
 	}
 	pop_err();
 }
+c_b2Body.prototype.p_ApplyForce=function(t_force,t_point){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<479>";
+	if(this.m_m_type!=2){
+		pop_err();
+		return;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<483>";
+	if(this.p_IsAwake()==false){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<485>";
+		this.p_SetAwake(true);
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<488>";
+	dbg_object(this.m_m_force).m_x+=dbg_object(t_force).m_x;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<489>";
+	dbg_object(this.m_m_force).m_y+=dbg_object(t_force).m_y;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<491>";
+	this.m_m_torque+=(dbg_object(t_point).m_x-dbg_object(dbg_object(this.m_m_sweep).m_c).m_x)*dbg_object(t_force).m_y-(dbg_object(t_point).m_y-dbg_object(dbg_object(this.m_m_sweep).m_c).m_y)*dbg_object(t_force).m_x;
+	pop_err();
+}
+c_b2Body.prototype.p_ApplyImpulse=function(t_impulse,t_point){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<525>";
+	if(this.m_m_type!=2){
+		pop_err();
+		return;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<529>";
+	if(this.p_IsAwake()==false){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<531>";
+		this.p_SetAwake(true);
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<535>";
+	dbg_object(this.m_m_linearVelocity).m_x+=this.m_m_invMass*dbg_object(t_impulse).m_x;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<536>";
+	dbg_object(this.m_m_linearVelocity).m_y+=this.m_m_invMass*dbg_object(t_impulse).m_y;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<538>";
+	this.m_m_angularVelocity+=this.m_m_invI*((dbg_object(t_point).m_x-dbg_object(dbg_object(this.m_m_sweep).m_c).m_x)*dbg_object(t_impulse).m_y-(dbg_object(t_point).m_y-dbg_object(dbg_object(this.m_m_sweep).m_c).m_y)*dbg_object(t_impulse).m_x);
+	pop_err();
+}
+c_b2Body.prototype.p_ApplyTorque=function(t_torque){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<503>";
+	if(this.m_m_type!=2){
+		pop_err();
+		return;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<507>";
+	if(this.p_IsAwake()==false){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<509>";
+		this.p_SetAwake(true);
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<512>";
+	this.m_m_torque+=t_torque;
+	pop_err();
+}
+c_b2Body.prototype.p_GetAngle=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<365>";
+	pop_err();
+	return dbg_object(this.m_m_sweep).m_a;
+}
 c_b2Body.prototype.p_GetContactList=function(){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1178>";
 	pop_err();
 	return this.m_m_contactList;
-}
-c_b2Body.prototype.p_GetLocalCenter=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<393>";
-	pop_err();
-	return dbg_object(this.m_m_sweep).m_localCenter;
 }
 c_b2Body.prototype.p_GetMass=function(){
 	push_err();
@@ -5792,13 +5845,6 @@ c_b2Body.prototype.p_GetWorldVector=function(t_localVector,t_out){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<832>";
 	c_b2Math.m_MulMV(dbg_object(this.m_m_xf).m_R,t_localVector,t_out);
 	pop_err();
-}
-c_b2Body.prototype.p_IsAwake=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1036>";
-	var t_=(this.m_m_flags&2)==2;
-	pop_err();
-	return t_;
 }
 c_b2Body.prototype.p_ShouldCollide=function(t_other){
 	push_err();
@@ -5919,11 +5965,11 @@ c_b2Body.prototype.p_GetNext=function(){
 	pop_err();
 	return this.m_m_next;
 }
-c_b2Body.prototype.p_GetWorldCenter=function(){
+c_b2Body.prototype.p_GetLocalCenter=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<384>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<393>";
 	pop_err();
-	return dbg_object(this.m_m_sweep).m_c;
+	return dbg_object(this.m_m_sweep).m_localCenter;
 }
 function c_b2Contact(){
 	Object.call(this);
@@ -7733,9 +7779,9 @@ c_b2Sweep.prototype.p_Set7=function(t_other){
 }
 function c_b2JointEdge(){
 	Object.call(this);
-	this.m_prevItem=null;
 	this.m_nextItem=null;
 	this.m_joint=null;
+	this.m_prevItem=null;
 	this.m_other=null;
 }
 c_b2JointEdge.m_new=function(){
@@ -8487,6 +8533,92 @@ c_b2Math.m_Abs=function(t_a){
 		return t_;
 	}
 }
+function c_b2CircleShape(){
+	c_b2Shape.call(this);
+	this.m_m_p=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+}
+c_b2CircleShape.prototype=extend_class(c_b2Shape);
+c_b2CircleShape.m_new=function(t_radius){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<233>";
+	c_b2Shape.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<234>";
+	this.m_m_type=0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<235>";
+	this.m_m_radius=t_radius;
+	pop_err();
+	return this;
+}
+c_b2CircleShape.prototype.p_SetLocalPosition=function(t_position){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<211>";
+	this.m_m_p.p_SetV(t_position);
+	pop_err();
+}
+c_b2CircleShape.prototype.p_Copy=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<50>";
+	var t_s=(c_b2CircleShape.m_new.call(new c_b2CircleShape,dbg_object(this).m_m_radius));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<51>";
+	t_s.p_Set5(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<52>";
+	pop_err();
+	return t_s;
+}
+c_b2CircleShape.prototype.p_Set5=function(t_other){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<56>";
+	c_b2Shape.prototype.p_Set5.call(this,t_other);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<57>";
+	if((object_downcast((t_other),c_b2CircleShape))!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<58>";
+		var t_other2=object_downcast((t_other),c_b2CircleShape);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<59>";
+		this.m_m_p.p_SetV(dbg_object(t_other2).m_m_p);
+	}
+	pop_err();
+}
+c_b2CircleShape.prototype.p_ComputeAABB=function(t_aabb,t_transform){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<144>";
+	var t_tMat=dbg_object(t_transform).m_R;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<145>";
+	var t_pX=dbg_object(dbg_object(t_transform).m_position).m_x+(dbg_object(dbg_object(t_tMat).m_col1).m_x*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_x*dbg_object(this.m_m_p).m_y);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<146>";
+	var t_pY=dbg_object(dbg_object(t_transform).m_position).m_y+(dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(this.m_m_p).m_y);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<147>";
+	dbg_object(t_aabb).m_lowerBound.p_Set2(t_pX-this.m_m_radius,t_pY-this.m_m_radius);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<148>";
+	dbg_object(t_aabb).m_upperBound.p_Set2(t_pX+this.m_m_radius,t_pY+this.m_m_radius);
+	pop_err();
+}
+c_b2CircleShape.prototype.p_ComputeMass=function(t_massData,t_density){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<157>";
+	dbg_object(t_massData).m_mass=t_density*3.14159265*this.m_m_radius*this.m_m_radius;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<158>";
+	dbg_object(t_massData).m_center.p_SetV(this.m_m_p);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<161>";
+	dbg_object(t_massData).m_I=dbg_object(t_massData).m_mass*(0.5*this.m_m_radius*this.m_m_radius+(dbg_object(this.m_m_p).m_x*dbg_object(this.m_m_p).m_x+dbg_object(this.m_m_p).m_y*dbg_object(this.m_m_p).m_y));
+	pop_err();
+}
+c_b2CircleShape.prototype.p_TestPoint=function(t_transform,t_p){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<70>";
+	var t_tMat=dbg_object(t_transform).m_R;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<71>";
+	var t_dX=dbg_object(dbg_object(t_transform).m_position).m_x+(dbg_object(dbg_object(t_tMat).m_col1).m_x*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_x*dbg_object(this.m_m_p).m_y);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<72>";
+	var t_dY=dbg_object(dbg_object(t_transform).m_position).m_y+(dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(this.m_m_p).m_y);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<74>";
+	t_dX=dbg_object(t_p).m_x-t_dX;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<75>";
+	t_dY=dbg_object(t_p).m_y-t_dY;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<77>";
+	var t_=t_dX*t_dX+t_dY*t_dY<=this.m_m_radius*this.m_m_radius;
+	pop_err();
+	return t_;
+}
 var bb_dwarf_CONTROL_SCHEME_WASD=[];
 var bb_dwarf_CONTROL_SCHEME_ARROWS=[];
 var bb_dwarf_CONTROL_SCHEMES=[];
@@ -8496,6 +8628,479 @@ function bb_input_KeyDown(t_key){
 	var t_=((bb_input_device.p_KeyDown(t_key))?1:0);
 	pop_err();
 	return t_;
+}
+function bb_input_KeyHit(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<44>";
+	var t_=bb_input_device.p_KeyHit(t_key);
+	pop_err();
+	return t_;
+}
+function bb_graphics_DebugRenderDevice(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<57>";
+	if(!((bb_graphics_renderDevice)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<57>";
+		error("Rendering operations can only be performed inside OnRender");
+	}
+	pop_err();
+	return 0;
+}
+function bb_graphics_Cls(t_r,t_g,t_b){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<386>";
+	bb_graphics_DebugRenderDevice();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<388>";
+	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
+	pop_err();
+	return 0;
+}
+function bb_graphics_DrawImage(t_image,t_x,t_y,t_frame){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<459>";
+	bb_graphics_DebugRenderDevice();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<460>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<460>";
+		error("Invalid image frame");
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<463>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<465>";
+	bb_graphics_context.p_Validate();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<467>";
+	if((dbg_object(t_image).m_flags&65536)!=0){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<468>";
+		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty);
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<470>";
+		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
+	}
+	pop_err();
+	return 0;
+}
+function bb_graphics_PushMatrix(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<342>";
+	var t_sp=dbg_object(bb_graphics_context).m_matrixSp;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<343>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index]=dbg_object(bb_graphics_context).m_ix;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<344>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index]=dbg_object(bb_graphics_context).m_iy;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<345>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index]=dbg_object(bb_graphics_context).m_jx;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<346>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index]=dbg_object(bb_graphics_context).m_jy;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<347>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index]=dbg_object(bb_graphics_context).m_tx;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<348>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]=dbg_object(bb_graphics_context).m_ty;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<349>";
+	dbg_object(bb_graphics_context).m_matrixSp=t_sp+6;
+	pop_err();
+	return 0;
+}
+function bb_graphics_Transform(t_ix,t_iy,t_jx,t_jy,t_tx,t_ty){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<363>";
+	var t_ix2=t_ix*dbg_object(bb_graphics_context).m_ix+t_iy*dbg_object(bb_graphics_context).m_jx;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<364>";
+	var t_iy2=t_ix*dbg_object(bb_graphics_context).m_iy+t_iy*dbg_object(bb_graphics_context).m_jy;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<365>";
+	var t_jx2=t_jx*dbg_object(bb_graphics_context).m_ix+t_jy*dbg_object(bb_graphics_context).m_jx;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<366>";
+	var t_jy2=t_jx*dbg_object(bb_graphics_context).m_iy+t_jy*dbg_object(bb_graphics_context).m_jy;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<367>";
+	var t_tx2=t_tx*dbg_object(bb_graphics_context).m_ix+t_ty*dbg_object(bb_graphics_context).m_jx+dbg_object(bb_graphics_context).m_tx;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<368>";
+	var t_ty2=t_tx*dbg_object(bb_graphics_context).m_iy+t_ty*dbg_object(bb_graphics_context).m_jy+dbg_object(bb_graphics_context).m_ty;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<369>";
+	bb_graphics_SetMatrix(t_ix2,t_iy2,t_jx2,t_jy2,t_tx2,t_ty2);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Transform2(t_m){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<359>";
+	bb_graphics_Transform(dbg_array(t_m,0)[dbg_index],dbg_array(t_m,1)[dbg_index],dbg_array(t_m,2)[dbg_index],dbg_array(t_m,3)[dbg_index],dbg_array(t_m,4)[dbg_index],dbg_array(t_m,5)[dbg_index]);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Translate(t_x,t_y){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<373>";
+	bb_graphics_Transform(1.0,0.0,0.0,1.0,t_x,t_y);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Rotate(t_angle){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<381>";
+	bb_graphics_Transform(Math.cos((t_angle)*D2R),-Math.sin((t_angle)*D2R),Math.sin((t_angle)*D2R),Math.cos((t_angle)*D2R),0.0,0.0);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Scale(t_x,t_y){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<377>";
+	bb_graphics_Transform(t_x,0.0,0.0,t_y,0.0,0.0);
+	pop_err();
+	return 0;
+}
+function bb_graphics_PopMatrix(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<353>";
+	var t_sp=dbg_object(bb_graphics_context).m_matrixSp-6;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<354>";
+	bb_graphics_SetMatrix(dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<355>";
+	dbg_object(bb_graphics_context).m_matrixSp=t_sp;
+	pop_err();
+	return 0;
+}
+function bb_graphics_DrawImage2(t_image,t_x,t_y,t_rotation,t_scaleX,t_scaleY,t_frame){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<477>";
+	bb_graphics_DebugRenderDevice();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<478>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<478>";
+		error("Invalid image frame");
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<481>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<483>";
+	bb_graphics_PushMatrix();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<485>";
+	bb_graphics_Translate(t_x,t_y);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<486>";
+	bb_graphics_Rotate(t_rotation);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<487>";
+	bb_graphics_Scale(t_scaleX,t_scaleY);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<489>";
+	bb_graphics_Translate(-dbg_object(t_image).m_tx,-dbg_object(t_image).m_ty);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<491>";
+	bb_graphics_context.p_Validate();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<493>";
+	if((dbg_object(t_image).m_flags&65536)!=0){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<494>";
+		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,0.0,0.0);
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<496>";
+		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,0.0,0.0,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<499>";
+	bb_graphics_PopMatrix();
+	pop_err();
+	return 0;
+}
+function bb_app_Millisecs(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<233>";
+	var t_=bb_app__game.Millisecs();
+	pop_err();
+	return t_;
+}
+function bb_input_MouseX(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<58>";
+	var t_=bb_input_device.p_MouseX();
+	pop_err();
+	return t_;
+}
+function bb_input_MouseY(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<62>";
+	var t_=bb_input_device.p_MouseY();
+	pop_err();
+	return t_;
+}
+function bb_input_MouseDown(t_button){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<66>";
+	var t_=((bb_input_device.p_KeyDown(1+t_button))?1:0);
+	pop_err();
+	return t_;
+}
+function c_QueryFixtureCallback(){
+	Object.call(this);
+}
+c_QueryFixtureCallback.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<112>";
+	pop_err();
+	return this;
+}
+c_QueryFixtureCallback.prototype.p_Callback2=function(t_fixture){
+}
+function c_TestQueryAABBCallback(){
+	c_QueryFixtureCallback.call(this);
+	this.m_includeStatic=false;
+	this.m_mousePVec=null;
+	this.m_body=null;
+}
+c_TestQueryAABBCallback.prototype=extend_class(c_QueryFixtureCallback);
+c_TestQueryAABBCallback.m_new=function(t_includeStatic,t_mousePVec){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<50>";
+	c_QueryFixtureCallback.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<51>";
+	dbg_object(this).m_includeStatic=t_includeStatic;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<52>";
+	dbg_object(this).m_mousePVec=t_mousePVec;
+	pop_err();
+	return this;
+}
+c_TestQueryAABBCallback.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<44>";
+	c_QueryFixtureCallback.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<44>";
+	pop_err();
+	return this;
+}
+c_TestQueryAABBCallback.prototype.p_Callback2=function(t_fixture){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<57>";
+	var t_shape=t_fixture.p_GetShape();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<59>";
+	if(t_fixture.p_GetBody().p_GetType()!=0 || this.m_includeStatic){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<60>";
+		var t_inside=t_shape.p_TestPoint(t_fixture.p_GetBody().p_GetTransform(),this.m_mousePVec);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<61>";
+		if(t_inside){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<62>";
+			this.m_body=t_fixture.p_GetBody();
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<63>";
+			pop_err();
+			return false;
+		}
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<67>";
+	pop_err();
+	return true;
+}
+function c_QueryCallback(){
+	Object.call(this);
+}
+c_QueryCallback.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/ibroadphase.monkey<39>";
+	pop_err();
+	return this;
+}
+c_QueryCallback.prototype.p_Callback3=function(t_a){
+}
+function c_WorldQueryCallback(){
+	c_QueryCallback.call(this);
+	this.m_broadPhase=null;
+	this.m_callback=null;
+}
+c_WorldQueryCallback.prototype=extend_class(c_QueryCallback);
+c_WorldQueryCallback.m_new=function(t_broadPhase,t_callback){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<121>";
+	c_QueryCallback.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<122>";
+	dbg_object(this).m_broadPhase=t_broadPhase;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<123>";
+	dbg_object(this).m_callback=t_callback;
+	pop_err();
+	return this;
+}
+c_WorldQueryCallback.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<116>";
+	c_QueryCallback.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<116>";
+	pop_err();
+	return this;
+}
+c_WorldQueryCallback.prototype.p_Callback3=function(t_a){
+}
+function c_WorldQueryAABBCallback(){
+	c_WorldQueryCallback.call(this);
+}
+c_WorldQueryAABBCallback.prototype=extend_class(c_WorldQueryCallback);
+c_WorldQueryAABBCallback.m_new=function(t_broadPhase,t_callback){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<133>";
+	c_WorldQueryCallback.m_new.call(this,t_broadPhase,t_callback);
+	pop_err();
+	return this;
+}
+c_WorldQueryAABBCallback.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<130>";
+	c_WorldQueryCallback.m_new2.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<130>";
+	pop_err();
+	return this;
+}
+c_WorldQueryAABBCallback.prototype.p_Callback3=function(t_a){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<137>";
+	var t_=this.m_callback.p_Callback2(object_downcast((this.m_broadPhase.p_GetUserData(t_a)),c_b2Fixture));
+	pop_err();
+	return t_;
+}
+function c_b2Manifold(){
+	Object.call(this);
+	this.m_m_points=[];
+	this.m_m_localPlaneNormal=null;
+	this.m_m_localPoint=null;
+	this.m_m_pointCount=0;
+	this.m_m_type=0;
+}
+c_b2Manifold.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<81>";
+	this.m_m_points=new_object_array(2);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<83>";
+	for(var t_i=0;t_i<2;t_i=t_i+1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<84>";
+		dbg_array(this.m_m_points,t_i)[dbg_index]=c_b2ManifoldPoint.m_new.call(new c_b2ManifoldPoint);
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<87>";
+	this.m_m_localPlaneNormal=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<88>";
+	this.m_m_localPoint=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+	pop_err();
+	return this;
+}
+function c_b2ManifoldPoint(){
+	Object.call(this);
+	this.m_m_localPoint=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+	this.m_m_normalImpulse=.0;
+	this.m_m_tangentImpulse=.0;
+	this.m_m_id=c_b2ContactID.m_new.call(new c_b2ContactID);
+}
+c_b2ManifoldPoint.prototype.p_Reset2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<61>";
+	this.m_m_localPoint.p_SetZero();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<62>";
+	this.m_m_normalImpulse=0.0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<63>";
+	this.m_m_tangentImpulse=0.0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<64>";
+	this.m_m_id.p_Key2(0);
+	pop_err();
+}
+c_b2ManifoldPoint.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<56>";
+	this.p_Reset2();
+	pop_err();
+	return this;
+}
+function c_b2ContactID(){
+	Object.call(this);
+	this.m_features=c_Features.m_new.call(new c_Features);
+	this.m__key=0;
+}
+c_b2ContactID.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<47>";
+	dbg_object(this.m_features).m__m_id=this;
+	pop_err();
+	return this;
+}
+c_b2ContactID.prototype.p_Key=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<64>";
+	pop_err();
+	return this.m__key;
+}
+c_b2ContactID.prototype.p_Key2=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<69>";
+	this.m__key=t_value;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<70>";
+	dbg_object(this.m_features).m__referenceEdge=this.m__key&255;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<71>";
+	dbg_object(this.m_features).m__incidentEdge=(this.m__key&65280)>>8&255;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<72>";
+	dbg_object(this.m_features).m__incidentVertex=(this.m__key&16711680)>>16&255;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<73>";
+	dbg_object(this.m_features).m__flip=(this.m__key&-16777216)>>24&255;
+	pop_err();
+}
+c_b2ContactID.prototype.p_Set8=function(t_id){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<52>";
+	this.p_Key2(dbg_object(t_id).m__key);
+	pop_err();
+}
+function c_Features(){
+	Object.call(this);
+	this.m__m_id=null;
+	this.m__referenceEdge=0;
+	this.m__incidentEdge=0;
+	this.m__incidentVertex=0;
+	this.m__flip=0;
+}
+c_Features.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<47>";
+	pop_err();
+	return this;
+}
+c_Features.prototype.p_ReferenceEdge=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<55>";
+	pop_err();
+	return this.m__referenceEdge;
+}
+c_Features.prototype.p_ReferenceEdge2=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<60>";
+	this.m__referenceEdge=t_value;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<61>";
+	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&-256|this.m__referenceEdge&255;
+	pop_err();
+}
+c_Features.prototype.p_IncidentEdge=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<73>";
+	pop_err();
+	return this.m__incidentEdge;
+}
+c_Features.prototype.p_IncidentEdge2=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<78>";
+	this.m__incidentEdge=t_value;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<79>";
+	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&-65281|this.m__incidentEdge<<8&65280;
+	pop_err();
+}
+c_Features.prototype.p_IncidentVertex=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<91>";
+	pop_err();
+	return this.m__incidentVertex;
+}
+c_Features.prototype.p_IncidentVertex2=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<96>";
+	this.m__incidentVertex=t_value;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<97>";
+	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&-16711681|this.m__incidentVertex<<16&16711680;
+	pop_err();
+}
+c_Features.prototype.p_Flip=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<109>";
+	pop_err();
+	return this.m__flip;
+}
+c_Features.prototype.p_Flip2=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<114>";
+	this.m__flip=t_value;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<115>";
+	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&16777215|this.m__flip<<24&-16777216;
+	pop_err();
 }
 function c_b2MouseJoint(){
 	c_b2Joint.call(this);
@@ -9746,9 +10351,9 @@ c_b2PrismaticJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<677>";
 		var t_k22=t_i1+t_i2;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<678>";
-		dbg_object(this.m_m_K).m_col1.p_Set8(t_k11,t_k12,0.0);
+		dbg_object(this.m_m_K).m_col1.p_Set9(t_k11,t_k12,0.0);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<679>";
-		dbg_object(this.m_m_K).m_col2.p_Set8(t_k12,t_k22,0.0);
+		dbg_object(this.m_m_K).m_col2.p_Set9(t_k12,t_k22,0.0);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<680>";
 		var t_impulse1=this.m_m_K.p_Solve22(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0),-t_C1X,-t_C1Y);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<681>";
@@ -9859,7 +10464,7 @@ c_b2Vec3.prototype.p_Add2=function(t_v){
 	this.m_z+=dbg_object(t_v).m_z;
 	pop_err();
 }
-c_b2Vec3.prototype.p_Set8=function(t_x,t_y,t_z){
+c_b2Vec3.prototype.p_Set9=function(t_x,t_y,t_z){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2vec3.monkey<70>";
 	dbg_object(this).m_x=t_x;
@@ -13183,351 +13788,6 @@ function c_b2RopeJointDef(){
 	this.m_maxLength=.0;
 }
 c_b2RopeJointDef.prototype=extend_class(c_b2JointDef);
-function bb_graphics_DebugRenderDevice(){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<57>";
-	if(!((bb_graphics_renderDevice)!=null)){
-		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<57>";
-		error("Rendering operations can only be performed inside OnRender");
-	}
-	pop_err();
-	return 0;
-}
-function bb_graphics_Cls(t_r,t_g,t_b){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<386>";
-	bb_graphics_DebugRenderDevice();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<388>";
-	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
-	pop_err();
-	return 0;
-}
-function bb_graphics_DrawRect(t_x,t_y,t_w,t_h){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<401>";
-	bb_graphics_DebugRenderDevice();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<403>";
-	bb_graphics_context.p_Validate();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<404>";
-	bb_graphics_renderDevice.DrawRect(t_x,t_y,t_w,t_h);
-	pop_err();
-	return 0;
-}
-function bb_app_Millisecs(){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<233>";
-	var t_=bb_app__game.Millisecs();
-	pop_err();
-	return t_;
-}
-function bb_input_MouseX(){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<58>";
-	var t_=bb_input_device.p_MouseX();
-	pop_err();
-	return t_;
-}
-function bb_input_MouseY(){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<62>";
-	var t_=bb_input_device.p_MouseY();
-	pop_err();
-	return t_;
-}
-function bb_input_MouseDown(t_button){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<66>";
-	var t_=((bb_input_device.p_KeyDown(1+t_button))?1:0);
-	pop_err();
-	return t_;
-}
-function bb_input_KeyHit(t_key){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/input.monkey<44>";
-	var t_=bb_input_device.p_KeyHit(t_key);
-	pop_err();
-	return t_;
-}
-function c_QueryFixtureCallback(){
-	Object.call(this);
-}
-c_QueryFixtureCallback.m_new=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<112>";
-	pop_err();
-	return this;
-}
-c_QueryFixtureCallback.prototype.p_Callback2=function(t_fixture){
-}
-function c_TestQueryAABBCallback(){
-	c_QueryFixtureCallback.call(this);
-	this.m_includeStatic=false;
-	this.m_mousePVec=null;
-	this.m_body=null;
-}
-c_TestQueryAABBCallback.prototype=extend_class(c_QueryFixtureCallback);
-c_TestQueryAABBCallback.m_new=function(t_includeStatic,t_mousePVec){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<50>";
-	c_QueryFixtureCallback.m_new.call(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<51>";
-	dbg_object(this).m_includeStatic=t_includeStatic;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<52>";
-	dbg_object(this).m_mousePVec=t_mousePVec;
-	pop_err();
-	return this;
-}
-c_TestQueryAABBCallback.m_new2=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<44>";
-	c_QueryFixtureCallback.m_new.call(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<44>";
-	pop_err();
-	return this;
-}
-c_TestQueryAABBCallback.prototype.p_Callback2=function(t_fixture){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<57>";
-	var t_shape=t_fixture.p_GetShape();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<59>";
-	if(t_fixture.p_GetBody().p_GetType()!=0 || this.m_includeStatic){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<60>";
-		var t_inside=t_shape.p_TestPoint(t_fixture.p_GetBody().p_GetTransform(),this.m_mousePVec);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<61>";
-		if(t_inside){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<62>";
-			this.m_body=t_fixture.p_GetBody();
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<63>";
-			pop_err();
-			return false;
-		}
-	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/demo/tests/test.monkey<67>";
-	pop_err();
-	return true;
-}
-function c_QueryCallback(){
-	Object.call(this);
-}
-c_QueryCallback.m_new=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/ibroadphase.monkey<39>";
-	pop_err();
-	return this;
-}
-c_QueryCallback.prototype.p_Callback3=function(t_a){
-}
-function c_WorldQueryCallback(){
-	c_QueryCallback.call(this);
-	this.m_broadPhase=null;
-	this.m_callback=null;
-}
-c_WorldQueryCallback.prototype=extend_class(c_QueryCallback);
-c_WorldQueryCallback.m_new=function(t_broadPhase,t_callback){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<121>";
-	c_QueryCallback.m_new.call(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<122>";
-	dbg_object(this).m_broadPhase=t_broadPhase;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<123>";
-	dbg_object(this).m_callback=t_callback;
-	pop_err();
-	return this;
-}
-c_WorldQueryCallback.m_new2=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<116>";
-	c_QueryCallback.m_new.call(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<116>";
-	pop_err();
-	return this;
-}
-c_WorldQueryCallback.prototype.p_Callback3=function(t_a){
-}
-function c_WorldQueryAABBCallback(){
-	c_WorldQueryCallback.call(this);
-}
-c_WorldQueryAABBCallback.prototype=extend_class(c_WorldQueryCallback);
-c_WorldQueryAABBCallback.m_new=function(t_broadPhase,t_callback){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<133>";
-	c_WorldQueryCallback.m_new.call(this,t_broadPhase,t_callback);
-	pop_err();
-	return this;
-}
-c_WorldQueryAABBCallback.m_new2=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<130>";
-	c_WorldQueryCallback.m_new2.call(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<130>";
-	pop_err();
-	return this;
-}
-c_WorldQueryAABBCallback.prototype.p_Callback3=function(t_a){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<137>";
-	var t_=this.m_callback.p_Callback2(object_downcast((this.m_broadPhase.p_GetUserData(t_a)),c_b2Fixture));
-	pop_err();
-	return t_;
-}
-function c_b2Manifold(){
-	Object.call(this);
-	this.m_m_points=[];
-	this.m_m_localPlaneNormal=null;
-	this.m_m_localPoint=null;
-	this.m_m_pointCount=0;
-	this.m_m_type=0;
-}
-c_b2Manifold.m_new=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<81>";
-	this.m_m_points=new_object_array(2);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<83>";
-	for(var t_i=0;t_i<2;t_i=t_i+1){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<84>";
-		dbg_array(this.m_m_points,t_i)[dbg_index]=c_b2ManifoldPoint.m_new.call(new c_b2ManifoldPoint);
-	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<87>";
-	this.m_m_localPlaneNormal=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifold.monkey<88>";
-	this.m_m_localPoint=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
-	pop_err();
-	return this;
-}
-function c_b2ManifoldPoint(){
-	Object.call(this);
-	this.m_m_localPoint=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
-	this.m_m_normalImpulse=.0;
-	this.m_m_tangentImpulse=.0;
-	this.m_m_id=c_b2ContactID.m_new.call(new c_b2ContactID);
-}
-c_b2ManifoldPoint.prototype.p_Reset2=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<61>";
-	this.m_m_localPoint.p_SetZero();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<62>";
-	this.m_m_normalImpulse=0.0;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<63>";
-	this.m_m_tangentImpulse=0.0;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<64>";
-	this.m_m_id.p_Key2(0);
-	pop_err();
-}
-c_b2ManifoldPoint.m_new=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2manifoldpoint.monkey<56>";
-	this.p_Reset2();
-	pop_err();
-	return this;
-}
-function c_b2ContactID(){
-	Object.call(this);
-	this.m_features=c_Features.m_new.call(new c_Features);
-	this.m__key=0;
-}
-c_b2ContactID.m_new=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<47>";
-	dbg_object(this.m_features).m__m_id=this;
-	pop_err();
-	return this;
-}
-c_b2ContactID.prototype.p_Key=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<64>";
-	pop_err();
-	return this.m__key;
-}
-c_b2ContactID.prototype.p_Key2=function(t_value){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<69>";
-	this.m__key=t_value;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<70>";
-	dbg_object(this.m_features).m__referenceEdge=this.m__key&255;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<71>";
-	dbg_object(this.m_features).m__incidentEdge=(this.m__key&65280)>>8&255;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<72>";
-	dbg_object(this.m_features).m__incidentVertex=(this.m__key&16711680)>>16&255;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<73>";
-	dbg_object(this.m_features).m__flip=(this.m__key&-16777216)>>24&255;
-	pop_err();
-}
-c_b2ContactID.prototype.p_Set9=function(t_id){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<52>";
-	this.p_Key2(dbg_object(t_id).m__key);
-	pop_err();
-}
-function c_Features(){
-	Object.call(this);
-	this.m__m_id=null;
-	this.m__referenceEdge=0;
-	this.m__incidentEdge=0;
-	this.m__incidentVertex=0;
-	this.m__flip=0;
-}
-c_Features.m_new=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<47>";
-	pop_err();
-	return this;
-}
-c_Features.prototype.p_ReferenceEdge=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<55>";
-	pop_err();
-	return this.m__referenceEdge;
-}
-c_Features.prototype.p_ReferenceEdge2=function(t_value){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<60>";
-	this.m__referenceEdge=t_value;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<61>";
-	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&-256|this.m__referenceEdge&255;
-	pop_err();
-}
-c_Features.prototype.p_IncidentEdge=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<73>";
-	pop_err();
-	return this.m__incidentEdge;
-}
-c_Features.prototype.p_IncidentEdge2=function(t_value){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<78>";
-	this.m__incidentEdge=t_value;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<79>";
-	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&-65281|this.m__incidentEdge<<8&65280;
-	pop_err();
-}
-c_Features.prototype.p_IncidentVertex=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<91>";
-	pop_err();
-	return this.m__incidentVertex;
-}
-c_Features.prototype.p_IncidentVertex2=function(t_value){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<96>";
-	this.m__incidentVertex=t_value;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<97>";
-	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&-16711681|this.m__incidentVertex<<16&16711680;
-	pop_err();
-}
-c_Features.prototype.p_Flip=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<109>";
-	pop_err();
-	return this.m__flip;
-}
-c_Features.prototype.p_Flip2=function(t_value){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<114>";
-	this.m__flip=t_value;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/features.monkey<115>";
-	dbg_object(this.m__m_id).m__key=dbg_object(this.m__m_id).m__key&16777215|this.m__flip<<24&-16777216;
-	pop_err();
-}
 function c_b2TimeStep(){
 	Object.call(this);
 	this.m_dt=.0;
@@ -13669,86 +13929,6 @@ c_b2DistanceProxy.prototype.p_GetSupportVertex=function(t_d){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2distanceproxy.monkey<117>";
 	pop_err();
 	return dbg_array(this.m_m_vertices,t_bestIndex)[dbg_index];
-}
-function c_b2CircleShape(){
-	c_b2Shape.call(this);
-	this.m_m_p=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
-}
-c_b2CircleShape.prototype=extend_class(c_b2Shape);
-c_b2CircleShape.m_new=function(t_radius){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<233>";
-	c_b2Shape.m_new.call(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<234>";
-	this.m_m_type=0;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<235>";
-	this.m_m_radius=t_radius;
-	pop_err();
-	return this;
-}
-c_b2CircleShape.prototype.p_Copy=function(){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<50>";
-	var t_s=(c_b2CircleShape.m_new.call(new c_b2CircleShape,dbg_object(this).m_m_radius));
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<51>";
-	t_s.p_Set5(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<52>";
-	pop_err();
-	return t_s;
-}
-c_b2CircleShape.prototype.p_Set5=function(t_other){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<56>";
-	c_b2Shape.prototype.p_Set5.call(this,t_other);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<57>";
-	if((object_downcast((t_other),c_b2CircleShape))!=null){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<58>";
-		var t_other2=object_downcast((t_other),c_b2CircleShape);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<59>";
-		this.m_m_p.p_SetV(dbg_object(t_other2).m_m_p);
-	}
-	pop_err();
-}
-c_b2CircleShape.prototype.p_ComputeAABB=function(t_aabb,t_transform){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<144>";
-	var t_tMat=dbg_object(t_transform).m_R;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<145>";
-	var t_pX=dbg_object(dbg_object(t_transform).m_position).m_x+(dbg_object(dbg_object(t_tMat).m_col1).m_x*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_x*dbg_object(this.m_m_p).m_y);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<146>";
-	var t_pY=dbg_object(dbg_object(t_transform).m_position).m_y+(dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(this.m_m_p).m_y);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<147>";
-	dbg_object(t_aabb).m_lowerBound.p_Set2(t_pX-this.m_m_radius,t_pY-this.m_m_radius);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<148>";
-	dbg_object(t_aabb).m_upperBound.p_Set2(t_pX+this.m_m_radius,t_pY+this.m_m_radius);
-	pop_err();
-}
-c_b2CircleShape.prototype.p_ComputeMass=function(t_massData,t_density){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<157>";
-	dbg_object(t_massData).m_mass=t_density*3.14159265*this.m_m_radius*this.m_m_radius;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<158>";
-	dbg_object(t_massData).m_center.p_SetV(this.m_m_p);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<161>";
-	dbg_object(t_massData).m_I=dbg_object(t_massData).m_mass*(0.5*this.m_m_radius*this.m_m_radius+(dbg_object(this.m_m_p).m_x*dbg_object(this.m_m_p).m_x+dbg_object(this.m_m_p).m_y*dbg_object(this.m_m_p).m_y));
-	pop_err();
-}
-c_b2CircleShape.prototype.p_TestPoint=function(t_transform,t_p){
-	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<70>";
-	var t_tMat=dbg_object(t_transform).m_R;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<71>";
-	var t_dX=dbg_object(dbg_object(t_transform).m_position).m_x+(dbg_object(dbg_object(t_tMat).m_col1).m_x*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_x*dbg_object(this.m_m_p).m_y);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<72>";
-	var t_dY=dbg_object(dbg_object(t_transform).m_position).m_y+(dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(this.m_m_p).m_y);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<74>";
-	t_dX=dbg_object(t_p).m_x-t_dX;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<75>";
-	t_dY=dbg_object(t_p).m_y-t_dY;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<77>";
-	var t_=t_dX*t_dX+t_dY*t_dY<=this.m_m_radius*this.m_m_radius;
-	pop_err();
-	return t_;
 }
 function c_b2SimplexCache(){
 	Object.call(this);
@@ -16769,7 +16949,7 @@ c_b2Color.m_new2=function(){
 	pop_err();
 	return this;
 }
-c_b2Color.prototype.p_Set8=function(t_rr,t_gg,t_bb){
+c_b2Color.prototype.p_Set9=function(t_rr,t_gg,t_bb){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/b2color.monkey<50>";
 	this.m__r=((255.0*c_b2Math.m_Clamp(t_rr,0.0,1.0))|0);
@@ -18658,7 +18838,7 @@ c_b2Collision.m_CollidePolygons=function(t_manifold,t_polyA,t_xfA,t_polyB,t_xfB)
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<473>";
 			dbg_object(dbg_object(t_cp).m_m_localPoint).m_y=t_tX*dbg_object(dbg_object(t_tMat).m_col2).m_x+t_tY*dbg_object(dbg_object(t_tMat).m_col2).m_y;
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<474>";
-			dbg_object(t_cp).m_m_id.p_Set9(dbg_object(t_cv).m_id);
+			dbg_object(t_cp).m_m_id.p_Set8(dbg_object(t_cv).m_id);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<475>";
 			dbg_object(dbg_object(t_cp).m_m_id).m_features.p_Flip2(t_flip);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<476>";
@@ -18807,7 +18987,7 @@ c_ClipVertex.prototype.p_Set14=function(t_other){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/clipvertex.monkey<47>";
 	dbg_object(this.m_v).m_y=dbg_object(dbg_object(t_other).m_v).m_y;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/clipvertex.monkey<48>";
-	this.m_id.p_Set9(dbg_object(t_other).m_id);
+	this.m_id.p_Set8(dbg_object(t_other).m_id);
 	pop_err();
 }
 function bbInit(){
@@ -18832,13 +19012,14 @@ function bbInit(){
 	c_b2ContactListener.m_b2_defaultListener=(c_b2ContactListener.m_new.call(new c_b2ContactListener));
 	c_b2DebugDraw.m_e_shapeBit=1;
 	c_b2DebugDraw.m_e_jointBit=2;
+	c_Dwarf.m_image=null;
 	bb_dwarf_CONTROL_SCHEME_WASD=[87,68,83,65];
 	bb_dwarf_CONTROL_SCHEME_ARROWS=[38,39,40,37];
 	bb_dwarf_CONTROL_SCHEMES=[bb_dwarf_CONTROL_SCHEME_WASD,bb_dwarf_CONTROL_SCHEME_ARROWS];
-	c_World.m_mouseXWorldPhys=.0;
-	c_World.m_mouseYWorldPhys=.0;
-	c_World.m_mouseXWorld=.0;
-	c_World.m_mouseYWorld=.0;
+	c_Universe.m_mouseXWorldPhys=.0;
+	c_Universe.m_mouseYWorldPhys=.0;
+	c_Universe.m_mouseXWorld=.0;
+	c_Universe.m_mouseYWorld=.0;
 	c_b2World.m_s_timestep2=c_b2TimeStep.m_new.call(new c_b2TimeStep);
 	c_b2Distance.m_b2_gjkCalls=0;
 	c_b2Distance.m_s_simplex=c_b2Simplex.m_new.call(new c_b2Simplex);

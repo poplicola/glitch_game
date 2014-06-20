@@ -44,6 +44,10 @@ Class MyApp Extends App
 		universe = New Universe()
 		universe.Initialize()
 		
+		Dwarf.image = LoadImage( "dwarf.png" )
+		'exclude for GLITCH
+		Dwarf.image.SetHandle( Dwarf.image.Width() / 2.0, Dwarf.image.Height() / 2.0 )
+		
 		Return 0
 	End
 	
