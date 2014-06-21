@@ -78,28 +78,6 @@ Class Universe
         wallB.CreateFixture2(wall)
 	End
 	
-	Method MakeDwarf:Void( dwarf:Dwarf, world:b2World )
-		Local x:Float = dwarf.x, y:Float = dwarf.y
-		
-		Local shapeDefinition:b2PolygonShape = New b2PolygonShape()
-		shapeDefinition.SetAsBox( 0.5 * Dwarf.WIDTH / Physics.SCALE, 0.5 * Dwarf.HEIGHT / Physics.SCALE )
-		
-        Local fixtureDefinition:b2FixtureDef = New b2FixtureDef()
-        fixtureDefinition.density = Physics.DWARF_DENSITY
-        fixtureDefinition.friction = Physics.DWARF_FRICTION
-        fixtureDefinition.restitution = Physics.DWARF_RESTITUTION
-        fixtureDefinition.shape = shapeDefinition
-		
-		Local bodyDefinition:b2BodyDef = New b2BodyDef()
-        bodyDefinition.type = b2Body.b2_Body
-		bodyDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
-		
-        Local myBody := world.CreateBody( bodyDefinition )
-        myBody.CreateFixture( fixtureDefinition )
-		
-		dwarf.body = myBody
-	End
-	
 	Method OnRender:Void()
 		'GLICTH UpdatePhysics() 'have this here instead of Update, rendering is a frame behind
 		m_world.DrawDebugData()
