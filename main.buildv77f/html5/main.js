@@ -3172,47 +3172,49 @@ c_Dwarf.prototype.p_CreateBody=function(){
 	dbg_object(t_bodyDefinition).m_type=2;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<41>";
 	dbg_object(t_bodyDefinition).m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<43>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<42>";
+	dbg_object(t_bodyDefinition).m_fixedRotation=true;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<44>";
 	this.m_body=t_world.p_CreateBody2(t_bodyDefinition);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<45>";
-	var t_shapeDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<46>";
+	var t_shapeDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<47>";
 	t_shapeDefinition.p_SetAsBox(0.5,0.83333333333333337);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<48>";
-	var t_fixtureDefinition=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<49>";
-	dbg_object(t_fixtureDefinition).m_density=0.7;
+	var t_fixtureDefinition=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<50>";
-	dbg_object(t_fixtureDefinition).m_friction=0.6;
+	dbg_object(t_fixtureDefinition).m_density=0.7;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<51>";
-	dbg_object(t_fixtureDefinition).m_restitution=0.2;
+	dbg_object(t_fixtureDefinition).m_friction=0.6;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<52>";
+	dbg_object(t_fixtureDefinition).m_restitution=0.2;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<53>";
 	dbg_object(t_fixtureDefinition).m_shape=(t_shapeDefinition);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<54>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<55>";
 	this.m_body.p_CreateFixture(t_fixtureDefinition);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<58>";
-	var t_headDefinition=c_b2BodyDef.m_new.call(new c_b2BodyDef);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<59>";
-	dbg_object(t_headDefinition).m_type=2;
+	var t_headDefinition=c_b2BodyDef.m_new.call(new c_b2BodyDef);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<60>";
+	dbg_object(t_headDefinition).m_type=2;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<61>";
 	dbg_object(t_headDefinition).m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<62>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<63>";
 	this.m_head=t_world.p_CreateBody2(t_headDefinition);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<64>";
-	var t_shapeDefinition2=c_b2CircleShape.m_new.call(new c_b2CircleShape,0.5);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<65>";
+	var t_shapeDefinition2=c_b2CircleShape.m_new.call(new c_b2CircleShape,0.5);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<66>";
 	t_shapeDefinition2.p_SetLocalPosition(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,-0.33333333333333337));
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<67>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<68>";
 	dbg_object(t_fixtureDefinition).m_shape=(t_shapeDefinition2);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<69>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<70>";
 	this.m_head.p_CreateFixture(t_fixtureDefinition);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<73>";
-	var t_neckDefinition=c_b2RevoluteJointDef.m_new.call(new c_b2RevoluteJointDef);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<74>";
-	dbg_object(t_neckDefinition).m_bodyA=this.m_body;
+	var t_neckDefinition=c_b2RevoluteJointDef.m_new.call(new c_b2RevoluteJointDef);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<75>";
-	dbg_object(t_neckDefinition).m_bodyB=this.m_head;
+	dbg_object(t_neckDefinition).m_bodyA=this.m_body;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<76>";
+	dbg_object(t_neckDefinition).m_bodyB=this.m_head;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<77>";
 	dbg_object(t_neckDefinition).m_collideConnected=false;
 	pop_err();
 }
@@ -3239,54 +3241,64 @@ c_Dwarf.m_new2=function(){
 }
 c_Dwarf.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<80>";
-	var t_keyRight=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],1)[dbg_index];
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<81>";
-	var t_keyLeft=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],3)[dbg_index];
+	var t_keyRight=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],1)[dbg_index];
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<82>";
-	var t_keyUp=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],0)[dbg_index];
+	var t_keyLeft=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],3)[dbg_index];
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<83>";
+	var t_keyUp=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],0)[dbg_index];
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<84>";
 	var t_keyDown=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],2)[dbg_index];
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<85>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<86>";
 	if((bb_input_KeyHit(t_keyRight))!=0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<85>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<86>";
 		this.m_facing=1;
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<86>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<87>";
 	if((bb_input_KeyHit(t_keyLeft))!=0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<86>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<87>";
 		this.m_facing=-1;
 	}
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<88>";
-	if(((bb_input_KeyDown(t_keyRight))!=0) && this.m_facing==1){
+	if(((bb_input_KeyDown(t_keyRight))!=0) && !((bb_input_KeyDown(t_keyLeft))!=0)){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<88>";
+		this.m_facing=1;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<89>";
+	if(((bb_input_KeyDown(t_keyLeft))!=0) && !((bb_input_KeyDown(t_keyRight))!=0)){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<89>";
+		this.m_facing=-1;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<91>";
+	if(((bb_input_KeyDown(t_keyRight))!=0) && this.m_facing==1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<92>";
 		bb_glue_ApplyForceToBody(this.m_body,60.0,0.0);
 	}else{
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<90>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<93>";
 		if(((bb_input_KeyDown(t_keyLeft))!=0) && this.m_facing==-1){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<91>";
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<94>";
 			bb_glue_ApplyForceToBody(this.m_body,-60.0,0.0);
 		}
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<94>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<97>";
 	if((bb_input_KeyHit(t_keyUp))!=0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<95>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<98>";
 		bb_glue_ApplyImpulseToBody(this.m_body,0.0,-20.0);
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<98>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<101>";
 	if((bb_input_KeyDown(t_keyDown))!=0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<99>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<102>";
 		this.m_body.p_ApplyTorque(10.0);
 	}
 	pop_err();
 }
 c_Dwarf.prototype.p_OnRender=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<104>";
-	var t_center=this.m_body.p_GetWorldCenter();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<107>";
+	var t_center=this.m_body.p_GetWorldCenter();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<110>";
 	var t_orientation=bb_glue_RadiansToDegrees(-this.m_body.p_GetAngle());
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<108>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<111>";
 	bb_graphics_DrawImage2(c_Dwarf.m_image,dbg_object(t_center).m_x*30.0,dbg_object(t_center).m_y*30.0,t_orientation,(this.m_facing),1.0,0);
 	pop_err();
 }

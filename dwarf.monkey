@@ -39,6 +39,7 @@ Class Dwarf
 		Local bodyDefinition:b2BodyDef = New b2BodyDef()
         bodyDefinition.type = b2Body.b2_Body
 		bodyDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
+		bodyDefinition.fixedRotation = True
 		
         body = world.CreateBody( bodyDefinition )
 		
@@ -84,6 +85,8 @@ Class Dwarf
 		
 		If KeyHit( keyRight ) Then facing = FACING_RIGHT
 		If KeyHit( keyLeft ) Then facing = FACING_LEFT
+		If KeyDown( keyRight ) And Not KeyDown( keyLeft ) Then facing = FACING_RIGHT
+		If KeyDown( keyLeft ) And Not KeyDown( keyRight ) Then facing = FACING_LEFT
 		
 		If KeyDown( keyRight) And ( facing = FACING_RIGHT )
 			ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
