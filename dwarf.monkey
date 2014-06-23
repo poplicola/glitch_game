@@ -23,7 +23,8 @@ Class Dwarf
 	
 	Field player:Int
 	Field x:Float, y:Float, facing:Int
-	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint
+	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint, feet:b2Fixture
+	Field feetTouching:Int
 
 	Method New( Player:Int, Start_x:Float, Start_y:Float )
 		Self.player = Player;
@@ -32,6 +33,10 @@ Class Dwarf
 		facing = 1 - 2 * Player
 		CreateBody()
 	End
+	
+	Method OnBeginContact:Void(); feetTouching += 1; End
+	
+	Method OnEndContact:Void(); feetTouching -= 1; End
 	
 	Method CreateBody:Void()
 		Local world:b2World = APP.universe.m_world
@@ -54,7 +59,11 @@ Class Dwarf
 		
         body.CreateFixture( fixtureDefinition )
 		
-		'below incomplete
+		
+		
+		Local yNeck:Float = 0.5 * WIDTH / Physics.SCALE - 0.5 * HEIGHT / Physics.SCALE
+		
+		
 		
 		Local headDefinition:b2BodyDef = New b2BodyDef()
 		headDefinition.type = b2Body.b2_Body
@@ -62,12 +71,12 @@ Class Dwarf
 		
 		head = world.CreateBody( headDefinition )
 		
-		Local shapeDefinition2:b2CircleShape = New b2CircleShape( 0.5 * WIDTH / Physics.SCALE )
-		shapeDefinition2.SetLocalPosition( New b2Vec2( 0, 0.5 * WIDTH / Physics.SCALE - 0.5 * HEIGHT / Physics.SCALE ) )
+		Local shapeDefinition2:b2CircleShape = New b2CircleShape( 0.5 * WIDTH / Physics.SCALE + 0.1 )
+		shapeDefinition2.SetLocalPosition( New b2Vec2( 0, yNeck ) )
 		
 		fixtureDefinition.shape = shapeDefinition2
 		
-		head.CreateFixture( fixtureDefinition )
+		'head.CreateFixture( fixtureDefinition )
 		
 		
 		
@@ -75,6 +84,25 @@ Class Dwarf
 		neckDefinition.bodyA = body
 		neckDefinition.bodyB = head
 		neckDefinition.collideConnected = False
+		neckDefinition.localAnchorA.x = 0; neckDefinition.localAnchorA.y = yNeck
+		neckDefinition.localAnchorB.x = 0; neckDefinition.localAnchorB.y = yNeck
+		
+		neck = b2RevoluteJoint( world.CreateJoint( neckDefinition ) )
+		
+		
+		
+		Local feetDefinition:b2PolygonShape = New b2PolygonShape()
+		feetDefinition.SetAsBox( 0.5 * WIDTH / Physics.SCALE, 0.5 / Physics.SCALE )
+		
+		For Local vertex:b2Vec2 = EachIn feetDefinition.GetVertices()
+			vertex.y += 0.5 * HEIGHT / Physics.SCALE + 0.5 / Physics.SCALE
+		Next
+		
+		Local feetFixtureDefinition:b2FixtureDef = New b2FixtureDef()
+		feetFixtureDefinition.isSensor = True
+		feetFixtureDefinition.shape = feetDefinition
+				
+		feet = body.CreateFixture( feetFixtureDefinition )
 	End
 	
 	Method OnUpdate:Void()
@@ -94,7 +122,8 @@ Class Dwarf
 			ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
 		Endif
 		
-		If KeyHit( keyUp )
+		If KeyHit( keyUp ) And ( feetTouching > 0 )
+			body.SetLinearVelocity( New b2Vec2( body.GetLinearVelocity().x, 0 ) )
 			ApplyImpulseToBody( body, 0, -Physics.JUMP_IMPULSE )
 		EndIf
 		
@@ -109,9 +138,39 @@ Class Dwarf
 		'GLITCH Local orientation:Float = body.GetAngle() / 3.1415 * 180.0
 		Local orientation:Float = RadiansToDegrees( -body.GetAngle() )
 		DrawImage( image, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, facing, 1 )
+		
+		DrawText( "#: " + feetTouching, center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
 	End
 End
 
+
+
+
+Class DwarfFeetContactListener Implements b2ContactListenerInterface
+    Method BeginContact:Void( contact:b2Contact )
+		If contact.IsTouching()
+			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
+				If ( contact.GetFixtureA() = dwarf.feet ) Or ( contact.GetFixtureB() = dwarf.feet )
+					dwarf.OnBeginContact()
+				EndIf
+			Next
+		EndIf
+	End
+	
+    Method EndContact:Void(contact:b2Contact)
+		'If contact.IsTouching()
+			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
+				If ( contact.GetFixtureA() = dwarf.feet ) Or ( contact.GetFixtureB() = dwarf.feet )
+					dwarf.OnEndContact()
+				EndIf
+			Next
+		'EndIf
+	End
+	
+    Method PreSolve:Void( contact:b2Contact, oldManifold:b2Manifold ); End
+	
+    Method PostSolve:Void( contact:b2Contact, impulse:b2ContactImpulse ); End
+End
 
 
 

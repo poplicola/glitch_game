@@ -56,26 +56,31 @@ Class Universe
         Local wall :b2PolygonShape= New b2PolygonShape()
         Local wallBd :b2BodyDef = New b2BodyDef()
         Local wallB :b2Body
+		
+		Local filterData:b2FilterData = New b2FilterData()
+		filterData.categoryBits = CATEGORY_BOUNDARY
         
         '// Left
         wallBd.position.Set( -95 / Physics.SCALE, height / Physics.SCALE / 2)
         wall.SetAsBox(100/Physics.SCALE, height+100/Physics.SCALE/2)
         wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wallB.CreateFixture2(wall).SetFilterData( filterData )
         '// Right
         wallBd.position.Set((width+95) / Physics.SCALE, height / Physics.SCALE / 2)
         wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wallB.CreateFixture2(wall).SetFilterData( filterData )
         '// Top
         wallBd.position.Set(width / Physics.SCALE / 2, -95 / Physics.SCALE)
         wall.SetAsBox(width+100/Physics.SCALE/2, 100/Physics.SCALE)
         wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wallB.CreateFixture2(wall).SetFilterData( filterData )
         '// Bottom
         wall.SetAsBox(width+100/Physics.SCALE/2, 100/Physics.SCALE)
         wallBd.position.Set(width / Physics.SCALE / 2, (height + 95) / Physics.SCALE)
         wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wallB.CreateFixture2(wall).SetFilterData( filterData )
+		
+		m_world.SetContactListener( New DwarfFeetContactListener() )
 	End
 	
 	Method OnRender:Void()
