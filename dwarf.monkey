@@ -44,7 +44,7 @@ Class Dwarf
 		Local bodyDefinition:b2BodyDef = New b2BodyDef()
         bodyDefinition.type = b2Body.b2_Body
 		bodyDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
-		bodyDefinition.fixedRotation = True
+		bodyDefinition.fixedRotation = False
 		
         body = world.CreateBody( bodyDefinition )
 		
