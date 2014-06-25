@@ -28,6 +28,13 @@ Function ApplyImpulseToBody:Void( body:b2Body, x:Float, y:Float )
 	body.ApplyImpulse( New b2Vec2( x, y ), body.GetWorldCenter() )
 End
 
+Function ApplyImpulseToBody2:Void( body:b2Body, magnitude:Float, angle:Float )
+	Local x:Float = Cos( RadiansToDegrees( angle ) + 90 ) * magnitude
+	Local y:Float = Sin( RadiansToDegrees( angle ) + 90 ) * magnitude
+	body.ApplyImpulse( New b2Vec2( x, y ), body.GetWorldCenter() )
+End
+
+
 
 
 Function BoolToString:String( tf:Bool )

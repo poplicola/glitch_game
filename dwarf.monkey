@@ -111,6 +111,7 @@ Class Dwarf
 	Method OnUpdate:Void()
 		If ( feetTouching > 0 ) Then feetContactTime = Millisecs()
 		feetValid = ( ( Millisecs() - feetContactTime ) <= Physics.JUMP_FORGIVENESS  )
+		feetValid = True
 		
 		Local keyRight:Int = CONTROL_SCHEMES[player][CONTROL_RIGHT]
 		Local keyLeft:Int = CONTROL_SCHEMES[player][CONTROL_LEFT]
@@ -140,7 +141,7 @@ Class Dwarf
 		
 		If KeyHit( keyUp ) And ( feetValid )
 			body.SetLinearVelocity( New b2Vec2( body.GetLinearVelocity().x, 0 ) )
-			ApplyImpulseToBody( body, 0, -Physics.JUMP_IMPULSE )
+			ApplyImpulseToBody2( body, -Physics.JUMP_IMPULSE, body.GetAngle() )
 		EndIf
 		
 		If KeyDown( keyDown )
