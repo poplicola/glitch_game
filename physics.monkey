@@ -13,5 +13,5 @@ Class Physics
 	Const WALK_TORQUE:Float = 30
 	Const JUMP_IMPULSE:Float = 20
 	
-	Const JUMP_FORGIVENESS:Int = 10
+	Const JUMP_FORGIVENESS:Int = 100
 End

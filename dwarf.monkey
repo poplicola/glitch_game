@@ -24,7 +24,7 @@ Class Dwarf
 	Field player:Int
 	Field x:Float, y:Float, facing:Int
 	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint, feet:b2Fixture
-	Field feetTouching:Int
+	Field feetTouching:Int, feetContactTime:Int, feetValid:Bool
 
 	Method New( Player:Int, Start_x:Float, Start_y:Float )
 		Self.player = Player;
@@ -34,7 +34,10 @@ Class Dwarf
 		CreateBody()
 	End
 	
-	Method OnBeginContact:Void(); feetTouching += 1; End
+	Method OnBeginContact:Void()
+		feetTouching += 1
+		If ( feetTouching > 0 ) Then feetContactTime = Millisecs()
+	End
 	
 	Method OnEndContact:Void(); feetTouching -= 1; End
 	
@@ -106,6 +109,9 @@ Class Dwarf
 	End
 	
 	Method OnUpdate:Void()
+		If ( feetTouching > 0 ) Then feetContactTime = Millisecs()
+		feetValid = ( ( Millisecs() - feetContactTime ) <= Physics.JUMP_FORGIVENESS  )
+		
 		Local keyRight:Int = CONTROL_SCHEMES[player][CONTROL_RIGHT]
 		Local keyLeft:Int = CONTROL_SCHEMES[player][CONTROL_LEFT]
 		Local keyUp:Int = CONTROL_SCHEMES[player][CONTROL_UP]
@@ -118,13 +124,21 @@ Class Dwarf
 		
 		If KeyDown( keyRight) And ( facing = FACING_RIGHT )
 			ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
-			body.ApplyTorque( Physics.WALK_TORQUE )
+			
+			If ( feetValid )
+				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE )
+				body.ApplyTorque( torque )
+			EndIf
 		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT )
 			ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
-			body.ApplyTorque( -Physics.WALK_TORQUE )
+			
+			If ( feetValid )
+				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE )
+				body.ApplyTorque( torque )
+			EndIf
 		Endif
 		
-		If KeyHit( keyUp ) And ( feetTouching > 0 )
+		If KeyHit( keyUp ) And ( feetValid )
 			body.SetLinearVelocity( New b2Vec2( body.GetLinearVelocity().x, 0 ) )
 			ApplyImpulseToBody( body, 0, -Physics.JUMP_IMPULSE )
 		EndIf
@@ -134,6 +148,21 @@ Class Dwarf
 		EndIf
 	End
 	
+	Method AdjustTorque:Float( torque:Float )
+		Local tick:Float = 15.0
+		Local desiredAngle:Float = 0.0
+		Local bodyAngle:Float = body.GetAngle()
+		
+		Local nextAngle:Float = bodyAngle + body.GetAngularVelocity() / tick
+		Local totalRotation:Float = desiredAngle - nextAngle
+		While ( totalRotation < DegreesToRadians(- 180 ) ); totalRotation += DegreesToRadians( 360 ); Wend
+		While ( totalRotation > DegreesToRadians( 180 ) ); totalRotation -= DegreesToRadians( 360 ); Wend
+		Local desiredAngularVelocity:Float = totalRotation * tick
+		Return body.GetInertia() * desiredAngularVelocity / ( 1.0 / tick )
+	
+		'Return torque * body.GetAngle() / ( 2 * 3.1415 )
+	End
+	
 	Method OnRender:Void()
 		Local center:b2Vec2 = body.GetWorldCenter()
 		'GLITCH Local orientation:Float = body.GetAngle()
@@ -141,7 +170,7 @@ Class Dwarf
 		Local orientation:Float = RadiansToDegrees( -body.GetAngle() )
 		DrawImage( image, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, facing, 1 )
 		
-		DrawText( "#: " + feetTouching, center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
+		DrawText( "#:" + feetTouching + "=" + BoolToString( feetValid ), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
 	End
 End
 
