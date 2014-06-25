@@ -51,6 +51,9 @@ Class MyApp Extends App
 		Dwarf.image = LoadImage( "dwarf.png" )
 		Dwarf.image.SetHandle( Dwarf.image.Width() / 2.0, Dwarf.image.Height() / 2.0 ) 'exclude for GLITCH
 		
+		Dwarf.sheet = LoadImage( "dwarves.png", 100, 80, 240 )
+		Dwarf.sheet.SetHandle( Dwarf.sheet.Width() / 2.0, Dwarf.sheet.Height() / 2.0 + 15 )
+		
 		universe = New Universe()
 		'universe.m_world.SetGravity( New b2Vec2( 0.0, 0.0 ) )
 		'''universe.Load( "rubeformat.txt" )

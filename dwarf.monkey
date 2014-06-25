@@ -19,7 +19,9 @@ Const FACING_LEFT:Int = -1, FACING_RIGHT:Int = 1
 
 Class Dwarf
 	Const WIDTH:Int = 30, HEIGHT:Int = 50
+	Global FRAME_START:Int[] = [ 0, 3 * 20 ]
 	Global image:Image
+	Global sheet:Image
 	
 	Field player:Int
 	Field x:Float, y:Float, facing:Int
@@ -127,14 +129,14 @@ Class Dwarf
 			ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
-				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE )
+				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE, 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
 				body.ApplyTorque( torque )
 			EndIf
 		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT ) And ( feetValid )
 			ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
-				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE )
+				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE, 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
 				body.ApplyTorque( torque )
 			EndIf
 		Endif
@@ -151,14 +153,14 @@ Class Dwarf
 			jumpPressed -= Physics.JUMP_FORGIVENESS
 		EndIf
 		
-		If KeyDown( keyDown )
-			body.ApplyTorque( 10 )
+		If KeyDown( keyDown ) And ( feetValid )
+			Local torque:Float = AdjustTorque( Physics.WALK_TORQUE, 0.0 )
+			body.ApplyTorque( torque )
 		EndIf
 	End
 	
-	Method AdjustTorque:Float( torque:Float )
+	Method AdjustTorque:Float( torque:Float, desiredAngle:FLoat )
 		Local tick:Float = 15.0
-		Local desiredAngle:Float = 0.0 + DegreesToRadians( Physics.LEAN ) * facing
 		Local bodyAngle:Float = body.GetAngle()
 		
 		Local nextAngle:Float = bodyAngle + body.GetAngularVelocity() / tick
@@ -176,7 +178,9 @@ Class Dwarf
 		'GLITCH Local orientation:Float = body.GetAngle()
 		'GLITCH Local orientation:Float = body.GetAngle() / 3.1415 * 180.0
 		Local orientation:Float = RadiansToDegrees( -body.GetAngle() )
+		Local frame:Int = FRAME_START[player]
 		DrawImage( image, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, facing, 1 )
+		DrawImage( sheet, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, -facing, 1, frame )
 		
 		DrawText( "#:" + feetTouching + "=" + BoolToString( feetValid ), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
 	End
