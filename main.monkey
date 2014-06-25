@@ -2,6 +2,11 @@ Strict
 
 
 
+#REFLECTION_FILTER = "*"
+Import reflection
+
+
+
 Import mojo
 Import box2d.collision
 Import box2d.collision.shapes
@@ -19,7 +24,7 @@ Import dwarf
 Import glue
 Import physics
 Import world
-'Import rubeloader
+Import rubeloader
 
 
 
@@ -55,9 +60,8 @@ Class MyApp Extends App
 		Dwarf.sheet.SetHandle( Dwarf.sheet.Width() / 2.0, Dwarf.sheet.Height() / 2.0 + 15 )
 		
 		universe = New Universe()
-		'universe.m_world.SetGravity( New b2Vec2( 0.0, 0.0 ) )
-		'''universe.Load( "rubeformat.txt" )
 		'universe.Initialize()
+		universe.Load( "delve_deeper_punchy_scene.txt" )
 		
 		dwarf_one = New Dwarf( 0, 30, 454 )
 		dwarf_two = New Dwarf( 1, 400, 454 )

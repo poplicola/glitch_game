@@ -79,7 +79,7 @@ Class b2TensorDampingController Extends b2Controller
         T.col2.y = -yDamping
         If(xDamping>0 Or yDamping>0)
             
-            maxTimestep = 1/Math.Max(xDamping,yDamping)
+            maxTimestep = 1/Max(xDamping,yDamping)
         Else
             
             

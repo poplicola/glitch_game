@@ -84,7 +84,7 @@ Class Universe
 	End
 	
 	Method Load:Void( path:String )
-		Local rubeWorld:RubeWorld = LoadRube( path )
+		Local rubeWorld:RubeWorld = LoadRube( path, m_world )
 	End
 	
 	Method OnRender:Void()

@@ -1,10 +1,6 @@
 Strict
 
 
-#REFLECTION_FILTER = "rubeloader"
-Import reflection
-
-
 
 Import main
 Import json
@@ -12,34 +8,40 @@ Import json
 
 
 Interface IRubeObject
-	Method LoadProperties:Void( data:JSONObject )
+	Method LoadProperties:Void( _data:Object )
 End
 
 
 
 Class RubeObject Implements IRubeObject
-	Method LoadProperties:Void( data:JSONObject )
-		For Local fieldInfo:FieldInfo = EachIn GetClass( Self ).GetFields( True )
-			LoadProperty( data, Self, fieldInfo )
+	Method LoadProperties:Void( _data:Object )
+		For Local fieldInfo:FieldInfo = EachIn GetClass( Self ).GetFields( False )
+			LoadProperty( _data, Self, fieldInfo )
 		Next
 	End
 End
 
 
 
-Function LoadProperty:Void( data:JSONObject, instance:Object, fieldInfo:FieldInfo )
+Function LoadProperty:Void( _data:Object, instance:Object, fieldInfo:FieldInfo )
+	Print fieldInfo.Name
+	
+	Local data:JSONObject = JSONObject( _data )
+	
+	If ( data = Null ) Then Return
+	
 	Local name:String = fieldInfo.Name.Replace( "_", "-" )
 	Local valueObject:Object
 	
 	Select fieldInfo.Type
 		Case IntClass()
-			valueObject = BoxInt( data.GetItem( name, IntObject( fieldInfo.GetValue( instance ) ).value ) )
+			valueObject = BoxInt( data.GetItem( name, UnboxInt ( fieldInfo.GetValue( instance ) ) ) )
 		Case FloatClass()
-			valueObject = BoxFloat( data.GetItem( name, FloatObject( fieldInfo.GetValue( instance ) ).value ) )
+			valueObject = BoxFloat( data.GetItem( name, UnboxFloat( fieldInfo.GetValue( instance ) ) ) )
 		Case BoolClass()
-			valueObject = BoxBool( data.GetItem( name, BoolObject( fieldInfo.GetValue( instance ) ).value ) )
+			valueObject = BoxBool( data.GetItem( name, UnboxBool( fieldInfo.GetValue( instance ) ) ) )
 		Case StringClass()
-			valueObject = BoxString( data.GetItem( name, StringObject( fieldInfo.GetValue( instance ) ).value ) )
+			valueObject = BoxString( data.GetItem( name, UnboxString( fieldInfo.GetValue( instance ) ) ) )
 		Case GetClass( "RubeShape" )
 			For Local shapeName:String = EachIn [ "circle", "polygon", "chain" ]
 				Local datum:JSONDataItem = data.GetItem( shapeName )
@@ -61,11 +63,12 @@ Function LoadProperty:Void( data:JSONObject, instance:Object, fieldInfo:FieldInf
 			Next
 		Default
 			valueObject = fieldInfo.Type.NewInstance()
-			IRubeObject( valueObject ).LoadProperties( JSONObject( data.GetItem( name ) ) )
+			IRubeObject( valueObject ).LoadProperties( data.GetItem( name ) )
 	End
 	
 	If ( valueObject <> Null ) Then fieldInfo.SetValue( instance, valueObject )
 End
+
 
 
 Class RubeVector Extends RubeObject
@@ -81,7 +84,9 @@ End
 Class RubeVectorArray Implements IRubeObject
 	Field x:Float[], y:Float[]
 	
-	Method LoadProperties:Void( data:JSONObject )
+	Method LoadProperties:Void( _data:Object )
+		Local data:JSONObject = JSONObject( _data )
+		
 		Local xData:JSONArray = JSONArray( data.GetItem( "x" ) )
 		Local yData:JSONArray = JSONArray( data.GetItem( "y" ) )
 		
@@ -113,8 +118,10 @@ End
 Class RubeArray<T> Implements IRubeObject
 	Field values:T[]
 	
-	Method LoadProperties:Void( data:JSONObject )
-		Local arr:JSONArray = JSONArray( data )
+	Method LoadProperties:Void( _data:Object )
+		Local arr:JSONArray = JSONArray( _data )
+		
+		If ( arr = Null ) Then Return
 		
 		values = New T[ arr.values.Count() ]
 		
@@ -122,7 +129,7 @@ Class RubeArray<T> Implements IRubeObject
 		
 		For Local value:JSONDataItem = EachIn arr
 			values[n] = New T()
-			IRubeObject( value[n] ).LoadProperties( JSONObject( value ) )
+			IRubeObject( values[n] ).LoadProperties( value )
 			n += 1
 		Next
 	End
@@ -130,24 +137,34 @@ End
 
 
 
-Class RubeWorld Extends RubeObject
-	Field gravity:RubeVector
-	Field allowSleep:Bool
-	Field autoClearForces:Bool
-	Field positionIterations:Int
-	Field velocityIterations:Int
-	Field stepsPerSecond:Int
-	Field warmStarting:Bool
-	Field coninuousPhysics:Bool
-	Field subStepping:Bool
+Class RubeWorldBase Extends RubeObject
+	Field world:b2World
+End
+
+
+
+Class RubeWorld Extends RubeWorldBase
+	'''Field gravity:RubeVector
+	'''Field allowSleep:Bool
+	'''Field autoClearForces:Bool
+	'''Field positionIterations:Int
+	'''Field velocityIterations:Int
+	'''Field stepsPerSecond:Int
+	'''Field warmStarting:Bool
+	'''Field coninuousPhysics:Bool
+	'''Field subStepping:Bool
 	Field body:RubeArray< RubeBody >
 	Field image:RubeArray< RubeImage >
 	Field joint:RubeArray< RubeJoint >
 	
+	Method New( world:b2World )
+		Self.world = world
+	End
+	
 	Method Convert:b2World()
-		Local world:b2World = New b2World( gravity.Convert(), allowSleep )
+		'''If ( world = Null ) Then world = New b2World( gravity.Convert(), allowSleep )
 		'TODO
-		world.SetWarmStarting( warmStarting )
+		'''world.SetWarmStarting( warmStarting )
 		
 		Local n:Int, bodies:b2Body[] = New b2Body[ body.values.Length ]
 		
@@ -161,6 +178,8 @@ Class RubeWorld Extends RubeObject
 		For Local rubeJoint:RubeJoint = EachIn joint.values
 			rubeJoint.Convert( world, bodies )
 		Next
+		
+		Return world
 	End
 End
 
@@ -209,7 +228,7 @@ Class RubeBody Extends RubeObject
 		Local body:b2Body = world.CreateBody( bodyDefinition )
 		
 		For Local rubeFixture:RubeFixture = EachIn fixture.values
-			rubeFixture.Convert( body)
+			rubeFixture.Convert( body )
 		Next
 		
 		Return body
@@ -221,9 +240,9 @@ End
 Class RubeFixture Extends RubeObject
 	Field name:String
 	Field density:Float
-	Field filter_categoryBits:Int = 1
-	Field filter_maskBits:Int = 65535
-	Field filter_groupIndex:Int
+	'''Field filter_categoryBits:Int = 1
+	'''Field filter_maskBits:Int = 65535
+	'''Field filter_groupIndex:Int
 	Field friction:Float
 	Field restitution:Float
 	Field sensor:Bool
@@ -231,13 +250,13 @@ Class RubeFixture Extends RubeObject
 	'Field customProperties:RubeArray< RubeProperty >
 	
 	Method Convert:b2Fixture( body:b2Body )
-		Local fixtureDefinition:b2FixtureDef = New b2FixtureDef
+		Local fixtureDefinition:b2FixtureDef = New b2FixtureDef()
 		
 		fixtureDefinition.density = density
-		fixtureDefinition.filter = New b2FilterData()
-			fixtureDefinition.filter.categoryBits = filter_categoryBits
-			fixtureDefinition.filter.maskBits = filter_maskBits
-			fixtureDefinition.filter.groupIndex = filter_groupIndex
+		'''fixtureDefinition.filter = New b2FilterData()
+			'''fixtureDefinition.filter.categoryBits = filter_categoryBits
+			'''fixtureDefinition.filter.maskBits = filter_maskBits
+			'''fixtureDefinition.filter.groupIndex = filter_groupIndex
 		fixtureDefinition.friction = friction
 		fixtureDefinition.restitution = restitution
 		fixtureDefinition.isSensor = sensor
@@ -708,9 +727,10 @@ End
 
 
 
-Function LoadRube:RubeWorld( path:String )
-	Local world:RubeWorld = New RubeWorld()
-	Local data:JSONObject = JSONObject( JSONData.ReadJSON( app.LoadString( path ) ) )
+Function LoadRube:RubeWorld( path:String, _world:b2World = Null )
+	Local world:RubeWorld = New RubeWorld( _world )
+	'Local data:JSONObject = JSONObject( JSONData.ReadJSON( app.LoadString( path ) ) )
+	Local data:Object = JSONData.ReadJSON( app.LoadString( path ) )
 	world.LoadProperties( data )
 	Return world
 End

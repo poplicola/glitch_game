@@ -60,12 +60,15 @@ class b2RopeJointDef Extends b2JointDef
 	Method Initialize:Void(bA:b2Body, bB:b2Body, anchorA:b2Vec2, anchorB:b2Vec2, maxLength:Float)
 		bodyA = bA;
 		bodyB = bB;
-		localAnchorA.SetV(bodyA.GetLocalPoint(anchorA))
-		localAnchorB.SetV(bodyB.GetLocalPoint(anchorB))
+		Local out:b2Vec2 = New b2Vec2()
+		bodyA.GetLocalPoint( anchorA, out )
+		localAnchorA.SetV( out )
+		bodyB.GetLocalPoint(anchorB, out)
+		localAnchorB.SetV(out)
 		Local dX:Float = anchorB.x - anchorA.x
 		Local dY:Float = anchorB.y - anchorA.y
-		length = Math.sqrt(dX * dX + dY * dY)
-		this.maxLength = maxLength
+		length = Sqrt(dX * dX + dY * dY)
+		Self.maxLength = maxLength
 	End
 
 	Field localAnchorA:b2Vec2 = New b2Vec2()
