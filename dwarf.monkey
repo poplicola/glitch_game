@@ -98,7 +98,7 @@ Class Dwarf
 		
 		
 		Local feetDefinition:b2PolygonShape = New b2PolygonShape()
-		feetDefinition.SetAsBox( 0.5 * WIDTH / Physics.SCALE, 0.5 / Physics.SCALE )
+		feetDefinition.SetAsBox( 0.6 * WIDTH / Physics.SCALE, 0.5 / Physics.SCALE )
 		
 		For Local vertex:b2Vec2 = EachIn feetDefinition.GetVertices()
 			vertex.y += 0.5 * HEIGHT / Physics.SCALE + 0.5 / Physics.SCALE
@@ -129,14 +129,14 @@ Class Dwarf
 			ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
-				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE, 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
+				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
 				body.ApplyTorque( torque )
 			EndIf
 		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT ) And ( feetValid )
 			ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
-				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE, 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
+				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
 				body.ApplyTorque( torque )
 			EndIf
 		Endif
@@ -154,13 +154,13 @@ Class Dwarf
 		EndIf
 		
 		If KeyDown( keyDown ) And ( feetValid )
-			Local torque:Float = AdjustTorque( Physics.WALK_TORQUE, 0.0 )
+			Local torque:Float = AdjustTorque( 0.0 )
 			body.ApplyTorque( torque )
 		EndIf
 	End
 	
-	Method AdjustTorque:Float( torque:Float, desiredAngle:FLoat )
-		Local tick:Float = 15.0
+	Method AdjustTorque:Float( desiredAngle:FLoat )
+		Local tick:Float = Physics.WALK_TORQUE
 		Local bodyAngle:Float = body.GetAngle()
 		
 		Local nextAngle:Float = bodyAngle + body.GetAngularVelocity() / tick
@@ -169,8 +169,6 @@ Class Dwarf
 		While ( totalRotation > DegreesToRadians( 180 ) ); totalRotation -= DegreesToRadians( 360 ); Wend
 		Local desiredAngularVelocity:Float = totalRotation * tick
 		Return body.GetInertia() * desiredAngularVelocity / ( 1.0 / tick )
-	
-		'Return torque * body.GetAngle() / ( 2 * 3.1415 )
 	End
 	
 	Method OnRender:Void()
