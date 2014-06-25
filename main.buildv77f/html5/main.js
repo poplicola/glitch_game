@@ -11,6 +11,7 @@ CFG_MOJO_AUTO_SUSPEND_ENABLED="1";
 CFG_MOJO_DRIVER_IMPLEMENTED="1";
 CFG_MUSIC_FILES="*.wav|*.ogg|*.mp3|*.m4a";
 CFG_OPENGL_GLES20_ENABLED="0";
+CFG_REFLECTION_FILTER="rubeloader";
 CFG_SAFEMODE="0";
 CFG_SOUND_FILES="*.wav|*.ogg|*.mp3|*.m4a";
 CFG_TARGET="html5";
@@ -1697,6 +1698,5235 @@ BBAsyncSoundLoaderThread.prototype.IsRunning=function(){
 	return false;
 }
 
+function c_BoolObject(){
+	Object.call(this);
+	this.m_value=false;
+}
+c_BoolObject.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<11>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_BoolObject.prototype.p_ToBool=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<15>";
+	pop_err();
+	return this.m_value;
+}
+c_BoolObject.prototype.p_Equals=function(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<19>";
+	var t_=this.m_value==dbg_object(t_box).m_value;
+	pop_err();
+	return t_;
+}
+c_BoolObject.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<7>";
+	pop_err();
+	return this;
+}
+function c_IntObject(){
+	Object.call(this);
+	this.m_value=0;
+}
+c_IntObject.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<27>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_IntObject.m_new2=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<31>";
+	dbg_object(this).m_value=((t_value)|0);
+	pop_err();
+	return this;
+}
+c_IntObject.prototype.p_ToInt=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<35>";
+	pop_err();
+	return this.m_value;
+}
+c_IntObject.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<39>";
+	var t_=(this.m_value);
+	pop_err();
+	return t_;
+}
+c_IntObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<43>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+c_IntObject.prototype.p_Equals2=function(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<47>";
+	var t_=this.m_value==dbg_object(t_box).m_value;
+	pop_err();
+	return t_;
+}
+c_IntObject.prototype.p_Compare=function(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<51>";
+	var t_=this.m_value-dbg_object(t_box).m_value;
+	pop_err();
+	return t_;
+}
+c_IntObject.m_new3=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<23>";
+	pop_err();
+	return this;
+}
+function c_FloatObject(){
+	Object.call(this);
+	this.m_value=.0;
+}
+c_FloatObject.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<59>";
+	dbg_object(this).m_value=(t_value);
+	pop_err();
+	return this;
+}
+c_FloatObject.m_new2=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<63>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_FloatObject.prototype.p_ToInt=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<67>";
+	var t_=((this.m_value)|0);
+	pop_err();
+	return t_;
+}
+c_FloatObject.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<71>";
+	pop_err();
+	return this.m_value;
+}
+c_FloatObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<75>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+c_FloatObject.prototype.p_Equals3=function(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<79>";
+	var t_=this.m_value==dbg_object(t_box).m_value;
+	pop_err();
+	return t_;
+}
+c_FloatObject.prototype.p_Compare2=function(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<83>";
+	if(this.m_value<dbg_object(t_box).m_value){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<83>";
+		pop_err();
+		return -1;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<84>";
+	var t_=((this.m_value>dbg_object(t_box).m_value)?1:0);
+	pop_err();
+	return t_;
+}
+c_FloatObject.m_new3=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<55>";
+	pop_err();
+	return this;
+}
+function c_StringObject(){
+	Object.call(this);
+	this.m_value="";
+}
+c_StringObject.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<92>";
+	dbg_object(this).m_value=String(t_value);
+	pop_err();
+	return this;
+}
+c_StringObject.m_new2=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<96>";
+	dbg_object(this).m_value=String(t_value);
+	pop_err();
+	return this;
+}
+c_StringObject.m_new3=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<100>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_StringObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<104>";
+	pop_err();
+	return this.m_value;
+}
+c_StringObject.prototype.p_Equals4=function(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<108>";
+	var t_=this.m_value==dbg_object(t_box).m_value;
+	pop_err();
+	return t_;
+}
+c_StringObject.prototype.p_Compare3=function(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<112>";
+	var t_=string_compare(this.m_value,dbg_object(t_box).m_value);
+	pop_err();
+	return t_;
+}
+c_StringObject.m_new4=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<88>";
+	pop_err();
+	return this;
+}
+function bb_boxes_BoxBool(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<139>";
+	var t_=(c_BoolObject.m_new.call(new c_BoolObject,t_value));
+	pop_err();
+	return t_;
+}
+function bb_boxes_BoxInt(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<143>";
+	var t_=(c_IntObject.m_new.call(new c_IntObject,t_value));
+	pop_err();
+	return t_;
+}
+function bb_boxes_BoxFloat(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<147>";
+	var t_=(c_FloatObject.m_new2.call(new c_FloatObject,t_value));
+	pop_err();
+	return t_;
+}
+function bb_boxes_BoxString(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<151>";
+	var t_=(c_StringObject.m_new3.call(new c_StringObject,t_value));
+	pop_err();
+	return t_;
+}
+function bb_boxes_UnboxBool(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<155>";
+	var t_=dbg_object(object_downcast((t_box),c_BoolObject)).m_value;
+	pop_err();
+	return t_;
+}
+function bb_boxes_UnboxInt(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<159>";
+	var t_=dbg_object(object_downcast((t_box),c_IntObject)).m_value;
+	pop_err();
+	return t_;
+}
+function bb_boxes_UnboxFloat(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<163>";
+	var t_=dbg_object(object_downcast((t_box),c_FloatObject)).m_value;
+	pop_err();
+	return t_;
+}
+function bb_boxes_UnboxString(t_box){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<167>";
+	var t_=dbg_object(object_downcast((t_box),c_StringObject)).m_value;
+	pop_err();
+	return t_;
+}
+function c_JSONDataItem(){
+	Object.call(this);
+	this.m_dataType=7;
+}
+c_JSONDataItem.prototype.p_ToString=function(){
+}
+c_JSONDataItem.prototype.p_ToInt=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<371>";
+	print("Unsupported conversion to Int for "+this.p_ToString());
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<372>";
+	pop_err();
+	return -1;
+}
+c_JSONDataItem.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<376>";
+	print("Unsupported conversion to Float for "+this.p_ToString());
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<377>";
+	pop_err();
+	return -1.0;
+}
+c_JSONDataItem.prototype.p_ToBool=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<381>";
+	print("Unsupported conversion to Bool for "+this.p_ToString());
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<382>";
+	pop_err();
+	return false;
+}
+c_JSONDataItem.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<366>";
+	pop_err();
+	return this;
+}
+function c_JSONObject(){
+	c_JSONDataItem.call(this);
+	this.m_values=c_StringMap2.m_new.call(new c_StringMap2);
+}
+c_JSONObject.prototype=extend_class(c_JSONDataItem);
+c_JSONObject.prototype.p_GetItem=function(t_name){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<692>";
+	var t_=this.m_values.p_Get(t_name);
+	pop_err();
+	return t_;
+}
+c_JSONObject.prototype.p_GetItem2=function(t_name,t_defaultValue){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<696>";
+	var t_item=this.m_values.p_Get(t_name);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<697>";
+	if(t_item!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<698>";
+		var t_=(t_item.p_ToString());
+		pop_err();
+		return t_;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<700>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.prototype.p_GetItem3=function(t_name,t_defaultValue){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<704>";
+	var t_item=this.m_values.p_Get(t_name);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<705>";
+	if(t_item!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<706>";
+		var t_=(t_item.p_ToInt());
+		pop_err();
+		return t_;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<708>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.prototype.p_GetItem4=function(t_name,t_defaultValue){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<712>";
+	var t_item=this.m_values.p_Get(t_name);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<713>";
+	if(t_item!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<714>";
+		var t_=(t_item.p_ToFloat());
+		pop_err();
+		return t_;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<716>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.prototype.p_GetItem5=function(t_name,t_defaultValue){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<720>";
+	var t_item=this.m_values.p_Get(t_name);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<721>";
+	if(t_item!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<722>";
+		var t_=(t_item.p_ToBool());
+		pop_err();
+		return t_;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<724>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<663>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<664>";
+	this.m_dataType=1;
+	pop_err();
+	return this;
+}
+c_JSONObject.prototype.p_AddItem=function(t_name,t_dataItem){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<684>";
+	this.m_values.p_Set2(t_name,t_dataItem);
+	pop_err();
+}
+c_JSONObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<750>";
+	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,this.m_values.p_Count()*5+5);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<751>";
+	var t_first=true;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<753>";
+	t_retString.p_AddString("{");
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<755>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<755>";
+	var t_=this.m_values.p_ObjectEnumerator();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<755>";
+	while(t_.p_HasNext()){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<755>";
+		var t_v=t_.p_NextObject();
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<756>";
+		if(t_first){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<757>";
+			t_first=false;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<759>";
+			t_retString.p_AddString(",");
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<761>";
+		t_retString.p_AddString("\"");
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<762>";
+		t_retString.p_AddString(t_v.p_Key());
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<763>";
+		t_retString.p_AddString("\":");
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<764>";
+		t_retString.p_AddString(t_v.p_Value().p_ToString());
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<766>";
+	t_retString.p_AddString("}");
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<767>";
+	var t_2=t_retString.p_ToString();
+	pop_err();
+	return t_2;
+}
+function c_RubeObject(){
+	Object.call(this);
+	this.implments={c_IRubeObject:1};
+}
+c_RubeObject.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<22>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<22>";
+	var t_=bb_reflection_GetClass2(this).p_GetFields(true);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<22>";
+	var t_2=0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<22>";
+	while(t_2<t_.length){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<22>";
+		var t_fieldInfo=dbg_array(t_,t_2)[dbg_index];
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<22>";
+		t_2=t_2+1;
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<23>";
+		bb_rubeloader_LoadProperty(t_data,(this),t_fieldInfo);
+	}
+	pop_err();
+}
+c_RubeObject.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<20>";
+	pop_err();
+	return this;
+}
+function c_ClassInfo(){
+	Object.call(this);
+	this.m__name="";
+	this.m__rfields=[];
+	this.m__fields=[];
+	this.m__methodsMap=null;
+	this.m__methods=[];
+	this.m__sclass=null;
+	this.m__fieldsMap=null;
+	this.m__attrs=0;
+	this.m__ifaces=[];
+	this.m__rconsts=[];
+	this.m__consts=[];
+	this.m__rglobals=[];
+	this.m__globals=[];
+	this.m__rmethods=[];
+	this.m__rfunctions=[];
+	this.m__functions=[];
+	this.m__ctors=[];
+}
+c_ClassInfo.prototype.p_Name=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<222>";
+	pop_err();
+	return this.m__name;
+}
+c_ClassInfo.prototype.p_GetFields=function(t_recursive){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<311>";
+	if(t_recursive){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<311>";
+		pop_err();
+		return this.m__rfields;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<312>";
+	pop_err();
+	return this.m__fields;
+}
+c_ClassInfo.prototype.p_NewInstance=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<254>";
+	error("Can't create instance of class");
+	pop_err();
+	return null;
+}
+c_ClassInfo.prototype.p_GetMethod=function(t_name,t_argTypes,t_recursive){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<333>";
+	if(!((this.m__methodsMap)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<334>";
+		this.m__methodsMap=c_StringMap3.m_new.call(new c_StringMap3);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<335>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<335>";
+		var t_=this.m__methods;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<335>";
+		var t_2=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<335>";
+		while(t_2<t_.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<335>";
+			var t_f=dbg_array(t_,t_2)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<335>";
+			t_2=t_2+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<336>";
+			var t_list=this.m__methodsMap.p_Get(t_f.p_Name());
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<337>";
+			if(!((t_list)!=null)){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<338>";
+				t_list=c_List.m_new.call(new c_List);
+				err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<339>";
+				this.m__methodsMap.p_Set3(t_f.p_Name(),t_list);
+			}
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<341>";
+			t_list.p_AddLast(t_f);
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<344>";
+	var t_list2=this.m__methodsMap.p_Get(t_name);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<345>";
+	if((t_list2)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<346>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<346>";
+		var t_3=t_list2.p_ObjectEnumerator();
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<346>";
+		while(t_3.p_HasNext()){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<346>";
+			var t_f2=t_3.p_NextObject();
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<347>";
+			if((bb_reflection_CmpArgs(t_f2.p_ParameterTypes(),t_argTypes))!=0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<347>";
+				pop_err();
+				return t_f2;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<350>";
+	if(((this.m__sclass)!=null) && t_recursive){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<350>";
+		var t_4=this.m__sclass.p_GetMethod(t_name,t_argTypes,true);
+		pop_err();
+		return t_4;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<351>";
+	pop_err();
+	return null;
+}
+c_ClassInfo.prototype.p_GetField=function(t_name,t_recursive){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<316>";
+	if(!((this.m__fieldsMap)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<317>";
+		this.m__fieldsMap=c_StringMap4.m_new.call(new c_StringMap4);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<318>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<318>";
+		var t_=this.m__fields;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<318>";
+		var t_2=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<318>";
+		while(t_2<t_.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<318>";
+			var t_f=dbg_array(t_,t_2)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<318>";
+			t_2=t_2+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<319>";
+			this.m__fieldsMap.p_Set4(t_f.p_Name(),t_f);
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<322>";
+	var t_f2=this.m__fieldsMap.p_Get(t_name);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<323>";
+	if(!((t_f2)!=null) && ((this.m__sclass)!=null) && t_recursive){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<323>";
+		var t_3=this.m__sclass.p_GetField(t_name,true);
+		pop_err();
+		return t_3;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<324>";
+	pop_err();
+	return t_f2;
+}
+c_ClassInfo.m_new=function(t_name,t_attrs,t_sclass,t_ifaces){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<215>";
+	this.m__name=t_name;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<216>";
+	this.m__attrs=t_attrs;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<217>";
+	this.m__sclass=t_sclass;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<218>";
+	this.m__ifaces=t_ifaces;
+	pop_err();
+	return this;
+}
+c_ClassInfo.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<212>";
+	pop_err();
+	return this;
+}
+c_ClassInfo.prototype.p_Init=function(){
+	push_err();
+	pop_err();
+	return 0;
+}
+c_ClassInfo.prototype.p_InitR=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<421>";
+	if((this.m__sclass)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<422>";
+		var t_consts=c_Stack.m_new2.call(new c_Stack,dbg_object(this.m__sclass).m__rconsts);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<423>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<423>";
+		var t_=this.m__consts;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<423>";
+		var t_2=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<423>";
+		while(t_2<t_.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<423>";
+			var t_t=dbg_array(t_,t_2)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<423>";
+			t_2=t_2+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<424>";
+			t_consts.p_Push(t_t);
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<426>";
+		this.m__rconsts=t_consts.p_ToArray();
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<427>";
+		var t_fields=c_Stack2.m_new2.call(new c_Stack2,dbg_object(this.m__sclass).m__rfields);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<428>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<428>";
+		var t_3=this.m__fields;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<428>";
+		var t_4=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<428>";
+		while(t_4<t_3.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<428>";
+			var t_t2=dbg_array(t_3,t_4)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<428>";
+			t_4=t_4+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<429>";
+			t_fields.p_Push4(t_t2);
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<431>";
+		this.m__rfields=t_fields.p_ToArray();
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<432>";
+		var t_globals=c_Stack3.m_new2.call(new c_Stack3,dbg_object(this.m__sclass).m__rglobals);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<433>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<433>";
+		var t_5=this.m__globals;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<433>";
+		var t_6=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<433>";
+		while(t_6<t_5.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<433>";
+			var t_t3=dbg_array(t_5,t_6)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<433>";
+			t_6=t_6+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<434>";
+			t_globals.p_Push7(t_t3);
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<436>";
+		this.m__rglobals=t_globals.p_ToArray();
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<437>";
+		var t_methods=c_Stack4.m_new2.call(new c_Stack4,dbg_object(this.m__sclass).m__rmethods);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<438>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<438>";
+		var t_7=this.m__methods;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<438>";
+		var t_8=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<438>";
+		while(t_8<t_7.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<438>";
+			var t_t4=dbg_array(t_7,t_8)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<438>";
+			t_8=t_8+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<439>";
+			t_methods.p_Push10(t_t4);
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<441>";
+		this.m__rmethods=t_methods.p_ToArray();
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<442>";
+		var t_functions=c_Stack5.m_new2.call(new c_Stack5,dbg_object(this.m__sclass).m__rfunctions);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<443>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<443>";
+		var t_9=this.m__functions;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<443>";
+		var t_10=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<443>";
+		while(t_10<t_9.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<443>";
+			var t_t5=dbg_array(t_9,t_10)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<443>";
+			t_10=t_10+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<444>";
+			t_functions.p_Push13(t_t5);
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<446>";
+		this.m__rfunctions=t_functions.p_ToArray();
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<448>";
+		this.m__rconsts=this.m__consts;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<449>";
+		this.m__rfields=this.m__fields;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<450>";
+		this.m__rglobals=this.m__globals;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<451>";
+		this.m__rmethods=this.m__methods;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<452>";
+		this.m__rfunctions=this.m__functions;
+	}
+	pop_err();
+	return 0;
+}
+function c_Map(){
+	Object.call(this);
+	this.m_root=null;
+}
+c_Map.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<7>";
+	pop_err();
+	return this;
+}
+c_Map.prototype.p_Compare4=function(t_lhs,t_rhs){
+}
+c_Map.prototype.p_RotateLeft=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<264>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map.prototype.p_RotateRight=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<284>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map.prototype.p_InsertFixup=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<223>";
+					this.p_RotateLeft(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<227>";
+				this.p_RotateRight(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<239>";
+					this.p_RotateRight(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
+	return 0;
+}
+c_Map.prototype.p_Set=function(t_key,t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<29>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_parent=null;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_cmp=0;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<32>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<33>";
+		t_parent=t_node;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<35>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<37>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<41>";
+				pop_err();
+				return false;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<45>";
+	t_node=c_Node.m_new.call(new c_Node,t_key,t_value,-1,t_parent);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<47>";
+	if((t_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<48>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<53>";
+		this.p_InsertFixup(t_node);
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<55>";
+		this.m_root=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<57>";
+	pop_err();
+	return true;
+}
+c_Map.prototype.p_FindNode=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<157>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<159>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<161>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<163>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<166>";
+				pop_err();
+				return t_node;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<169>";
+	pop_err();
+	return t_node;
+}
+c_Map.prototype.p_Contains=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<25>";
+	var t_=this.p_FindNode(t_key)!=null;
+	pop_err();
+	return t_;
+}
+c_Map.prototype.p_Get=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<101>";
+	var t_node=this.p_FindNode(t_key);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+	if((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
+	}
+	pop_err();
+	return null;
+}
+function c_StringMap(){
+	c_Map.call(this);
+}
+c_StringMap.prototype=extend_class(c_Map);
+c_StringMap.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	c_Map.m_new.call(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	pop_err();
+	return this;
+}
+c_StringMap.prototype.p_Compare4=function(t_lhs,t_rhs){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
+}
+var bb_reflection__classesMap=null;
+var bb_reflection__classes=[];
+function c_Node(){
+	Object.call(this);
+	this.m_key="";
+	this.m_right=null;
+	this.m_left=null;
+	this.m_value=null;
+	this.m_color=0;
+	this.m_parent=null;
+}
+c_Node.m_new=function(t_key,t_value,t_color,t_parent){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
+	return this;
+}
+c_Node.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<361>";
+	pop_err();
+	return this;
+}
+function bb_reflection_GetClass(t_name){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<463>";
+	if(!((bb_reflection__classesMap)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<464>";
+		bb_reflection__classesMap=c_StringMap.m_new.call(new c_StringMap);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<465>";
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<465>";
+		var t_=bb_reflection__classes;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<465>";
+		var t_2=0;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<465>";
+		while(t_2<t_.length){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<465>";
+			var t_c=dbg_array(t_,t_2)[dbg_index];
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<465>";
+			t_2=t_2+1;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<466>";
+			var t_name2=t_c.p_Name();
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<467>";
+			bb_reflection__classesMap.p_Set(t_name2,t_c);
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<468>";
+			var t_i=t_name2.lastIndexOf(".");
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<469>";
+			if(t_i==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<469>";
+				continue;
+			}
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<470>";
+			t_name2=t_name2.slice(t_i+1);
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<471>";
+			if(bb_reflection__classesMap.p_Contains(t_name2)){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<472>";
+				bb_reflection__classesMap.p_Set(t_name2,null);
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<474>";
+				bb_reflection__classesMap.p_Set(t_name2,t_c);
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<478>";
+	var t_3=bb_reflection__classesMap.p_Get(t_name);
+	pop_err();
+	return t_3;
+}
+function c__GetClass(){
+	Object.call(this);
+}
+c__GetClass.prototype.p_GetClass=function(t_obj){
+}
+c__GetClass.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<608>";
+	pop_err();
+	return this;
+}
+var bb_reflection__getClass=null;
+function bb_reflection_GetClass2(t_obj){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<482>";
+	var t_=bb_reflection__getClass.p_GetClass(t_obj);
+	pop_err();
+	return t_;
+}
+function c_FieldInfo(){
+	Object.call(this);
+	this.m__name="";
+	this.m__type=null;
+	this.m__attrs=0;
+}
+c_FieldInfo.prototype.p_Name=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<117>";
+	pop_err();
+	return this.m__name;
+}
+c_FieldInfo.prototype.p_Type=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<125>";
+	pop_err();
+	return this.m__type;
+}
+c_FieldInfo.prototype.p_GetValue=function(t_inst){
+}
+c_FieldInfo.prototype.p_SetValue=function(t_inst,t_value){
+}
+c_FieldInfo.m_new=function(t_name,t_attrs,t_type){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<111>";
+	this.m__name=t_name;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<112>";
+	this.m__attrs=t_attrs;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<113>";
+	this.m__type=t_type;
+	pop_err();
+	return this;
+}
+c_FieldInfo.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<108>";
+	pop_err();
+	return this;
+}
+var bb_reflection__intClass=null;
+function bb_reflection_IntClass(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<27>";
+	pop_err();
+	return bb_reflection__intClass;
+}
+function c_Map2(){
+	Object.call(this);
+	this.m_root=null;
+}
+c_Map2.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<7>";
+	pop_err();
+	return this;
+}
+c_Map2.prototype.p_Compare4=function(t_lhs,t_rhs){
+}
+c_Map2.prototype.p_FindNode=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<157>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<159>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<161>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<163>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<166>";
+				pop_err();
+				return t_node;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<169>";
+	pop_err();
+	return t_node;
+}
+c_Map2.prototype.p_Get=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<101>";
+	var t_node=this.p_FindNode(t_key);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+	if((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
+	}
+	pop_err();
+	return null;
+}
+c_Map2.prototype.p_RotateLeft2=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<264>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_RotateRight2=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<284>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_InsertFixup2=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<223>";
+					this.p_RotateLeft2(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<227>";
+				this.p_RotateRight2(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<239>";
+					this.p_RotateRight2(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft2(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_Set2=function(t_key,t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<29>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_parent=null;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_cmp=0;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<32>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<33>";
+		t_parent=t_node;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<35>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<37>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<41>";
+				pop_err();
+				return false;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<45>";
+	t_node=c_Node2.m_new.call(new c_Node2,t_key,t_value,-1,t_parent);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<47>";
+	if((t_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<48>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<53>";
+		this.p_InsertFixup2(t_node);
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<55>";
+		this.m_root=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<57>";
+	pop_err();
+	return true;
+}
+c_Map2.prototype.p_Count=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<17>";
+	if((this.m_root)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<17>";
+		var t_=this.m_root.p_Count2(0);
+		pop_err();
+		return t_;
+	}
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_FirstNode=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<137>";
+	if(!((this.m_root)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<137>";
+		pop_err();
+		return null;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<139>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<140>";
+	while((dbg_object(t_node).m_left)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<141>";
+		t_node=dbg_object(t_node).m_left;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<143>";
+	pop_err();
+	return t_node;
+}
+c_Map2.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<121>";
+	var t_=c_NodeEnumerator.m_new.call(new c_NodeEnumerator,this.p_FirstNode());
+	pop_err();
+	return t_;
+}
+function c_StringMap2(){
+	c_Map2.call(this);
+}
+c_StringMap2.prototype=extend_class(c_Map2);
+c_StringMap2.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	c_Map2.m_new.call(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	pop_err();
+	return this;
+}
+c_StringMap2.prototype.p_Compare4=function(t_lhs,t_rhs){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
+}
+function c_Node2(){
+	Object.call(this);
+	this.m_key="";
+	this.m_right=null;
+	this.m_left=null;
+	this.m_value=null;
+	this.m_color=0;
+	this.m_parent=null;
+}
+c_Node2.m_new=function(t_key,t_value,t_color,t_parent){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
+	return this;
+}
+c_Node2.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<361>";
+	pop_err();
+	return this;
+}
+c_Node2.prototype.p_Count2=function(t_n){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<371>";
+	if((this.m_left)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<371>";
+		t_n=this.m_left.p_Count2(t_n);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<372>";
+	if((this.m_right)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<372>";
+		t_n=this.m_right.p_Count2(t_n);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<373>";
+	var t_=t_n+1;
+	pop_err();
+	return t_;
+}
+c_Node2.prototype.p_NextNode=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<385>";
+	var t_node=null;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<386>";
+	if((this.m_right)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<387>";
+		t_node=this.m_right;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<388>";
+		while((dbg_object(t_node).m_left)!=null){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<389>";
+			t_node=dbg_object(t_node).m_left;
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<391>";
+		pop_err();
+		return t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<393>";
+	t_node=this;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<394>";
+	var t_parent=dbg_object(this).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<395>";
+	while(((t_parent)!=null) && t_node==dbg_object(t_parent).m_right){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<396>";
+		t_node=t_parent;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<397>";
+		t_parent=dbg_object(t_parent).m_parent;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<399>";
+	pop_err();
+	return t_parent;
+}
+c_Node2.prototype.p_Key=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<377>";
+	pop_err();
+	return this.m_key;
+}
+c_Node2.prototype.p_Value=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<381>";
+	pop_err();
+	return this.m_value;
+}
+var bb_reflection__floatClass=null;
+function bb_reflection_FloatClass(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<31>";
+	pop_err();
+	return bb_reflection__floatClass;
+}
+var bb_reflection__boolClass=null;
+function bb_reflection_BoolClass(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<23>";
+	pop_err();
+	return bb_reflection__boolClass;
+}
+var bb_reflection__stringClass=null;
+function bb_reflection_StringClass(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<35>";
+	pop_err();
+	return bb_reflection__stringClass;
+}
+function c_MethodInfo(){
+	Object.call(this);
+	this.m__name="";
+	this.m__argTypes=[];
+	this.m__attrs=0;
+	this.m__retType=null;
+}
+c_MethodInfo.prototype.p_Name=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<150>";
+	pop_err();
+	return this.m__name;
+}
+c_MethodInfo.prototype.p_ParameterTypes=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<162>";
+	pop_err();
+	return this.m__argTypes;
+}
+c_MethodInfo.prototype.p_Invoke=function(t_inst,t_args){
+}
+c_MethodInfo.m_new=function(t_name,t_attrs,t_retType,t_argTypes){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<143>";
+	this.m__name=t_name;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<144>";
+	this.m__attrs=t_attrs;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<145>";
+	this.m__retType=t_retType;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<146>";
+	this.m__argTypes=t_argTypes;
+	pop_err();
+	return this;
+}
+c_MethodInfo.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<140>";
+	pop_err();
+	return this;
+}
+function c_List(){
+	Object.call(this);
+	this.m__head=(c_HeadNode.m_new.call(new c_HeadNode));
+}
+c_List.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_List.prototype.p_AddLast=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<108>";
+	var t_=c_Node4.m_new.call(new c_Node4,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
+}
+c_List.m_new2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	var t_=t_data;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	var t_2=0;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	while(t_2<t_.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+		t_2=t_2+1;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<14>";
+		this.p_AddLast(t_t);
+	}
+	pop_err();
+	return this;
+}
+c_List.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator.m_new.call(new c_Enumerator,this);
+	pop_err();
+	return t_;
+}
+function c_Map3(){
+	Object.call(this);
+	this.m_root=null;
+}
+c_Map3.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<7>";
+	pop_err();
+	return this;
+}
+c_Map3.prototype.p_Compare4=function(t_lhs,t_rhs){
+}
+c_Map3.prototype.p_FindNode=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<157>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<159>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<161>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<163>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<166>";
+				pop_err();
+				return t_node;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<169>";
+	pop_err();
+	return t_node;
+}
+c_Map3.prototype.p_Get=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<101>";
+	var t_node=this.p_FindNode(t_key);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+	if((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
+	}
+	pop_err();
+	return null;
+}
+c_Map3.prototype.p_RotateLeft3=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<264>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map3.prototype.p_RotateRight3=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<284>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map3.prototype.p_InsertFixup3=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<223>";
+					this.p_RotateLeft3(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<227>";
+				this.p_RotateRight3(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<239>";
+					this.p_RotateRight3(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft3(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
+	return 0;
+}
+c_Map3.prototype.p_Set3=function(t_key,t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<29>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_parent=null;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_cmp=0;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<32>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<33>";
+		t_parent=t_node;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<35>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<37>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<41>";
+				pop_err();
+				return false;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<45>";
+	t_node=c_Node3.m_new.call(new c_Node3,t_key,t_value,-1,t_parent);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<47>";
+	if((t_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<48>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<53>";
+		this.p_InsertFixup3(t_node);
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<55>";
+		this.m_root=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<57>";
+	pop_err();
+	return true;
+}
+function c_StringMap3(){
+	c_Map3.call(this);
+}
+c_StringMap3.prototype=extend_class(c_Map3);
+c_StringMap3.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	c_Map3.m_new.call(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	pop_err();
+	return this;
+}
+c_StringMap3.prototype.p_Compare4=function(t_lhs,t_rhs){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
+}
+function c_Node3(){
+	Object.call(this);
+	this.m_key="";
+	this.m_right=null;
+	this.m_left=null;
+	this.m_value=null;
+	this.m_color=0;
+	this.m_parent=null;
+}
+c_Node3.m_new=function(t_key,t_value,t_color,t_parent){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
+	return this;
+}
+c_Node3.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<361>";
+	pop_err();
+	return this;
+}
+function c_Node4(){
+	Object.call(this);
+	this.m__succ=null;
+	this.m__pred=null;
+	this.m__data=null;
+}
+c_Node4.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<261>";
+	this.m__succ=t_succ;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<262>";
+	this.m__pred=t_pred;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<265>";
+	this.m__data=t_data;
+	pop_err();
+	return this;
+}
+c_Node4.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<258>";
+	pop_err();
+	return this;
+}
+function c_HeadNode(){
+	c_Node4.call(this);
+}
+c_HeadNode.prototype=extend_class(c_Node4);
+c_HeadNode.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<310>";
+	c_Node4.m_new2.call(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<311>";
+	this.m__succ=(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<312>";
+	this.m__pred=(this);
+	pop_err();
+	return this;
+}
+function c_Enumerator(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator.m_new=function(t_list){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<326>";
+	this.m__list=t_list;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
+	return this;
+}
+c_Enumerator.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<323>";
+	pop_err();
+	return this;
+}
+c_Enumerator.prototype.p_HasNext=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
+}
+c_Enumerator.prototype.p_NextObject=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<340>";
+	pop_err();
+	return t_data;
+}
+function bb_reflection_CmpArgs(t_args0,t_args1){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<615>";
+	if(t_args0.length!=t_args1.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<615>";
+		pop_err();
+		return 0;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<616>";
+	for(var t_i=0;t_i<t_args0.length;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<617>";
+		if(dbg_array(t_args0,t_i)[dbg_index]!=dbg_array(t_args1,t_i)[dbg_index]){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<617>";
+			pop_err();
+			return 0;
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<619>";
+	pop_err();
+	return 1;
+}
+function bb_rubeloader_LoadProperty(t_data,t_instance,t_fieldInfo){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<31>";
+	var t_name=string_replace(t_fieldInfo.p_Name(),"_","-");
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<32>";
+	var t_valueObject=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<34>";
+	var t_1=t_fieldInfo.p_Type();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<35>";
+	if(t_1==bb_reflection_IntClass()){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<36>";
+		t_valueObject=bb_boxes_BoxInt(t_data.p_GetItem3(t_name,dbg_object(object_downcast((t_fieldInfo.p_GetValue(t_instance)),c_IntObject)).m_value));
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<37>";
+		if(t_1==bb_reflection_FloatClass()){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<38>";
+			t_valueObject=bb_boxes_BoxFloat(t_data.p_GetItem4(t_name,dbg_object(object_downcast((t_fieldInfo.p_GetValue(t_instance)),c_FloatObject)).m_value));
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<39>";
+			if(t_1==bb_reflection_BoolClass()){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<40>";
+				t_valueObject=bb_boxes_BoxBool(t_data.p_GetItem5(t_name,dbg_object(object_downcast((t_fieldInfo.p_GetValue(t_instance)),c_BoolObject)).m_value));
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<41>";
+				if(t_1==bb_reflection_StringClass()){
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<42>";
+					t_valueObject=bb_boxes_BoxString(t_data.p_GetItem2(t_name,dbg_object(object_downcast((t_fieldInfo.p_GetValue(t_instance)),c_StringObject)).m_value));
+				}else{
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<43>";
+					if(t_1==bb_reflection_GetClass("RubeShape")){
+					}else{
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<47>";
+						t_valueObject=t_fieldInfo.p_Type().p_NewInstance();
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<48>";
+						var t_parameters=new_object_array(1);
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<48>";
+						dbg_array(t_parameters,0)[dbg_index]=(t_data.p_GetItem(t_name));
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<49>";
+						bb_reflection_GetClass("IRubeObject").p_GetMethod("LoadProperties",[bb_reflection_GetClass("JSONObject")],true).p_Invoke(t_valueObject,t_parameters);
+					}
+				}
+			}
+		}
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<52>";
+	if(t_valueObject!=null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<52>";
+		t_fieldInfo.p_SetValue(t_instance,t_valueObject);
+	}
+	pop_err();
+}
+function c_RubeVector(){
+	c_RubeObject.call(this);
+	this.m_x=.0;
+	this.m_y=.0;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeVector.prototype=extend_class(c_RubeObject);
+c_RubeVector.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<56>";
+	c_RubeObject.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<56>";
+	pop_err();
+	return this;
+}
+function c_RubeVectorArray(){
+	Object.call(this);
+	this.implments={c_IRubeObject:1};
+}
+c_RubeVectorArray.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	pop_err();
+}
+c_RubeVectorArray.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<62>";
+	pop_err();
+	return this;
+}
+function c_RubeWorld(){
+	c_RubeObject.call(this);
+	this.m_gravity=null;
+	this.m_allowSleep=false;
+	this.m_autoClearForces=false;
+	this.m_positionIterations=0;
+	this.m_velocityIterations=0;
+	this.m_stepsPerSecond=0;
+	this.m_warmStarting=false;
+	this.m_coninuousPhysics=false;
+	this.m_subStepping=false;
+	this.m_body=null;
+	this.m_image=null;
+	this.m_joint=null;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeWorld.prototype=extend_class(c_RubeObject);
+c_RubeWorld.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<82>";
+	c_RubeObject.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<82>";
+	pop_err();
+	return this;
+}
+function c_RubeBody(){
+	c_RubeObject.call(this);
+	this.m_name="";
+	this.m_type=0;
+	this.m_angularDamping=.0;
+	this.m_angularVelocity=.0;
+	this.m_awake=false;
+	this.m_bullet=false;
+	this.m_fixedRotation=false;
+	this.m_linearDamping=.0;
+	this.m_linearVelocity=.0;
+	this.m_massData_mass=.0;
+	this.m_massData_center=null;
+	this.m_massData_I=.0;
+	this.m_position=null;
+	this.m_fixture=null;
+	this.m_customProperties=null;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeBody.prototype=extend_class(c_RubeObject);
+c_RubeBody.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<99>";
+	c_RubeObject.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<99>";
+	pop_err();
+	return this;
+}
+function c_RubeArray(){
+	Object.call(this);
+	this.m_values=[];
+	this.implments={c_IRubeObject:1};
+}
+c_RubeArray.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	pop_err();
+}
+c_RubeArray.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<72>";
+	pop_err();
+	return this;
+}
+function c_RubeImage(){
+	c_RubeObject.call(this);
+	this.m_name="";
+	this.m_opacity=.0;
+	this.m_renderOrder=.0;
+	this.m_scale=.0;
+	this.m_aspectScale=.0;
+	this.m_angle=.0;
+	this.m_body=0;
+	this.m_center=null;
+	this.m_corners=null;
+	this.m_file="";
+	this.m_filter=0;
+	this.m_flip=false;
+	this.m_customProperties=null;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeImage.prototype=extend_class(c_RubeObject);
+c_RubeImage.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<186>";
+	c_RubeObject.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<186>";
+	pop_err();
+	return this;
+}
+function c_RubeArray2(){
+	Object.call(this);
+	this.m_values=[];
+	this.implments={c_IRubeObject:1};
+}
+c_RubeArray2.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	pop_err();
+}
+c_RubeArray2.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<72>";
+	pop_err();
+	return this;
+}
+function c_RubeJoint(){
+	c_RubeObject.call(this);
+	this.m_type="";
+	this.m_name="";
+	this.m_customProperties=null;
+	this.m_anchorA=null;
+	this.m_anchorB=null;
+	this.m_bodyA=0;
+	this.m_bodyB=0;
+	this.m_collideConnected=false;
+	this.m_enableLimit=false;
+	this.m_enableMotor=false;
+	this.m_jointSpeed=.0;
+	this.m_lowerLimit=.0;
+	this.m_maxMotorTorque=.0;
+	this.m_motorSpeed=.0;
+	this.m_refAngle=.0;
+	this.m_upperLimit=.0;
+	this.m_dampingRatio=.0;
+	this.m_frequency=.0;
+	this.m_length=.0;
+	this.m_localAxisA=null;
+	this.m_maxMotorForce=.0;
+	this.m_springDampingRatio=.0;
+	this.m_springFrequency=.0;
+	this.m_maxLength=.0;
+	this.m_maxForce=.0;
+	this.m_maxTorque=.0;
+	this.m_correctionFactor=.0;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeJoint.prototype=extend_class(c_RubeObject);
+c_RubeJoint.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<208>";
+	c_RubeObject.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<208>";
+	pop_err();
+	return this;
+}
+function c_RubeArray3(){
+	Object.call(this);
+	this.m_values=[];
+	this.implments={c_IRubeObject:1};
+}
+c_RubeArray3.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	pop_err();
+}
+c_RubeArray3.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<72>";
+	pop_err();
+	return this;
+}
+function c_RubeFixture(){
+	c_RubeObject.call(this);
+	this.m_name="";
+	this.m_density=.0;
+	this.m_filter_categoryBits=1;
+	this.m_filter_maskBits=65535;
+	this.m_filter_groupIndex=0;
+	this.m_friction=.0;
+	this.m_restitution=.0;
+	this.m_sensor=false;
+	this.m_shape=null;
+	this.m_customProperties=null;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeFixture.prototype=extend_class(c_RubeObject);
+c_RubeFixture.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<119>";
+	c_RubeObject.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<119>";
+	pop_err();
+	return this;
+}
+function c_RubeArray4(){
+	Object.call(this);
+	this.m_values=[];
+	this.implments={c_IRubeObject:1};
+}
+c_RubeArray4.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	pop_err();
+}
+c_RubeArray4.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<72>";
+	pop_err();
+	return this;
+}
+function c_RubeProperty(){
+	Object.call(this);
+	this.m_name="";
+	this.m_type="";
+	this.m_intValue=0;
+	this.m_floatValue=0;
+	this.m_boolValue=false;
+	this.m_stringValue="";
+	this.m_vectorValue=null;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeProperty.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<179>";
+	bb_rubeloader_LoadProperty(t_data,(this),bb_reflection_GetClass2(this).p_GetField("name",true));
+	pop_err();
+}
+c_RubeProperty.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<168>";
+	pop_err();
+	return this;
+}
+function c_RubeArray5(){
+	Object.call(this);
+	this.m_values=[];
+	this.implments={c_IRubeObject:1};
+}
+c_RubeArray5.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	pop_err();
+}
+c_RubeArray5.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<72>";
+	pop_err();
+	return this;
+}
+function c_RubeShape(){
+	Object.call(this);
+	this.m_type="";
+	this.m__data=null;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeShape.m_new=function(t_type){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<139>";
+	dbg_object(this).m_type=t_type;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<140>";
+	this.m__data=c_RubeShapeData.m_new.call(new c_RubeShapeData);
+	pop_err();
+	return this;
+}
+c_RubeShape.prototype.p_LoadProperties=function(t_data){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<144>";
+	this.m__data.p_LoadProperties(t_data);
+	pop_err();
+}
+c_RubeShape.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<134>";
+	pop_err();
+	return this;
+}
+function c_RubeShapeData(){
+	c_RubeObject.call(this);
+	this.m_center=null;
+	this.m_radius=.0;
+	this.m_vertices=null;
+	this.m_hasNextVertex=false;
+	this.m_hasPrevVertex=false;
+	this.m_nextVertex=null;
+	this.m_prevVertex=null;
+	this.implments={c_IRubeObject:1};
+}
+c_RubeShapeData.prototype=extend_class(c_RubeObject);
+c_RubeShapeData.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<150>";
+	c_RubeObject.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<150>";
+	pop_err();
+	return this;
+}
+function c_Map4(){
+	Object.call(this);
+	this.m_root=null;
+}
+c_Map4.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<7>";
+	pop_err();
+	return this;
+}
+c_Map4.prototype.p_Compare4=function(t_lhs,t_rhs){
+}
+c_Map4.prototype.p_RotateLeft4=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<264>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map4.prototype.p_RotateRight4=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<284>";
+		this.m_root=t_child;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map4.prototype.p_InsertFixup4=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<223>";
+					this.p_RotateLeft4(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<227>";
+				this.p_RotateRight4(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<239>";
+					this.p_RotateRight4(t_node);
+				}
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft4(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
+	return 0;
+}
+c_Map4.prototype.p_Set4=function(t_key,t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<29>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_parent=null;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<30>";
+	var t_cmp=0;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<32>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<33>";
+		t_parent=t_node;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<35>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<37>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<41>";
+				pop_err();
+				return false;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<45>";
+	t_node=c_Node5.m_new.call(new c_Node5,t_key,t_value,-1,t_parent);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<47>";
+	if((t_parent)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<48>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
+		}
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<53>";
+		this.p_InsertFixup4(t_node);
+	}else{
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<55>";
+		this.m_root=t_node;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<57>";
+	pop_err();
+	return true;
+}
+c_Map4.prototype.p_FindNode=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<157>";
+	var t_node=this.m_root;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<159>";
+	while((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare4(t_key,dbg_object(t_node).m_key);
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<161>";
+		if(t_cmp>0){
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<163>";
+			if(t_cmp<0){
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<166>";
+				pop_err();
+				return t_node;
+			}
+		}
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<169>";
+	pop_err();
+	return t_node;
+}
+c_Map4.prototype.p_Get=function(t_key){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<101>";
+	var t_node=this.p_FindNode(t_key);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+	if((t_node)!=null){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
+	}
+	pop_err();
+	return null;
+}
+function c_StringMap4(){
+	c_Map4.call(this);
+}
+c_StringMap4.prototype=extend_class(c_Map4);
+c_StringMap4.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	c_Map4.m_new.call(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<551>";
+	pop_err();
+	return this;
+}
+c_StringMap4.prototype.p_Compare4=function(t_lhs,t_rhs){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
+}
+function c_Node5(){
+	Object.call(this);
+	this.m_key="";
+	this.m_right=null;
+	this.m_left=null;
+	this.m_value=null;
+	this.m_color=0;
+	this.m_parent=null;
+}
+c_Node5.m_new=function(t_key,t_value,t_color,t_parent){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
+	return this;
+}
+c_Node5.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<361>";
+	pop_err();
+	return this;
+}
+function bb_data_FixDataPath(t_path){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<7>";
+	var t_i=t_path.indexOf(":/",0);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<8>";
+	if(t_i!=-1 && t_path.indexOf("/",0)==t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<8>";
+		pop_err();
+		return t_path;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<9>";
+	if(string_startswith(t_path,"./") || string_startswith(t_path,"/")){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<9>";
+		pop_err();
+		return t_path;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<10>";
+	var t_="monkey://data/"+t_path;
+	pop_err();
+	return t_;
+}
+var bb_app__game=null;
+function bb_app_LoadString(t_path){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<220>";
+	var t_=bb_app__game.LoadString(bb_data_FixDataPath(t_path));
+	pop_err();
+	return t_;
+}
+function c_JSONData(){
+	Object.call(this);
+}
+c_JSONData.m_GetJSONObject=function(t_tokeniser){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<131>";
+	var t_jsonObject=c_JSONObject.m_new.call(new c_JSONObject);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<132>";
+	var t_data1=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<133>";
+	var t_data2=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<136>";
+	t_data1=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<137>";
+	if(dbg_object(t_data1).m_dataType==9 && dbg_object(dbg_object(object_downcast((t_data1),c_JSONNonData)).m_value).m_tokenType==2){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<139>";
+		var t_=(t_jsonObject);
+		pop_err();
+		return t_;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<142>";
+	do{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<143>";
+		if(dbg_object(t_data1).m_dataType!=5){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<144>";
+			var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item name, got "+(t_data1.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_2;
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<147>";
+		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<149>";
+		if(dbg_object(t_data2).m_dataType!=9){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<150>";
+			var t_3=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_3;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<152>";
+			if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType!=6){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<153>";
+				var t_4=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_4;
+			}
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<157>";
+		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<159>";
+		if(dbg_object(t_data2).m_dataType==-1){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<160>";
+			pop_err();
+			return t_data2;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<161>";
+			if(dbg_object(t_data2).m_dataType==9){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<162>";
+				var t_5=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item value, got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_5;
+			}
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<165>";
+		t_jsonObject.p_AddItem(dbg_object(object_downcast((t_data1),c_JSONString)).m_value,t_data2);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<166>";
+		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<168>";
+		if(dbg_object(t_data2).m_dataType!=9){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<169>";
+			var t_6=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_6;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<171>";
+			if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType==2){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<172>";
+				break;
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<173>";
+				if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType!=0){
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<174>";
+					var t_7=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+					pop_err();
+					return t_7;
+				}
+			}
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<177>";
+		t_data1=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	}while(!(false));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<180>";
+	var t_8=(t_jsonObject);
+	pop_err();
+	return t_8;
+}
+c_JSONData.m_GetJSONArray=function(t_tokeniser){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<184>";
+	var t_jsonArray=c_JSONArray.m_new.call(new c_JSONArray);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<185>";
+	var t_data=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<188>";
+	t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<189>";
+	if(dbg_object(t_data).m_dataType==9 && dbg_object(dbg_object(object_downcast((t_data),c_JSONNonData)).m_value).m_tokenType==4){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<190>";
+		var t_=(t_jsonArray);
+		pop_err();
+		return t_;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<193>";
+	do{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<194>";
+		if(dbg_object(t_data).m_dataType==9){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<195>";
+			var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected data value, got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_2;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<196>";
+			if(dbg_object(t_data).m_dataType==-1){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<197>";
+				pop_err();
+				return t_data;
+			}
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<199>";
+		t_jsonArray.p_AddItem2(t_data);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<201>";
+		t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<203>";
+		if(dbg_object(t_data).m_dataType==9){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<204>";
+			var t_token=dbg_object(object_downcast((t_data),c_JSONNonData)).m_value;
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<205>";
+			if(dbg_object(t_token).m_tokenType==0){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<206>";
+				t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<207>";
+				continue;
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<208>";
+				if(dbg_object(t_token).m_tokenType==4){
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<209>";
+					break;
+				}else{
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<211>";
+					var t_3=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_token.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+					pop_err();
+					return t_3;
+				}
+			}
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<214>";
+			var t_4=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_4;
+		}
+	}while(!(false));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<218>";
+	var t_5=(t_jsonArray);
+	pop_err();
+	return t_5;
+}
+c_JSONData.m_HexCharToInt=function(t_char){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<331>";
+	if(t_char>=48 && t_char<=57){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<332>";
+		var t_=t_char-48;
+		pop_err();
+		return t_;
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<333>";
+		if(t_char>=65 && t_char<=70){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<334>";
+			var t_2=t_char-55;
+			pop_err();
+			return t_2;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<335>";
+			if(t_char>=97 && t_char<=102){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<336>";
+				var t_3=t_char-87;
+				pop_err();
+				return t_3;
+			}
+		}
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<338>";
+	pop_err();
+	return 0;
+}
+c_JSONData.m_UnEscapeUnicode=function(t_hexString){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<342>";
+	var t_charCode=0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<343>";
+	for(var t_i=0;t_i<4;t_i=t_i+1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<344>";
+		t_charCode<<=4;
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<345>";
+		t_charCode+=c_JSONData.m_HexCharToInt(dbg_charCodeAt(t_hexString,t_i));
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<347>";
+	var t_=String.fromCharCode(t_charCode);
+	pop_err();
+	return t_;
+}
+c_JSONData.m_UnEscapeJSON=function(t_input){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<287>";
+	var t_escIndex=t_input.indexOf("\\",0);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<289>";
+	if(t_escIndex==-1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<290>";
+		pop_err();
+		return t_input;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<293>";
+	var t_copyStartIndex=0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<294>";
+	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,t_input.length);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<296>";
+	while(t_escIndex!=-1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<297>";
+		t_retString.p_AddString(t_input.slice(t_copyStartIndex,t_escIndex));
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<298>";
+		var t_2=dbg_charCodeAt(t_input,t_escIndex+1);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<299>";
+		if(t_2==110){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<300>";
+			t_retString.p_AddString("\n");
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<301>";
+			if(t_2==34){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<302>";
+				t_retString.p_AddString("\"");
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<303>";
+				if(t_2==116){
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<304>";
+					t_retString.p_AddString("\t");
+				}else{
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<305>";
+					if(t_2==92){
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<306>";
+						t_retString.p_AddString("\\");
+					}else{
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<307>";
+						if(t_2==47){
+							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<308>";
+							t_retString.p_AddString("/");
+						}else{
+							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<309>";
+							if(t_2==114){
+								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<310>";
+								t_retString.p_AddString("\r");
+							}else{
+								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<311>";
+								if(t_2==102){
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<312>";
+									t_retString.p_AddString(String.fromCharCode(12));
+								}else{
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<313>";
+									if(t_2==98){
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<314>";
+										t_retString.p_AddString(String.fromCharCode(8));
+									}else{
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<315>";
+										if(t_2==117){
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<316>";
+											t_retString.p_AddString(c_JSONData.m_UnEscapeUnicode(t_input.slice(t_escIndex+2,t_escIndex+6)));
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<317>";
+											t_escIndex+=4;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<319>";
+		t_copyStartIndex=t_escIndex+2;
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<320>";
+		t_escIndex=t_input.indexOf("\\",t_copyStartIndex);
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<323>";
+	if(t_copyStartIndex<t_input.length){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<324>";
+		t_retString.p_AddString(t_input.slice(t_copyStartIndex));
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<327>";
+	var t_=t_retString.p_ToString();
+	pop_err();
+	return t_;
+}
+c_JSONData.m_GetJSONDataItem=function(t_tokeniser){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<104>";
+	var t_token=t_tokeniser.p_NextToken();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<106>";
+	var t_1=dbg_object(t_token).m_tokenType;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<107>";
+	if(t_1==1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<108>";
+		var t_=c_JSONData.m_GetJSONObject(t_tokeniser);
+		pop_err();
+		return t_;
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<109>";
+		if(t_1==3){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<110>";
+			var t_2=c_JSONData.m_GetJSONArray(t_tokeniser);
+			pop_err();
+			return t_2;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<111>";
+			if(t_1==10){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<112>";
+				var t_3=(c_JSONString.m_new.call(new c_JSONString,(object_downcast((dbg_object(t_token).m_value),c_StringObject).p_ToString()),false));
+				pop_err();
+				return t_3;
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<113>";
+				if(t_1==11){
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<114>";
+					var t_4=(c_JSONFloat.m_new.call(new c_JSONFloat,object_downcast((dbg_object(t_token).m_value),c_FloatObject).p_ToFloat()));
+					pop_err();
+					return t_4;
+				}else{
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<115>";
+					if(t_1==12){
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<116>";
+						var t_5=(c_JSONFloat.m_new2.call(new c_JSONFloat,object_downcast((dbg_object(t_token).m_value),c_StringObject).p_ToString()));
+						pop_err();
+						return t_5;
+					}else{
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<117>";
+						if(t_1==13){
+							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<118>";
+							var t_6=(c_JSONInteger.m_new.call(new c_JSONInteger,(object_downcast((dbg_object(t_token).m_value),c_IntObject).p_ToInt())));
+							pop_err();
+							return t_6;
+						}else{
+							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<119>";
+							if(t_1==7){
+								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<120>";
+								var t_7=(c_JSONBool.m_new.call(new c_JSONBool,true));
+								pop_err();
+								return t_7;
+							}else{
+								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<121>";
+								if(t_1==8){
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<122>";
+									var t_8=(c_JSONBool.m_new.call(new c_JSONBool,false));
+									pop_err();
+									return t_8;
+								}else{
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<123>";
+									if(t_1==9){
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<124>";
+										var t_9=(c_JSONNull.m_new.call(new c_JSONNull));
+										pop_err();
+										return t_9;
+									}else{
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<126>";
+										var t_10=(c_JSONNonData.m_new.call(new c_JSONNonData,t_token));
+										pop_err();
+										return t_10;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+c_JSONData.m_ReadJSON=function(t_jsonString){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<71>";
+	var t_tokeniser=c_JSONTokeniser.m_new.call(new c_JSONTokeniser,t_jsonString,false);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<73>";
+	var t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<75>";
+	if(t_data==null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<76>";
+		var t_=(c_JSONDataError.m_new.call(new c_JSONDataError,"Unknown JSON error.",t_tokeniser.p_GetCurrentSectionString(20,20)));
+		pop_err();
+		return t_;
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<77>";
+		if(dbg_object(t_data).m_dataType==-1){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<78>";
+			print(t_data.p_ToString());
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<79>";
+			if(dbg_object(t_data).m_dataType!=1 && dbg_object(t_data).m_dataType!=2){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<80>";
+				var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"JSON Document malformed. Root node is not an object or an array",t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_2;
+			}
+		}
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<83>";
+	pop_err();
+	return t_data;
+}
+function c_JSONTokeniser(){
+	Object.call(this);
+	this.m_silent=false;
+	this.m_jsonString="";
+	this.m_stringIndex=0;
+	this.m_char=0;
+}
+c_JSONTokeniser.prototype.p_NextChar=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<197>";
+	if(this.m_stringIndex>=this.m_jsonString.length){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<198>";
+		this.m_char=0;
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<199>";
+		pop_err();
+		return this.m_char;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<201>";
+	this.m_char=dbg_charCodeAt(this.m_jsonString,this.m_stringIndex);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<202>";
+	this.m_stringIndex+=1;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<203>";
+	pop_err();
+	return this.m_char;
+}
+c_JSONTokeniser.m_new=function(t_jsonString,t_silent){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<120>";
+	dbg_object(this).m_silent=t_silent;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<121>";
+	dbg_object(this).m_jsonString=t_jsonString;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<122>";
+	this.p_NextChar();
+	pop_err();
+	return this;
+}
+c_JSONTokeniser.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<108>";
+	pop_err();
+	return this;
+}
+c_JSONTokeniser.prototype.p_SkipWhitespace=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<252>";
+	var t_index=this.m_stringIndex;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<253>";
+	while(this.m_char<=32 && this.m_char!=0){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<254>";
+		this.p_NextChar();
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<256>";
+	var t_=this.m_stringIndex-t_index;
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_GetCurrentSectionString=function(t_backwards,t_forwards){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<126>";
+	var t_="Section: "+this.m_jsonString.slice(bb_math_Max(this.m_stringIndex-t_backwards,0),bb_math_Min(this.m_stringIndex+t_forwards,this.m_jsonString.length));
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_ParseFailure=function(t_description){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<290>";
+	if(this.m_silent){
+		pop_err();
+		return;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<293>";
+	print("JSON parse error at index: "+String(this.m_stringIndex));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<294>";
+	print(t_description);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<295>";
+	print(this.p_GetCurrentSectionString(20,20));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<296>";
+	this.m_stringIndex=this.m_jsonString.length;
+	pop_err();
+}
+c_JSONTokeniser.prototype.p_SkipComments=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<260>";
+	var t_index=this.m_stringIndex;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<261>";
+	if(this.m_char==47){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<262>";
+		this.p_NextChar();
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<263>";
+		if(this.m_char==47){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<264>";
+			while(this.m_char!=13 && this.m_char!=10 && this.m_char!=0){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<265>";
+				this.p_NextChar();
+			}
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<267>";
+			if(this.m_char==42){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<268>";
+				do{
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<269>";
+					this.p_NextChar();
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<270>";
+					if(this.m_char==42){
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<271>";
+						this.p_NextChar();
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<272>";
+						if(this.m_char==47){
+							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<273>";
+							break;
+						}
+					}
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<276>";
+					if(this.m_char==0){
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<277>";
+						this.p_ParseFailure("Unterminated comment");
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<278>";
+						break;
+					}
+				}while(!(false));
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<282>";
+				this.p_ParseFailure("Unrecognised comment opening");
+			}
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<284>";
+		this.p_NextChar();
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<286>";
+	var t_=this.m_stringIndex-t_index;
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_SkipIgnored=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<243>";
+	var t_ignoredCount=0;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<244>";
+	do{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<245>";
+		t_ignoredCount=0;
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<246>";
+		t_ignoredCount+=this.p_SkipWhitespace();
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<247>";
+		t_ignoredCount+=this.p_SkipComments();
+	}while(!(t_ignoredCount==0));
+	pop_err();
+}
+c_JSONTokeniser.prototype.p_IsDigit=function(t_char){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<239>";
+	var t_=t_char>=48 && t_char<=58;
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_ParseInteger=function(t_str){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<230>";
+	var t_=parseInt((t_str),10);
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_ParseNumberToken=function(t_firstChar){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<207>";
+	var t_index=this.m_stringIndex-1;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<210>";
+	while(this.m_char!=32 && this.m_char!=44 && this.m_char!=125 && this.m_char!=93 && this.m_char!=0){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<211>";
+		this.p_NextChar();
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<213>";
+	if(this.m_char==0){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<214>";
+		this.p_ParseFailure("Unterminated Number");
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<215>";
+		var t_=c_JSONToken.m_CreateToken4(-1,null);
+		pop_err();
+		return t_;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<218>";
+	var t_numberString=this.m_jsonString.slice(t_index,this.m_stringIndex-1);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<220>";
+	if(t_numberString.indexOf(".",0)!=-1 || t_numberString.indexOf("e",0)!=-1 || t_numberString.indexOf("E",0)!=-1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<221>";
+		var t_2=c_JSONToken.m_CreateToken3(12,t_numberString);
+		pop_err();
+		return t_2;
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<223>";
+		var t_value=this.p_ParseInteger(t_numberString);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<224>";
+		var t_3=c_JSONToken.m_CreateToken2(13,t_value);
+		pop_err();
+		return t_3;
+	}
+}
+c_JSONTokeniser.prototype.p_NextToken=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<130>";
+	var t_retToken=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<131>";
+	this.p_SkipIgnored();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<133>";
+	var t_2=this.m_char;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<135>";
+	if(t_2==123){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<136>";
+		t_retToken=c_JSONToken.m_CreateToken3(1,"{");
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<137>";
+		if(t_2==125){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<138>";
+			t_retToken=c_JSONToken.m_CreateToken3(2,"}");
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<139>";
+			if(t_2==91){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<140>";
+				t_retToken=c_JSONToken.m_CreateToken3(3,"[");
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<141>";
+				if(t_2==93){
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<142>";
+					t_retToken=c_JSONToken.m_CreateToken3(4,"]");
+				}else{
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<143>";
+					if(t_2==44){
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<144>";
+						t_retToken=c_JSONToken.m_CreateToken3(0,",");
+					}else{
+						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<145>";
+						if(t_2==58){
+							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<146>";
+							t_retToken=c_JSONToken.m_CreateToken3(6,":");
+						}else{
+							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<147>";
+							if(t_2==116){
+								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<148>";
+								if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+3),"rue")==0){
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<149>";
+									this.m_stringIndex+=3;
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<150>";
+									t_retToken=c_JSONToken.m_CreateToken3(7,"true");
+								}
+							}else{
+								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<152>";
+								if(t_2==102){
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<153>";
+									if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+4),"alse")==0){
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<154>";
+										this.m_stringIndex+=4;
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<155>";
+										t_retToken=c_JSONToken.m_CreateToken3(8,"false");
+									}
+								}else{
+									err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<157>";
+									if(t_2==110){
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<158>";
+										if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+3),"ull")==0){
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<159>";
+											this.m_stringIndex+=3;
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<160>";
+											t_retToken=c_JSONToken.m_CreateToken3(9,"null");
+										}
+									}else{
+										err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<162>";
+										if(t_2==34){
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<163>";
+											var t_startIndex=this.m_stringIndex;
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<164>";
+											var t_endIndex=this.m_jsonString.indexOf("\"",this.m_stringIndex);
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<165>";
+											while(t_endIndex!=-1 && dbg_charCodeAt(this.m_jsonString,t_endIndex-1)==92){
+												err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<166>";
+												t_endIndex=this.m_jsonString.indexOf("\"",t_endIndex+1);
+											}
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<168>";
+											if(t_endIndex==-1){
+												err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<169>";
+												this.p_ParseFailure("Unterminated string");
+											}
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<172>";
+											t_retToken=c_JSONToken.m_CreateToken3(10,this.m_jsonString.slice(t_startIndex,t_endIndex));
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<173>";
+											this.m_stringIndex=t_endIndex+1;
+										}else{
+											err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<177>";
+											if(this.m_char==45 || this.p_IsDigit(this.m_char)){
+												err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<178>";
+												var t_=this.p_ParseNumberToken(this.m_char);
+												pop_err();
+												return t_;
+											}else{
+												err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<179>";
+												if(this.m_char==0){
+													err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<180>";
+													t_retToken=null;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<184>";
+	if(t_retToken==null){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<185>";
+		this.p_ParseFailure("Unknown token, char: "+String.fromCharCode(this.m_char));
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<186>";
+		t_retToken=c_JSONToken.m_CreateToken4(-1,null);
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<188>";
+		this.p_NextChar();
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<190>";
+	pop_err();
+	return t_retToken;
+}
+function c_ASCIICodes(){
+	Object.call(this);
+}
+function c_JSONToken(){
+	Object.call(this);
+	this.m_tokenType=0;
+	this.m_value=null;
+}
+c_JSONToken.m_new=function(t_tokenType,t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<54>";
+	dbg_object(this).m_tokenType=t_tokenType;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<55>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONToken.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<30>";
+	pop_err();
+	return this;
+}
+c_JSONToken.m_reusableToken=null;
+c_JSONToken.m_CreateToken=function(t_tokenType,t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<61>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<62>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_FloatObject.m_new2.call(new c_FloatObject,t_value));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<63>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.m_CreateToken2=function(t_tokenType,t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<67>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<68>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_IntObject.m_new.call(new c_IntObject,t_value));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<69>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.m_CreateToken3=function(t_tokenType,t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<73>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<74>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_StringObject.m_new3.call(new c_StringObject,t_value));
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<75>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.m_CreateToken4=function(t_tokenType,t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<79>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<80>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=t_value;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<81>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.prototype.p_GetValueString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<89>";
+	var t_1=this.m_tokenType;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<90>";
+	if(t_1==11){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<91>";
+		var t_=""+(object_downcast((this.m_value),c_FloatObject).p_ToString());
+		pop_err();
+		return t_;
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<92>";
+		if(t_1==13){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<93>";
+			var t_2=""+(object_downcast((this.m_value),c_IntObject).p_ToString());
+			pop_err();
+			return t_2;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<94>";
+			if(t_1==9){
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<95>";
+				pop_err();
+				return "NULL";
+			}else{
+				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<97>";
+				if((this.m_value)!=null){
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<98>";
+					var t_3=(object_downcast((this.m_value),c_StringObject).p_ToString());
+					pop_err();
+					return t_3;
+				}else{
+					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<100>";
+					pop_err();
+					return "Null value";
+				}
+			}
+		}
+	}
+}
+c_JSONToken.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/tokeniser.monkey<85>";
+	var t_="JSONToken - type: "+String(this.m_tokenType)+", value: "+this.p_GetValueString();
+	pop_err();
+	return t_;
+}
+function bb_math_Max(t_x,t_y){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<56>";
+	if(t_x>t_y){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<56>";
+		pop_err();
+		return t_x;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<57>";
+	pop_err();
+	return t_y;
+}
+function bb_math_Max2(t_x,t_y){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<83>";
+	if(t_x>t_y){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<83>";
+		pop_err();
+		return t_x;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<84>";
+	pop_err();
+	return t_y;
+}
+function bb_math_Min(t_x,t_y){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<51>";
+	if(t_x<t_y){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<51>";
+		pop_err();
+		return t_x;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<52>";
+	pop_err();
+	return t_y;
+}
+function bb_math_Min2(t_x,t_y){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<78>";
+	if(t_x<t_y){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<78>";
+		pop_err();
+		return t_x;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/math.monkey<79>";
+	pop_err();
+	return t_y;
+}
+function c_JSONDataType(){
+	Object.call(this);
+}
+function c_JSONNonData(){
+	c_JSONDataItem.call(this);
+	this.m_value=null;
+}
+c_JSONNonData.prototype=extend_class(c_JSONDataItem);
+c_JSONNonData.m_new=function(t_token){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<408>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<409>";
+	this.m_dataType=9;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<410>";
+	this.m_value=t_token;
+	pop_err();
+	return this;
+}
+c_JSONNonData.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<405>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<405>";
+	pop_err();
+	return this;
+}
+c_JSONNonData.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<414>";
+	pop_err();
+	return "Non Data";
+}
+function c_JSONDataError(){
+	c_JSONDataItem.call(this);
+	this.m_value="";
+}
+c_JSONDataError.prototype=extend_class(c_JSONDataItem);
+c_JSONDataError.m_new=function(t_errorDescription,t_location){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<395>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<396>";
+	this.m_dataType=-1;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<397>";
+	this.m_value=t_errorDescription+"\nJSON Location: "+t_location;
+	pop_err();
+	return this;
+}
+c_JSONDataError.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<392>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<392>";
+	pop_err();
+	return this;
+}
+c_JSONDataError.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<401>";
+	pop_err();
+	return this.m_value;
+}
+function c_JSONString(){
+	c_JSONDataItem.call(this);
+	this.m_value="";
+	this.m_jsonReady="";
+}
+c_JSONString.prototype=extend_class(c_JSONDataItem);
+c_JSONString.m_new=function(t_value,t_isMonkeyString){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<489>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<490>";
+	this.m_dataType=5;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<491>";
+	if(!t_isMonkeyString){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<492>";
+		dbg_object(this).m_value=c_JSONData.m_UnEscapeJSON(t_value);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<493>";
+		this.m_jsonReady="\""+t_value+"\"";
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<495>";
+		dbg_object(this).m_value=t_value;
+	}
+	pop_err();
+	return this;
+}
+c_JSONString.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<481>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<481>";
+	pop_err();
+	return this;
+}
+c_JSONString.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<507>";
+	pop_err();
+	return this.m_value;
+}
+function c_JSONArray(){
+	c_JSONDataItem.call(this);
+	this.m_values=c_List2.m_new.call(new c_List2);
+}
+c_JSONArray.prototype=extend_class(c_JSONDataItem);
+c_JSONArray.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<554>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<555>";
+	this.m_dataType=2;
+	pop_err();
+	return this;
+}
+c_JSONArray.prototype.p_AddItem2=function(t_dataItem){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<575>";
+	this.m_values.p_AddLast2(t_dataItem);
+	pop_err();
+}
+c_JSONArray.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<601>";
+	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,this.m_values.p_Count()*2+5);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<602>";
+	var t_first=true;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<604>";
+	t_retString.p_AddString("[");
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<606>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<606>";
+	var t_=this.m_values.p_ObjectEnumerator();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<606>";
+	while(t_.p_HasNext()){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<606>";
+		var t_v=t_.p_NextObject();
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<607>";
+		if(t_first){
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<608>";
+			t_first=false;
+		}else{
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<610>";
+			t_retString.p_AddString(",");
+		}
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<612>";
+		t_retString.p_AddString(t_v.p_ToString());
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<615>";
+	t_retString.p_AddString("]");
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<617>";
+	var t_2=t_retString.p_ToString();
+	pop_err();
+	return t_2;
+}
+function c_List2(){
+	Object.call(this);
+	this.m__head=(c_HeadNode2.m_new.call(new c_HeadNode2));
+}
+c_List2.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_List2.prototype.p_AddLast2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<108>";
+	var t_=c_Node6.m_new.call(new c_Node6,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
+}
+c_List2.m_new2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	var t_=t_data;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	var t_2=0;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+	while(t_2<t_.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<13>";
+		t_2=t_2+1;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<14>";
+		this.p_AddLast2(t_t);
+	}
+	pop_err();
+	return this;
+}
+c_List2.prototype.p_Count=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<41>";
+	var t_n=0;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<41>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<42>";
+	while(t_node!=this.m__head){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<43>";
+		t_node=dbg_object(t_node).m__succ;
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<44>";
+		t_n+=1;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<46>";
+	pop_err();
+	return t_n;
+}
+c_List2.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator2.m_new.call(new c_Enumerator2,this);
+	pop_err();
+	return t_;
+}
+function c_Node6(){
+	Object.call(this);
+	this.m__succ=null;
+	this.m__pred=null;
+	this.m__data=null;
+}
+c_Node6.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<261>";
+	this.m__succ=t_succ;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<262>";
+	this.m__pred=t_pred;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<265>";
+	this.m__data=t_data;
+	pop_err();
+	return this;
+}
+c_Node6.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<258>";
+	pop_err();
+	return this;
+}
+function c_HeadNode2(){
+	c_Node6.call(this);
+}
+c_HeadNode2.prototype=extend_class(c_Node6);
+c_HeadNode2.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<310>";
+	c_Node6.m_new2.call(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<311>";
+	this.m__succ=(this);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<312>";
+	this.m__pred=(this);
+	pop_err();
+	return this;
+}
+function c_StringBuilder(){
+	Object.call(this);
+	this.m_retStrings=[];
+	this.m_index=0;
+}
+c_StringBuilder.m_new=function(t_initialSize){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<39>";
+	if(t_initialSize<1){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<40>";
+		t_initialSize=1;
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<42>";
+	this.m_retStrings=new_string_array(t_initialSize);
+	pop_err();
+	return this;
+}
+c_StringBuilder.prototype.p_AddString=function(t_add){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<46>";
+	if(this.m_index==this.m_retStrings.length){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<47>";
+		this.m_retStrings=resize_string_array(this.m_retStrings,this.m_retStrings.length*2);
+	}
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<49>";
+	dbg_array(this.m_retStrings,this.m_index)[dbg_index]=t_add;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<50>";
+	this.m_index+=1;
+	pop_err();
+}
+c_StringBuilder.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<54>";
+	if(this.m_index<2){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<55>";
+		pop_err();
+		return dbg_array(this.m_retStrings,0)[dbg_index];
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<57>";
+		var t_=this.m_retStrings.slice(0,this.m_index).join("");
+		pop_err();
+		return t_;
+	}
+}
+function c_JSONFloat(){
+	c_JSONDataItem.call(this);
+	this.m_value=.0;
+	this.m_unparsedStr="";
+	this.m_unparsed=false;
+}
+c_JSONFloat.prototype=extend_class(c_JSONDataItem);
+c_JSONFloat.m_new=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<423>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<424>";
+	this.m_dataType=3;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<425>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONFloat.m_new2=function(t_unparsedStr){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<431>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<432>";
+	this.m_dataType=3;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<433>";
+	dbg_object(this).m_unparsedStr=t_unparsedStr;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<434>";
+	dbg_object(this).m_unparsed=true;
+	pop_err();
+	return this;
+}
+c_JSONFloat.m_new3=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<418>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<418>";
+	pop_err();
+	return this;
+}
+c_JSONFloat.prototype.p_Parse=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<438>";
+	if(this.m_unparsed){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<439>";
+		this.m_value=parseFloat(this.m_unparsedStr);
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<440>";
+		this.m_unparsed=false;
+	}
+	pop_err();
+}
+c_JSONFloat.prototype.p_ToInt=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<445>";
+	this.p_Parse();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<446>";
+	var t_=((this.m_value)|0);
+	pop_err();
+	return t_;
+}
+c_JSONFloat.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<450>";
+	this.p_Parse();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<451>";
+	pop_err();
+	return this.m_value;
+}
+c_JSONFloat.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<455>";
+	this.p_Parse();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<456>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+function c_JSONInteger(){
+	c_JSONDataItem.call(this);
+	this.m_value=0;
+}
+c_JSONInteger.prototype=extend_class(c_JSONDataItem);
+c_JSONInteger.m_new=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<463>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<464>";
+	this.m_dataType=4;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<465>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONInteger.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<460>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<460>";
+	pop_err();
+	return this;
+}
+c_JSONInteger.prototype.p_ToInt=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<469>";
+	pop_err();
+	return this.m_value;
+}
+c_JSONInteger.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<473>";
+	var t_=(this.m_value);
+	pop_err();
+	return t_;
+}
+c_JSONInteger.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<477>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+function c_JSONBool(){
+	c_JSONDataItem.call(this);
+	this.m_value=false;
+}
+c_JSONBool.prototype=extend_class(c_JSONDataItem);
+c_JSONBool.m_new=function(t_value){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<515>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<516>";
+	this.m_dataType=6;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<517>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONBool.m_new2=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<512>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<512>";
+	pop_err();
+	return this;
+}
+c_JSONBool.prototype.p_ToBool=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<521>";
+	pop_err();
+	return this.m_value;
+}
+c_JSONBool.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<525>";
+	if(this.m_value){
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<526>";
+		pop_err();
+		return "True";
+	}else{
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<528>";
+		pop_err();
+		return "False";
+	}
+}
+function c_JSONNull(){
+	c_JSONDataItem.call(this);
+}
+c_JSONNull.prototype=extend_class(c_JSONDataItem);
+c_JSONNull.m_new=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<542>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<542>";
+	pop_err();
+	return this;
+}
+c_JSONNull.prototype.p_ToString=function(){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<546>";
+	this.m_dataType=7;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/json/jsondata.monkey<547>";
+	pop_err();
+	return "NULL";
+}
+function bb_rubeloader_LoadRube(t_path){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<307>";
+	var t_world=c_RubeWorld.m_new.call(new c_RubeWorld);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<308>";
+	var t_data=object_downcast((c_JSONData.m_ReadJSON(bb_app_LoadString(t_path))),c_JSONObject);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<309>";
+	t_world.p_LoadProperties(t_data);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/rubeloader/rubeloader.monkey<310>";
+	pop_err();
+	return t_world;
+}
+function c_NodeEnumerator(){
+	Object.call(this);
+	this.m_node=null;
+}
+c_NodeEnumerator.m_new=function(t_node){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<437>";
+	dbg_object(this).m_node=t_node;
+	pop_err();
+	return this;
+}
+c_NodeEnumerator.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<434>";
+	pop_err();
+	return this;
+}
+c_NodeEnumerator.prototype.p_HasNext=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<441>";
+	var t_=this.m_node!=null;
+	pop_err();
+	return t_;
+}
+c_NodeEnumerator.prototype.p_NextObject=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<445>";
+	var t_t=this.m_node;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<446>";
+	this.m_node=this.m_node.p_NextNode();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<447>";
+	pop_err();
+	return t_t;
+}
+function c_Enumerator2(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator2.m_new=function(t_list){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<326>";
+	this.m__list=t_list;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
+	return this;
+}
+c_Enumerator2.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<323>";
+	pop_err();
+	return this;
+}
+c_Enumerator2.prototype.p_HasNext=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
+}
+c_Enumerator2.prototype.p_NextObject=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/list.monkey<340>";
+	pop_err();
+	return t_data;
+}
+function c_ArrayObject(){
+	Object.call(this);
+	this.m_value=[];
+}
+c_ArrayObject.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<120>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_ArrayObject.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<124>";
+	pop_err();
+	return this.m_value;
+}
+c_ArrayObject.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<116>";
+	pop_err();
+	return this;
+}
+function c_ArrayObject2(){
+	Object.call(this);
+	this.m_value=[];
+}
+c_ArrayObject2.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<120>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_ArrayObject2.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<124>";
+	pop_err();
+	return this.m_value;
+}
+c_ArrayObject2.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<116>";
+	pop_err();
+	return this;
+}
+function c_ArrayObject3(){
+	Object.call(this);
+	this.m_value=[];
+}
+c_ArrayObject3.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<120>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_ArrayObject3.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<124>";
+	pop_err();
+	return this.m_value;
+}
+c_ArrayObject3.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<116>";
+	pop_err();
+	return this;
+}
+function c_ArrayObject4(){
+	Object.call(this);
+	this.m_value=[];
+}
+c_ArrayObject4.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<120>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_ArrayObject4.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<124>";
+	pop_err();
+	return this.m_value;
+}
+c_ArrayObject4.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<116>";
+	pop_err();
+	return this;
+}
+function c_ArrayObject5(){
+	Object.call(this);
+	this.m_value=[];
+}
+c_ArrayObject5.m_new=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<120>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_ArrayObject5.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<124>";
+	pop_err();
+	return this.m_value;
+}
+c_ArrayObject5.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/boxes.monkey<116>";
+	pop_err();
+	return this;
+}
+function c_R17(){
+	c_ClassInfo.call(this);
+}
+c_R17.prototype=extend_class(c_ClassInfo);
+c_R17.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.lang.Object",1,null,[]);
+	return this;
+}
+c_R17.prototype.p_Init=function(){
+	this.p_InitR();
+	return 0;
+}
+function c_R18(){
+	c_ClassInfo.call(this);
+}
+c_R18.prototype=extend_class(c_ClassInfo);
+c_R18.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.BoolObject",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	bb_reflection__boolClass=(this);
+	return this;
+}
+c_R18.prototype.p_NewInstance=function(){
+	return (c_BoolObject.m_new2.call(new c_BoolObject));
+}
+c_R18.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R19.m_new.call(new c_R19));
+	this.m__methods=new_object_array(2);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R21.m_new.call(new c_R21));
+	dbg_array(this.m__methods,1)[dbg_index]=(c_R22.m_new.call(new c_R22));
+	this.m__ctors=new_object_array(2);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R20.m_new.call(new c_R20));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R23.m_new.call(new c_R23));
+	this.p_InitR();
+	return 0;
+}
+function c_R24(){
+	c_ClassInfo.call(this);
+}
+c_R24.prototype=extend_class(c_ClassInfo);
+c_R24.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.IntObject",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	bb_reflection__intClass=(this);
+	return this;
+}
+c_R24.prototype.p_NewInstance=function(){
+	return (c_IntObject.m_new3.call(new c_IntObject));
+}
+c_R24.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R25.m_new.call(new c_R25));
+	this.m__methods=new_object_array(5);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R28.m_new.call(new c_R28));
+	dbg_array(this.m__methods,1)[dbg_index]=(c_R29.m_new.call(new c_R29));
+	dbg_array(this.m__methods,2)[dbg_index]=(c_R30.m_new.call(new c_R30));
+	dbg_array(this.m__methods,3)[dbg_index]=(c_R31.m_new.call(new c_R31));
+	dbg_array(this.m__methods,4)[dbg_index]=(c_R32.m_new.call(new c_R32));
+	this.m__ctors=new_object_array(3);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R26.m_new.call(new c_R26));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R27.m_new.call(new c_R27));
+	dbg_array(this.m__ctors,2)[dbg_index]=(c_R33.m_new.call(new c_R33));
+	this.p_InitR();
+	return 0;
+}
+function c_R34(){
+	c_ClassInfo.call(this);
+}
+c_R34.prototype=extend_class(c_ClassInfo);
+c_R34.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.FloatObject",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	bb_reflection__floatClass=(this);
+	return this;
+}
+c_R34.prototype.p_NewInstance=function(){
+	return (c_FloatObject.m_new3.call(new c_FloatObject));
+}
+c_R34.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R35.m_new.call(new c_R35));
+	this.m__methods=new_object_array(5);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R38.m_new.call(new c_R38));
+	dbg_array(this.m__methods,1)[dbg_index]=(c_R39.m_new.call(new c_R39));
+	dbg_array(this.m__methods,2)[dbg_index]=(c_R40.m_new.call(new c_R40));
+	dbg_array(this.m__methods,3)[dbg_index]=(c_R41.m_new.call(new c_R41));
+	dbg_array(this.m__methods,4)[dbg_index]=(c_R42.m_new.call(new c_R42));
+	this.m__ctors=new_object_array(3);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R36.m_new.call(new c_R36));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R37.m_new.call(new c_R37));
+	dbg_array(this.m__ctors,2)[dbg_index]=(c_R43.m_new.call(new c_R43));
+	this.p_InitR();
+	return 0;
+}
+function c_R44(){
+	c_ClassInfo.call(this);
+}
+c_R44.prototype=extend_class(c_ClassInfo);
+c_R44.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.StringObject",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	bb_reflection__stringClass=(this);
+	return this;
+}
+c_R44.prototype.p_NewInstance=function(){
+	return (c_StringObject.m_new4.call(new c_StringObject));
+}
+c_R44.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R45.m_new.call(new c_R45));
+	this.m__methods=new_object_array(3);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R49.m_new.call(new c_R49));
+	dbg_array(this.m__methods,1)[dbg_index]=(c_R50.m_new.call(new c_R50));
+	dbg_array(this.m__methods,2)[dbg_index]=(c_R51.m_new.call(new c_R51));
+	this.m__ctors=new_object_array(4);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R46.m_new.call(new c_R46));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R47.m_new.call(new c_R47));
+	dbg_array(this.m__ctors,2)[dbg_index]=(c_R48.m_new.call(new c_R48));
+	dbg_array(this.m__ctors,3)[dbg_index]=(c_R52.m_new.call(new c_R52));
+	this.p_InitR();
+	return 0;
+}
+function c_R53(){
+	c_ClassInfo.call(this);
+}
+c_R53.prototype=extend_class(c_ClassInfo);
+c_R53.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.lang.Throwable",33,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	return this;
+}
+c_R53.prototype.p_Init=function(){
+	this.p_InitR();
+	return 0;
+}
+function c_R54(){
+	c_ClassInfo.call(this);
+}
+c_R54.prototype=extend_class(c_ClassInfo);
+c_R54.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.IRubeObject",20,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	return this;
+}
+c_R54.prototype.p_Init=function(){
+	this.p_InitR();
+	return 0;
+}
+function c_R55(){
+	c_ClassInfo.call(this);
+}
+c_R55.prototype=extend_class(c_ClassInfo);
+c_R55.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeObject",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R55.prototype.p_NewInstance=function(){
+	return (c_RubeObject.m_new.call(new c_RubeObject));
+}
+c_R55.prototype.p_Init=function(){
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R56.m_new.call(new c_R56));
+	this.p_InitR();
+	return 0;
+}
+function c_R57(){
+	c_ClassInfo.call(this);
+}
+c_R57.prototype=extend_class(c_ClassInfo);
+c_R57.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeVector",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+c_R57.prototype.p_NewInstance=function(){
+	return (c_RubeVector.m_new.call(new c_RubeVector));
+}
+c_R57.prototype.p_Init=function(){
+	this.m__fields=new_object_array(2);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R58.m_new.call(new c_R58));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R59.m_new.call(new c_R59));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R60.m_new.call(new c_R60));
+	this.p_InitR();
+	return 0;
+}
+function c_R61(){
+	c_ClassInfo.call(this);
+}
+c_R61.prototype=extend_class(c_ClassInfo);
+c_R61.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeVectorArray",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R61.prototype.p_NewInstance=function(){
+	return (c_RubeVectorArray.m_new.call(new c_RubeVectorArray));
+}
+c_R61.prototype.p_Init=function(){
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R62.m_new.call(new c_R62));
+	this.p_InitR();
+	return 0;
+}
+function c_R63(){
+	c_ClassInfo.call(this);
+}
+c_R63.prototype=extend_class(c_ClassInfo);
+c_R63.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeWorld",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+c_R63.prototype.p_NewInstance=function(){
+	return (c_RubeWorld.m_new.call(new c_RubeWorld));
+}
+c_R63.prototype.p_Init=function(){
+	this.m__fields=new_object_array(12);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R64.m_new.call(new c_R64));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R65.m_new.call(new c_R65));
+	dbg_array(this.m__fields,2)[dbg_index]=(c_R66.m_new.call(new c_R66));
+	dbg_array(this.m__fields,3)[dbg_index]=(c_R67.m_new.call(new c_R67));
+	dbg_array(this.m__fields,4)[dbg_index]=(c_R68.m_new.call(new c_R68));
+	dbg_array(this.m__fields,5)[dbg_index]=(c_R69.m_new.call(new c_R69));
+	dbg_array(this.m__fields,6)[dbg_index]=(c_R70.m_new.call(new c_R70));
+	dbg_array(this.m__fields,7)[dbg_index]=(c_R71.m_new.call(new c_R71));
+	dbg_array(this.m__fields,8)[dbg_index]=(c_R72.m_new.call(new c_R72));
+	dbg_array(this.m__fields,9)[dbg_index]=(c_R73.m_new.call(new c_R73));
+	dbg_array(this.m__fields,10)[dbg_index]=(c_R74.m_new.call(new c_R74));
+	dbg_array(this.m__fields,11)[dbg_index]=(c_R75.m_new.call(new c_R75));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R76.m_new.call(new c_R76));
+	this.p_InitR();
+	return 0;
+}
+function c_R77(){
+	c_ClassInfo.call(this);
+}
+c_R77.prototype=extend_class(c_ClassInfo);
+c_R77.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeBody",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+c_R77.prototype.p_NewInstance=function(){
+	return (c_RubeBody.m_new.call(new c_RubeBody));
+}
+c_R77.prototype.p_Init=function(){
+	this.m__fields=new_object_array(15);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R78.m_new.call(new c_R78));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R79.m_new.call(new c_R79));
+	dbg_array(this.m__fields,2)[dbg_index]=(c_R80.m_new.call(new c_R80));
+	dbg_array(this.m__fields,3)[dbg_index]=(c_R81.m_new.call(new c_R81));
+	dbg_array(this.m__fields,4)[dbg_index]=(c_R82.m_new.call(new c_R82));
+	dbg_array(this.m__fields,5)[dbg_index]=(c_R83.m_new.call(new c_R83));
+	dbg_array(this.m__fields,6)[dbg_index]=(c_R84.m_new.call(new c_R84));
+	dbg_array(this.m__fields,7)[dbg_index]=(c_R85.m_new.call(new c_R85));
+	dbg_array(this.m__fields,8)[dbg_index]=(c_R86.m_new.call(new c_R86));
+	dbg_array(this.m__fields,9)[dbg_index]=(c_R87.m_new.call(new c_R87));
+	dbg_array(this.m__fields,10)[dbg_index]=(c_R88.m_new.call(new c_R88));
+	dbg_array(this.m__fields,11)[dbg_index]=(c_R89.m_new.call(new c_R89));
+	dbg_array(this.m__fields,12)[dbg_index]=(c_R90.m_new.call(new c_R90));
+	dbg_array(this.m__fields,13)[dbg_index]=(c_R91.m_new.call(new c_R91));
+	dbg_array(this.m__fields,14)[dbg_index]=(c_R92.m_new.call(new c_R92));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R93.m_new.call(new c_R93));
+	this.p_InitR();
+	return 0;
+}
+function c_R94(){
+	c_ClassInfo.call(this);
+}
+c_R94.prototype=extend_class(c_ClassInfo);
+c_R94.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeArray<rubeloader.RubeBody>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R94.prototype.p_NewInstance=function(){
+	return (c_RubeArray.m_new.call(new c_RubeArray));
+}
+c_R94.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R95.m_new.call(new c_R95));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R96.m_new.call(new c_R96));
+	this.p_InitR();
+	return 0;
+}
+function c_R97(){
+	c_ClassInfo.call(this);
+}
+c_R97.prototype=extend_class(c_ClassInfo);
+c_R97.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeImage",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+c_R97.prototype.p_NewInstance=function(){
+	return (c_RubeImage.m_new.call(new c_RubeImage));
+}
+c_R97.prototype.p_Init=function(){
+	this.m__fields=new_object_array(13);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R98.m_new.call(new c_R98));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R99.m_new.call(new c_R99));
+	dbg_array(this.m__fields,2)[dbg_index]=(c_R100.m_new.call(new c_R100));
+	dbg_array(this.m__fields,3)[dbg_index]=(c_R101.m_new.call(new c_R101));
+	dbg_array(this.m__fields,4)[dbg_index]=(c_R102.m_new.call(new c_R102));
+	dbg_array(this.m__fields,5)[dbg_index]=(c_R103.m_new.call(new c_R103));
+	dbg_array(this.m__fields,6)[dbg_index]=(c_R104.m_new.call(new c_R104));
+	dbg_array(this.m__fields,7)[dbg_index]=(c_R105.m_new.call(new c_R105));
+	dbg_array(this.m__fields,8)[dbg_index]=(c_R106.m_new.call(new c_R106));
+	dbg_array(this.m__fields,9)[dbg_index]=(c_R107.m_new.call(new c_R107));
+	dbg_array(this.m__fields,10)[dbg_index]=(c_R108.m_new.call(new c_R108));
+	dbg_array(this.m__fields,11)[dbg_index]=(c_R109.m_new.call(new c_R109));
+	dbg_array(this.m__fields,12)[dbg_index]=(c_R110.m_new.call(new c_R110));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R111.m_new.call(new c_R111));
+	this.p_InitR();
+	return 0;
+}
+function c_R112(){
+	c_ClassInfo.call(this);
+}
+c_R112.prototype=extend_class(c_ClassInfo);
+c_R112.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeArray<rubeloader.RubeImage>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R112.prototype.p_NewInstance=function(){
+	return (c_RubeArray2.m_new.call(new c_RubeArray2));
+}
+c_R112.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R113.m_new.call(new c_R113));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R114.m_new.call(new c_R114));
+	this.p_InitR();
+	return 0;
+}
+function c_R115(){
+	c_ClassInfo.call(this);
+}
+c_R115.prototype=extend_class(c_ClassInfo);
+c_R115.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeJoint",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+c_R115.prototype.p_NewInstance=function(){
+	return (c_RubeJoint.m_new.call(new c_RubeJoint));
+}
+c_R115.prototype.p_Init=function(){
+	this.m__fields=new_object_array(27);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R116.m_new.call(new c_R116));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R117.m_new.call(new c_R117));
+	dbg_array(this.m__fields,2)[dbg_index]=(c_R118.m_new.call(new c_R118));
+	dbg_array(this.m__fields,3)[dbg_index]=(c_R119.m_new.call(new c_R119));
+	dbg_array(this.m__fields,4)[dbg_index]=(c_R120.m_new.call(new c_R120));
+	dbg_array(this.m__fields,5)[dbg_index]=(c_R121.m_new.call(new c_R121));
+	dbg_array(this.m__fields,6)[dbg_index]=(c_R122.m_new.call(new c_R122));
+	dbg_array(this.m__fields,7)[dbg_index]=(c_R123.m_new.call(new c_R123));
+	dbg_array(this.m__fields,8)[dbg_index]=(c_R124.m_new.call(new c_R124));
+	dbg_array(this.m__fields,9)[dbg_index]=(c_R125.m_new.call(new c_R125));
+	dbg_array(this.m__fields,10)[dbg_index]=(c_R126.m_new.call(new c_R126));
+	dbg_array(this.m__fields,11)[dbg_index]=(c_R127.m_new.call(new c_R127));
+	dbg_array(this.m__fields,12)[dbg_index]=(c_R128.m_new.call(new c_R128));
+	dbg_array(this.m__fields,13)[dbg_index]=(c_R129.m_new.call(new c_R129));
+	dbg_array(this.m__fields,14)[dbg_index]=(c_R130.m_new.call(new c_R130));
+	dbg_array(this.m__fields,15)[dbg_index]=(c_R131.m_new.call(new c_R131));
+	dbg_array(this.m__fields,16)[dbg_index]=(c_R132.m_new.call(new c_R132));
+	dbg_array(this.m__fields,17)[dbg_index]=(c_R133.m_new.call(new c_R133));
+	dbg_array(this.m__fields,18)[dbg_index]=(c_R134.m_new.call(new c_R134));
+	dbg_array(this.m__fields,19)[dbg_index]=(c_R135.m_new.call(new c_R135));
+	dbg_array(this.m__fields,20)[dbg_index]=(c_R136.m_new.call(new c_R136));
+	dbg_array(this.m__fields,21)[dbg_index]=(c_R137.m_new.call(new c_R137));
+	dbg_array(this.m__fields,22)[dbg_index]=(c_R138.m_new.call(new c_R138));
+	dbg_array(this.m__fields,23)[dbg_index]=(c_R139.m_new.call(new c_R139));
+	dbg_array(this.m__fields,24)[dbg_index]=(c_R140.m_new.call(new c_R140));
+	dbg_array(this.m__fields,25)[dbg_index]=(c_R141.m_new.call(new c_R141));
+	dbg_array(this.m__fields,26)[dbg_index]=(c_R142.m_new.call(new c_R142));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R143.m_new.call(new c_R143));
+	this.p_InitR();
+	return 0;
+}
+function c_R144(){
+	c_ClassInfo.call(this);
+}
+c_R144.prototype=extend_class(c_ClassInfo);
+c_R144.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeArray<rubeloader.RubeJoint>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R144.prototype.p_NewInstance=function(){
+	return (c_RubeArray3.m_new.call(new c_RubeArray3));
+}
+c_R144.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R145.m_new.call(new c_R145));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R146.m_new.call(new c_R146));
+	this.p_InitR();
+	return 0;
+}
+function c_R147(){
+	c_ClassInfo.call(this);
+}
+c_R147.prototype=extend_class(c_ClassInfo);
+c_R147.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeFixture",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+c_R147.prototype.p_NewInstance=function(){
+	return (c_RubeFixture.m_new.call(new c_RubeFixture));
+}
+c_R147.prototype.p_Init=function(){
+	this.m__fields=new_object_array(10);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R148.m_new.call(new c_R148));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R149.m_new.call(new c_R149));
+	dbg_array(this.m__fields,2)[dbg_index]=(c_R150.m_new.call(new c_R150));
+	dbg_array(this.m__fields,3)[dbg_index]=(c_R151.m_new.call(new c_R151));
+	dbg_array(this.m__fields,4)[dbg_index]=(c_R152.m_new.call(new c_R152));
+	dbg_array(this.m__fields,5)[dbg_index]=(c_R153.m_new.call(new c_R153));
+	dbg_array(this.m__fields,6)[dbg_index]=(c_R154.m_new.call(new c_R154));
+	dbg_array(this.m__fields,7)[dbg_index]=(c_R155.m_new.call(new c_R155));
+	dbg_array(this.m__fields,8)[dbg_index]=(c_R156.m_new.call(new c_R156));
+	dbg_array(this.m__fields,9)[dbg_index]=(c_R157.m_new.call(new c_R157));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R158.m_new.call(new c_R158));
+	this.p_InitR();
+	return 0;
+}
+function c_R159(){
+	c_ClassInfo.call(this);
+}
+c_R159.prototype=extend_class(c_ClassInfo);
+c_R159.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeArray<rubeloader.RubeFixture>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R159.prototype.p_NewInstance=function(){
+	return (c_RubeArray4.m_new.call(new c_RubeArray4));
+}
+c_R159.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R160.m_new.call(new c_R160));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R161.m_new.call(new c_R161));
+	this.p_InitR();
+	return 0;
+}
+function c_R162(){
+	c_ClassInfo.call(this);
+}
+c_R162.prototype=extend_class(c_ClassInfo);
+c_R162.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeProperty",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R162.prototype.p_NewInstance=function(){
+	return (c_RubeProperty.m_new.call(new c_RubeProperty));
+}
+c_R162.prototype.p_Init=function(){
+	this.m__fields=new_object_array(7);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R163.m_new.call(new c_R163));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R164.m_new.call(new c_R164));
+	dbg_array(this.m__fields,2)[dbg_index]=(c_R165.m_new.call(new c_R165));
+	dbg_array(this.m__fields,3)[dbg_index]=(c_R166.m_new.call(new c_R166));
+	dbg_array(this.m__fields,4)[dbg_index]=(c_R167.m_new.call(new c_R167));
+	dbg_array(this.m__fields,5)[dbg_index]=(c_R168.m_new.call(new c_R168));
+	dbg_array(this.m__fields,6)[dbg_index]=(c_R169.m_new.call(new c_R169));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R170.m_new.call(new c_R170));
+	this.p_InitR();
+	return 0;
+}
+function c_R171(){
+	c_ClassInfo.call(this);
+}
+c_R171.prototype=extend_class(c_ClassInfo);
+c_R171.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeArray<rubeloader.RubeProperty>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R171.prototype.p_NewInstance=function(){
+	return (c_RubeArray5.m_new.call(new c_RubeArray5));
+}
+c_R171.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R172.m_new.call(new c_R172));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R173.m_new.call(new c_R173));
+	this.p_InitR();
+	return 0;
+}
+function c_R174(){
+	c_ClassInfo.call(this);
+}
+c_R174.prototype=extend_class(c_ClassInfo);
+c_R174.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeShape",0,dbg_array(bb_reflection__classes,0)[dbg_index],[dbg_array(bb_reflection__classes,6)[dbg_index]]);
+	return this;
+}
+c_R174.prototype.p_NewInstance=function(){
+	return (c_RubeShape.m_new2.call(new c_RubeShape));
+}
+c_R174.prototype.p_Init=function(){
+	this.m__fields=new_object_array(2);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R175.m_new.call(new c_R175));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R176.m_new.call(new c_R176));
+	this.m__ctors=new_object_array(2);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R177.m_new.call(new c_R177));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R178.m_new.call(new c_R178));
+	this.p_InitR();
+	return 0;
+}
+function c_R179(){
+	c_ClassInfo.call(this);
+}
+c_R179.prototype=extend_class(c_ClassInfo);
+c_R179.m_new=function(){
+	c_ClassInfo.m_new.call(this,"rubeloader.RubeShapeData",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+c_R179.prototype.p_NewInstance=function(){
+	return (c_RubeShapeData.m_new.call(new c_RubeShapeData));
+}
+c_R179.prototype.p_Init=function(){
+	this.m__fields=new_object_array(7);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R180.m_new.call(new c_R180));
+	dbg_array(this.m__fields,1)[dbg_index]=(c_R181.m_new.call(new c_R181));
+	dbg_array(this.m__fields,2)[dbg_index]=(c_R182.m_new.call(new c_R182));
+	dbg_array(this.m__fields,3)[dbg_index]=(c_R183.m_new.call(new c_R183));
+	dbg_array(this.m__fields,4)[dbg_index]=(c_R184.m_new.call(new c_R184));
+	dbg_array(this.m__fields,5)[dbg_index]=(c_R185.m_new.call(new c_R185));
+	dbg_array(this.m__fields,6)[dbg_index]=(c_R186.m_new.call(new c_R186));
+	this.m__ctors=new_object_array(1);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R187.m_new.call(new c_R187));
+	this.p_InitR();
+	return 0;
+}
+function c_R188(){
+	c_ClassInfo.call(this);
+}
+c_R188.prototype=extend_class(c_ClassInfo);
+c_R188.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.ArrayObject<rubeloader.RubeBody>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	return this;
+}
+c_R188.prototype.p_NewInstance=function(){
+	return (c_ArrayObject.m_new2.call(new c_ArrayObject));
+}
+c_R188.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R189.m_new.call(new c_R189));
+	this.m__methods=new_object_array(1);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R191.m_new.call(new c_R191));
+	this.m__ctors=new_object_array(2);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R190.m_new.call(new c_R190));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R192.m_new.call(new c_R192));
+	this.p_InitR();
+	return 0;
+}
+function c_R193(){
+	c_ClassInfo.call(this);
+}
+c_R193.prototype=extend_class(c_ClassInfo);
+c_R193.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.ArrayObject<rubeloader.RubeImage>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	return this;
+}
+c_R193.prototype.p_NewInstance=function(){
+	return (c_ArrayObject2.m_new2.call(new c_ArrayObject2));
+}
+c_R193.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R194.m_new.call(new c_R194));
+	this.m__methods=new_object_array(1);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R196.m_new.call(new c_R196));
+	this.m__ctors=new_object_array(2);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R195.m_new.call(new c_R195));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R197.m_new.call(new c_R197));
+	this.p_InitR();
+	return 0;
+}
+function c_R198(){
+	c_ClassInfo.call(this);
+}
+c_R198.prototype=extend_class(c_ClassInfo);
+c_R198.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.ArrayObject<rubeloader.RubeJoint>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	return this;
+}
+c_R198.prototype.p_NewInstance=function(){
+	return (c_ArrayObject3.m_new2.call(new c_ArrayObject3));
+}
+c_R198.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R199.m_new.call(new c_R199));
+	this.m__methods=new_object_array(1);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R201.m_new.call(new c_R201));
+	this.m__ctors=new_object_array(2);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R200.m_new.call(new c_R200));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R202.m_new.call(new c_R202));
+	this.p_InitR();
+	return 0;
+}
+function c_R203(){
+	c_ClassInfo.call(this);
+}
+c_R203.prototype=extend_class(c_ClassInfo);
+c_R203.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.ArrayObject<rubeloader.RubeFixture>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	return this;
+}
+c_R203.prototype.p_NewInstance=function(){
+	return (c_ArrayObject4.m_new2.call(new c_ArrayObject4));
+}
+c_R203.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R204.m_new.call(new c_R204));
+	this.m__methods=new_object_array(1);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R206.m_new.call(new c_R206));
+	this.m__ctors=new_object_array(2);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R205.m_new.call(new c_R205));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R207.m_new.call(new c_R207));
+	this.p_InitR();
+	return 0;
+}
+function c_R208(){
+	c_ClassInfo.call(this);
+}
+c_R208.prototype=extend_class(c_ClassInfo);
+c_R208.m_new=function(){
+	c_ClassInfo.m_new.call(this,"monkey.boxes.ArrayObject<rubeloader.RubeProperty>",0,dbg_array(bb_reflection__classes,0)[dbg_index],[]);
+	return this;
+}
+c_R208.prototype.p_NewInstance=function(){
+	return (c_ArrayObject5.m_new2.call(new c_ArrayObject5));
+}
+c_R208.prototype.p_Init=function(){
+	this.m__fields=new_object_array(1);
+	dbg_array(this.m__fields,0)[dbg_index]=(c_R209.m_new.call(new c_R209));
+	this.m__methods=new_object_array(1);
+	dbg_array(this.m__methods,0)[dbg_index]=(c_R211.m_new.call(new c_R211));
+	this.m__ctors=new_object_array(2);
+	dbg_array(this.m__ctors,0)[dbg_index]=(c_R210.m_new.call(new c_R210));
+	dbg_array(this.m__ctors,1)[dbg_index]=(c_R212.m_new.call(new c_R212));
+	this.p_InitR();
+	return 0;
+}
+function c_FunctionInfo(){
+	Object.call(this);
+	this.m__name="";
+	this.m__attrs=0;
+	this.m__retType=null;
+	this.m__argTypes=[];
+}
+c_FunctionInfo.m_new=function(t_name,t_attrs,t_retType,t_argTypes){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<179>";
+	this.m__name=t_name;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<180>";
+	this.m__attrs=t_attrs;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<181>";
+	this.m__retType=t_retType;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<182>";
+	this.m__argTypes=t_argTypes;
+	pop_err();
+	return this;
+}
+c_FunctionInfo.m_new2=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<176>";
+	pop_err();
+	return this;
+}
+var bb_reflection__functions=[];
+function c_R4(){
+	c_FunctionInfo.call(this);
+}
+c_R4.prototype=extend_class(c_FunctionInfo);
+c_R4.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.BoxBool",0,dbg_array(bb_reflection__classes,0)[dbg_index],[bb_reflection__boolClass]);
+	return this;
+}
+function c_R5(){
+	c_FunctionInfo.call(this);
+}
+c_R5.prototype=extend_class(c_FunctionInfo);
+c_R5.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.BoxInt",0,dbg_array(bb_reflection__classes,0)[dbg_index],[bb_reflection__intClass]);
+	return this;
+}
+function c_R6(){
+	c_FunctionInfo.call(this);
+}
+c_R6.prototype=extend_class(c_FunctionInfo);
+c_R6.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.BoxFloat",0,dbg_array(bb_reflection__classes,0)[dbg_index],[bb_reflection__floatClass]);
+	return this;
+}
+function c_R7(){
+	c_FunctionInfo.call(this);
+}
+c_R7.prototype=extend_class(c_FunctionInfo);
+c_R7.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.BoxString",0,dbg_array(bb_reflection__classes,0)[dbg_index],[bb_reflection__stringClass]);
+	return this;
+}
+function c_R8(){
+	c_FunctionInfo.call(this);
+}
+c_R8.prototype=extend_class(c_FunctionInfo);
+c_R8.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.UnboxBool",0,bb_reflection__boolClass,[dbg_array(bb_reflection__classes,0)[dbg_index]]);
+	return this;
+}
+function c_R9(){
+	c_FunctionInfo.call(this);
+}
+c_R9.prototype=extend_class(c_FunctionInfo);
+c_R9.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.UnboxInt",0,bb_reflection__intClass,[dbg_array(bb_reflection__classes,0)[dbg_index]]);
+	return this;
+}
+function c_R10(){
+	c_FunctionInfo.call(this);
+}
+c_R10.prototype=extend_class(c_FunctionInfo);
+c_R10.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.UnboxFloat",0,bb_reflection__floatClass,[dbg_array(bb_reflection__classes,0)[dbg_index]]);
+	return this;
+}
+function c_R11(){
+	c_FunctionInfo.call(this);
+}
+c_R11.prototype=extend_class(c_FunctionInfo);
+c_R11.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.boxes.UnboxString",0,bb_reflection__stringClass,[dbg_array(bb_reflection__classes,0)[dbg_index]]);
+	return this;
+}
+function c_R12(){
+	c_FunctionInfo.call(this);
+}
+c_R12.prototype=extend_class(c_FunctionInfo);
+c_R12.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.lang.Print",1,bb_reflection__intClass,[bb_reflection__stringClass]);
+	return this;
+}
+function c_R13(){
+	c_FunctionInfo.call(this);
+}
+c_R13.prototype=extend_class(c_FunctionInfo);
+c_R13.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.lang.Error",1,bb_reflection__intClass,[bb_reflection__stringClass]);
+	return this;
+}
+function c_R14(){
+	c_FunctionInfo.call(this);
+}
+c_R14.prototype=extend_class(c_FunctionInfo);
+c_R14.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.lang.DebugLog",1,bb_reflection__intClass,[bb_reflection__stringClass]);
+	return this;
+}
+function c_R15(){
+	c_FunctionInfo.call(this);
+}
+c_R15.prototype=extend_class(c_FunctionInfo);
+c_R15.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"monkey.lang.DebugStop",1,bb_reflection__intClass,[]);
+	return this;
+}
+function c_R16(){
+	c_FunctionInfo.call(this);
+}
+c_R16.prototype=extend_class(c_FunctionInfo);
+c_R16.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"rubeloader.LoadRube",0,dbg_array(bb_reflection__classes,10)[dbg_index],[bb_reflection__stringClass]);
+	return this;
+}
+function c___GetClass(){
+	c__GetClass.call(this);
+}
+c___GetClass.prototype=extend_class(c__GetClass);
+c___GetClass.m_new=function(){
+	push_err();
+	err_info="$SOURCE<2454>";
+	c__GetClass.m_new.call(this);
+	err_info="$SOURCE<2454>";
+	pop_err();
+	return this;
+}
+c___GetClass.prototype.p_GetClass=function(t_o){
+	if(object_downcast((t_o),c_ArrayObject5)!=null){
+		return dbg_array(bb_reflection__classes,27)[dbg_index];
+	}
+	if(object_downcast((t_o),c_ArrayObject4)!=null){
+		return dbg_array(bb_reflection__classes,26)[dbg_index];
+	}
+	if(object_downcast((t_o),c_ArrayObject3)!=null){
+		return dbg_array(bb_reflection__classes,25)[dbg_index];
+	}
+	if(object_downcast((t_o),c_ArrayObject2)!=null){
+		return dbg_array(bb_reflection__classes,24)[dbg_index];
+	}
+	if(object_downcast((t_o),c_ArrayObject)!=null){
+		return dbg_array(bb_reflection__classes,23)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeShapeData)!=null){
+		return dbg_array(bb_reflection__classes,22)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeShape)!=null){
+		return dbg_array(bb_reflection__classes,21)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeArray5)!=null){
+		return dbg_array(bb_reflection__classes,20)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeProperty)!=null){
+		return dbg_array(bb_reflection__classes,19)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeArray4)!=null){
+		return dbg_array(bb_reflection__classes,18)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeFixture)!=null){
+		return dbg_array(bb_reflection__classes,17)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeArray3)!=null){
+		return dbg_array(bb_reflection__classes,16)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeJoint)!=null){
+		return dbg_array(bb_reflection__classes,15)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeArray2)!=null){
+		return dbg_array(bb_reflection__classes,14)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeImage)!=null){
+		return dbg_array(bb_reflection__classes,13)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeArray)!=null){
+		return dbg_array(bb_reflection__classes,12)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeBody)!=null){
+		return dbg_array(bb_reflection__classes,11)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeWorld)!=null){
+		return dbg_array(bb_reflection__classes,10)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeVectorArray)!=null){
+		return dbg_array(bb_reflection__classes,9)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeVector)!=null){
+		return dbg_array(bb_reflection__classes,8)[dbg_index];
+	}
+	if(object_downcast((t_o),c_RubeObject)!=null){
+		return dbg_array(bb_reflection__classes,7)[dbg_index];
+	}
+	if(object_implements((t_o),"c_IRubeObject")!=null){
+		return dbg_array(bb_reflection__classes,6)[dbg_index];
+	}
+	if(object_downcast((t_o),ThrowableObject)!=null){
+		return dbg_array(bb_reflection__classes,5)[dbg_index];
+	}
+	if(object_downcast((t_o),c_StringObject)!=null){
+		return dbg_array(bb_reflection__classes,4)[dbg_index];
+	}
+	if(object_downcast((t_o),c_FloatObject)!=null){
+		return dbg_array(bb_reflection__classes,3)[dbg_index];
+	}
+	if(object_downcast((t_o),c_IntObject)!=null){
+		return dbg_array(bb_reflection__classes,2)[dbg_index];
+	}
+	if(object_downcast((t_o),c_BoolObject)!=null){
+		return dbg_array(bb_reflection__classes,1)[dbg_index];
+	}
+	if(t_o!=null){
+		return dbg_array(bb_reflection__classes,0)[dbg_index];
+	}
+	return bb_reflection__unknownClass;
+}
+function bb_reflection___init(){
+	bb_reflection__classes=new_object_array(28);
+	dbg_array(bb_reflection__classes,0)[dbg_index]=(c_R17.m_new.call(new c_R17));
+	dbg_array(bb_reflection__classes,1)[dbg_index]=(c_R18.m_new.call(new c_R18));
+	dbg_array(bb_reflection__classes,2)[dbg_index]=(c_R24.m_new.call(new c_R24));
+	dbg_array(bb_reflection__classes,3)[dbg_index]=(c_R34.m_new.call(new c_R34));
+	dbg_array(bb_reflection__classes,4)[dbg_index]=(c_R44.m_new.call(new c_R44));
+	dbg_array(bb_reflection__classes,5)[dbg_index]=(c_R53.m_new.call(new c_R53));
+	dbg_array(bb_reflection__classes,6)[dbg_index]=(c_R54.m_new.call(new c_R54));
+	dbg_array(bb_reflection__classes,7)[dbg_index]=(c_R55.m_new.call(new c_R55));
+	dbg_array(bb_reflection__classes,8)[dbg_index]=(c_R57.m_new.call(new c_R57));
+	dbg_array(bb_reflection__classes,9)[dbg_index]=(c_R61.m_new.call(new c_R61));
+	dbg_array(bb_reflection__classes,10)[dbg_index]=(c_R63.m_new.call(new c_R63));
+	dbg_array(bb_reflection__classes,11)[dbg_index]=(c_R77.m_new.call(new c_R77));
+	dbg_array(bb_reflection__classes,12)[dbg_index]=(c_R94.m_new.call(new c_R94));
+	dbg_array(bb_reflection__classes,13)[dbg_index]=(c_R97.m_new.call(new c_R97));
+	dbg_array(bb_reflection__classes,14)[dbg_index]=(c_R112.m_new.call(new c_R112));
+	dbg_array(bb_reflection__classes,15)[dbg_index]=(c_R115.m_new.call(new c_R115));
+	dbg_array(bb_reflection__classes,16)[dbg_index]=(c_R144.m_new.call(new c_R144));
+	dbg_array(bb_reflection__classes,17)[dbg_index]=(c_R147.m_new.call(new c_R147));
+	dbg_array(bb_reflection__classes,18)[dbg_index]=(c_R159.m_new.call(new c_R159));
+	dbg_array(bb_reflection__classes,19)[dbg_index]=(c_R162.m_new.call(new c_R162));
+	dbg_array(bb_reflection__classes,20)[dbg_index]=(c_R171.m_new.call(new c_R171));
+	dbg_array(bb_reflection__classes,21)[dbg_index]=(c_R174.m_new.call(new c_R174));
+	dbg_array(bb_reflection__classes,22)[dbg_index]=(c_R179.m_new.call(new c_R179));
+	dbg_array(bb_reflection__classes,23)[dbg_index]=(c_R188.m_new.call(new c_R188));
+	dbg_array(bb_reflection__classes,24)[dbg_index]=(c_R193.m_new.call(new c_R193));
+	dbg_array(bb_reflection__classes,25)[dbg_index]=(c_R198.m_new.call(new c_R198));
+	dbg_array(bb_reflection__classes,26)[dbg_index]=(c_R203.m_new.call(new c_R203));
+	dbg_array(bb_reflection__classes,27)[dbg_index]=(c_R208.m_new.call(new c_R208));
+	dbg_array(bb_reflection__classes,0)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,1)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,2)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,3)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,4)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,5)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,6)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,7)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,8)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,9)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,10)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,11)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,12)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,13)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,14)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,15)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,16)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,17)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,18)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,19)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,20)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,21)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,22)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,23)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,24)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,25)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,26)[dbg_index].p_Init();
+	dbg_array(bb_reflection__classes,27)[dbg_index].p_Init();
+	bb_reflection__functions=new_object_array(13);
+	dbg_array(bb_reflection__functions,0)[dbg_index]=(c_R4.m_new.call(new c_R4));
+	dbg_array(bb_reflection__functions,1)[dbg_index]=(c_R5.m_new.call(new c_R5));
+	dbg_array(bb_reflection__functions,2)[dbg_index]=(c_R6.m_new.call(new c_R6));
+	dbg_array(bb_reflection__functions,3)[dbg_index]=(c_R7.m_new.call(new c_R7));
+	dbg_array(bb_reflection__functions,4)[dbg_index]=(c_R8.m_new.call(new c_R8));
+	dbg_array(bb_reflection__functions,5)[dbg_index]=(c_R9.m_new.call(new c_R9));
+	dbg_array(bb_reflection__functions,6)[dbg_index]=(c_R10.m_new.call(new c_R10));
+	dbg_array(bb_reflection__functions,7)[dbg_index]=(c_R11.m_new.call(new c_R11));
+	dbg_array(bb_reflection__functions,8)[dbg_index]=(c_R12.m_new.call(new c_R12));
+	dbg_array(bb_reflection__functions,9)[dbg_index]=(c_R13.m_new.call(new c_R13));
+	dbg_array(bb_reflection__functions,10)[dbg_index]=(c_R14.m_new.call(new c_R14));
+	dbg_array(bb_reflection__functions,11)[dbg_index]=(c_R15.m_new.call(new c_R15));
+	dbg_array(bb_reflection__functions,12)[dbg_index]=(c_R16.m_new.call(new c_R16));
+	bb_reflection__getClass=(c___GetClass.m_new.call(new c___GetClass));
+	return 0;
+}
+var bb_reflection__init=0;
 function c_App(){
 	Object.call(this);
 }
@@ -1774,53 +7004,55 @@ function c_MyApp(){
 c_MyApp.prototype=extend_class(c_App);
 c_MyApp.m_new=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<43>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<44>";
 	c_App.m_new.call(this);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<43>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<44>";
 	pop_err();
 	return this;
 }
 c_MyApp.prototype.p_OnCreate=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<48>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<49>";
 	bb_app_SetUpdateRate(60);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<50>";
-	c_Dwarf.m_image=bb_graphics_LoadImage("dwarf.png",1,c_Image.m_DefaultFlags);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<51>";
+	c_Dwarf.m_image=bb_graphics_LoadImage("dwarf.png",1,c_Image.m_DefaultFlags);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<52>";
 	c_Dwarf.m_image.p_SetHandle((c_Dwarf.m_image.p_Width())/2.0,(c_Dwarf.m_image.p_Height())/2.0);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<53>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<54>";
 	this.m_universe=c_Universe.m_new.call(new c_Universe);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<56>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<55>";
+	this.m_universe.p_Load("rubeformat.txt");
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<58>";
 	this.m_dwarf_one=c_Dwarf.m_new.call(new c_Dwarf,0,30.0,454.0);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<57>";
-	this.m_dwarf_two=c_Dwarf.m_new.call(new c_Dwarf,1,400.0,454.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<59>";
+	this.m_dwarf_two=c_Dwarf.m_new.call(new c_Dwarf,1,400.0,454.0);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<61>";
 	pop_err();
 	return 0;
 }
 c_MyApp.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<63>";
-	this.m_universe.p_OnUpdate();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<64>";
-	this.m_dwarf_one.p_OnUpdate();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<65>";
-	this.m_dwarf_two.p_OnUpdate();
+	this.m_universe.p_OnUpdate();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<66>";
+	this.m_dwarf_one.p_OnUpdate();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<67>";
+	this.m_dwarf_two.p_OnUpdate();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<69>";
 	pop_err();
 	return 0;
 }
 c_MyApp.prototype.p_OnRender=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<71>";
-	bb_graphics_Cls(0.0,0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<73>";
-	this.m_dwarf_one.p_OnRender();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<74>";
-	this.m_dwarf_two.p_OnRender();
+	bb_graphics_Cls(0.0,0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<75>";
-	this.m_universe.p_OnRender();
+	this.m_dwarf_one.p_OnRender();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<76>";
+	this.m_dwarf_two.p_OnRender();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<77>";
+	this.m_universe.p_OnRender();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<79>";
 	pop_err();
 	return 0;
 }
@@ -1967,16 +7199,2391 @@ c_GameDelegate.prototype.DiscardGraphics=function(){
 	pop_err();
 }
 var bb_app__delegate=null;
-var bb_app__game=null;
 var bb_main_APP=null;
 function bbMain(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<37>";
-	bb_main_APP=c_MyApp.m_new.call(new c_MyApp);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<38>";
+	bb_main_APP=c_MyApp.m_new.call(new c_MyApp);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/main.monkey<39>";
 	pop_err();
 	return 0;
 }
+function c_ConstInfo(){
+	Object.call(this);
+}
+function c_Stack(){
+	Object.call(this);
+	this.m_data=[];
+	this.m_length=0;
+}
+c_Stack.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_Stack.m_new2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
+	return this;
+}
+c_Stack.prototype.p_Push=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<67>";
+	if(this.m_length==this.m_data.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<68>";
+		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<71>";
+	this.m_length+=1;
+	pop_err();
+}
+c_Stack.prototype.p_Push2=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<79>";
+	for(var t_i=0;t_i<t_count;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<80>";
+		this.p_Push(dbg_array(t_values,t_offset+t_i)[dbg_index]);
+	}
+	pop_err();
+}
+c_Stack.prototype.p_Push3=function(t_values,t_offset){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<75>";
+	this.p_Push2(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
+}
+c_Stack.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<18>";
+	var t_t=new_object_array(this.m_length);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<19>";
+	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<20>";
+		dbg_array(t_t,t_i)[dbg_index]=dbg_array(this.m_data,t_i)[dbg_index];
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<22>";
+	pop_err();
+	return t_t;
+}
+function c_Stack2(){
+	Object.call(this);
+	this.m_data=[];
+	this.m_length=0;
+}
+c_Stack2.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_Stack2.m_new2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
+	return this;
+}
+c_Stack2.prototype.p_Push4=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<67>";
+	if(this.m_length==this.m_data.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<68>";
+		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<71>";
+	this.m_length+=1;
+	pop_err();
+}
+c_Stack2.prototype.p_Push5=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<79>";
+	for(var t_i=0;t_i<t_count;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<80>";
+		this.p_Push4(dbg_array(t_values,t_offset+t_i)[dbg_index]);
+	}
+	pop_err();
+}
+c_Stack2.prototype.p_Push6=function(t_values,t_offset){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<75>";
+	this.p_Push5(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
+}
+c_Stack2.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<18>";
+	var t_t=new_object_array(this.m_length);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<19>";
+	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<20>";
+		dbg_array(t_t,t_i)[dbg_index]=dbg_array(this.m_data,t_i)[dbg_index];
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<22>";
+	pop_err();
+	return t_t;
+}
+function c_GlobalInfo(){
+	Object.call(this);
+}
+function c_Stack3(){
+	Object.call(this);
+	this.m_data=[];
+	this.m_length=0;
+}
+c_Stack3.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_Stack3.m_new2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
+	return this;
+}
+c_Stack3.prototype.p_Push7=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<67>";
+	if(this.m_length==this.m_data.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<68>";
+		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<71>";
+	this.m_length+=1;
+	pop_err();
+}
+c_Stack3.prototype.p_Push8=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<79>";
+	for(var t_i=0;t_i<t_count;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<80>";
+		this.p_Push7(dbg_array(t_values,t_offset+t_i)[dbg_index]);
+	}
+	pop_err();
+}
+c_Stack3.prototype.p_Push9=function(t_values,t_offset){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<75>";
+	this.p_Push8(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
+}
+c_Stack3.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<18>";
+	var t_t=new_object_array(this.m_length);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<19>";
+	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<20>";
+		dbg_array(t_t,t_i)[dbg_index]=dbg_array(this.m_data,t_i)[dbg_index];
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<22>";
+	pop_err();
+	return t_t;
+}
+function c_Stack4(){
+	Object.call(this);
+	this.m_data=[];
+	this.m_length=0;
+}
+c_Stack4.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_Stack4.m_new2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
+	return this;
+}
+c_Stack4.prototype.p_Push10=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<67>";
+	if(this.m_length==this.m_data.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<68>";
+		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<71>";
+	this.m_length+=1;
+	pop_err();
+}
+c_Stack4.prototype.p_Push11=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<79>";
+	for(var t_i=0;t_i<t_count;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<80>";
+		this.p_Push10(dbg_array(t_values,t_offset+t_i)[dbg_index]);
+	}
+	pop_err();
+}
+c_Stack4.prototype.p_Push12=function(t_values,t_offset){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<75>";
+	this.p_Push11(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
+}
+c_Stack4.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<18>";
+	var t_t=new_object_array(this.m_length);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<19>";
+	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<20>";
+		dbg_array(t_t,t_i)[dbg_index]=dbg_array(this.m_data,t_i)[dbg_index];
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<22>";
+	pop_err();
+	return t_t;
+}
+function c_Stack5(){
+	Object.call(this);
+	this.m_data=[];
+	this.m_length=0;
+}
+c_Stack5.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_Stack5.m_new2=function(t_data){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
+	return this;
+}
+c_Stack5.prototype.p_Push13=function(t_value){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<67>";
+	if(this.m_length==this.m_data.length){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<68>";
+		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<71>";
+	this.m_length+=1;
+	pop_err();
+}
+c_Stack5.prototype.p_Push14=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<79>";
+	for(var t_i=0;t_i<t_count;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<80>";
+		this.p_Push13(dbg_array(t_values,t_offset+t_i)[dbg_index]);
+	}
+	pop_err();
+}
+c_Stack5.prototype.p_Push15=function(t_values,t_offset){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<75>";
+	this.p_Push14(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
+}
+c_Stack5.prototype.p_ToArray=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<18>";
+	var t_t=new_object_array(this.m_length);
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<19>";
+	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
+		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<20>";
+		dbg_array(t_t,t_i)[dbg_index]=dbg_array(this.m_data,t_i)[dbg_index];
+	}
+	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<22>";
+	pop_err();
+	return t_t;
+}
+function c_R19(){
+	c_FieldInfo.call(this);
+}
+c_R19.prototype=extend_class(c_FieldInfo);
+c_R19.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,bb_reflection__boolClass);
+	return this;
+}
+c_R19.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_BoolObject)).m_value));
+}
+c_R19.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_BoolObject)).m_value=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R21(){
+	c_MethodInfo.call(this);
+}
+c_R21.prototype=extend_class(c_MethodInfo);
+c_R21.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToBool",0,bb_reflection__boolClass,[]);
+	return this;
+}
+c_R21.prototype.p_Invoke=function(t_i,t_p){
+	return (c_BoolObject.m_new.call(new c_BoolObject,object_downcast((t_i),c_BoolObject).p_ToBool()));
+}
+function c_R22(){
+	c_MethodInfo.call(this);
+}
+c_R22.prototype=extend_class(c_MethodInfo);
+c_R22.m_new=function(){
+	c_MethodInfo.m_new.call(this,"Equals",0,bb_reflection__boolClass,[dbg_array(bb_reflection__classes,1)[dbg_index]]);
+	return this;
+}
+c_R22.prototype.p_Invoke=function(t_i,t_p){
+	return (c_BoolObject.m_new.call(new c_BoolObject,object_downcast((t_i),c_BoolObject).p_Equals(object_downcast((dbg_array(t_p,0)[dbg_index]),c_BoolObject))));
+}
+function c_R20(){
+	c_FunctionInfo.call(this);
+}
+c_R20.prototype=extend_class(c_FunctionInfo);
+c_R20.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,1)[dbg_index],[bb_reflection__boolClass]);
+	return this;
+}
+function c_R23(){
+	c_FunctionInfo.call(this);
+}
+c_R23.prototype=extend_class(c_FunctionInfo);
+c_R23.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,1)[dbg_index],[]);
+	return this;
+}
+function c_R25(){
+	c_FieldInfo.call(this);
+}
+c_R25.prototype=extend_class(c_FieldInfo);
+c_R25.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,bb_reflection__intClass);
+	return this;
+}
+c_R25.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_IntObject)).m_value));
+}
+c_R25.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_IntObject)).m_value=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R28(){
+	c_MethodInfo.call(this);
+}
+c_R28.prototype=extend_class(c_MethodInfo);
+c_R28.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToInt",0,bb_reflection__intClass,[]);
+	return this;
+}
+c_R28.prototype.p_Invoke=function(t_i,t_p){
+	return (c_IntObject.m_new.call(new c_IntObject,object_downcast((t_i),c_IntObject).p_ToInt()));
+}
+function c_R29(){
+	c_MethodInfo.call(this);
+}
+c_R29.prototype=extend_class(c_MethodInfo);
+c_R29.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToFloat",0,bb_reflection__floatClass,[]);
+	return this;
+}
+c_R29.prototype.p_Invoke=function(t_i,t_p){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,object_downcast((t_i),c_IntObject).p_ToFloat()));
+}
+function c_R30(){
+	c_MethodInfo.call(this);
+}
+c_R30.prototype=extend_class(c_MethodInfo);
+c_R30.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToString",0,bb_reflection__stringClass,[]);
+	return this;
+}
+c_R30.prototype.p_Invoke=function(t_i,t_p){
+	return (c_StringObject.m_new3.call(new c_StringObject,object_downcast((t_i),c_IntObject).p_ToString()));
+}
+function c_R31(){
+	c_MethodInfo.call(this);
+}
+c_R31.prototype=extend_class(c_MethodInfo);
+c_R31.m_new=function(){
+	c_MethodInfo.m_new.call(this,"Equals",0,bb_reflection__boolClass,[dbg_array(bb_reflection__classes,2)[dbg_index]]);
+	return this;
+}
+c_R31.prototype.p_Invoke=function(t_i,t_p){
+	return (c_BoolObject.m_new.call(new c_BoolObject,object_downcast((t_i),c_IntObject).p_Equals2(object_downcast((dbg_array(t_p,0)[dbg_index]),c_IntObject))));
+}
+function c_R32(){
+	c_MethodInfo.call(this);
+}
+c_R32.prototype=extend_class(c_MethodInfo);
+c_R32.m_new=function(){
+	c_MethodInfo.m_new.call(this,"Compare",0,bb_reflection__intClass,[dbg_array(bb_reflection__classes,2)[dbg_index]]);
+	return this;
+}
+c_R32.prototype.p_Invoke=function(t_i,t_p){
+	return (c_IntObject.m_new.call(new c_IntObject,object_downcast((t_i),c_IntObject).p_Compare(object_downcast((dbg_array(t_p,0)[dbg_index]),c_IntObject))));
+}
+function c_R26(){
+	c_FunctionInfo.call(this);
+}
+c_R26.prototype=extend_class(c_FunctionInfo);
+c_R26.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,2)[dbg_index],[bb_reflection__intClass]);
+	return this;
+}
+function c_R27(){
+	c_FunctionInfo.call(this);
+}
+c_R27.prototype=extend_class(c_FunctionInfo);
+c_R27.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,2)[dbg_index],[bb_reflection__floatClass]);
+	return this;
+}
+function c_R33(){
+	c_FunctionInfo.call(this);
+}
+c_R33.prototype=extend_class(c_FunctionInfo);
+c_R33.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,2)[dbg_index],[]);
+	return this;
+}
+function c_R35(){
+	c_FieldInfo.call(this);
+}
+c_R35.prototype=extend_class(c_FieldInfo);
+c_R35.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,bb_reflection__floatClass);
+	return this;
+}
+c_R35.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_FloatObject)).m_value));
+}
+c_R35.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_FloatObject)).m_value=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R38(){
+	c_MethodInfo.call(this);
+}
+c_R38.prototype=extend_class(c_MethodInfo);
+c_R38.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToInt",0,bb_reflection__intClass,[]);
+	return this;
+}
+c_R38.prototype.p_Invoke=function(t_i,t_p){
+	return (c_IntObject.m_new.call(new c_IntObject,object_downcast((t_i),c_FloatObject).p_ToInt()));
+}
+function c_R39(){
+	c_MethodInfo.call(this);
+}
+c_R39.prototype=extend_class(c_MethodInfo);
+c_R39.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToFloat",0,bb_reflection__floatClass,[]);
+	return this;
+}
+c_R39.prototype.p_Invoke=function(t_i,t_p){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,object_downcast((t_i),c_FloatObject).p_ToFloat()));
+}
+function c_R40(){
+	c_MethodInfo.call(this);
+}
+c_R40.prototype=extend_class(c_MethodInfo);
+c_R40.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToString",0,bb_reflection__stringClass,[]);
+	return this;
+}
+c_R40.prototype.p_Invoke=function(t_i,t_p){
+	return (c_StringObject.m_new3.call(new c_StringObject,object_downcast((t_i),c_FloatObject).p_ToString()));
+}
+function c_R41(){
+	c_MethodInfo.call(this);
+}
+c_R41.prototype=extend_class(c_MethodInfo);
+c_R41.m_new=function(){
+	c_MethodInfo.m_new.call(this,"Equals",0,bb_reflection__boolClass,[dbg_array(bb_reflection__classes,3)[dbg_index]]);
+	return this;
+}
+c_R41.prototype.p_Invoke=function(t_i,t_p){
+	return (c_BoolObject.m_new.call(new c_BoolObject,object_downcast((t_i),c_FloatObject).p_Equals3(object_downcast((dbg_array(t_p,0)[dbg_index]),c_FloatObject))));
+}
+function c_R42(){
+	c_MethodInfo.call(this);
+}
+c_R42.prototype=extend_class(c_MethodInfo);
+c_R42.m_new=function(){
+	c_MethodInfo.m_new.call(this,"Compare",0,bb_reflection__intClass,[dbg_array(bb_reflection__classes,3)[dbg_index]]);
+	return this;
+}
+c_R42.prototype.p_Invoke=function(t_i,t_p){
+	return (c_IntObject.m_new.call(new c_IntObject,object_downcast((t_i),c_FloatObject).p_Compare2(object_downcast((dbg_array(t_p,0)[dbg_index]),c_FloatObject))));
+}
+function c_R36(){
+	c_FunctionInfo.call(this);
+}
+c_R36.prototype=extend_class(c_FunctionInfo);
+c_R36.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,3)[dbg_index],[bb_reflection__intClass]);
+	return this;
+}
+function c_R37(){
+	c_FunctionInfo.call(this);
+}
+c_R37.prototype=extend_class(c_FunctionInfo);
+c_R37.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,3)[dbg_index],[bb_reflection__floatClass]);
+	return this;
+}
+function c_R43(){
+	c_FunctionInfo.call(this);
+}
+c_R43.prototype=extend_class(c_FunctionInfo);
+c_R43.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,3)[dbg_index],[]);
+	return this;
+}
+function c_R45(){
+	c_FieldInfo.call(this);
+}
+c_R45.prototype=extend_class(c_FieldInfo);
+c_R45.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,bb_reflection__stringClass);
+	return this;
+}
+c_R45.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_StringObject)).m_value));
+}
+c_R45.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_StringObject)).m_value=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R49(){
+	c_MethodInfo.call(this);
+}
+c_R49.prototype=extend_class(c_MethodInfo);
+c_R49.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToString",0,bb_reflection__stringClass,[]);
+	return this;
+}
+c_R49.prototype.p_Invoke=function(t_i,t_p){
+	return (c_StringObject.m_new3.call(new c_StringObject,object_downcast((t_i),c_StringObject).p_ToString()));
+}
+function c_R50(){
+	c_MethodInfo.call(this);
+}
+c_R50.prototype=extend_class(c_MethodInfo);
+c_R50.m_new=function(){
+	c_MethodInfo.m_new.call(this,"Equals",0,bb_reflection__boolClass,[dbg_array(bb_reflection__classes,4)[dbg_index]]);
+	return this;
+}
+c_R50.prototype.p_Invoke=function(t_i,t_p){
+	return (c_BoolObject.m_new.call(new c_BoolObject,object_downcast((t_i),c_StringObject).p_Equals4(object_downcast((dbg_array(t_p,0)[dbg_index]),c_StringObject))));
+}
+function c_R51(){
+	c_MethodInfo.call(this);
+}
+c_R51.prototype=extend_class(c_MethodInfo);
+c_R51.m_new=function(){
+	c_MethodInfo.m_new.call(this,"Compare",0,bb_reflection__intClass,[dbg_array(bb_reflection__classes,4)[dbg_index]]);
+	return this;
+}
+c_R51.prototype.p_Invoke=function(t_i,t_p){
+	return (c_IntObject.m_new.call(new c_IntObject,object_downcast((t_i),c_StringObject).p_Compare3(object_downcast((dbg_array(t_p,0)[dbg_index]),c_StringObject))));
+}
+function c_R46(){
+	c_FunctionInfo.call(this);
+}
+c_R46.prototype=extend_class(c_FunctionInfo);
+c_R46.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,4)[dbg_index],[bb_reflection__intClass]);
+	return this;
+}
+function c_R47(){
+	c_FunctionInfo.call(this);
+}
+c_R47.prototype=extend_class(c_FunctionInfo);
+c_R47.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,4)[dbg_index],[bb_reflection__floatClass]);
+	return this;
+}
+function c_R48(){
+	c_FunctionInfo.call(this);
+}
+c_R48.prototype=extend_class(c_FunctionInfo);
+c_R48.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,4)[dbg_index],[bb_reflection__stringClass]);
+	return this;
+}
+function c_R52(){
+	c_FunctionInfo.call(this);
+}
+c_R52.prototype=extend_class(c_FunctionInfo);
+c_R52.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,4)[dbg_index],[]);
+	return this;
+}
+function c_R56(){
+	c_FunctionInfo.call(this);
+}
+c_R56.prototype=extend_class(c_FunctionInfo);
+c_R56.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,7)[dbg_index],[]);
+	return this;
+}
+function c_R58(){
+	c_FieldInfo.call(this);
+}
+c_R58.prototype=extend_class(c_FieldInfo);
+c_R58.m_new=function(){
+	c_FieldInfo.m_new.call(this,"x",0,bb_reflection__floatClass);
+	return this;
+}
+c_R58.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeVector)).m_x));
+}
+c_R58.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeVector)).m_x=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R59(){
+	c_FieldInfo.call(this);
+}
+c_R59.prototype=extend_class(c_FieldInfo);
+c_R59.m_new=function(){
+	c_FieldInfo.m_new.call(this,"y",0,bb_reflection__floatClass);
+	return this;
+}
+c_R59.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeVector)).m_y));
+}
+c_R59.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeVector)).m_y=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R60(){
+	c_FunctionInfo.call(this);
+}
+c_R60.prototype=extend_class(c_FunctionInfo);
+c_R60.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,8)[dbg_index],[]);
+	return this;
+}
+function c_R62(){
+	c_FunctionInfo.call(this);
+}
+c_R62.prototype=extend_class(c_FunctionInfo);
+c_R62.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,9)[dbg_index],[]);
+	return this;
+}
+function c_R64(){
+	c_FieldInfo.call(this);
+}
+c_R64.prototype=extend_class(c_FieldInfo);
+c_R64.m_new=function(){
+	c_FieldInfo.m_new.call(this,"gravity",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R64.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeWorld)).m_gravity);
+}
+c_R64.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_gravity=object_downcast((t_v),c_RubeVector);
+}
+function c_R65(){
+	c_FieldInfo.call(this);
+}
+c_R65.prototype=extend_class(c_FieldInfo);
+c_R65.m_new=function(){
+	c_FieldInfo.m_new.call(this,"allowSleep",0,bb_reflection__boolClass);
+	return this;
+}
+c_R65.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_allowSleep));
+}
+c_R65.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_allowSleep=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R66(){
+	c_FieldInfo.call(this);
+}
+c_R66.prototype=extend_class(c_FieldInfo);
+c_R66.m_new=function(){
+	c_FieldInfo.m_new.call(this,"autoClearForces",0,bb_reflection__boolClass);
+	return this;
+}
+c_R66.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_autoClearForces));
+}
+c_R66.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_autoClearForces=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R67(){
+	c_FieldInfo.call(this);
+}
+c_R67.prototype=extend_class(c_FieldInfo);
+c_R67.m_new=function(){
+	c_FieldInfo.m_new.call(this,"positionIterations",0,bb_reflection__intClass);
+	return this;
+}
+c_R67.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_positionIterations));
+}
+c_R67.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_positionIterations=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R68(){
+	c_FieldInfo.call(this);
+}
+c_R68.prototype=extend_class(c_FieldInfo);
+c_R68.m_new=function(){
+	c_FieldInfo.m_new.call(this,"velocityIterations",0,bb_reflection__intClass);
+	return this;
+}
+c_R68.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_velocityIterations));
+}
+c_R68.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_velocityIterations=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R69(){
+	c_FieldInfo.call(this);
+}
+c_R69.prototype=extend_class(c_FieldInfo);
+c_R69.m_new=function(){
+	c_FieldInfo.m_new.call(this,"stepsPerSecond",0,bb_reflection__intClass);
+	return this;
+}
+c_R69.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_stepsPerSecond));
+}
+c_R69.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_stepsPerSecond=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R70(){
+	c_FieldInfo.call(this);
+}
+c_R70.prototype=extend_class(c_FieldInfo);
+c_R70.m_new=function(){
+	c_FieldInfo.m_new.call(this,"warmStarting",0,bb_reflection__boolClass);
+	return this;
+}
+c_R70.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_warmStarting));
+}
+c_R70.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_warmStarting=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R71(){
+	c_FieldInfo.call(this);
+}
+c_R71.prototype=extend_class(c_FieldInfo);
+c_R71.m_new=function(){
+	c_FieldInfo.m_new.call(this,"coninuousPhysics",0,bb_reflection__boolClass);
+	return this;
+}
+c_R71.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_coninuousPhysics));
+}
+c_R71.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_coninuousPhysics=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R72(){
+	c_FieldInfo.call(this);
+}
+c_R72.prototype=extend_class(c_FieldInfo);
+c_R72.m_new=function(){
+	c_FieldInfo.m_new.call(this,"subStepping",0,bb_reflection__boolClass);
+	return this;
+}
+c_R72.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeWorld)).m_subStepping));
+}
+c_R72.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_subStepping=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R73(){
+	c_FieldInfo.call(this);
+}
+c_R73.prototype=extend_class(c_FieldInfo);
+c_R73.m_new=function(){
+	c_FieldInfo.m_new.call(this,"body",0,dbg_array(bb_reflection__classes,12)[dbg_index]);
+	return this;
+}
+c_R73.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeWorld)).m_body);
+}
+c_R73.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_body=object_downcast((t_v),c_RubeArray);
+}
+function c_R74(){
+	c_FieldInfo.call(this);
+}
+c_R74.prototype=extend_class(c_FieldInfo);
+c_R74.m_new=function(){
+	c_FieldInfo.m_new.call(this,"image",0,dbg_array(bb_reflection__classes,14)[dbg_index]);
+	return this;
+}
+c_R74.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeWorld)).m_image);
+}
+c_R74.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_image=object_downcast((t_v),c_RubeArray2);
+}
+function c_R75(){
+	c_FieldInfo.call(this);
+}
+c_R75.prototype=extend_class(c_FieldInfo);
+c_R75.m_new=function(){
+	c_FieldInfo.m_new.call(this,"joint",0,dbg_array(bb_reflection__classes,16)[dbg_index]);
+	return this;
+}
+c_R75.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeWorld)).m_joint);
+}
+c_R75.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeWorld)).m_joint=object_downcast((t_v),c_RubeArray3);
+}
+function c_R76(){
+	c_FunctionInfo.call(this);
+}
+c_R76.prototype=extend_class(c_FunctionInfo);
+c_R76.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,10)[dbg_index],[]);
+	return this;
+}
+function c_R78(){
+	c_FieldInfo.call(this);
+}
+c_R78.prototype=extend_class(c_FieldInfo);
+c_R78.m_new=function(){
+	c_FieldInfo.m_new.call(this,"name",0,bb_reflection__stringClass);
+	return this;
+}
+c_R78.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_name));
+}
+c_R78.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_name=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R79(){
+	c_FieldInfo.call(this);
+}
+c_R79.prototype=extend_class(c_FieldInfo);
+c_R79.m_new=function(){
+	c_FieldInfo.m_new.call(this,"type",0,bb_reflection__intClass);
+	return this;
+}
+c_R79.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_type));
+}
+c_R79.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_type=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R80(){
+	c_FieldInfo.call(this);
+}
+c_R80.prototype=extend_class(c_FieldInfo);
+c_R80.m_new=function(){
+	c_FieldInfo.m_new.call(this,"angularDamping",0,bb_reflection__floatClass);
+	return this;
+}
+c_R80.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_angularDamping));
+}
+c_R80.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_angularDamping=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R81(){
+	c_FieldInfo.call(this);
+}
+c_R81.prototype=extend_class(c_FieldInfo);
+c_R81.m_new=function(){
+	c_FieldInfo.m_new.call(this,"angularVelocity",0,bb_reflection__floatClass);
+	return this;
+}
+c_R81.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_angularVelocity));
+}
+c_R81.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_angularVelocity=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R82(){
+	c_FieldInfo.call(this);
+}
+c_R82.prototype=extend_class(c_FieldInfo);
+c_R82.m_new=function(){
+	c_FieldInfo.m_new.call(this,"awake",0,bb_reflection__boolClass);
+	return this;
+}
+c_R82.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_awake));
+}
+c_R82.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_awake=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R83(){
+	c_FieldInfo.call(this);
+}
+c_R83.prototype=extend_class(c_FieldInfo);
+c_R83.m_new=function(){
+	c_FieldInfo.m_new.call(this,"bullet",0,bb_reflection__boolClass);
+	return this;
+}
+c_R83.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_bullet));
+}
+c_R83.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_bullet=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R84(){
+	c_FieldInfo.call(this);
+}
+c_R84.prototype=extend_class(c_FieldInfo);
+c_R84.m_new=function(){
+	c_FieldInfo.m_new.call(this,"fixedRotation",0,bb_reflection__boolClass);
+	return this;
+}
+c_R84.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_fixedRotation));
+}
+c_R84.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_fixedRotation=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R85(){
+	c_FieldInfo.call(this);
+}
+c_R85.prototype=extend_class(c_FieldInfo);
+c_R85.m_new=function(){
+	c_FieldInfo.m_new.call(this,"linearDamping",0,bb_reflection__floatClass);
+	return this;
+}
+c_R85.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_linearDamping));
+}
+c_R85.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_linearDamping=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R86(){
+	c_FieldInfo.call(this);
+}
+c_R86.prototype=extend_class(c_FieldInfo);
+c_R86.m_new=function(){
+	c_FieldInfo.m_new.call(this,"linearVelocity",0,bb_reflection__floatClass);
+	return this;
+}
+c_R86.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_linearVelocity));
+}
+c_R86.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_linearVelocity=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R87(){
+	c_FieldInfo.call(this);
+}
+c_R87.prototype=extend_class(c_FieldInfo);
+c_R87.m_new=function(){
+	c_FieldInfo.m_new.call(this,"massData_mass",0,bb_reflection__floatClass);
+	return this;
+}
+c_R87.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_massData_mass));
+}
+c_R87.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_massData_mass=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R88(){
+	c_FieldInfo.call(this);
+}
+c_R88.prototype=extend_class(c_FieldInfo);
+c_R88.m_new=function(){
+	c_FieldInfo.m_new.call(this,"massData_center",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R88.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeBody)).m_massData_center);
+}
+c_R88.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_massData_center=object_downcast((t_v),c_RubeVector);
+}
+function c_R89(){
+	c_FieldInfo.call(this);
+}
+c_R89.prototype=extend_class(c_FieldInfo);
+c_R89.m_new=function(){
+	c_FieldInfo.m_new.call(this,"massData_I",0,bb_reflection__floatClass);
+	return this;
+}
+c_R89.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeBody)).m_massData_I));
+}
+c_R89.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_massData_I=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R90(){
+	c_FieldInfo.call(this);
+}
+c_R90.prototype=extend_class(c_FieldInfo);
+c_R90.m_new=function(){
+	c_FieldInfo.m_new.call(this,"position",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R90.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeBody)).m_position);
+}
+c_R90.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_position=object_downcast((t_v),c_RubeVector);
+}
+function c_R91(){
+	c_FieldInfo.call(this);
+}
+c_R91.prototype=extend_class(c_FieldInfo);
+c_R91.m_new=function(){
+	c_FieldInfo.m_new.call(this,"fixture",0,dbg_array(bb_reflection__classes,18)[dbg_index]);
+	return this;
+}
+c_R91.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeBody)).m_fixture);
+}
+c_R91.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_fixture=object_downcast((t_v),c_RubeArray4);
+}
+function c_R92(){
+	c_FieldInfo.call(this);
+}
+c_R92.prototype=extend_class(c_FieldInfo);
+c_R92.m_new=function(){
+	c_FieldInfo.m_new.call(this,"customProperties",0,dbg_array(bb_reflection__classes,20)[dbg_index]);
+	return this;
+}
+c_R92.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeBody)).m_customProperties);
+}
+c_R92.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeBody)).m_customProperties=object_downcast((t_v),c_RubeArray5);
+}
+function c_R93(){
+	c_FunctionInfo.call(this);
+}
+c_R93.prototype=extend_class(c_FunctionInfo);
+c_R93.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,11)[dbg_index],[]);
+	return this;
+}
+function c_R95(){
+	c_FieldInfo.call(this);
+}
+c_R95.prototype=extend_class(c_FieldInfo);
+c_R95.m_new=function(){
+	c_FieldInfo.m_new.call(this,"values",0,dbg_array(bb_reflection__classes,23)[dbg_index]);
+	return this;
+}
+c_R95.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject.m_new.call(new c_ArrayObject,dbg_object(object_downcast((t_i),c_RubeArray)).m_values));
+}
+c_R95.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeArray)).m_values=dbg_object(object_downcast((t_v),c_ArrayObject)).m_value;
+}
+function c_R96(){
+	c_FunctionInfo.call(this);
+}
+c_R96.prototype=extend_class(c_FunctionInfo);
+c_R96.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,12)[dbg_index],[]);
+	return this;
+}
+function c_R98(){
+	c_FieldInfo.call(this);
+}
+c_R98.prototype=extend_class(c_FieldInfo);
+c_R98.m_new=function(){
+	c_FieldInfo.m_new.call(this,"name",0,bb_reflection__stringClass);
+	return this;
+}
+c_R98.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_name));
+}
+c_R98.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_name=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R99(){
+	c_FieldInfo.call(this);
+}
+c_R99.prototype=extend_class(c_FieldInfo);
+c_R99.m_new=function(){
+	c_FieldInfo.m_new.call(this,"opacity",0,bb_reflection__floatClass);
+	return this;
+}
+c_R99.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_opacity));
+}
+c_R99.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_opacity=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R100(){
+	c_FieldInfo.call(this);
+}
+c_R100.prototype=extend_class(c_FieldInfo);
+c_R100.m_new=function(){
+	c_FieldInfo.m_new.call(this,"renderOrder",0,bb_reflection__floatClass);
+	return this;
+}
+c_R100.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_renderOrder));
+}
+c_R100.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_renderOrder=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R101(){
+	c_FieldInfo.call(this);
+}
+c_R101.prototype=extend_class(c_FieldInfo);
+c_R101.m_new=function(){
+	c_FieldInfo.m_new.call(this,"scale",0,bb_reflection__floatClass);
+	return this;
+}
+c_R101.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_scale));
+}
+c_R101.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_scale=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R102(){
+	c_FieldInfo.call(this);
+}
+c_R102.prototype=extend_class(c_FieldInfo);
+c_R102.m_new=function(){
+	c_FieldInfo.m_new.call(this,"aspectScale",0,bb_reflection__floatClass);
+	return this;
+}
+c_R102.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_aspectScale));
+}
+c_R102.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_aspectScale=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R103(){
+	c_FieldInfo.call(this);
+}
+c_R103.prototype=extend_class(c_FieldInfo);
+c_R103.m_new=function(){
+	c_FieldInfo.m_new.call(this,"angle",0,bb_reflection__floatClass);
+	return this;
+}
+c_R103.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_angle));
+}
+c_R103.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_angle=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R104(){
+	c_FieldInfo.call(this);
+}
+c_R104.prototype=extend_class(c_FieldInfo);
+c_R104.m_new=function(){
+	c_FieldInfo.m_new.call(this,"body",0,bb_reflection__intClass);
+	return this;
+}
+c_R104.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_body));
+}
+c_R104.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_body=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R105(){
+	c_FieldInfo.call(this);
+}
+c_R105.prototype=extend_class(c_FieldInfo);
+c_R105.m_new=function(){
+	c_FieldInfo.m_new.call(this,"center",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R105.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeImage)).m_center);
+}
+c_R105.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_center=object_downcast((t_v),c_RubeVector);
+}
+function c_R106(){
+	c_FieldInfo.call(this);
+}
+c_R106.prototype=extend_class(c_FieldInfo);
+c_R106.m_new=function(){
+	c_FieldInfo.m_new.call(this,"corners",0,dbg_array(bb_reflection__classes,9)[dbg_index]);
+	return this;
+}
+c_R106.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeImage)).m_corners);
+}
+c_R106.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_corners=object_downcast((t_v),c_RubeVectorArray);
+}
+function c_R107(){
+	c_FieldInfo.call(this);
+}
+c_R107.prototype=extend_class(c_FieldInfo);
+c_R107.m_new=function(){
+	c_FieldInfo.m_new.call(this,"file",0,bb_reflection__stringClass);
+	return this;
+}
+c_R107.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_file));
+}
+c_R107.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_file=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R108(){
+	c_FieldInfo.call(this);
+}
+c_R108.prototype=extend_class(c_FieldInfo);
+c_R108.m_new=function(){
+	c_FieldInfo.m_new.call(this,"filter",0,bb_reflection__intClass);
+	return this;
+}
+c_R108.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_filter));
+}
+c_R108.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_filter=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R109(){
+	c_FieldInfo.call(this);
+}
+c_R109.prototype=extend_class(c_FieldInfo);
+c_R109.m_new=function(){
+	c_FieldInfo.m_new.call(this,"flip",0,bb_reflection__boolClass);
+	return this;
+}
+c_R109.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeImage)).m_flip));
+}
+c_R109.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_flip=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R110(){
+	c_FieldInfo.call(this);
+}
+c_R110.prototype=extend_class(c_FieldInfo);
+c_R110.m_new=function(){
+	c_FieldInfo.m_new.call(this,"customProperties",0,dbg_array(bb_reflection__classes,20)[dbg_index]);
+	return this;
+}
+c_R110.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeImage)).m_customProperties);
+}
+c_R110.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeImage)).m_customProperties=object_downcast((t_v),c_RubeArray5);
+}
+function c_R111(){
+	c_FunctionInfo.call(this);
+}
+c_R111.prototype=extend_class(c_FunctionInfo);
+c_R111.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,13)[dbg_index],[]);
+	return this;
+}
+function c_R113(){
+	c_FieldInfo.call(this);
+}
+c_R113.prototype=extend_class(c_FieldInfo);
+c_R113.m_new=function(){
+	c_FieldInfo.m_new.call(this,"values",0,dbg_array(bb_reflection__classes,24)[dbg_index]);
+	return this;
+}
+c_R113.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject2.m_new.call(new c_ArrayObject2,dbg_object(object_downcast((t_i),c_RubeArray2)).m_values));
+}
+c_R113.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeArray2)).m_values=dbg_object(object_downcast((t_v),c_ArrayObject2)).m_value;
+}
+function c_R114(){
+	c_FunctionInfo.call(this);
+}
+c_R114.prototype=extend_class(c_FunctionInfo);
+c_R114.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,14)[dbg_index],[]);
+	return this;
+}
+function c_R116(){
+	c_FieldInfo.call(this);
+}
+c_R116.prototype=extend_class(c_FieldInfo);
+c_R116.m_new=function(){
+	c_FieldInfo.m_new.call(this,"type",0,bb_reflection__stringClass);
+	return this;
+}
+c_R116.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_type));
+}
+c_R116.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_type=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R117(){
+	c_FieldInfo.call(this);
+}
+c_R117.prototype=extend_class(c_FieldInfo);
+c_R117.m_new=function(){
+	c_FieldInfo.m_new.call(this,"name",0,bb_reflection__stringClass);
+	return this;
+}
+c_R117.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_name));
+}
+c_R117.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_name=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R118(){
+	c_FieldInfo.call(this);
+}
+c_R118.prototype=extend_class(c_FieldInfo);
+c_R118.m_new=function(){
+	c_FieldInfo.m_new.call(this,"customProperties",0,dbg_array(bb_reflection__classes,20)[dbg_index]);
+	return this;
+}
+c_R118.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeJoint)).m_customProperties);
+}
+c_R118.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_customProperties=object_downcast((t_v),c_RubeArray5);
+}
+function c_R119(){
+	c_FieldInfo.call(this);
+}
+c_R119.prototype=extend_class(c_FieldInfo);
+c_R119.m_new=function(){
+	c_FieldInfo.m_new.call(this,"anchorA",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R119.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeJoint)).m_anchorA);
+}
+c_R119.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_anchorA=object_downcast((t_v),c_RubeVector);
+}
+function c_R120(){
+	c_FieldInfo.call(this);
+}
+c_R120.prototype=extend_class(c_FieldInfo);
+c_R120.m_new=function(){
+	c_FieldInfo.m_new.call(this,"anchorB",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R120.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeJoint)).m_anchorB);
+}
+c_R120.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_anchorB=object_downcast((t_v),c_RubeVector);
+}
+function c_R121(){
+	c_FieldInfo.call(this);
+}
+c_R121.prototype=extend_class(c_FieldInfo);
+c_R121.m_new=function(){
+	c_FieldInfo.m_new.call(this,"bodyA",0,bb_reflection__intClass);
+	return this;
+}
+c_R121.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_bodyA));
+}
+c_R121.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_bodyA=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R122(){
+	c_FieldInfo.call(this);
+}
+c_R122.prototype=extend_class(c_FieldInfo);
+c_R122.m_new=function(){
+	c_FieldInfo.m_new.call(this,"bodyB",0,bb_reflection__intClass);
+	return this;
+}
+c_R122.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_bodyB));
+}
+c_R122.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_bodyB=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R123(){
+	c_FieldInfo.call(this);
+}
+c_R123.prototype=extend_class(c_FieldInfo);
+c_R123.m_new=function(){
+	c_FieldInfo.m_new.call(this,"collideConnected",0,bb_reflection__boolClass);
+	return this;
+}
+c_R123.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_collideConnected));
+}
+c_R123.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_collideConnected=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R124(){
+	c_FieldInfo.call(this);
+}
+c_R124.prototype=extend_class(c_FieldInfo);
+c_R124.m_new=function(){
+	c_FieldInfo.m_new.call(this,"enableLimit",0,bb_reflection__boolClass);
+	return this;
+}
+c_R124.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_enableLimit));
+}
+c_R124.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_enableLimit=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R125(){
+	c_FieldInfo.call(this);
+}
+c_R125.prototype=extend_class(c_FieldInfo);
+c_R125.m_new=function(){
+	c_FieldInfo.m_new.call(this,"enableMotor",0,bb_reflection__boolClass);
+	return this;
+}
+c_R125.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_enableMotor));
+}
+c_R125.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_enableMotor=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R126(){
+	c_FieldInfo.call(this);
+}
+c_R126.prototype=extend_class(c_FieldInfo);
+c_R126.m_new=function(){
+	c_FieldInfo.m_new.call(this,"jointSpeed",0,bb_reflection__floatClass);
+	return this;
+}
+c_R126.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_jointSpeed));
+}
+c_R126.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_jointSpeed=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R127(){
+	c_FieldInfo.call(this);
+}
+c_R127.prototype=extend_class(c_FieldInfo);
+c_R127.m_new=function(){
+	c_FieldInfo.m_new.call(this,"lowerLimit",0,bb_reflection__floatClass);
+	return this;
+}
+c_R127.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_lowerLimit));
+}
+c_R127.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_lowerLimit=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R128(){
+	c_FieldInfo.call(this);
+}
+c_R128.prototype=extend_class(c_FieldInfo);
+c_R128.m_new=function(){
+	c_FieldInfo.m_new.call(this,"maxMotorTorque",0,bb_reflection__floatClass);
+	return this;
+}
+c_R128.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxMotorTorque));
+}
+c_R128.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxMotorTorque=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R129(){
+	c_FieldInfo.call(this);
+}
+c_R129.prototype=extend_class(c_FieldInfo);
+c_R129.m_new=function(){
+	c_FieldInfo.m_new.call(this,"motorSpeed",0,bb_reflection__floatClass);
+	return this;
+}
+c_R129.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_motorSpeed));
+}
+c_R129.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_motorSpeed=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R130(){
+	c_FieldInfo.call(this);
+}
+c_R130.prototype=extend_class(c_FieldInfo);
+c_R130.m_new=function(){
+	c_FieldInfo.m_new.call(this,"refAngle",0,bb_reflection__floatClass);
+	return this;
+}
+c_R130.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_refAngle));
+}
+c_R130.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_refAngle=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R131(){
+	c_FieldInfo.call(this);
+}
+c_R131.prototype=extend_class(c_FieldInfo);
+c_R131.m_new=function(){
+	c_FieldInfo.m_new.call(this,"upperLimit",0,bb_reflection__floatClass);
+	return this;
+}
+c_R131.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_upperLimit));
+}
+c_R131.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_upperLimit=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R132(){
+	c_FieldInfo.call(this);
+}
+c_R132.prototype=extend_class(c_FieldInfo);
+c_R132.m_new=function(){
+	c_FieldInfo.m_new.call(this,"dampingRatio",0,bb_reflection__floatClass);
+	return this;
+}
+c_R132.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_dampingRatio));
+}
+c_R132.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_dampingRatio=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R133(){
+	c_FieldInfo.call(this);
+}
+c_R133.prototype=extend_class(c_FieldInfo);
+c_R133.m_new=function(){
+	c_FieldInfo.m_new.call(this,"frequency",0,bb_reflection__floatClass);
+	return this;
+}
+c_R133.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_frequency));
+}
+c_R133.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_frequency=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R134(){
+	c_FieldInfo.call(this);
+}
+c_R134.prototype=extend_class(c_FieldInfo);
+c_R134.m_new=function(){
+	c_FieldInfo.m_new.call(this,"length",0,bb_reflection__floatClass);
+	return this;
+}
+c_R134.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_length));
+}
+c_R134.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_length=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R135(){
+	c_FieldInfo.call(this);
+}
+c_R135.prototype=extend_class(c_FieldInfo);
+c_R135.m_new=function(){
+	c_FieldInfo.m_new.call(this,"localAxisA",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R135.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeJoint)).m_localAxisA);
+}
+c_R135.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_localAxisA=object_downcast((t_v),c_RubeVector);
+}
+function c_R136(){
+	c_FieldInfo.call(this);
+}
+c_R136.prototype=extend_class(c_FieldInfo);
+c_R136.m_new=function(){
+	c_FieldInfo.m_new.call(this,"maxMotorForce",0,bb_reflection__floatClass);
+	return this;
+}
+c_R136.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxMotorForce));
+}
+c_R136.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxMotorForce=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R137(){
+	c_FieldInfo.call(this);
+}
+c_R137.prototype=extend_class(c_FieldInfo);
+c_R137.m_new=function(){
+	c_FieldInfo.m_new.call(this,"springDampingRatio",0,bb_reflection__floatClass);
+	return this;
+}
+c_R137.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_springDampingRatio));
+}
+c_R137.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_springDampingRatio=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R138(){
+	c_FieldInfo.call(this);
+}
+c_R138.prototype=extend_class(c_FieldInfo);
+c_R138.m_new=function(){
+	c_FieldInfo.m_new.call(this,"springFrequency",0,bb_reflection__floatClass);
+	return this;
+}
+c_R138.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_springFrequency));
+}
+c_R138.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_springFrequency=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R139(){
+	c_FieldInfo.call(this);
+}
+c_R139.prototype=extend_class(c_FieldInfo);
+c_R139.m_new=function(){
+	c_FieldInfo.m_new.call(this,"maxLength",0,bb_reflection__floatClass);
+	return this;
+}
+c_R139.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxLength));
+}
+c_R139.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxLength=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R140(){
+	c_FieldInfo.call(this);
+}
+c_R140.prototype=extend_class(c_FieldInfo);
+c_R140.m_new=function(){
+	c_FieldInfo.m_new.call(this,"maxForce",0,bb_reflection__floatClass);
+	return this;
+}
+c_R140.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxForce));
+}
+c_R140.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxForce=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R141(){
+	c_FieldInfo.call(this);
+}
+c_R141.prototype=extend_class(c_FieldInfo);
+c_R141.m_new=function(){
+	c_FieldInfo.m_new.call(this,"maxTorque",0,bb_reflection__floatClass);
+	return this;
+}
+c_R141.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxTorque));
+}
+c_R141.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_maxTorque=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R142(){
+	c_FieldInfo.call(this);
+}
+c_R142.prototype=extend_class(c_FieldInfo);
+c_R142.m_new=function(){
+	c_FieldInfo.m_new.call(this,"correctionFactor",0,bb_reflection__floatClass);
+	return this;
+}
+c_R142.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeJoint)).m_correctionFactor));
+}
+c_R142.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeJoint)).m_correctionFactor=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R143(){
+	c_FunctionInfo.call(this);
+}
+c_R143.prototype=extend_class(c_FunctionInfo);
+c_R143.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,15)[dbg_index],[]);
+	return this;
+}
+function c_R145(){
+	c_FieldInfo.call(this);
+}
+c_R145.prototype=extend_class(c_FieldInfo);
+c_R145.m_new=function(){
+	c_FieldInfo.m_new.call(this,"values",0,dbg_array(bb_reflection__classes,25)[dbg_index]);
+	return this;
+}
+c_R145.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject3.m_new.call(new c_ArrayObject3,dbg_object(object_downcast((t_i),c_RubeArray3)).m_values));
+}
+c_R145.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeArray3)).m_values=dbg_object(object_downcast((t_v),c_ArrayObject3)).m_value;
+}
+function c_R146(){
+	c_FunctionInfo.call(this);
+}
+c_R146.prototype=extend_class(c_FunctionInfo);
+c_R146.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,16)[dbg_index],[]);
+	return this;
+}
+function c_R148(){
+	c_FieldInfo.call(this);
+}
+c_R148.prototype=extend_class(c_FieldInfo);
+c_R148.m_new=function(){
+	c_FieldInfo.m_new.call(this,"name",0,bb_reflection__stringClass);
+	return this;
+}
+c_R148.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_name));
+}
+c_R148.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_name=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R149(){
+	c_FieldInfo.call(this);
+}
+c_R149.prototype=extend_class(c_FieldInfo);
+c_R149.m_new=function(){
+	c_FieldInfo.m_new.call(this,"density",0,bb_reflection__floatClass);
+	return this;
+}
+c_R149.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_density));
+}
+c_R149.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_density=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R150(){
+	c_FieldInfo.call(this);
+}
+c_R150.prototype=extend_class(c_FieldInfo);
+c_R150.m_new=function(){
+	c_FieldInfo.m_new.call(this,"filter_categoryBits",0,bb_reflection__intClass);
+	return this;
+}
+c_R150.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_filter_categoryBits));
+}
+c_R150.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_filter_categoryBits=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R151(){
+	c_FieldInfo.call(this);
+}
+c_R151.prototype=extend_class(c_FieldInfo);
+c_R151.m_new=function(){
+	c_FieldInfo.m_new.call(this,"filter_maskBits",0,bb_reflection__intClass);
+	return this;
+}
+c_R151.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_filter_maskBits));
+}
+c_R151.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_filter_maskBits=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R152(){
+	c_FieldInfo.call(this);
+}
+c_R152.prototype=extend_class(c_FieldInfo);
+c_R152.m_new=function(){
+	c_FieldInfo.m_new.call(this,"filter_groupIndex",0,bb_reflection__intClass);
+	return this;
+}
+c_R152.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_filter_groupIndex));
+}
+c_R152.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_filter_groupIndex=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R153(){
+	c_FieldInfo.call(this);
+}
+c_R153.prototype=extend_class(c_FieldInfo);
+c_R153.m_new=function(){
+	c_FieldInfo.m_new.call(this,"friction",0,bb_reflection__floatClass);
+	return this;
+}
+c_R153.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_friction));
+}
+c_R153.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_friction=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R154(){
+	c_FieldInfo.call(this);
+}
+c_R154.prototype=extend_class(c_FieldInfo);
+c_R154.m_new=function(){
+	c_FieldInfo.m_new.call(this,"restitution",0,bb_reflection__floatClass);
+	return this;
+}
+c_R154.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_restitution));
+}
+c_R154.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_restitution=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R155(){
+	c_FieldInfo.call(this);
+}
+c_R155.prototype=extend_class(c_FieldInfo);
+c_R155.m_new=function(){
+	c_FieldInfo.m_new.call(this,"sensor",0,bb_reflection__boolClass);
+	return this;
+}
+c_R155.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeFixture)).m_sensor));
+}
+c_R155.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_sensor=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R156(){
+	c_FieldInfo.call(this);
+}
+c_R156.prototype=extend_class(c_FieldInfo);
+c_R156.m_new=function(){
+	c_FieldInfo.m_new.call(this,"shape",0,dbg_array(bb_reflection__classes,21)[dbg_index]);
+	return this;
+}
+c_R156.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeFixture)).m_shape);
+}
+c_R156.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_shape=object_downcast((t_v),c_RubeShape);
+}
+function c_R157(){
+	c_FieldInfo.call(this);
+}
+c_R157.prototype=extend_class(c_FieldInfo);
+c_R157.m_new=function(){
+	c_FieldInfo.m_new.call(this,"customProperties",0,dbg_array(bb_reflection__classes,20)[dbg_index]);
+	return this;
+}
+c_R157.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeFixture)).m_customProperties);
+}
+c_R157.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeFixture)).m_customProperties=object_downcast((t_v),c_RubeArray5);
+}
+function c_R158(){
+	c_FunctionInfo.call(this);
+}
+c_R158.prototype=extend_class(c_FunctionInfo);
+c_R158.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,17)[dbg_index],[]);
+	return this;
+}
+function c_R160(){
+	c_FieldInfo.call(this);
+}
+c_R160.prototype=extend_class(c_FieldInfo);
+c_R160.m_new=function(){
+	c_FieldInfo.m_new.call(this,"values",0,dbg_array(bb_reflection__classes,26)[dbg_index]);
+	return this;
+}
+c_R160.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject4.m_new.call(new c_ArrayObject4,dbg_object(object_downcast((t_i),c_RubeArray4)).m_values));
+}
+c_R160.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeArray4)).m_values=dbg_object(object_downcast((t_v),c_ArrayObject4)).m_value;
+}
+function c_R161(){
+	c_FunctionInfo.call(this);
+}
+c_R161.prototype=extend_class(c_FunctionInfo);
+c_R161.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,18)[dbg_index],[]);
+	return this;
+}
+function c_R163(){
+	c_FieldInfo.call(this);
+}
+c_R163.prototype=extend_class(c_FieldInfo);
+c_R163.m_new=function(){
+	c_FieldInfo.m_new.call(this,"name",0,bb_reflection__stringClass);
+	return this;
+}
+c_R163.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeProperty)).m_name));
+}
+c_R163.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeProperty)).m_name=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R164(){
+	c_FieldInfo.call(this);
+}
+c_R164.prototype=extend_class(c_FieldInfo);
+c_R164.m_new=function(){
+	c_FieldInfo.m_new.call(this,"type",0,bb_reflection__stringClass);
+	return this;
+}
+c_R164.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeProperty)).m_type));
+}
+c_R164.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeProperty)).m_type=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R165(){
+	c_FieldInfo.call(this);
+}
+c_R165.prototype=extend_class(c_FieldInfo);
+c_R165.m_new=function(){
+	c_FieldInfo.m_new.call(this,"intValue",0,bb_reflection__intClass);
+	return this;
+}
+c_R165.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeProperty)).m_intValue));
+}
+c_R165.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeProperty)).m_intValue=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R166(){
+	c_FieldInfo.call(this);
+}
+c_R166.prototype=extend_class(c_FieldInfo);
+c_R166.m_new=function(){
+	c_FieldInfo.m_new.call(this,"floatValue",0,bb_reflection__intClass);
+	return this;
+}
+c_R166.prototype.p_GetValue=function(t_i){
+	return (c_IntObject.m_new.call(new c_IntObject,dbg_object(object_downcast((t_i),c_RubeProperty)).m_floatValue));
+}
+c_R166.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeProperty)).m_floatValue=dbg_object(object_downcast((t_v),c_IntObject)).m_value;
+}
+function c_R167(){
+	c_FieldInfo.call(this);
+}
+c_R167.prototype=extend_class(c_FieldInfo);
+c_R167.m_new=function(){
+	c_FieldInfo.m_new.call(this,"boolValue",0,bb_reflection__boolClass);
+	return this;
+}
+c_R167.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeProperty)).m_boolValue));
+}
+c_R167.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeProperty)).m_boolValue=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R168(){
+	c_FieldInfo.call(this);
+}
+c_R168.prototype=extend_class(c_FieldInfo);
+c_R168.m_new=function(){
+	c_FieldInfo.m_new.call(this,"stringValue",0,bb_reflection__stringClass);
+	return this;
+}
+c_R168.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeProperty)).m_stringValue));
+}
+c_R168.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeProperty)).m_stringValue=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R169(){
+	c_FieldInfo.call(this);
+}
+c_R169.prototype=extend_class(c_FieldInfo);
+c_R169.m_new=function(){
+	c_FieldInfo.m_new.call(this,"vectorValue",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R169.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeProperty)).m_vectorValue);
+}
+c_R169.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeProperty)).m_vectorValue=object_downcast((t_v),c_RubeVector);
+}
+function c_R170(){
+	c_FunctionInfo.call(this);
+}
+c_R170.prototype=extend_class(c_FunctionInfo);
+c_R170.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,19)[dbg_index],[]);
+	return this;
+}
+function c_R172(){
+	c_FieldInfo.call(this);
+}
+c_R172.prototype=extend_class(c_FieldInfo);
+c_R172.m_new=function(){
+	c_FieldInfo.m_new.call(this,"values",0,dbg_array(bb_reflection__classes,27)[dbg_index]);
+	return this;
+}
+c_R172.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject5.m_new.call(new c_ArrayObject5,dbg_object(object_downcast((t_i),c_RubeArray5)).m_values));
+}
+c_R172.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeArray5)).m_values=dbg_object(object_downcast((t_v),c_ArrayObject5)).m_value;
+}
+function c_R173(){
+	c_FunctionInfo.call(this);
+}
+c_R173.prototype=extend_class(c_FunctionInfo);
+c_R173.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,20)[dbg_index],[]);
+	return this;
+}
+function c_R175(){
+	c_FieldInfo.call(this);
+}
+c_R175.prototype=extend_class(c_FieldInfo);
+c_R175.m_new=function(){
+	c_FieldInfo.m_new.call(this,"type",0,bb_reflection__stringClass);
+	return this;
+}
+c_R175.prototype.p_GetValue=function(t_i){
+	return (c_StringObject.m_new3.call(new c_StringObject,dbg_object(object_downcast((t_i),c_RubeShape)).m_type));
+}
+c_R175.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShape)).m_type=dbg_object(object_downcast((t_v),c_StringObject)).m_value;
+}
+function c_R176(){
+	c_FieldInfo.call(this);
+}
+c_R176.prototype=extend_class(c_FieldInfo);
+c_R176.m_new=function(){
+	c_FieldInfo.m_new.call(this,"_data",0,dbg_array(bb_reflection__classes,22)[dbg_index]);
+	return this;
+}
+c_R176.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeShape)).m__data);
+}
+c_R176.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShape)).m__data=object_downcast((t_v),c_RubeShapeData);
+}
+function c_R177(){
+	c_FunctionInfo.call(this);
+}
+c_R177.prototype=extend_class(c_FunctionInfo);
+c_R177.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,21)[dbg_index],[bb_reflection__stringClass]);
+	return this;
+}
+function c_R178(){
+	c_FunctionInfo.call(this);
+}
+c_R178.prototype=extend_class(c_FunctionInfo);
+c_R178.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,21)[dbg_index],[]);
+	return this;
+}
+function c_R180(){
+	c_FieldInfo.call(this);
+}
+c_R180.prototype=extend_class(c_FieldInfo);
+c_R180.m_new=function(){
+	c_FieldInfo.m_new.call(this,"center",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R180.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeShapeData)).m_center);
+}
+c_R180.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShapeData)).m_center=object_downcast((t_v),c_RubeVector);
+}
+function c_R181(){
+	c_FieldInfo.call(this);
+}
+c_R181.prototype=extend_class(c_FieldInfo);
+c_R181.m_new=function(){
+	c_FieldInfo.m_new.call(this,"radius",0,bb_reflection__floatClass);
+	return this;
+}
+c_R181.prototype.p_GetValue=function(t_i){
+	return (c_FloatObject.m_new2.call(new c_FloatObject,dbg_object(object_downcast((t_i),c_RubeShapeData)).m_radius));
+}
+c_R181.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShapeData)).m_radius=dbg_object(object_downcast((t_v),c_FloatObject)).m_value;
+}
+function c_R182(){
+	c_FieldInfo.call(this);
+}
+c_R182.prototype=extend_class(c_FieldInfo);
+c_R182.m_new=function(){
+	c_FieldInfo.m_new.call(this,"vertices",0,dbg_array(bb_reflection__classes,9)[dbg_index]);
+	return this;
+}
+c_R182.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeShapeData)).m_vertices);
+}
+c_R182.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShapeData)).m_vertices=object_downcast((t_v),c_RubeVectorArray);
+}
+function c_R183(){
+	c_FieldInfo.call(this);
+}
+c_R183.prototype=extend_class(c_FieldInfo);
+c_R183.m_new=function(){
+	c_FieldInfo.m_new.call(this,"hasNextVertex",0,bb_reflection__boolClass);
+	return this;
+}
+c_R183.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeShapeData)).m_hasNextVertex));
+}
+c_R183.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShapeData)).m_hasNextVertex=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R184(){
+	c_FieldInfo.call(this);
+}
+c_R184.prototype=extend_class(c_FieldInfo);
+c_R184.m_new=function(){
+	c_FieldInfo.m_new.call(this,"hasPrevVertex",0,bb_reflection__boolClass);
+	return this;
+}
+c_R184.prototype.p_GetValue=function(t_i){
+	return (c_BoolObject.m_new.call(new c_BoolObject,dbg_object(object_downcast((t_i),c_RubeShapeData)).m_hasPrevVertex));
+}
+c_R184.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShapeData)).m_hasPrevVertex=dbg_object(object_downcast((t_v),c_BoolObject)).m_value;
+}
+function c_R185(){
+	c_FieldInfo.call(this);
+}
+c_R185.prototype=extend_class(c_FieldInfo);
+c_R185.m_new=function(){
+	c_FieldInfo.m_new.call(this,"nextVertex",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R185.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeShapeData)).m_nextVertex);
+}
+c_R185.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShapeData)).m_nextVertex=object_downcast((t_v),c_RubeVector);
+}
+function c_R186(){
+	c_FieldInfo.call(this);
+}
+c_R186.prototype=extend_class(c_FieldInfo);
+c_R186.m_new=function(){
+	c_FieldInfo.m_new.call(this,"prevVertex",0,dbg_array(bb_reflection__classes,8)[dbg_index]);
+	return this;
+}
+c_R186.prototype.p_GetValue=function(t_i){
+	return (dbg_object(object_downcast((t_i),c_RubeShapeData)).m_prevVertex);
+}
+c_R186.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_RubeShapeData)).m_prevVertex=object_downcast((t_v),c_RubeVector);
+}
+function c_R187(){
+	c_FunctionInfo.call(this);
+}
+c_R187.prototype=extend_class(c_FunctionInfo);
+c_R187.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,22)[dbg_index],[]);
+	return this;
+}
+function c_R189(){
+	c_FieldInfo.call(this);
+}
+c_R189.prototype=extend_class(c_FieldInfo);
+c_R189.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,dbg_array(bb_reflection__classes,23)[dbg_index]);
+	return this;
+}
+c_R189.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject.m_new.call(new c_ArrayObject,dbg_object(object_downcast((t_i),c_ArrayObject)).m_value));
+}
+c_R189.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_ArrayObject)).m_value=dbg_object(object_downcast((t_v),c_ArrayObject)).m_value;
+}
+function c_R191(){
+	c_MethodInfo.call(this);
+}
+c_R191.prototype=extend_class(c_MethodInfo);
+c_R191.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToArray",0,dbg_array(bb_reflection__classes,23)[dbg_index],[]);
+	return this;
+}
+c_R191.prototype.p_Invoke=function(t_i,t_p){
+	return (c_ArrayObject.m_new.call(new c_ArrayObject,object_downcast((t_i),c_ArrayObject).p_ToArray()));
+}
+function c_R190(){
+	c_FunctionInfo.call(this);
+}
+c_R190.prototype=extend_class(c_FunctionInfo);
+c_R190.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,23)[dbg_index],[dbg_array(bb_reflection__classes,23)[dbg_index]]);
+	return this;
+}
+function c_R192(){
+	c_FunctionInfo.call(this);
+}
+c_R192.prototype=extend_class(c_FunctionInfo);
+c_R192.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,23)[dbg_index],[]);
+	return this;
+}
+function c_R194(){
+	c_FieldInfo.call(this);
+}
+c_R194.prototype=extend_class(c_FieldInfo);
+c_R194.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,dbg_array(bb_reflection__classes,24)[dbg_index]);
+	return this;
+}
+c_R194.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject2.m_new.call(new c_ArrayObject2,dbg_object(object_downcast((t_i),c_ArrayObject2)).m_value));
+}
+c_R194.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_ArrayObject2)).m_value=dbg_object(object_downcast((t_v),c_ArrayObject2)).m_value;
+}
+function c_R196(){
+	c_MethodInfo.call(this);
+}
+c_R196.prototype=extend_class(c_MethodInfo);
+c_R196.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToArray",0,dbg_array(bb_reflection__classes,24)[dbg_index],[]);
+	return this;
+}
+c_R196.prototype.p_Invoke=function(t_i,t_p){
+	return (c_ArrayObject2.m_new.call(new c_ArrayObject2,object_downcast((t_i),c_ArrayObject2).p_ToArray()));
+}
+function c_R195(){
+	c_FunctionInfo.call(this);
+}
+c_R195.prototype=extend_class(c_FunctionInfo);
+c_R195.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,24)[dbg_index],[dbg_array(bb_reflection__classes,24)[dbg_index]]);
+	return this;
+}
+function c_R197(){
+	c_FunctionInfo.call(this);
+}
+c_R197.prototype=extend_class(c_FunctionInfo);
+c_R197.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,24)[dbg_index],[]);
+	return this;
+}
+function c_R199(){
+	c_FieldInfo.call(this);
+}
+c_R199.prototype=extend_class(c_FieldInfo);
+c_R199.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,dbg_array(bb_reflection__classes,25)[dbg_index]);
+	return this;
+}
+c_R199.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject3.m_new.call(new c_ArrayObject3,dbg_object(object_downcast((t_i),c_ArrayObject3)).m_value));
+}
+c_R199.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_ArrayObject3)).m_value=dbg_object(object_downcast((t_v),c_ArrayObject3)).m_value;
+}
+function c_R201(){
+	c_MethodInfo.call(this);
+}
+c_R201.prototype=extend_class(c_MethodInfo);
+c_R201.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToArray",0,dbg_array(bb_reflection__classes,25)[dbg_index],[]);
+	return this;
+}
+c_R201.prototype.p_Invoke=function(t_i,t_p){
+	return (c_ArrayObject3.m_new.call(new c_ArrayObject3,object_downcast((t_i),c_ArrayObject3).p_ToArray()));
+}
+function c_R200(){
+	c_FunctionInfo.call(this);
+}
+c_R200.prototype=extend_class(c_FunctionInfo);
+c_R200.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,25)[dbg_index],[dbg_array(bb_reflection__classes,25)[dbg_index]]);
+	return this;
+}
+function c_R202(){
+	c_FunctionInfo.call(this);
+}
+c_R202.prototype=extend_class(c_FunctionInfo);
+c_R202.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,25)[dbg_index],[]);
+	return this;
+}
+function c_R204(){
+	c_FieldInfo.call(this);
+}
+c_R204.prototype=extend_class(c_FieldInfo);
+c_R204.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,dbg_array(bb_reflection__classes,26)[dbg_index]);
+	return this;
+}
+c_R204.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject4.m_new.call(new c_ArrayObject4,dbg_object(object_downcast((t_i),c_ArrayObject4)).m_value));
+}
+c_R204.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_ArrayObject4)).m_value=dbg_object(object_downcast((t_v),c_ArrayObject4)).m_value;
+}
+function c_R206(){
+	c_MethodInfo.call(this);
+}
+c_R206.prototype=extend_class(c_MethodInfo);
+c_R206.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToArray",0,dbg_array(bb_reflection__classes,26)[dbg_index],[]);
+	return this;
+}
+c_R206.prototype.p_Invoke=function(t_i,t_p){
+	return (c_ArrayObject4.m_new.call(new c_ArrayObject4,object_downcast((t_i),c_ArrayObject4).p_ToArray()));
+}
+function c_R205(){
+	c_FunctionInfo.call(this);
+}
+c_R205.prototype=extend_class(c_FunctionInfo);
+c_R205.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,26)[dbg_index],[dbg_array(bb_reflection__classes,26)[dbg_index]]);
+	return this;
+}
+function c_R207(){
+	c_FunctionInfo.call(this);
+}
+c_R207.prototype=extend_class(c_FunctionInfo);
+c_R207.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,26)[dbg_index],[]);
+	return this;
+}
+function c_R209(){
+	c_FieldInfo.call(this);
+}
+c_R209.prototype=extend_class(c_FieldInfo);
+c_R209.m_new=function(){
+	c_FieldInfo.m_new.call(this,"value",0,dbg_array(bb_reflection__classes,27)[dbg_index]);
+	return this;
+}
+c_R209.prototype.p_GetValue=function(t_i){
+	return (c_ArrayObject5.m_new.call(new c_ArrayObject5,dbg_object(object_downcast((t_i),c_ArrayObject5)).m_value));
+}
+c_R209.prototype.p_SetValue=function(t_i,t_v){
+	dbg_object(object_downcast((t_i),c_ArrayObject5)).m_value=dbg_object(object_downcast((t_v),c_ArrayObject5)).m_value;
+}
+function c_R211(){
+	c_MethodInfo.call(this);
+}
+c_R211.prototype=extend_class(c_MethodInfo);
+c_R211.m_new=function(){
+	c_MethodInfo.m_new.call(this,"ToArray",0,dbg_array(bb_reflection__classes,27)[dbg_index],[]);
+	return this;
+}
+c_R211.prototype.p_Invoke=function(t_i,t_p){
+	return (c_ArrayObject5.m_new.call(new c_ArrayObject5,object_downcast((t_i),c_ArrayObject5).p_ToArray()));
+}
+function c_R210(){
+	c_FunctionInfo.call(this);
+}
+c_R210.prototype=extend_class(c_FunctionInfo);
+c_R210.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,27)[dbg_index],[dbg_array(bb_reflection__classes,27)[dbg_index]]);
+	return this;
+}
+function c_R212(){
+	c_FunctionInfo.call(this);
+}
+c_R212.prototype=extend_class(c_FunctionInfo);
+c_R212.m_new=function(){
+	c_FunctionInfo.m_new.call(this,"new",0,dbg_array(bb_reflection__classes,27)[dbg_index],[]);
+	return this;
+}
+function c_UnknownClass(){
+	c_ClassInfo.call(this);
+}
+c_UnknownClass.prototype=extend_class(c_ClassInfo);
+c_UnknownClass.m_new=function(){
+	push_err();
+	err_info="C:/Monkey/MonkeyXPro77f/modules/reflection/reflection.monkey<625>";
+	c_ClassInfo.m_new.call(this,"?",0,null,[]);
+	pop_err();
+	return this;
+}
+var bb_reflection__unknownClass=null;
 var bb_graphics_device=null;
 function bb_graphics_SetGraphicsDevice(t_dev){
 	push_err();
@@ -2069,7 +9676,7 @@ c_Image.prototype.p_ApplyFlags=function(t_iflags){
 	pop_err();
 	return 0;
 }
-c_Image.prototype.p_Init=function(t_surf,t_nframes,t_iflags){
+c_Image.prototype.p_Init2=function(t_surf,t_nframes,t_iflags){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<154>";
 	this.m_surface=t_surf;
@@ -2090,7 +9697,7 @@ c_Image.prototype.p_Init=function(t_surf,t_nframes,t_iflags){
 	pop_err();
 	return this;
 }
-c_Image.prototype.p_Init2=function(t_surf,t_x,t_y,t_iwidth,t_iheight,t_nframes,t_iflags,t_src,t_srcx,t_srcy,t_srcw,t_srch){
+c_Image.prototype.p_Init3=function(t_surf,t_x,t_y,t_iwidth,t_iheight,t_nframes,t_iflags,t_src,t_srcx,t_srcy,t_srcw,t_srch){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<169>";
 	this.m_surface=t_surf;
@@ -2194,27 +9801,6 @@ c_GraphicsContext.prototype.p_Validate=function(){
 	return 0;
 }
 var bb_graphics_context=null;
-function bb_data_FixDataPath(t_path){
-	push_err();
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<7>";
-	var t_i=t_path.indexOf(":/",0);
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<8>";
-	if(t_i!=-1 && t_path.indexOf("/",0)==t_i+1){
-		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<8>";
-		pop_err();
-		return t_path;
-	}
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<9>";
-	if(string_startswith(t_path,"./") || string_startswith(t_path,"/")){
-		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<9>";
-		pop_err();
-		return t_path;
-	}
-	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/data.monkey<10>";
-	var t_="monkey://data/"+t_path;
-	pop_err();
-	return t_;
-}
 function c_Frame(){
 	Object.call(this);
 	this.m_x=0;
@@ -2242,7 +9828,7 @@ function bb_graphics_LoadImage(t_path,t_frameCount,t_flags){
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<249>";
 	if((t_surf)!=null){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<249>";
-		var t_=(c_Image.m_new.call(new c_Image)).p_Init(t_surf,t_frameCount,t_flags);
+		var t_=(c_Image.m_new.call(new c_Image)).p_Init2(t_surf,t_frameCount,t_flags);
 		pop_err();
 		return t_;
 	}
@@ -2256,7 +9842,7 @@ function bb_graphics_LoadImage2(t_path,t_frameWidth,t_frameHeight,t_frameCount,t
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<254>";
 	if((t_surf)!=null){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/graphics.monkey<254>";
-		var t_=(c_Image.m_new.call(new c_Image)).p_Init2(t_surf,0,0,t_frameWidth,t_frameHeight,t_frameCount,t_flags,null,0,0,t_surf.Width(),t_surf.Height());
+		var t_=(c_Image.m_new.call(new c_Image)).p_Init3(t_surf,0,0,t_frameWidth,t_frameHeight,t_frameCount,t_flags,null,0,0,t_surf.Width(),t_surf.Height());
 		pop_err();
 		return t_;
 	}
@@ -2634,26 +10220,26 @@ c_DisplayMode.m_new2=function(){
 	pop_err();
 	return this;
 }
-function c_Map(){
+function c_Map5(){
 	Object.call(this);
 	this.m_root=null;
 }
-c_Map.m_new=function(){
+c_Map5.m_new=function(){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<7>";
 	pop_err();
 	return this;
 }
-c_Map.prototype.p_Compare=function(t_lhs,t_rhs){
+c_Map5.prototype.p_Compare5=function(t_lhs,t_rhs){
 }
-c_Map.prototype.p_FindNode=function(t_key){
+c_Map5.prototype.p_FindNode2=function(t_key){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<160>";
-		var t_cmp=this.p_Compare(t_key,dbg_object(t_node).m_key);
+		var t_cmp=this.p_Compare5(t_key,dbg_object(t_node).m_key);
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
 			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<162>";
@@ -2674,14 +10260,14 @@ c_Map.prototype.p_FindNode=function(t_key){
 	pop_err();
 	return t_node;
 }
-c_Map.prototype.p_Contains=function(t_key){
+c_Map5.prototype.p_Contains2=function(t_key){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<25>";
-	var t_=this.p_FindNode(t_key)!=null;
+	var t_=this.p_FindNode2(t_key)!=null;
 	pop_err();
 	return t_;
 }
-c_Map.prototype.p_RotateLeft=function(t_node){
+c_Map5.prototype.p_RotateLeft5=function(t_node){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<251>";
 	var t_child=dbg_object(t_node).m_right;
@@ -2715,7 +10301,7 @@ c_Map.prototype.p_RotateLeft=function(t_node){
 	pop_err();
 	return 0;
 }
-c_Map.prototype.p_RotateRight=function(t_node){
+c_Map5.prototype.p_RotateRight5=function(t_node){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<271>";
 	var t_child=dbg_object(t_node).m_left;
@@ -2749,7 +10335,7 @@ c_Map.prototype.p_RotateRight=function(t_node){
 	pop_err();
 	return 0;
 }
-c_Map.prototype.p_InsertFixup=function(t_node){
+c_Map5.prototype.p_InsertFixup5=function(t_node){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<212>";
 	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
@@ -2773,14 +10359,14 @@ c_Map.prototype.p_InsertFixup=function(t_node){
 					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<222>";
 					t_node=dbg_object(t_node).m_parent;
 					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<223>";
-					this.p_RotateLeft(t_node);
+					this.p_RotateLeft5(t_node);
 				}
 				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<225>";
 				dbg_object(dbg_object(t_node).m_parent).m_color=1;
 				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<226>";
 				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
 				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<227>";
-				this.p_RotateRight(dbg_object(dbg_object(t_node).m_parent).m_parent);
+				this.p_RotateRight5(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}else{
 			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<230>";
@@ -2801,14 +10387,14 @@ c_Map.prototype.p_InsertFixup=function(t_node){
 					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<238>";
 					t_node=dbg_object(t_node).m_parent;
 					err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<239>";
-					this.p_RotateRight(t_node);
+					this.p_RotateRight5(t_node);
 				}
 				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<241>";
 				dbg_object(dbg_object(t_node).m_parent).m_color=1;
 				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<242>";
 				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
 				err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<243>";
-				this.p_RotateLeft(dbg_object(dbg_object(t_node).m_parent).m_parent);
+				this.p_RotateLeft5(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}
 	}
@@ -2817,7 +10403,7 @@ c_Map.prototype.p_InsertFixup=function(t_node){
 	pop_err();
 	return 0;
 }
-c_Map.prototype.p_Set=function(t_key,t_value){
+c_Map5.prototype.p_Set5=function(t_key,t_value){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<29>";
 	var t_node=this.m_root;
@@ -2830,7 +10416,7 @@ c_Map.prototype.p_Set=function(t_key,t_value){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<33>";
 		t_parent=t_node;
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<34>";
-		t_cmp=this.p_Compare(t_key,dbg_object(t_node).m_key);
+		t_cmp=this.p_Compare5(t_key,dbg_object(t_node).m_key);
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<35>";
 		if(t_cmp>0){
 			err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<36>";
@@ -2850,7 +10436,7 @@ c_Map.prototype.p_Set=function(t_key,t_value){
 		}
 	}
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<45>";
-	t_node=c_Node.m_new.call(new c_Node,t_key,t_value,-1,t_parent);
+	t_node=c_Node7.m_new.call(new c_Node7,t_key,t_value,-1,t_parent);
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<47>";
 	if((t_parent)!=null){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<48>";
@@ -2862,7 +10448,7 @@ c_Map.prototype.p_Set=function(t_key,t_value){
 			dbg_object(t_parent).m_left=t_node;
 		}
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<53>";
-		this.p_InsertFixup(t_node);
+		this.p_InsertFixup5(t_node);
 	}else{
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<55>";
 		this.m_root=t_node;
@@ -2871,43 +10457,43 @@ c_Map.prototype.p_Set=function(t_key,t_value){
 	pop_err();
 	return true;
 }
-c_Map.prototype.p_Insert=function(t_key,t_value){
+c_Map5.prototype.p_Insert=function(t_key,t_value){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<126>";
-	var t_=this.p_Set(t_key,t_value);
+	var t_=this.p_Set5(t_key,t_value);
 	pop_err();
 	return t_;
 }
 function c_IntMap(){
-	c_Map.call(this);
+	c_Map5.call(this);
 }
-c_IntMap.prototype=extend_class(c_Map);
+c_IntMap.prototype=extend_class(c_Map5);
 c_IntMap.m_new=function(){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<534>";
-	c_Map.m_new.call(this);
+	c_Map5.m_new.call(this);
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<534>";
 	pop_err();
 	return this;
 }
-c_IntMap.prototype.p_Compare=function(t_lhs,t_rhs){
+c_IntMap.prototype.p_Compare5=function(t_lhs,t_rhs){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<537>";
 	var t_=t_lhs-t_rhs;
 	pop_err();
 	return t_;
 }
-function c_Stack(){
+function c_Stack6(){
 	Object.call(this);
 	this.m_data=[];
 	this.m_length=0;
 }
-c_Stack.m_new=function(){
+c_Stack6.m_new=function(){
 	push_err();
 	pop_err();
 	return this;
 }
-c_Stack.m_new2=function(t_data){
+c_Stack6.m_new2=function(t_data){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<13>";
 	dbg_object(this).m_data=t_data.slice(0);
@@ -2916,7 +10502,7 @@ c_Stack.m_new2=function(t_data){
 	pop_err();
 	return this;
 }
-c_Stack.prototype.p_Push=function(t_value){
+c_Stack6.prototype.p_Push16=function(t_value){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
@@ -2929,22 +10515,22 @@ c_Stack.prototype.p_Push=function(t_value){
 	this.m_length+=1;
 	pop_err();
 }
-c_Stack.prototype.p_Push2=function(t_values,t_offset,t_count){
+c_Stack6.prototype.p_Push17=function(t_values,t_offset,t_count){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<80>";
-		this.p_Push(dbg_array(t_values,t_offset+t_i)[dbg_index]);
+		this.p_Push16(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
 	pop_err();
 }
-c_Stack.prototype.p_Push3=function(t_values,t_offset){
+c_Stack6.prototype.p_Push18=function(t_values,t_offset){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<75>";
-	this.p_Push2(t_values,t_offset,t_values.length-t_offset);
+	this.p_Push17(t_values,t_offset,t_values.length-t_offset);
 	pop_err();
 }
-c_Stack.prototype.p_ToArray=function(){
+c_Stack6.prototype.p_ToArray=function(){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/stack.monkey<18>";
 	var t_t=new_object_array(this.m_length);
@@ -2957,7 +10543,7 @@ c_Stack.prototype.p_ToArray=function(){
 	pop_err();
 	return t_t;
 }
-function c_Node(){
+function c_Node7(){
 	Object.call(this);
 	this.m_key=0;
 	this.m_right=null;
@@ -2966,7 +10552,7 @@ function c_Node(){
 	this.m_color=0;
 	this.m_parent=null;
 }
-c_Node.m_new=function(t_key,t_value,t_color,t_parent){
+c_Node7.m_new=function(t_key,t_value,t_color,t_parent){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<364>";
 	dbg_object(this).m_key=t_key;
@@ -2979,7 +10565,7 @@ c_Node.m_new=function(t_key,t_value,t_color,t_parent){
 	pop_err();
 	return this;
 }
-c_Node.m_new2=function(){
+c_Node7.m_new2=function(){
 	push_err();
 	err_info="C:/Monkey/MonkeyXPro77f/modules/monkey/map.monkey<361>";
 	pop_err();
@@ -3006,7 +10592,7 @@ function bb_app_EnumDisplayModes(){
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<34>";
 	var t_mmap=c_IntMap.m_new.call(new c_IntMap);
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<35>";
-	var t_mstack=c_Stack.m_new.call(new c_Stack);
+	var t_mstack=c_Stack6.m_new.call(new c_Stack6);
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<36>";
 	for(var t_i=0;t_i<t_modes.length;t_i=t_i+1){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<37>";
@@ -3016,14 +10602,14 @@ function bb_app_EnumDisplayModes(){
 		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<39>";
 		var t_size=t_w<<16|t_h;
 		err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<40>";
-		if(t_mmap.p_Contains(t_size)){
+		if(t_mmap.p_Contains2(t_size)){
 		}else{
 			err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<42>";
 			var t_mode=c_DisplayMode.m_new.call(new c_DisplayMode,dbg_object(dbg_array(t_modes,t_i)[dbg_index]).width,dbg_object(dbg_array(t_modes,t_i)[dbg_index]).height);
 			err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<43>";
 			t_mmap.p_Insert(t_size,t_mode);
 			err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<44>";
-			t_mstack.p_Push(t_mode);
+			t_mstack.p_Push16(t_mode);
 		}
 	}
 	err_info="C:/Monkey/MonkeyXPro77f/modules/mojo/app.monkey<47>";
@@ -3181,7 +10767,7 @@ c_Dwarf.prototype.p_CreateBody=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<45>";
 	dbg_object(t_bodyDefinition).m_type=2;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<46>";
-	dbg_object(t_bodyDefinition).m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
+	dbg_object(t_bodyDefinition).m_position.p_Set6(this.m_x/30.0,this.m_y/30.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<47>";
 	dbg_object(t_bodyDefinition).m_fixedRotation=true;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<49>";
@@ -3209,7 +10795,7 @@ c_Dwarf.prototype.p_CreateBody=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<69>";
 	dbg_object(t_headDefinition).m_type=2;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<70>";
-	dbg_object(t_headDefinition).m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
+	dbg_object(t_headDefinition).m_position.p_Set6(this.m_x/30.0,this.m_y/30.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<72>";
 	this.m_head=t_world.p_CreateBody2(t_headDefinition);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/dwarf.monkey<74>";
@@ -3391,9 +10977,9 @@ c_Universe.m_new=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<35>";
 	var t_worldAABB=c_b2AABB.m_new.call(new c_b2AABB);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<36>";
-	dbg_object(t_worldAABB).m_lowerBound.p_Set2(-1000.0,-1000.0);
+	dbg_object(t_worldAABB).m_lowerBound.p_Set6(-1000.0,-1000.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<37>";
-	dbg_object(t_worldAABB).m_upperBound.p_Set2(1000.0,1000.0);
+	dbg_object(t_worldAABB).m_upperBound.p_Set6(1000.0,1000.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<39>";
 	var t_gravity=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,30.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<41>";
@@ -3427,7 +11013,7 @@ c_Universe.m_new=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<61>";
 	dbg_object(t_filterData).m_categoryBits=8;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<64>";
-	dbg_object(t_wallBd).m_position.p_Set2(-3.1666666666666665,(this.m_height)/30.0/2.0);
+	dbg_object(t_wallBd).m_position.p_Set6(-3.1666666666666665,(this.m_height)/30.0/2.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<65>";
 	t_wall.p_SetAsBox(3.3333333333333335,(this.m_height)+1.6666666666666667);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<66>";
@@ -3435,13 +11021,13 @@ c_Universe.m_new=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<67>";
 	t_wallB.p_CreateFixture2((t_wall),0.0).p_SetFilterData(t_filterData);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<69>";
-	dbg_object(t_wallBd).m_position.p_Set2((this.m_width+95)/30.0,(this.m_height)/30.0/2.0);
+	dbg_object(t_wallBd).m_position.p_Set6((this.m_width+95)/30.0,(this.m_height)/30.0/2.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<70>";
 	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<71>";
 	t_wallB.p_CreateFixture2((t_wall),0.0).p_SetFilterData(t_filterData);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<73>";
-	dbg_object(t_wallBd).m_position.p_Set2((this.m_width)/30.0/2.0,-3.1666666666666665);
+	dbg_object(t_wallBd).m_position.p_Set6((this.m_width)/30.0/2.0,-3.1666666666666665);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<74>";
 	t_wall.p_SetAsBox((this.m_width)+1.6666666666666667,3.3333333333333335);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<75>";
@@ -3451,7 +11037,7 @@ c_Universe.m_new=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<78>";
 	t_wall.p_SetAsBox((this.m_width)+1.6666666666666667,3.3333333333333335);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<79>";
-	dbg_object(t_wallBd).m_position.p_Set2((this.m_width)/30.0/2.0,(this.m_height+95)/30.0);
+	dbg_object(t_wallBd).m_position.p_Set6((this.m_width)/30.0/2.0,(this.m_height+95)/30.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<80>";
 	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<81>";
@@ -3461,51 +11047,57 @@ c_Universe.m_new=function(){
 	pop_err();
 	return this;
 }
+c_Universe.prototype.p_Load=function(t_path){
+	push_err();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<87>";
+	var t_rubeWorld=bb_rubeloader_LoadRube(t_path);
+	pop_err();
+}
 c_Universe.m_mouseXWorldPhys=0;
 c_Universe.m_mouseYWorldPhys=0;
 c_Universe.m_mouseXWorld=0;
 c_Universe.m_mouseYWorld=0;
 c_Universe.prototype.p_UpdateMouseWorld=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<128>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<132>";
 	c_Universe.m_mouseXWorldPhys=bb_input_MouseX()/30.0;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<129>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<133>";
 	c_Universe.m_mouseYWorldPhys=bb_input_MouseY()/30.0;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<130>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<134>";
 	c_Universe.m_mouseXWorld=bb_input_MouseX();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<131>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<135>";
 	c_Universe.m_mouseYWorld=bb_input_MouseY();
 	pop_err();
 }
 c_Universe.prototype.p_GetBodyAtMouse=function(t_includeStatic){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<192>";
-	this.m_mousePVec.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<193>";
-	var t_aabb=c_b2AABB.m_new.call(new c_b2AABB);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<195>";
-	dbg_object(t_aabb).m_lowerBound.p_Set2(c_Universe.m_mouseXWorldPhys-0.001,c_Universe.m_mouseYWorldPhys-0.001);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<196>";
-	dbg_object(t_aabb).m_upperBound.p_Set2(c_Universe.m_mouseXWorldPhys+0.001,c_Universe.m_mouseYWorldPhys+0.001);
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<198>";
-	var t_callback=c_TestQueryAABBCallback.m_new.call(new c_TestQueryAABBCallback,t_includeStatic,this.m_mousePVec);
+	this.m_mousePVec.p_Set6(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<197>";
+	var t_aabb=c_b2AABB.m_new.call(new c_b2AABB);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<199>";
-	var t_fixture=null;
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<201>";
-	this.m_m_world.p_QueryAABB((t_callback),t_aabb);
+	dbg_object(t_aabb).m_lowerBound.p_Set6(c_Universe.m_mouseXWorldPhys-0.001,c_Universe.m_mouseYWorldPhys-0.001);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<200>";
+	dbg_object(t_aabb).m_upperBound.p_Set6(c_Universe.m_mouseXWorldPhys+0.001,c_Universe.m_mouseYWorldPhys+0.001);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<202>";
+	var t_callback=c_TestQueryAABBCallback.m_new.call(new c_TestQueryAABBCallback,t_includeStatic,this.m_mousePVec);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<203>";
+	var t_fixture=null;
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<205>";
+	this.m_m_world.p_QueryAABB((t_callback),t_aabb);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<206>";
 	pop_err();
 	return dbg_object(t_callback).m_body;
 }
 c_Universe.prototype.p_MouseDestroy=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<175>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<179>";
 	if(!((bb_input_MouseDown(0))!=0) && bb_input_KeyHit(68)>0){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<176>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<180>";
 		var t_body=this.p_GetBodyAtMouse(true);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<177>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<181>";
 		if((t_body)!=null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<179>";
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<183>";
 			this.m_m_world.p_DestroyBody(t_body);
 			pop_err();
 			return;
@@ -3515,86 +11107,86 @@ c_Universe.prototype.p_MouseDestroy=function(){
 }
 c_Universe.prototype.p_MouseDrag=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<139>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<143>";
 	if(((bb_input_MouseDown(0))!=0) && !((this.m_m_mouseJoint)!=null)){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<140>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<144>";
 		var t_body=this.p_GetBodyAtMouse(false);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<141>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<145>";
 		if((t_body)!=null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<143>";
-			var t_md=c_b2MouseJointDef.m_new.call(new c_b2MouseJointDef);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<144>";
-			dbg_object(t_md).m_bodyA=this.m_m_world.p_GetGroundBody();
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<145>";
-			dbg_object(t_md).m_bodyB=t_body;
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<146>";
-			dbg_object(t_md).m_target.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<147>";
-			dbg_object(t_md).m_collideConnected=true;
+			var t_md=c_b2MouseJointDef.m_new.call(new c_b2MouseJointDef);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<148>";
-			dbg_object(t_md).m_maxForce=300.0*t_body.p_GetMass();
+			dbg_object(t_md).m_bodyA=this.m_m_world.p_GetGroundBody();
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<149>";
-			this.m_m_mouseJoint=object_downcast((this.m_m_world.p_CreateJoint(t_md)),c_b2MouseJoint);
+			dbg_object(t_md).m_bodyB=t_body;
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<150>";
+			dbg_object(t_md).m_target.p_Set6(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<151>";
+			dbg_object(t_md).m_collideConnected=true;
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<152>";
+			dbg_object(t_md).m_maxForce=300.0*t_body.p_GetMass();
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<153>";
+			this.m_m_mouseJoint=object_downcast((this.m_m_world.p_CreateJoint(t_md)),c_b2MouseJoint);
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<154>";
 			t_body.p_SetAwake(true);
 		}
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<154>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<158>";
 	if(!((bb_input_MouseDown(0))!=0)){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<156>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<160>";
 		if((this.m_m_mouseJoint)!=null){
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<158>";
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<162>";
 			this.m_m_world.p_DestroyJoint(this.m_m_mouseJoint);
-			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<159>";
+			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<163>";
 			this.m_m_mouseJoint=null;
 		}
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<163>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<167>";
 	if((this.m_m_mouseJoint)!=null){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<165>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<169>";
 		var t_p2=c_b2Vec2.m_new.call(new c_b2Vec2,c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<166>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<170>";
 		this.m_m_mouseJoint.p_SetTarget(t_p2);
 	}
 	pop_err();
 }
 c_Universe.prototype.p_Update=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<107>";
-	this.p_UpdateMouseWorld();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<108>";
-	this.p_MouseDestroy();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<109>";
-	this.p_MouseDrag();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<111>";
-	this.m_m_world.p_TimeStep(this.m_m_timeStep,this.m_m_velocityIterations,this.m_m_positionIterations);
+	this.p_UpdateMouseWorld();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<112>";
+	this.p_MouseDestroy();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<113>";
+	this.p_MouseDrag();
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<115>";
+	this.m_m_world.p_TimeStep(this.m_m_timeStep,this.m_m_velocityIterations,this.m_m_positionIterations);
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<116>";
 	this.m_m_world.p_ClearForces();
 	pop_err();
 }
 c_Universe.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<93>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<97>";
 	var t_ms=bb_app_Millisecs();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<95>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<99>";
 	if(this.m_nextFrame==0.0 || (t_ms)-this.m_nextFrame>33.333333333333336){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<96>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<100>";
 		this.m_nextFrame=(t_ms)-33.333333333333336;
 	}
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<99>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<103>";
 	while(this.m_nextFrame<(t_ms)){
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<101>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<105>";
 		this.p_Update();
-		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<102>";
+		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<106>";
 		this.m_nextFrame+=16.666666666666668;
 	}
 	pop_err();
 }
 c_Universe.prototype.p_OnRender=function(){
 	push_err();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<88>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<92>";
 	this.m_m_world.p_DrawDebugData();
-	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<89>";
+	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/world.monkey<93>";
 	this.m_m_sprite.p_OnRender2(0,0);
 	pop_err();
 }
@@ -3627,7 +11219,7 @@ c_FlashSprite.m_new=function(){
 c_FlashSprite.prototype.p_AddChild=function(t_child){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<72>";
-	this.m_displayList.p_AddLast(t_child);
+	this.m_displayList.p_AddLast3(t_child);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<73>";
 	pop_err();
 	return t_child;
@@ -3657,7 +11249,7 @@ c_HaxeFastList.m_new=function(){
 	pop_err();
 	return this;
 }
-c_HaxeFastList.prototype.p_AddLast=function(t_data){
+c_HaxeFastList.prototype.p_AddLast3=function(t_data){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<344>";
 	var t_added=c_HaxeFastCell.m_new3.call(new c_HaxeFastCell,null,this.m__tail,t_data);
@@ -3675,7 +11267,7 @@ c_HaxeFastList.prototype.p_AddLast=function(t_data){
 c_HaxeFastList.prototype.p_ObjectEnumerator=function(){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<415>";
-	var t_=c_Enumerator.m_new.call(new c_Enumerator,this);
+	var t_=c_Enumerator3.m_new.call(new c_Enumerator3,this);
 	pop_err();
 	return t_;
 }
@@ -3797,7 +11389,7 @@ c_b2AABB.prototype.p_GetCenter=function(t_out){
 	dbg_object(t_out).m_y=(dbg_object(this.m_lowerBound).m_y+dbg_object(this.m_upperBound).m_y)*0.5;
 	pop_err();
 }
-c_b2AABB.prototype.p_Contains2=function(t_aabb){
+c_b2AABB.prototype.p_Contains3=function(t_aabb){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2aabb.monkey<78>";
 	var t_result=true;
@@ -3837,7 +11429,7 @@ c_b2Vec2.m_new=function(t_x_,t_y_){
 	pop_err();
 	return this;
 }
-c_b2Vec2.prototype.p_Set2=function(t_x_,t_y_){
+c_b2Vec2.prototype.p_Set6=function(t_x_,t_y_){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2vec2.monkey<57>";
 	this.m_x=t_x_;
@@ -3900,7 +11492,7 @@ c_b2Vec2.prototype.p_LengthSquared=function(){
 c_b2Vec2.prototype.p_GetNegative=function(t_out){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2vec2.monkey<67>";
-	t_out.p_Set2(-this.m_x,-this.m_y);
+	t_out.p_Set6(-this.m_x,-this.m_y);
 	pop_err();
 }
 c_b2Vec2.prototype.p_Normalize=function(){
@@ -4736,9 +12328,9 @@ c_b2World.prototype.p_SolveTOI=function(t_timeStep){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1235>";
 		t_bB=dbg_object(t_fB).m_m_body;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1236>";
-		c_b2World.m_s_backupA.p_Set7(dbg_object(t_bA).m_m_sweep);
+		c_b2World.m_s_backupA.p_Set11(dbg_object(t_bA).m_m_sweep);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1237>";
-		c_b2World.m_s_backupB.p_Set7(dbg_object(t_bB).m_m_sweep);
+		c_b2World.m_s_backupB.p_Set11(dbg_object(t_bB).m_m_sweep);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1238>";
 		t_bA.p_Advance(t_minTOI);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1239>";
@@ -4750,9 +12342,9 @@ c_b2World.prototype.p_SolveTOI=function(t_timeStep){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1246>";
 		if(((dbg_object(t_minContact).m_m_flags&1)!=0) || !((dbg_object(t_minContact).m_m_flags&32)!=0)){
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1249>";
-			dbg_object(t_bA).m_m_sweep.p_Set7(c_b2World.m_s_backupA);
+			dbg_object(t_bA).m_m_sweep.p_Set11(c_b2World.m_s_backupA);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1250>";
-			dbg_object(t_bB).m_m_sweep.p_Set7(c_b2World.m_s_backupB);
+			dbg_object(t_bB).m_m_sweep.p_Set11(c_b2World.m_s_backupB);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1251>";
 			t_bA.p_SynchronizeTransform();
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1252>";
@@ -5233,33 +12825,33 @@ c_b2World.prototype.p_DrawDebugData=function(){
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1559>";
 				if(t_b.p_IsActive()==false){
 					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1561>";
-					t_color.p_Set8(0.5,0.5,0.3);
+					t_color.p_Set12(0.5,0.5,0.3);
 					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1562>";
 					this.p_DrawShape(t_s,t_xf,t_color);
 				}else{
 					err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1563>";
 					if(t_b.p_GetType()==0){
 						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1566>";
-						t_color.p_Set8(0.5,0.9,0.5);
+						t_color.p_Set12(0.5,0.9,0.5);
 						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1567>";
 						this.p_DrawShape(t_s,t_xf,t_color);
 					}else{
 						err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1568>";
 						if(t_b.p_GetType()==1){
 							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1571>";
-							t_color.p_Set8(0.5,0.5,0.9);
+							t_color.p_Set12(0.5,0.5,0.9);
 							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1572>";
 							this.p_DrawShape(t_s,t_xf,t_color);
 						}else{
 							err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1573>";
 							if(t_b.p_IsAwake()==false){
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1576>";
-								t_color.p_Set8(0.6,0.6,0.6);
+								t_color.p_Set12(0.6,0.6,0.6);
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1577>";
 								this.p_DrawShape(t_s,t_xf,t_color);
 							}else{
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1581>";
-								t_color.p_Set8(0.9,0.7,0.7);
+								t_color.p_Set12(0.9,0.7,0.7);
 								err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1582>";
 								this.p_DrawShape(t_s,t_xf,t_color);
 							}
@@ -5300,7 +12892,7 @@ c_b2World.prototype.p_DrawDebugData=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1605>";
 	if((t_flags&c_b2DebugDraw.m_e_pairBit)!=0){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1607>";
-		t_color.p_Set8(0.3,0.9,0.9);
+		t_color.p_Set12(0.3,0.9,0.9);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1608>";
 		var t_contact=this.m_m_contactList;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1609>";
@@ -5350,13 +12942,13 @@ c_b2World.prototype.p_DrawDebugData=function(){
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1635>";
 				var t_aabb=t_bp.p_GetFatAABB(dbg_object(t_f).m_m_proxy);
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1636>";
-				dbg_array(t_vs,0)[dbg_index].p_Set2(dbg_object(dbg_object(t_aabb).m_lowerBound).m_x,dbg_object(dbg_object(t_aabb).m_lowerBound).m_y);
+				dbg_array(t_vs,0)[dbg_index].p_Set6(dbg_object(dbg_object(t_aabb).m_lowerBound).m_x,dbg_object(dbg_object(t_aabb).m_lowerBound).m_y);
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1637>";
-				dbg_array(t_vs,1)[dbg_index].p_Set2(dbg_object(dbg_object(t_aabb).m_upperBound).m_x,dbg_object(dbg_object(t_aabb).m_lowerBound).m_y);
+				dbg_array(t_vs,1)[dbg_index].p_Set6(dbg_object(dbg_object(t_aabb).m_upperBound).m_x,dbg_object(dbg_object(t_aabb).m_lowerBound).m_y);
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1638>";
-				dbg_array(t_vs,2)[dbg_index].p_Set2(dbg_object(dbg_object(t_aabb).m_upperBound).m_x,dbg_object(dbg_object(t_aabb).m_upperBound).m_y);
+				dbg_array(t_vs,2)[dbg_index].p_Set6(dbg_object(dbg_object(t_aabb).m_upperBound).m_x,dbg_object(dbg_object(t_aabb).m_upperBound).m_y);
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1639>";
-				dbg_array(t_vs,3)[dbg_index].p_Set2(dbg_object(dbg_object(t_aabb).m_lowerBound).m_x,dbg_object(dbg_object(t_aabb).m_upperBound).m_y);
+				dbg_array(t_vs,3)[dbg_index].p_Set6(dbg_object(dbg_object(t_aabb).m_lowerBound).m_x,dbg_object(dbg_object(t_aabb).m_upperBound).m_y);
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1640>";
 				this.m_m_debugDraw.p_DrawPolygon(t_vs,4,t_color);
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2world.monkey<1641>";
@@ -5601,7 +13193,7 @@ c_b2Body.m_new=function(t_bd,t_world){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1259>";
 	dbg_object(this.m_m_xf).m_position.p_SetV(dbg_object(t_bd).m_position);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1260>";
-	dbg_object(this.m_m_xf).m_R.p_Set6(dbg_object(t_bd).m_angle);
+	dbg_object(this.m_m_xf).m_R.p_Set10(dbg_object(t_bd).m_angle);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1261>";
 	dbg_object(this.m_m_sweep).m_localCenter.p_SetZero();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1262>";
@@ -5645,7 +13237,7 @@ c_b2Body.m_new=function(t_bd,t_world){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1287>";
 	this.m_m_angularDamping=dbg_object(t_bd).m_angularDamping;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1288>";
-	this.m_m_force.p_Set2(0.0,0.0);
+	this.m_m_force.p_Set6(0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1289>";
 	this.m_m_torque=0.0;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1290>";
@@ -5836,7 +13428,7 @@ c_b2Body.prototype.p_GetWorldPoint=function(t_localPoint,t_out){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<817>";
 	var t_tmp=dbg_object(t_localPoint).m_x;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<819>";
-	t_out.p_Set2(dbg_object(dbg_object(t_A).m_col1).m_x*t_tmp+dbg_object(dbg_object(t_A).m_col2).m_x*dbg_object(t_localPoint).m_y,dbg_object(dbg_object(t_A).m_col1).m_y*t_tmp+dbg_object(dbg_object(t_A).m_col2).m_y*dbg_object(t_localPoint).m_y);
+	t_out.p_Set6(dbg_object(dbg_object(t_A).m_col1).m_x*t_tmp+dbg_object(dbg_object(t_A).m_col2).m_x*dbg_object(t_localPoint).m_y,dbg_object(dbg_object(t_A).m_col1).m_y*t_tmp+dbg_object(dbg_object(t_A).m_col2).m_y*dbg_object(t_localPoint).m_y);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<820>";
 	dbg_object(t_out).m_x+=dbg_object(dbg_object(this.m_m_xf).m_position).m_x;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<821>";
@@ -5935,7 +13527,7 @@ c_b2Body.prototype.p_SynchronizeTransform=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1333>";
 	var t_tMat=dbg_object(this.m_m_xf).m_R;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1334>";
-	t_tMat.p_Set6(dbg_object(this.m_m_sweep).m_a);
+	t_tMat.p_Set10(dbg_object(this.m_m_sweep).m_a);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1336>";
 	var t_tVec=dbg_object(this.m_m_sweep).m_localCenter;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1337>";
@@ -5950,7 +13542,7 @@ c_b2Body.prototype.p_SynchronizeFixtures=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1315>";
 	var t_xf1=c_b2Body.m_s_xf1;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1316>";
-	dbg_object(t_xf1).m_R.p_Set6(dbg_object(this.m_m_sweep).m_a0);
+	dbg_object(t_xf1).m_R.p_Set10(dbg_object(this.m_m_sweep).m_a0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1318>";
 	var t_tMat=dbg_object(t_xf1).m_R;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2body.monkey<1319>";
@@ -6269,9 +13861,9 @@ c_b2Contact.m_s_input=null;
 c_b2Contact.prototype.p_ComputeTOI=function(t_sweepA,t_sweepB){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contact.monkey<379>";
-	dbg_object(c_b2Contact.m_s_input).m_proxyA.p_Set5(this.m_m_fixtureA.p_GetShape());
+	dbg_object(c_b2Contact.m_s_input).m_proxyA.p_Set9(this.m_m_fixtureA.p_GetShape());
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contact.monkey<380>";
-	dbg_object(c_b2Contact.m_s_input).m_proxyB.p_Set5(this.m_m_fixtureB.p_GetShape());
+	dbg_object(c_b2Contact.m_s_input).m_proxyB.p_Set9(this.m_m_fixtureB.p_GetShape());
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contact.monkey<381>";
 	dbg_object(c_b2Contact.m_s_input).m_sweepA=t_sweepA;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contact.monkey<382>";
@@ -6901,15 +14493,15 @@ function c_b2ContactFactory(){
 c_b2ContactFactory.prototype.p_AddType=function(t_contactTypeFactory,t_type1,t_type2){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<61>";
-	dbg_object(this.m_m_registers.p_Get(t_type1).p_Get(t_type2)).m_contactTypeFactory=t_contactTypeFactory;
+	dbg_object(this.m_m_registers.p_Get2(t_type1).p_Get2(t_type2)).m_contactTypeFactory=t_contactTypeFactory;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<62>";
-	dbg_object(this.m_m_registers.p_Get(t_type1).p_Get(t_type2)).m_primary=true;
+	dbg_object(this.m_m_registers.p_Get2(t_type1).p_Get2(t_type2)).m_primary=true;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<64>";
 	if(t_type1!=t_type2){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<65>";
-		dbg_object(this.m_m_registers.p_Get(t_type2).p_Get(t_type1)).m_contactTypeFactory=t_contactTypeFactory;
+		dbg_object(this.m_m_registers.p_Get2(t_type2).p_Get2(t_type1)).m_contactTypeFactory=t_contactTypeFactory;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<66>";
-		dbg_object(this.m_m_registers.p_Get(t_type2).p_Get(t_type1)).m_primary=false;
+		dbg_object(this.m_m_registers.p_Get2(t_type2).p_Get2(t_type1)).m_primary=false;
 	}
 	pop_err();
 }
@@ -6920,11 +14512,11 @@ c_b2ContactFactory.prototype.p_InitializeRegisters=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<73>";
 	for(var t_i=0;t_i<3;t_i=t_i+1){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<75>";
-		this.m_m_registers.p_Set4(t_i,c_FlashArray.m_new.call(new c_FlashArray,3));
+		this.m_m_registers.p_Set8(t_i,c_FlashArray.m_new.call(new c_FlashArray,3));
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<76>";
 		for(var t_j=0;t_j<3;t_j=t_j+1){
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<78>";
-			this.m_m_registers.p_Get(t_i).p_Set3(t_j,c_b2ContactRegister.m_new.call(new c_b2ContactRegister));
+			this.m_m_registers.p_Get2(t_i).p_Set7(t_j,c_b2ContactRegister.m_new.call(new c_b2ContactRegister));
 		}
 	}
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<81>";
@@ -6972,10 +14564,10 @@ c_b2ContactFactory.prototype.p_Destroy=function(t_contact){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<142>";
 	if(dbg_object(t_contact).m_m_swapped){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<143>";
-		t_reg=this.m_m_registers.p_Get(t_type2).p_Get(t_type1);
+		t_reg=this.m_m_registers.p_Get2(t_type2).p_Get2(t_type1);
 	}else{
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<145>";
-		t_reg=this.m_m_registers.p_Get(t_type1).p_Get(t_type2);
+		t_reg=this.m_m_registers.p_Get2(t_type1).p_Get2(t_type2);
 	}
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<148>";
 	if(true){
@@ -6999,7 +14591,7 @@ c_b2ContactFactory.prototype.p_Create=function(t_fixtureA,t_fixtureB){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<91>";
 	var t_type2=t_fixtureB.p_GetType();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<94>";
-	var t_reg=this.m_m_registers.p_Get(t_type1).p_Get(t_type2);
+	var t_reg=this.m_m_registers.p_Get2(t_type1).p_Get2(t_type2);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<95>";
 	var t_c=null;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactfactory.monkey<96>";
@@ -7116,7 +14708,7 @@ c_FlashArray.m_new3=function(){
 	pop_err();
 	return this;
 }
-c_FlashArray.prototype.p_Set3=function(t_index,t_item){
+c_FlashArray.prototype.p_Set7=function(t_index,t_item){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<135>";
 	if(t_index>=this.m_arrLength){
@@ -7134,7 +14726,7 @@ c_FlashArray.prototype.p_Set3=function(t_index,t_item){
 	}
 	pop_err();
 }
-c_FlashArray.prototype.p_Get=function(t_index){
+c_FlashArray.prototype.p_Get2=function(t_index){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<127>";
 	if(t_index>=0 && this.m_length>t_index){
@@ -7196,7 +14788,7 @@ c_FlashArray2.m_new3=function(){
 	pop_err();
 	return this;
 }
-c_FlashArray2.prototype.p_Set4=function(t_index,t_item){
+c_FlashArray2.prototype.p_Set8=function(t_index,t_item){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<135>";
 	if(t_index>=this.m_arrLength){
@@ -7214,7 +14806,7 @@ c_FlashArray2.prototype.p_Set4=function(t_index,t_item){
 	}
 	pop_err();
 }
-c_FlashArray2.prototype.p_Get=function(t_index){
+c_FlashArray2.prototype.p_Get2=function(t_index){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<127>";
 	if(t_index>=0 && this.m_length>t_index){
@@ -7268,11 +14860,11 @@ c_b2Shape.m_TestOverlap=function(t_shape1,t_transform1,t_shape2,t_transform2){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2shape.monkey<142>";
 	dbg_object(t_input).m_proxyA=c_b2DistanceProxy.m_new.call(new c_b2DistanceProxy);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2shape.monkey<143>";
-	dbg_object(t_input).m_proxyA.p_Set5(t_shape1);
+	dbg_object(t_input).m_proxyA.p_Set9(t_shape1);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2shape.monkey<144>";
 	dbg_object(t_input).m_proxyB=c_b2DistanceProxy.m_new.call(new c_b2DistanceProxy);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2shape.monkey<145>";
-	dbg_object(t_input).m_proxyB.p_Set5(t_shape2);
+	dbg_object(t_input).m_proxyB.p_Set9(t_shape2);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2shape.monkey<146>";
 	dbg_object(t_input).m_transformA=t_transform1;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2shape.monkey<147>";
@@ -7292,7 +14884,7 @@ c_b2Shape.m_TestOverlap=function(t_shape1,t_transform1,t_shape2,t_transform2){
 	pop_err();
 	return t_;
 }
-c_b2Shape.prototype.p_Set5=function(t_other){
+c_b2Shape.prototype.p_Set9=function(t_other){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2shape.monkey<70>";
 	this.m_m_radius=dbg_object(t_other).m_m_radius;
@@ -7476,7 +15068,7 @@ c_b2DynamicTreeBroadPhase.m_new=function(){
 c_b2DynamicTreeBroadPhase.prototype.p_BufferMove=function(t_proxy){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<232>";
-	this.m_m_moveBuffer.p_Set12(this.m_m_moveBuffer.p_Length(),t_proxy);
+	this.m_m_moveBuffer.p_Set16(this.m_m_moveBuffer.p_Length(),t_proxy);
 	pop_err();
 }
 c_b2DynamicTreeBroadPhase.prototype.p_CreateProxy=function(t_aabb,t_userData){
@@ -7563,7 +15155,7 @@ c_b2DynamicTreeBroadPhase.prototype.p_UpdatePairs=function(t_callback){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<185>";
 	while(t_i2<dbg_object(this.m_dtQueryCallBack).m_m_pairCount){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<186>";
-		var t_primaryPair=dbg_object(this.m_dtQueryCallBack).m_m_pairBuffer.p_Get(t_i2);
+		var t_primaryPair=dbg_object(this.m_dtQueryCallBack).m_m_pairBuffer.p_Get2(t_i2);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<187>";
 		var t_userDataA=this.m_m_tree.p_GetUserData2(dbg_object(t_primaryPair).m_proxyA);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<188>";
@@ -7575,7 +15167,7 @@ c_b2DynamicTreeBroadPhase.prototype.p_UpdatePairs=function(t_callback){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<193>";
 		while(t_i2<dbg_object(this.m_dtQueryCallBack).m_m_pairCount){
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<194>";
-			var t_pair=dbg_object(this.m_dtQueryCallBack).m_m_pairBuffer.p_Get(t_i2);
+			var t_pair=dbg_object(this.m_dtQueryCallBack).m_m_pairBuffer.p_Get2(t_i2);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<195>";
 			if(dbg_object(t_pair).m_proxyA!=dbg_object(t_primaryPair).m_proxyA || dbg_object(t_pair).m_proxyB!=dbg_object(t_primaryPair).m_proxyB){
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<196>";
@@ -7661,11 +15253,11 @@ c_b2BodyDef.m_new=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2bodydef.monkey<57>";
 	this.m_userData=null;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2bodydef.monkey<58>";
-	this.m_position.p_Set2(0.0,0.0);
+	this.m_position.p_Set6(0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2bodydef.monkey<59>";
 	this.m_angle=0.0;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2bodydef.monkey<60>";
-	this.m_linearVelocity.p_Set2(0.0,0.0);
+	this.m_linearVelocity.p_Set6(0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2bodydef.monkey<61>";
 	this.m_angularVelocity=0.0;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2bodydef.monkey<62>";
@@ -7732,7 +15324,7 @@ c_b2Mat22.prototype.p_SetM=function(t_m){
 	dbg_object(this.m_col2).m_y=dbg_object(dbg_object(t_m).m_col2).m_y;
 	pop_err();
 }
-c_b2Mat22.prototype.p_Set6=function(t_angle){
+c_b2Mat22.prototype.p_Set10=function(t_angle){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2mat22.monkey<60>";
 	var t_c=Math.cos(t_angle);
@@ -7806,7 +15398,7 @@ c_b2Mat22.m_FromAngle=function(t_angle){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2mat22.monkey<48>";
 	var t_mat=c_b2Mat22.m_new.call(new c_b2Mat22);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2mat22.monkey<49>";
-	t_mat.p_Set6(t_angle);
+	t_mat.p_Set10(t_angle);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2mat22.monkey<50>";
 	pop_err();
 	return t_mat;
@@ -7877,7 +15469,7 @@ c_b2Sweep.prototype.p_GetTransform2=function(t_xf,t_alpha){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2sweep.monkey<75>";
 	var t_angle=(1.0-t_alpha)*this.m_a0+t_alpha*this.m_a;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2sweep.monkey<76>";
-	dbg_object(t_xf).m_R.p_Set6(t_angle);
+	dbg_object(t_xf).m_R.p_Set10(t_angle);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2sweep.monkey<79>";
 	var t_tMat=dbg_object(t_xf).m_R;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2sweep.monkey<80>";
@@ -7886,7 +15478,7 @@ c_b2Sweep.prototype.p_GetTransform2=function(t_xf,t_alpha){
 	dbg_object(dbg_object(t_xf).m_position).m_y-=dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(this.m_localCenter).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(this.m_localCenter).m_y;
 	pop_err();
 }
-c_b2Sweep.prototype.p_Set7=function(t_other){
+c_b2Sweep.prototype.p_Set11=function(t_other){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2sweep.monkey<47>";
 	this.m_localCenter.p_SetV(dbg_object(t_other).m_localCenter);
@@ -8196,21 +15788,21 @@ c_b2PolygonShape.prototype.p_SetAsBox=function(t_hx,t_hy){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<178>";
 	this.p_Reserve(4);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<179>";
-	dbg_array(this.m_m_vertices,0)[dbg_index].p_Set2(-t_hx,-t_hy);
+	dbg_array(this.m_m_vertices,0)[dbg_index].p_Set6(-t_hx,-t_hy);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<180>";
-	dbg_array(this.m_m_vertices,1)[dbg_index].p_Set2(t_hx,-t_hy);
+	dbg_array(this.m_m_vertices,1)[dbg_index].p_Set6(t_hx,-t_hy);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<181>";
-	dbg_array(this.m_m_vertices,2)[dbg_index].p_Set2(t_hx,t_hy);
+	dbg_array(this.m_m_vertices,2)[dbg_index].p_Set6(t_hx,t_hy);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<182>";
-	dbg_array(this.m_m_vertices,3)[dbg_index].p_Set2(-t_hx,t_hy);
+	dbg_array(this.m_m_vertices,3)[dbg_index].p_Set6(-t_hx,t_hy);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<183>";
-	dbg_array(this.m_m_normals,0)[dbg_index].p_Set2(0.0,-1.0);
+	dbg_array(this.m_m_normals,0)[dbg_index].p_Set6(0.0,-1.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<184>";
-	dbg_array(this.m_m_normals,1)[dbg_index].p_Set2(1.0,0.0);
+	dbg_array(this.m_m_normals,1)[dbg_index].p_Set6(1.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<185>";
-	dbg_array(this.m_m_normals,2)[dbg_index].p_Set2(0.0,1.0);
+	dbg_array(this.m_m_normals,2)[dbg_index].p_Set6(0.0,1.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<186>";
-	dbg_array(this.m_m_normals,3)[dbg_index].p_Set2(-1.0,0.0);
+	dbg_array(this.m_m_normals,3)[dbg_index].p_Set6(-1.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<187>";
 	this.m_m_centroid.p_SetZero();
 	pop_err();
@@ -8227,10 +15819,10 @@ c_b2PolygonShape.prototype.p_GetVertexCount=function(){
 	pop_err();
 	return this.m_m_vertexCount;
 }
-c_b2PolygonShape.prototype.p_Set5=function(t_other){
+c_b2PolygonShape.prototype.p_Set9=function(t_other){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<64>";
-	c_b2Shape.prototype.p_Set5.call(this,t_other);
+	c_b2Shape.prototype.p_Set9.call(this,t_other);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<66>";
 	if((object_downcast((t_other),c_b2PolygonShape))!=null){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<67>";
@@ -8256,7 +15848,7 @@ c_b2PolygonShape.prototype.p_Copy=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<58>";
 	var t_s=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<59>";
-	t_s.p_Set5(this);
+	t_s.p_Set9(this);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<60>";
 	var t_=(t_s);
 	pop_err();
@@ -8399,7 +15991,7 @@ c_b2PolygonShape.prototype.p_ComputeMass=function(t_massData,t_density){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<534>";
 	t_centerY*=1.0/t_area;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<536>";
-	dbg_object(t_massData).m_center.p_Set2(t_centerX,t_centerY);
+	dbg_object(t_massData).m_center.p_Set6(t_centerX,t_centerY);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<538>";
 	dbg_object(t_massData).m_I=t_density*t_I;
 	pop_err();
@@ -8780,15 +16372,15 @@ c_b2CircleShape.prototype.p_Copy=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<50>";
 	var t_s=(c_b2CircleShape.m_new.call(new c_b2CircleShape,dbg_object(this).m_m_radius));
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<51>";
-	t_s.p_Set5(this);
+	t_s.p_Set9(this);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<52>";
 	pop_err();
 	return t_s;
 }
-c_b2CircleShape.prototype.p_Set5=function(t_other){
+c_b2CircleShape.prototype.p_Set9=function(t_other){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<56>";
-	c_b2Shape.prototype.p_Set5.call(this,t_other);
+	c_b2Shape.prototype.p_Set9.call(this,t_other);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<57>";
 	if((object_downcast((t_other),c_b2CircleShape))!=null){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<58>";
@@ -8807,9 +16399,9 @@ c_b2CircleShape.prototype.p_ComputeAABB=function(t_aabb,t_transform){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<146>";
 	var t_pY=dbg_object(dbg_object(t_transform).m_position).m_y+(dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(this.m_m_p).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(this.m_m_p).m_y);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<147>";
-	dbg_object(t_aabb).m_lowerBound.p_Set2(t_pX-this.m_m_radius,t_pY-this.m_m_radius);
+	dbg_object(t_aabb).m_lowerBound.p_Set6(t_pX-this.m_m_radius,t_pY-this.m_m_radius);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2circleshape.monkey<148>";
-	dbg_object(t_aabb).m_upperBound.p_Set2(t_pX+this.m_m_radius,t_pY+this.m_m_radius);
+	dbg_object(t_aabb).m_upperBound.p_Set6(t_pX+this.m_m_radius,t_pY+this.m_m_radius);
 	pop_err();
 }
 c_b2CircleShape.prototype.p_ComputeMass=function(t_massData,t_density){
@@ -8882,9 +16474,9 @@ c_b2RevoluteJointDef.m_new=function(){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2revolutejointdef.monkey<58>";
 	this.m_type=1;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2revolutejointdef.monkey<59>";
-	this.m_localAnchorA.p_Set2(0.0,0.0);
+	this.m_localAnchorA.p_Set6(0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2revolutejointdef.monkey<60>";
-	this.m_localAnchorB.p_Set2(0.0,0.0);
+	this.m_localAnchorB.p_Set6(0.0,0.0);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2revolutejointdef.monkey<61>";
 	this.m_referenceAngle=0.0;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2revolutejointdef.monkey<62>";
@@ -9205,7 +16797,7 @@ c_b2DistanceJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2distancejoint.monkey<303>";
 	var t_impulse=-this.m_m_mass*t_C;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2distancejoint.monkey<305>";
-	this.m_m_u.p_Set2(t_dX,t_dY);
+	this.m_m_u.p_Set6(t_dX,t_dY);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2distancejoint.monkey<307>";
 	var t_PX=t_impulse*dbg_object(this.m_m_u).m_x;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2distancejoint.monkey<308>";
@@ -10128,9 +17720,9 @@ c_b2PrismaticJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<677>";
 		var t_k22=t_i1+t_i2;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<678>";
-		dbg_object(this.m_m_K).m_col1.p_Set8(t_k11,t_k12,0.0);
+		dbg_object(this.m_m_K).m_col1.p_Set12(t_k11,t_k12,0.0);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<679>";
-		dbg_object(this.m_m_K).m_col2.p_Set8(t_k12,t_k22,0.0);
+		dbg_object(this.m_m_K).m_col2.p_Set12(t_k12,t_k22,0.0);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<680>";
 		var t_impulse1=this.m_m_K.p_Solve22(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0),-t_C1X,-t_C1Y);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<681>";
@@ -10241,7 +17833,7 @@ c_b2Vec3.prototype.p_Add2=function(t_v){
 	this.m_z+=dbg_object(t_v).m_z;
 	pop_err();
 }
-c_b2Vec3.prototype.p_Set8=function(t_x,t_y,t_z){
+c_b2Vec3.prototype.p_Set12=function(t_x,t_y,t_z){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/math/b2vec3.monkey<70>";
 	dbg_object(this).m_x=t_x;
@@ -11035,9 +18627,9 @@ c_b2PulleyJoint.prototype.p_InitVelocityConstraints=function(t_timeStep){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<202>";
 	var t_s2Y=dbg_object(dbg_object(dbg_object(this.m_m_ground).m_m_xf).m_position).m_y+dbg_object(this.m_m_groundAnchor2).m_y;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<205>";
-	this.m_m_u1.p_Set2(t_p1X-t_s1X,t_p1Y-t_s1Y);
+	this.m_m_u1.p_Set6(t_p1X-t_s1X,t_p1Y-t_s1Y);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<207>";
-	this.m_m_u2.p_Set2(t_p2X-t_s2X,t_p2Y-t_s2Y);
+	this.m_m_u2.p_Set6(t_p2X-t_s2X,t_p2Y-t_s2Y);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<208>";
 	var t_length1=this.m_m_u1.p_Length();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<209>";
@@ -11378,9 +18970,9 @@ c_b2PulleyJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<455>";
 		t_p2Y=dbg_object(dbg_object(dbg_object(t_bB).m_m_sweep).m_c).m_y+t_r2Y;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<458>";
-		this.m_m_u1.p_Set2(t_p1X-t_s1X,t_p1Y-t_s1Y);
+		this.m_m_u1.p_Set6(t_p1X-t_s1X,t_p1Y-t_s1Y);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<460>";
-		this.m_m_u2.p_Set2(t_p2X-t_s2X,t_p2Y-t_s2Y);
+		this.m_m_u2.p_Set6(t_p2X-t_s2X,t_p2Y-t_s2Y);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<461>";
 		t_length1=this.m_m_u1.p_Length();
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<462>";
@@ -11453,7 +19045,7 @@ c_b2PulleyJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<509>";
 		t_p1Y=dbg_object(dbg_object(dbg_object(t_bA).m_m_sweep).m_c).m_y+t_r1Y;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<511>";
-		this.m_m_u1.p_Set2(t_p1X-t_s1X,t_p1Y-t_s1Y);
+		this.m_m_u1.p_Set6(t_p1X-t_s1X,t_p1Y-t_s1Y);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<512>";
 		t_length1=this.m_m_u1.p_Length();
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<513>";
@@ -11506,7 +19098,7 @@ c_b2PulleyJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<547>";
 		t_p2Y=dbg_object(dbg_object(dbg_object(t_bB).m_m_sweep).m_c).m_y+t_r2Y;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<549>";
-		this.m_m_u2.p_Set2(t_p2X-t_s2X,t_p2Y-t_s2Y);
+		this.m_m_u2.p_Set6(t_p2X-t_s2X,t_p2Y-t_s2Y);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<550>";
 		t_length2=this.m_m_u2.p_Length();
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2pulleyjoint.monkey<551>";
@@ -11734,7 +19326,7 @@ c_b2GearJoint.prototype.p_InitVelocityConstraints=function(t_timeStep){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<203>";
 		t_crug=t_rX*t_ugY-t_rY*t_ugX;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<205>";
-		dbg_object(this.m_m_J).m_linearA.p_Set2(-t_ugX,-t_ugY);
+		dbg_object(this.m_m_J).m_linearA.p_Set6(-t_ugX,-t_ugY);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<206>";
 		dbg_object(this.m_m_J).m_angularA=-t_crug;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<207>";
@@ -11770,7 +19362,7 @@ c_b2GearJoint.prototype.p_InitVelocityConstraints=function(t_timeStep){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<229>";
 		t_crug=t_rX*t_ugY-t_rY*t_ugX;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<231>";
-		dbg_object(this.m_m_J).m_linearB.p_Set2(-this.m_m_ratio*t_ugX,-this.m_m_ratio*t_ugY);
+		dbg_object(this.m_m_J).m_linearB.p_Set6(-this.m_m_ratio*t_ugX,-this.m_m_ratio*t_ugY);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<232>";
 		dbg_object(this.m_m_J).m_angularB=-this.m_m_ratio*t_crug;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2gearjoint.monkey<233>";
@@ -13519,7 +21111,7 @@ c_b2RopeJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2ropejoint.monkey<290>";
 	var t_impulse=-this.m_m_mass*t_C;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2ropejoint.monkey<292>";
-	this.m_m_u.p_Set2(t_dX,t_dY);
+	this.m_m_u.p_Set6(t_dX,t_dY);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2ropejoint.monkey<294>";
 	var t_PX=t_impulse*dbg_object(this.m_m_u).m_x;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/joints/b2ropejoint.monkey<295>";
@@ -13791,7 +21383,7 @@ c_b2ContactID.prototype.p_Key2=function(t_value){
 	dbg_object(this.m_features).m__flip=(this.m__key&-16777216)>>24&255;
 	pop_err();
 }
-c_b2ContactID.prototype.p_Set9=function(t_id){
+c_b2ContactID.prototype.p_Set13=function(t_id){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2contactid.monkey<52>";
 	this.p_Key2(dbg_object(t_id).m__key);
@@ -13882,7 +21474,7 @@ c_b2TimeStep.m_new=function(){
 	pop_err();
 	return this;
 }
-c_b2TimeStep.prototype.p_Set10=function(t_timeStep){
+c_b2TimeStep.prototype.p_Set14=function(t_timeStep){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/b2timestep.monkey<46>";
 	this.m_dt=dbg_object(t_timeStep).m_dt;
@@ -13922,7 +21514,7 @@ c_b2DistanceProxy.m_new=function(){
 	pop_err();
 	return this;
 }
-c_b2DistanceProxy.prototype.p_Set5=function(t_shape){
+c_b2DistanceProxy.prototype.p_Set9=function(t_shape){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2distanceproxy.monkey<58>";
 	var t_1=t_shape.p_GetType();
@@ -14439,7 +22031,7 @@ c_b2Simplex.prototype.p_Solve23=function(){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<254>";
 		this.m_m_count=1;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<255>";
-		this.m_m_v1.p_Set11(this.m_m_v2);
+		this.m_m_v1.p_Set15(this.m_m_v2);
 		pop_err();
 		return;
 	}
@@ -14539,7 +22131,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<326>";
 		this.m_m_count=2;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<327>";
-		this.m_m_v2.p_Set11(this.m_m_v3);
+		this.m_m_v2.p_Set15(this.m_m_v3);
 		pop_err();
 		return;
 	}
@@ -14550,7 +22142,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<334>";
 		this.m_m_count=1;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<335>";
-		this.m_m_v1.p_Set11(this.m_m_v2);
+		this.m_m_v1.p_Set15(this.m_m_v2);
 		pop_err();
 		return;
 	}
@@ -14561,7 +22153,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<342>";
 		this.m_m_count=1;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<343>";
-		this.m_m_v1.p_Set11(this.m_m_v3);
+		this.m_m_v1.p_Set15(this.m_m_v3);
 		pop_err();
 		return;
 	}
@@ -14576,7 +22168,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<352>";
 		this.m_m_count=2;
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<353>";
-		this.m_m_v1.p_Set11(this.m_m_v3);
+		this.m_m_v1.p_Set15(this.m_m_v3);
 		pop_err();
 		return;
 	}
@@ -14621,7 +22213,7 @@ c_b2Simplex.prototype.p_GetSearchDirection=function(t_out){
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<139>";
 			c_b2Settings.m_B2Assert(false);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplex.monkey<140>";
-			t_out.p_Set2(0.0,0.0);
+			t_out.p_Set6(0.0,0.0);
 		}
 	}
 	pop_err();
@@ -14704,7 +22296,7 @@ c_b2SimplexVertex.m_new=function(){
 	pop_err();
 	return this;
 }
-c_b2SimplexVertex.prototype.p_Set11=function(t_other){
+c_b2SimplexVertex.prototype.p_Set15=function(t_other){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2simplexvertex.monkey<43>";
 	this.m_wA.p_SetV(dbg_object(t_other).m_wA);
@@ -15168,7 +22760,7 @@ c_b2ContactSolver.prototype.p_Initialize2=function(t_timeStep,t_contacts,t_conta
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<68>";
 	var t_contact=null;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<70>";
-	this.m_m_step.p_Set10(t_timeStep);
+	this.m_m_step.p_Set14(t_timeStep);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<71>";
 	this.m_m_allocator=t_allocator;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<73>";
@@ -17246,7 +24838,7 @@ c_b2Color.m_new2=function(){
 	pop_err();
 	return this;
 }
-c_b2Color.prototype.p_Set8=function(t_rr,t_gg,t_bb){
+c_b2Color.prototype.p_Set12=function(t_rr,t_gg,t_bb){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/common/b2color.monkey<50>";
 	this.m__r=((255.0*c_b2Math.m_Clamp(t_rr,0.0,1.0))|0);
@@ -17368,19 +24960,19 @@ c_b2EdgeShape.m_new=function(t_v1,t_v2){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<394>";
 	this.m_m_v2=t_v2;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<395>";
-	this.m_m_direction.p_Set2(dbg_object(this.m_m_v2).m_x-dbg_object(this.m_m_v1).m_x,dbg_object(this.m_m_v2).m_y-dbg_object(this.m_m_v1).m_y);
+	this.m_m_direction.p_Set6(dbg_object(this.m_m_v2).m_x-dbg_object(this.m_m_v1).m_x,dbg_object(this.m_m_v2).m_y-dbg_object(this.m_m_v1).m_y);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<396>";
 	this.m_m_length=this.m_m_direction.p_Normalize();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<397>";
-	this.m_m_normal.p_Set2(dbg_object(this.m_m_direction).m_y,-dbg_object(this.m_m_direction).m_x);
+	this.m_m_normal.p_Set6(dbg_object(this.m_m_direction).m_y,-dbg_object(this.m_m_direction).m_x);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<399>";
-	this.m_m_coreV1.p_Set2(-0.040000000000000001*(dbg_object(this.m_m_normal).m_x-dbg_object(this.m_m_direction).m_x)+dbg_object(this.m_m_v1).m_x,-0.040000000000000001*(dbg_object(this.m_m_normal).m_y-dbg_object(this.m_m_direction).m_y)+dbg_object(this.m_m_v1).m_y);
+	this.m_m_coreV1.p_Set6(-0.040000000000000001*(dbg_object(this.m_m_normal).m_x-dbg_object(this.m_m_direction).m_x)+dbg_object(this.m_m_v1).m_x,-0.040000000000000001*(dbg_object(this.m_m_normal).m_y-dbg_object(this.m_m_direction).m_y)+dbg_object(this.m_m_v1).m_y);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<401>";
-	this.m_m_coreV2.p_Set2(-0.040000000000000001*(dbg_object(this.m_m_normal).m_x+dbg_object(this.m_m_direction).m_x)+dbg_object(this.m_m_v2).m_x,-0.040000000000000001*(dbg_object(this.m_m_normal).m_y+dbg_object(this.m_m_direction).m_y)+dbg_object(this.m_m_v2).m_y);
+	this.m_m_coreV2.p_Set6(-0.040000000000000001*(dbg_object(this.m_m_normal).m_x+dbg_object(this.m_m_direction).m_x)+dbg_object(this.m_m_v2).m_x,-0.040000000000000001*(dbg_object(this.m_m_normal).m_y+dbg_object(this.m_m_direction).m_y)+dbg_object(this.m_m_v2).m_y);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<402>";
 	this.m_m_cornerDir1=this.m_m_normal;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/shapes/b2edgeshape.monkey<403>";
-	this.m_m_cornerDir2.p_Set2(-dbg_object(this.m_m_normal).m_x,-dbg_object(this.m_m_normal).m_y);
+	this.m_m_cornerDir2.p_Set6(-dbg_object(this.m_m_normal).m_x,-dbg_object(this.m_m_normal).m_y);
 	pop_err();
 	return this;
 }
@@ -17438,12 +25030,12 @@ c_b2PolyAndCircleContact.m_new=function(){
 	pop_err();
 	return this;
 }
-function c_Enumerator(){
+function c_Enumerator3(){
 	Object.call(this);
 	this.m__list=null;
 	this.m__curr=null;
 }
-c_Enumerator.m_new=function(t_list){
+c_Enumerator3.m_new=function(t_list){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<471>";
 	this.m__list=t_list;
@@ -17452,20 +25044,20 @@ c_Enumerator.m_new=function(t_list){
 	pop_err();
 	return this;
 }
-c_Enumerator.m_new2=function(){
+c_Enumerator3.m_new2=function(){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<468>";
 	pop_err();
 	return this;
 }
-c_Enumerator.prototype.p_HasNext=function(){
+c_Enumerator3.prototype.p_HasNext=function(){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<476>";
 	var t_=this.m__curr!=null;
 	pop_err();
 	return t_;
 }
-c_Enumerator.prototype.p_NextObject=function(){
+c_Enumerator3.prototype.p_NextObject=function(){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<480>";
 	var t_data=dbg_object(this.m__curr).m_elt;
@@ -17660,7 +25252,7 @@ c_b2DynamicTree.prototype.p_InsertLeaf=function(t_leaf){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<494>";
 		do{
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<495>";
-			if(dbg_object(t_node1).m_aabb.p_Contains2(dbg_object(t_node2).m_aabb)){
+			if(dbg_object(t_node1).m_aabb.p_Contains3(dbg_object(t_node2).m_aabb)){
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<496>";
 				break;
 			}
@@ -17761,7 +25353,7 @@ c_b2DynamicTree.prototype.p_RemoveLeaf=function(t_leaf){
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<547>";
 			dbg_object(t_node1).m_aabb=c_b2AABB.m_StaticCombine(dbg_object(dbg_object(t_node1).m_child1).m_aabb,dbg_object(dbg_object(t_node1).m_child2).m_aabb);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<548>";
-			if(t_oldAABB.p_Contains2(dbg_object(t_node1).m_aabb)){
+			if(t_oldAABB.p_Contains3(dbg_object(t_node1).m_aabb)){
 				err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<549>";
 				break;
 			}
@@ -17791,7 +25383,7 @@ c_b2DynamicTree.prototype.p_MoveProxy2=function(t_proxy,t_aabb,t_displacement){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<148>";
 	c_b2Settings.m_B2Assert(t_proxy.p_IsLeaf());
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<150>";
-	if(dbg_object(t_proxy).m_aabb.p_Contains2(t_aabb)){
+	if(dbg_object(t_proxy).m_aabb.p_Contains3(t_aabb)){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictree.monkey<151>";
 		pop_err();
 		return false;
@@ -17982,7 +25574,7 @@ c_FlashArray3.m_new3=function(){
 	pop_err();
 	return this;
 }
-c_FlashArray3.prototype.p_Set12=function(t_index,t_item){
+c_FlashArray3.prototype.p_Set16=function(t_index,t_item){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<135>";
 	if(t_index>=this.m_arrLength){
@@ -18143,10 +25735,10 @@ c_DTQueryCallback.prototype.p_Callback3=function(t_a){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<54>";
 	if(this.m_m_pairCount==this.m_m_pairBuffer.p_Length()){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<55>";
-		this.m_m_pairBuffer.p_Set13(this.m_m_pairCount,c_b2DynamicTreePair.m_new.call(new c_b2DynamicTreePair));
+		this.m_m_pairBuffer.p_Set17(this.m_m_pairCount,c_b2DynamicTreePair.m_new.call(new c_b2DynamicTreePair));
 	}
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<58>";
-	var t_pair=this.m_m_pairBuffer.p_Get(this.m_m_pairCount);
+	var t_pair=this.m_m_pairBuffer.p_Get2(this.m_m_pairCount);
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<60>";
 	if(dbg_object(t_proxy).m_id<dbg_object(this.m_queryProxy).m_id){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<61>";
@@ -18225,7 +25817,7 @@ c_FlashArray4.m_new3=function(){
 	pop_err();
 	return this;
 }
-c_FlashArray4.prototype.p_Get=function(t_index){
+c_FlashArray4.prototype.p_Get2=function(t_index){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<127>";
 	if(t_index>=0 && this.m_length>t_index){
@@ -18238,7 +25830,7 @@ c_FlashArray4.prototype.p_Get=function(t_index){
 		return null;
 	}
 }
-c_FlashArray4.prototype.p_Set13=function(t_index,t_item){
+c_FlashArray4.prototype.p_Set17=function(t_index,t_item){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/flash/flashtypes.monkey<135>";
 	if(t_index>=this.m_arrLength){
@@ -18472,7 +26064,7 @@ c_b2Collision.m_CollidePolygonAndCircle=function(t_manifold,t_polygon,t_xf1,t_ci
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<633>";
 			dbg_object(t_manifold).m_m_localPlaneNormal.p_Normalize();
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<634>";
-			dbg_object(t_manifold).m_m_localPoint.p_Set2(t_faceCenterX,t_faceCenterY);
+			dbg_object(t_manifold).m_m_localPoint.p_Set6(t_faceCenterX,t_faceCenterY);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<635>";
 			dbg_object(dbg_array(dbg_object(t_manifold).m_m_points,0)[dbg_index]).m_m_localPoint.p_SetV(dbg_object(t_circle).m_m_p);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<636>";
@@ -18882,14 +26474,14 @@ c_b2Collision.m_ClipSegmentToLine=function(t_vOut,t_vIn,t_normal,t_offset){
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<63>";
 	if(t_distance0<=0.0){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<64>";
-		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set14(dbg_array(t_vIn,0)[dbg_index]);
+		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set18(dbg_array(t_vIn,0)[dbg_index]);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<65>";
 		t_numOut+=1;
 	}
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<67>";
 	if(t_distance1<=0.0){
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<68>";
-		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set14(dbg_array(t_vIn,1)[dbg_index]);
+		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set18(dbg_array(t_vIn,1)[dbg_index]);
 		err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<69>";
 		t_numOut+=1;
 	}
@@ -19135,7 +26727,7 @@ c_b2Collision.m_CollidePolygons=function(t_manifold,t_polyA,t_xfA,t_polyB,t_xfB)
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<473>";
 			dbg_object(dbg_object(t_cp).m_m_localPoint).m_y=t_tX*dbg_object(dbg_object(t_tMat).m_col2).m_x+t_tY*dbg_object(dbg_object(t_tMat).m_col2).m_y;
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<474>";
-			dbg_object(t_cp).m_m_id.p_Set9(dbg_object(t_cv).m_id);
+			dbg_object(t_cp).m_m_id.p_Set13(dbg_object(t_cv).m_id);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<475>";
 			dbg_object(dbg_object(t_cp).m_m_id).m_features.p_Flip2(t_flip);
 			err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/b2collision.monkey<476>";
@@ -19277,21 +26869,32 @@ c_ClipVertex.m_new=function(){
 	pop_err();
 	return this;
 }
-c_ClipVertex.prototype.p_Set14=function(t_other){
+c_ClipVertex.prototype.p_Set18=function(t_other){
 	push_err();
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/clipvertex.monkey<46>";
 	dbg_object(this.m_v).m_x=dbg_object(dbg_object(t_other).m_v).m_x;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/clipvertex.monkey<47>";
 	dbg_object(this.m_v).m_y=dbg_object(dbg_object(t_other).m_v).m_y;
 	err_info="C:/Users/Zachary/Documents/GitHub/glitch_game/box2d/collision/clipvertex.monkey<48>";
-	this.m_id.p_Set9(dbg_object(t_other).m_id);
+	this.m_id.p_Set13(dbg_object(t_other).m_id);
 	pop_err();
 }
 function bbInit(){
+	bb_reflection__classesMap=null;
+	bb_reflection__classes=[];
+	bb_reflection__getClass=null;
+	bb_reflection__intClass=null;
+	bb_reflection__floatClass=null;
+	bb_reflection__boolClass=null;
+	bb_reflection__stringClass=null;
+	bb_app__game=BBGame.Game();
+	c_JSONToken.m_reusableToken=c_JSONToken.m_new.call(new c_JSONToken,-1,null);
+	bb_reflection__functions=[];
+	bb_reflection__init=bb_reflection___init();
 	bb_app__app=null;
 	bb_app__delegate=null;
-	bb_app__game=BBGame.Game();
 	bb_main_APP=null;
+	bb_reflection__unknownClass=(c_UnknownClass.m_new.call(new c_UnknownClass));
 	bb_graphics_device=null;
 	bb_graphics_context=c_GraphicsContext.m_new.call(new c_GraphicsContext);
 	c_Image.m_DefaultFlags=0;

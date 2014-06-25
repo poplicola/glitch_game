@@ -83,6 +83,10 @@ Class Universe
 		m_world.SetContactListener( New DwarfFeetContactListener() )
 	End
 	
+	Method Load:Void( path:String )
+		Local rubeWorld:RubeWorld = LoadRube( path )
+	End
+	
 	Method OnRender:Void()
 		'GLICTH UpdatePhysics() 'have this here instead of Update, rendering is a frame behind
 		m_world.DrawDebugData()
