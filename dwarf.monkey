@@ -111,7 +111,6 @@ Class Dwarf
 	Method OnUpdate:Void()
 		If ( feetTouching > 0 ) Then feetContactTime = Millisecs()
 		feetValid = ( ( Millisecs() - feetContactTime ) <= Physics.JUMP_FORGIVENESS  )
-		feetValid = True
 		
 		Local keyRight:Int = CONTROL_SCHEMES[player][CONTROL_RIGHT]
 		Local keyLeft:Int = CONTROL_SCHEMES[player][CONTROL_LEFT]
@@ -123,14 +122,14 @@ Class Dwarf
 		If KeyDown( keyRight ) And Not KeyDown( keyLeft ) Then facing = FACING_RIGHT
 		If KeyDown( keyLeft ) And Not KeyDown( keyRight ) Then facing = FACING_LEFT
 		
-		If KeyDown( keyRight) And ( facing = FACING_RIGHT )
+		If KeyDown( keyRight) And ( facing = FACING_RIGHT ) And ( feetValid )
 			ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
 				Local torque:Float = AdjustTorque( Physics.WALK_TORQUE )
 				body.ApplyTorque( torque )
 			EndIf
-		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT )
+		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT ) And ( feetValid )
 			ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
@@ -151,7 +150,7 @@ Class Dwarf
 	
 	Method AdjustTorque:Float( torque:Float )
 		Local tick:Float = 15.0
-		Local desiredAngle:Float = 0.0
+		Local desiredAngle:Float = 0.0 + DegreesToRadians( Physics.LEAN ) * facing
 		Local bodyAngle:Float = body.GetAngle()
 		
 		Local nextAngle:Float = bodyAngle + body.GetAngularVelocity() / tick
