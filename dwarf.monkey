@@ -25,6 +25,7 @@ Class Dwarf
 	Field x:Float, y:Float, facing:Int
 	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint, feet:b2Fixture
 	Field feetTouching:Int, feetContactTime:Int, feetValid:Bool
+	Field jumpPressed:Int, jumpValid:Bool
 
 	Method New( Player:Int, Start_x:Float, Start_y:Float )
 		Self.player = Player;
@@ -138,9 +139,16 @@ Class Dwarf
 			EndIf
 		Endif
 		
-		If KeyHit( keyUp ) And ( feetValid )
+		If KeyHit( keyUp )
+			jumpPressed = Millisecs()
+		EndIf
+		
+		jumpValid = ( ( Millisecs() - jumpPressed ) <= Physics.JUMP_FORGIVENESS )
+				
+		If ( jumpValid ) And ( feetValid )
 			body.SetLinearVelocity( New b2Vec2( body.GetLinearVelocity().x, 0 ) )
 			ApplyImpulseToBody2( body, -Physics.JUMP_IMPULSE, body.GetAngle() )
+			jumpPressed -= Physics.JUMP_FORGIVENESS
 		EndIf
 		
 		If KeyDown( keyDown )
