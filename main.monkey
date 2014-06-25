@@ -19,7 +19,7 @@ Import dwarf
 Import glue
 Import physics
 Import world
-Import rubeloader
+'Import rubeloader
 
 
 
@@ -52,7 +52,7 @@ Class MyApp Extends App
 		Dwarf.image.SetHandle( Dwarf.image.Width() / 2.0, Dwarf.image.Height() / 2.0 ) 'exclude for GLITCH
 		
 		universe = New Universe()
-		universe.Load( "rubeformat.txt" )
+		'''universe.Load( "rubeformat.txt" )
 		'universe.Initialize()
 		
 		dwarf_one = New Dwarf( 0, 30, 454 )

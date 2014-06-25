@@ -79,7 +79,7 @@ Class Dwarf
 		'head.CreateFixture( fixtureDefinition )
 		
 		
-		
+		#Rem
 		Local neckDefinition:b2RevoluteJointDef = New b2RevoluteJointDef()
 		neckDefinition.bodyA = body
 		neckDefinition.bodyB = head
@@ -88,7 +88,7 @@ Class Dwarf
 		neckDefinition.localAnchorB.x = 0; neckDefinition.localAnchorB.y = yNeck
 		
 		neck = b2RevoluteJoint( world.CreateJoint( neckDefinition ) )
-		
+		#End
 		
 		
 		Local feetDefinition:b2PolygonShape = New b2PolygonShape()
@@ -118,8 +118,10 @@ Class Dwarf
 		
 		If KeyDown( keyRight) And ( facing = FACING_RIGHT )
 			ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
+			body.ApplyTorque( Physics.WALK_TORQUE )
 		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT )
 			ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
+			body.ApplyTorque( -Physics.WALK_TORQUE )
 		Endif
 		
 		If KeyHit( keyUp ) And ( feetTouching > 0 )

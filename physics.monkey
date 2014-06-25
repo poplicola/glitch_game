@@ -10,5 +10,8 @@ Class Physics
 	Const BRICK_RESTITUTION:Float = 0/0
 	
 	Const WALK_FORCE:Float = 60
-	Const JUMP_IMPULSE:Float = 35
+	Const WALK_TORQUE:Float = 30
+	Const JUMP_IMPULSE:Float = 20
+	
+	Const JUMP_FORGIVENESS:Int = 10
 End
