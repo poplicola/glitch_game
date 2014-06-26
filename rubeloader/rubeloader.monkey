@@ -16,7 +16,6 @@ Function LoadRube:Void( path:String, _world:b2World )
 	Local bodies:JSONArray = JSONArray( data.GetItem( "body" ) )
 	
 	For Local datum:JSONDataItem = EachIn bodies
-		Print "body"
 		Local bodyData:JSONObject = JSONObject( datum )
 		Local bodyDef:b2BodyDef = New b2BodyDef()
 		

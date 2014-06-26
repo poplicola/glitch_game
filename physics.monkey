@@ -3,7 +3,14 @@ Class Physics
 	
 	Const GRAVITY:Float = 30
 	
-	Const DWARF_DENSITY:Float = 0.7
+	Const HEAD_RADIUS:Float = 10
+	Const HEAD_DENSITY:Float = 0.3
+	Const HEAD_FRICTION:Float = 2.0
+	
+	Const DWARF_WIDTH:Int = 30
+	Const DWARF_HEIGHT:Int = 30
+	Const DWARF_MASS:Float = 30.0 * 50.0 * 0.7
+	'Const DWARF_DENSITY:Float = 0.7
 	Const DWARF_FRICTION:Float = 0.3'0.3
 	Const DWARF_RESTITUTION:Float = 0.6'0.4'0.2
 	
@@ -12,9 +19,14 @@ Class Physics
 	Const BRICK_RESTITUTION:Float = 0.0
 	
 	Const MAX_SPEED:Float = 8'10
-	Const WALK_FORCE:Float = 60
-	Const WALK_TORQUE:Float = 10
-	Const JUMP_IMPULSE:Float = 15'20
+	Const WALK_FORCE_HEAD_MULTIPLIER:Float = 0.4
+	Const WALK_FORCE:Float = 60.0 / ( 1 + WALK_FORCE_HEAD_MULTIPLIER )
+	Const WALK_TORQUE_TICK:Float = 15
+	Const JUMP_IMPULSE:Float = 20
+	
+	Const NECK_TORQUE:Float = 3
+	Const NECK_TICK:Float = 15
+	Const NECK_ANGLE:Float = 50
 	
 	Const LEAN:Float = 18
 	

@@ -1,4 +1,15 @@
 Class Arrays<T>
+	Function Reverse:T[]( a:T[] )
+		Local b:T[ a.Length ]
+		
+		For Local n:Int = 0 Until a.Length
+			Local m:Int = ( a.Length - 1 ) - n
+			b[m] = a[n]
+		Next
+		
+		Return b
+	End
+	
 	Function Fill:T[]( value:T, length:Int )
 		Local arr:T[ length ]
 		

@@ -40,7 +40,7 @@ Class Universe
         '// Allow bodies to sleep
         Local doSleep :Bool = False'''True
         '// Construct a world object
-        m_world = New b2World(gravity, doSleep)
+        m_world = New b2World(gravity, True )
         m_world.SetWarmStarting(True)
         '// set debug draw
         Local dbgDraw :b2DebugDraw = New b2DebugDraw()
