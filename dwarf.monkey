@@ -6,8 +6,8 @@ Import main
 
 
 
-Global CONTROL_SCHEME_WASD:Int[] = [KEY_W, KEY_D, KEY_S, KEY_A, KEY_F]
-Global CONTROL_SCHEME_ARROWS:Int[] = [KEY_UP, KEY_RIGHT, KEY_DOWN, KEY_LEFT, KEY_SLASH]
+Global CONTROL_SCHEME_WASD:Int[] = [KEY_W, KEY_D, KEY_S, KEY_A, KEY_T]
+Global CONTROL_SCHEME_ARROWS:Int[] = [KEY_UP, KEY_RIGHT, KEY_DOWN, KEY_LEFT, KEY_COMMA]
 Global CONTROL_SCHEMES:Int[][] = [CONTROL_SCHEME_WASD, CONTROL_SCHEME_ARROWS]
 Const CONTROL_UP:Int = 0, CONTROL_RIGHT:Int = 1, CONTROL_DOWN:Int = 2, CONTROL_LEFT:Int = 3, CONTROL_ACTION:Int = 4
 
@@ -18,10 +18,9 @@ Const FACING_LEFT:Int = -1, FACING_RIGHT:Int = 1
 
 
 Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
-	Const WIDTH:Int = 30, HEIGHT:Int = 50
 	Global FRAME_START:Int[] = [ 0, 3 * 20 ]
 	Global image:Image
-	Global sheet:Image
+	Global sheet:Image, sheet2:Image
 	
 	Field player:Int
 	Field x:Float, y:Float, facing:Int
@@ -31,6 +30,21 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	Field animationDelegate:AnimationDelegate
 	Field attacking:Bool
 	Field hit:b2Fixture[2], others:List< b2Fixture >[2]
+	Field headlessFacing:Float
+	
+	Method _center:b2Vec2() Property
+		Local xCenter:Float = ( body.GetWorldCenter().x * body.GetMass() + head.GetWorldCenter().x  * head.GetMass() ) / ( body.GetMass() + head.GetMass() )
+		Local yCenter:Float = ( body.GetWorldCenter().y * body.GetMass() + head.GetWorldCenter().y  * head.GetMass() ) / ( body.GetMass() + head.GetMass() )
+		Return New b2Vec2( xCenter, yCenter )
+	End
+	
+	Method center:b2Vec2() Property
+		Return body.GetWorldCenter()
+	End
+	
+	Method headCenter:b2Vec2() Property
+		Return head.GetWorldCenter()
+	End
 
 	Method New( Player:Int, Start_x:Float, Start_y:Float )
 		Self.player = Player;
@@ -112,8 +126,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 				Else
 					Local attackVector:b2Vec2 = New b2Vec2()
 					body.GetWorldVector( New b2Vec2( Physics.ATTACK_IMPULSE * facing, 0 ), attackVector )
-				
-					ApplyImpulseToBody( _body, attackVector.x, attackVector.y )
+					_body.ApplyImpulse( attackVector, center )
 				EndIf
 			Next
 			
@@ -124,7 +137,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 				'replace 'rebound = True' above with this code for glitch
 				Local attackVector:b2Vec2 = New b2Vec2()
 				body.GetWorldVector( New b2Vec2( -Physics.ATTACK_IMPULSE * facing * multiplier, 0 ), attackVector )
-				Local offcenter:b2Vec2 = New b2Vec2( body.GetWorldCenter().x, body.GetWorldCenter().y - 8 / Physics.SCALE )
+				Local offcenter:b2Vec2 = New b2Vec2( center.x, center.y - 8 / Physics.SCALE )
 				body.ApplyImpulse( attackVector, offcenter )
 			EndIf
 		EndIf
@@ -141,10 +154,12 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
         body = world.CreateBody( bodyDefinition )
 		
 		Local shapeDefinition:b2PolygonShape = New b2PolygonShape()
-		shapeDefinition.SetAsBox( 0.5 * WIDTH / Physics.SCALE, 0.5 * HEIGHT / Physics.SCALE )
+		shapeDefinition.SetAsBox( 0.5 * Physics.DWARF_WIDTH / Physics.SCALE, 0.5 * Physics.DWARF_HEIGHT / Physics.SCALE )
 		
         Local fixtureDefinition:b2FixtureDef = New b2FixtureDef()
-        fixtureDefinition.density = Physics.DWARF_DENSITY
+		Local mass:Float = Physics.DWARF_MASS - ( Physics.HEAD_RADIUS * Physics.HEAD_RADIUS ) * 3.1415 * Physics.HEAD_DENSITY
+		Local density:Float = mass / ( Physics.DWARF_WIDTH * Physics.DWARF_HEIGHT )
+        fixtureDefinition.density = density'Physics.DWARF_DENSITY
         fixtureDefinition.friction = Physics.DWARF_FRICTION
         fixtureDefinition.restitution = Physics.DWARF_RESTITUTION
         fixtureDefinition.shape = shapeDefinition
@@ -153,7 +168,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		
 		
-		Local yNeck:Float = 0.5 * WIDTH / Physics.SCALE - 0.5 * HEIGHT / Physics.SCALE
+		Local yNeck:Float = -26 / Physics.SCALE
 		
 		
 		
@@ -163,31 +178,43 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		head = world.CreateBody( headDefinition )
 		
-		Local shapeDefinition2:b2CircleShape = New b2CircleShape( 0.5 * WIDTH / Physics.SCALE + 0.1 )
+		Local shapeDefinition2:b2CircleShape = New b2CircleShape( Physics.HEAD_RADIUS / Physics.SCALE + 0.1 )
 		shapeDefinition2.SetLocalPosition( New b2Vec2( 0, yNeck ) )
 		
+		fixtureDefinition.density = Physics.HEAD_DENSITY
+		fixtureDefinition.friction = Physics.HEAD_FRICTION
 		fixtureDefinition.shape = shapeDefinition2
 		
-		'head.CreateFixture( fixtureDefinition )
+		head.CreateFixture( fixtureDefinition )
 		
 		
-		#Rem
+		
+		Local yNeck2:Float = -13 / Physics.SCALE
+		
+		
 		Local neckDefinition:b2RevoluteJointDef = New b2RevoluteJointDef()
 		neckDefinition.bodyA = body
 		neckDefinition.bodyB = head
 		neckDefinition.collideConnected = False
-		neckDefinition.localAnchorA.x = 0; neckDefinition.localAnchorA.y = yNeck
-		neckDefinition.localAnchorB.x = 0; neckDefinition.localAnchorB.y = yNeck
+		neckDefinition.localAnchorA.x = 0; neckDefinition.localAnchorA.y = yNeck2
+		neckDefinition.localAnchorB.x = 0; neckDefinition.localAnchorB.y = yNeck2
+		
+		'exclude this for GLITCH
+		neckDefinition.enableLimit = True
+		neckDefinition.lowerAngle = DegreesToRadians( -Physics.NECK_ANGLE )
+		neckDefinition.upperAngle = DegreesToRadians( Physics.NECK_ANGLE )
+		
+		neckDefinition.enableMotor = True
+		neckDefinition.maxMotorTorque = Physics.NECK_TORQUE
 		
 		neck = b2RevoluteJoint( world.CreateJoint( neckDefinition ) )
-		#End
 		
 		
 		Local feetDefinition:b2PolygonShape = New b2PolygonShape()
-		feetDefinition.SetAsBox( 0.6 * WIDTH / Physics.SCALE, 0.5 / Physics.SCALE )
+		feetDefinition.SetAsBox( 0.6 * Physics.DWARF_WIDTH / Physics.SCALE, 0.5 / Physics.SCALE )
 		
 		For Local vertex:b2Vec2 = EachIn feetDefinition.GetVertices()
-			vertex.y += 0.5 * HEIGHT / Physics.SCALE + 0.5 / Physics.SCALE
+			vertex.y += 0.5 * Physics.DWARF_HEIGHT / Physics.SCALE + 0.5 / Physics.SCALE
 		Next
 		
 		Local feetFixtureDefinition:b2FixtureDef = New b2FixtureDef()
@@ -199,8 +226,8 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		
 		Local hitDefinition:b2PolygonShape = New b2PolygonShape()
-		Local vertices:b2Vec2[] = [ New b2Vec2( ( 13 - 52 ) / Physics.SCALE, ( 24 - 56 ) / Physics.SCALE ), New b2Vec2( ( 25 - 52 ) / Physics.SCALE, ( 34 - 56 ) / Physics.SCALE ), New b2Vec2( ( 8 - 52 ) / Physics.SCALE, ( 77 - 56 ) / Physics.SCALE ), New b2Vec2( ( 1 - 52 ) / Physics.SCALE, ( 52 - 56 ) / Physics.SCALE ) ]
-		hitDefinition.SetAsArray( vertices, 4 )
+		Local vertices:b2Vec2[] = [ New b2Vec2( ( 29 - 52 ) / Physics.SCALE, ( 6 - 56 ) / Physics.SCALE ), New b2Vec2( ( 57 - 52 ) / Physics.SCALE, ( 14 - 56 ) / Physics.SCALE ), New b2Vec2( ( 23 - 52 ) / Physics.SCALE, ( 36 - 56 ) / Physics.SCALE ), New b2Vec2( ( 6 - 52 ) / Physics.SCALE, ( 65 - 56 ) / Physics.SCALE ), New b2Vec2( ( 1 - 52 ) / Physics.SCALE, ( 54 - 56 ) / Physics.SCALE ), New b2Vec2( ( 4 - 52 ) / Physics.SCALE, ( 29 - 56 ) / Physics.SCALE ) ]
+		hitDefinition.SetAsArray( vertices, 6 )
 		
 		Local hitFixtureDefinition:b2FixtureDef = New b2FixtureDef()
 		hitFixtureDefinition.isSensor = True
@@ -208,14 +235,19 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		hit[0] = body.CreateFixture( hitFixtureDefinition )
 		
-		vertices = [ New b2Vec2( -( 13 - 52 ) / Physics.SCALE, ( 24 - 56 ) / Physics.SCALE ), New b2Vec2( -( 25 - 52 ) / Physics.SCALE, ( 34 - 56 ) / Physics.SCALE ), New b2Vec2( -( 8 - 52 ) / Physics.SCALE, ( 77 - 56 ) / Physics.SCALE ), New b2Vec2( -( 1 - 52 ) / Physics.SCALE, ( 52 - 56 ) / Physics.SCALE ) ]
-		hitDefinition.SetAsArray( vertices, 4 )
+		vertices =                [ New b2Vec2( -( 29 - 52 ) / Physics.SCALE, ( 6 - 56 ) / Physics.SCALE ), New b2Vec2( -( 57 - 52 ) / Physics.SCALE, ( 14 - 56 ) / Physics.SCALE ), New b2Vec2( -( 23 - 52 ) / Physics.SCALE, ( 36 - 56 ) / Physics.SCALE ), New b2Vec2( -( 6 - 52 ) / Physics.SCALE, ( 65 - 56 ) / Physics.SCALE ), New b2Vec2( -( 1 - 52 ) / Physics.SCALE, ( 54 - 56 ) / Physics.SCALE ), New b2Vec2( -( 4 - 52 ) / Physics.SCALE, ( 29 - 56 ) / Physics.SCALE ) ]
+		hitDefinition.SetAsArray( Arrays< b2Vec2 >.Reverse( vertices ), 6 )
 		hitFixtureDefinition.shape = hitDefinition
 		
 		hit[1] = body.CreateFixture( hitFixtureDefinition )
+		
+			Local massData:b2MassData = New b2MassData()
+			body.GetMassData( massData )
+			massData.center = New b2Vec2( _center.x - body.GetWorldCenter().x, _center.y - body.GetWorldCenter().y )
+			body.SetMassData( massData )
 	End
 	
-	Method OnUpdate:Void()
+	Method OnUpdate:Void()		
 		If ( feetTouching > 0 ) Then feetContactTime = Millisecs()
 		feetValid = ( ( Millisecs() - feetContactTime ) <= Physics.JUMP_FORGIVENESS  )
 		
@@ -233,14 +265,20 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 		
 		If KeyDown( keyRight) And ( facing = FACING_RIGHT ) And ( feetValid )
-			If ( body.GetLinearVelocity().x < Physics.MAX_SPEED ) Then ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
+			If ( body.GetLinearVelocity().x < Physics.MAX_SPEED )
+				body.ApplyForce( New b2Vec2( Physics.WALK_FORCE, 0 ), center )
+				If neck <> Null Then head.ApplyForce( New b2Vec2( Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
+			EndIf
 			
 			If ( feetValid )
 				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
 				body.ApplyTorque( torque )
 			EndIf
 		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT ) And ( feetValid )
-			If ( body.GetLinearVelocity().x > - Physics.MAX_SPEED ) Then ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
+			If ( body.GetLinearVelocity().x > - Physics.MAX_SPEED )
+				body.ApplyForce( New b2Vec2( -Physics.WALK_FORCE, 0 ), center )
+				If neck <> Null Then head.ApplyForce( New b2Vec2( -Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
+			EndIf
 			
 			If ( feetValid )
 				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
@@ -256,7 +294,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 				
 		If ( jumpValid ) And ( feetValid )
 			body.SetLinearVelocity( New b2Vec2( body.GetLinearVelocity().x, 0 ) )
-			ApplyImpulseToBody2( body, -Physics.JUMP_IMPULSE, body.GetAngle() )
+			ApplyImpulseToBody3( body, center, -Physics.JUMP_IMPULSE, body.GetAngle() )
 			jumpPressed -= Physics.JUMP_FORGIVENESS
 		EndIf
 		
@@ -264,6 +302,8 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 			Local torque:Float = AdjustTorque( 0.0 )
 			body.ApplyTorque( torque )
 		EndIf
+		
+		UpdateNeck()
 		
 		If KeyHit( keyAction ) And Not attacking
 			attacking = True
@@ -279,8 +319,26 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 	End
 	
+	Method UpdateNeck:Void()
+		If neck = Null Then Return
+		
+		Local tick:Float = Physics.NECK_TICK
+		Local angle:Float = neck.GetJointAngle()
+		Local desiredAngle:Float = 0.0
+		
+		Local nextAngle:Float = angle + neck.GetJointSpeed() / tick
+		Local totalRotation:Float = desiredAngle - nextAngle
+		While ( totalRotation < DegreesToRadians(- 180 ) ); totalRotation += DegreesToRadians( 360 ); Wend
+		While ( totalRotation > DegreesToRadians( 180 ) ); totalRotation -= DegreesToRadians( 360 ); Wend
+		Local desiredAngularVelocity:Float = totalRotation * tick
+		
+		Local torque:Float = body.GetInertia() * desiredAngularVelocity / ( 1.0 / tick )
+		
+		neck.SetMotorSpeed( desiredAngularVelocity )
+	End
+	
 	Method AdjustTorque:Float( desiredAngle:FLoat )
-		Local tick:Float = Physics.WALK_TORQUE
+		Local tick:Float = Physics.WALK_TORQUE_TICK
 		Local bodyAngle:Float = body.GetAngle()
 		
 		Local nextAngle:Float = bodyAngle + body.GetAngularVelocity() / tick
@@ -292,13 +350,24 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	End
 	
 	Method OnRender:Void()
-		Local center:b2Vec2 = body.GetWorldCenter()
+		Local center:b2Vec2 = New b2Vec2()
+		bodyFixture.GetAABB().GetCenter( center )
 		'GLITCH Local orientation:Float = body.GetAngle()
 		'GLITCH Local orientation:Float = body.GetAngle() / 3.1415 * 180.0
 		Local orientation:Float = RadiansToDegrees( -body.GetAngle() )
 		Local frame:Int = FRAME_START[player] + animationDelegate.currentFrame
 		'DrawImage( image, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, facing, 1 )
 		DrawImage( sheet, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, -facing, 1, frame )
+		
+		Local center2:b2Vec2 = head.GetWorldCenter()
+		Local orientation2:Float = RadiansToDegrees( -head.GetAngle() )
+		Local frame2:Int = frame
+		Local facing2:Float = facing
+		If neck = Null
+			frame2 = FRAME_START[player]
+			facing2 = headlessFacing
+		EndIf
+		DrawImage( sheet2, center2.x * Physics.SCALE, center2.y * Physics.SCALE, orientation2, -facing2, 1, frame2 )
 		
 		'''DrawText( "#:" + feetTouching + "=" + BoolToString( feetValid ), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
 	End

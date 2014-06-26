@@ -7,7 +7,6 @@ Import main
 
 
 Class Brick
-	Global image:Image
 	Field body:b2Body
 	Field polygon:Float[]
 	
@@ -19,8 +18,7 @@ Class Brick
 	Method OnRender:Void()
 		PushMatrix()
 		Translate( body.GetWorldCenter().x * Physics.SCALE, body.GetWorldCenter().y * Physics.SCALE )
-		Rotate( RadiansToDegrees( body.GetAngle() ) )
-		'Translate( -body.GetWorldCenter().x * Physics.SCALE, -body.GetWorldCenter().y * Physics.SCALE )
+		Rotate( -RadiansToDegrees( body.GetAngle() ) )
 		DrawPoly( polygon )
 		PopMatrix()
 	End

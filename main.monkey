@@ -55,10 +55,10 @@ Class MyApp Extends App
 		Dwarf.image = LoadImage( "dwarf.png" )
 		Dwarf.image.SetHandle( Dwarf.image.Width() / 2.0, Dwarf.image.Height() / 2.0 ) 'exclude for GLITCH
 		
-		Dwarf.sheet = LoadImage( "dwarves.png", 100, 80, 240 )
-		Dwarf.sheet.SetHandle( Dwarf.sheet.Width() / 2.0 + 2, Dwarf.sheet.Height() / 2.0 + 15 )
-		
-		Brick.image = LoadImage( "stone.png" )
+		Dwarf.sheet = LoadImage( "bodies.png", 100, 80, 240 )
+		Dwarf.sheet.SetHandle( Dwarf.sheet.Width() / 2.0 + 2, Dwarf.sheet.Height() / 2.0 + 24 )	'{y} + 15
+		Dwarf.sheet2 = LoadImage( "heads.png", 100, 80, 240 )
+		Dwarf.sheet2.SetHandle( Dwarf.sheet.Width() / 2.0 + 2, Dwarf.sheet.Height() / 2.0 -2 )
 		
 		universe = New Universe()
 		'universe.Initialize()
@@ -78,19 +78,33 @@ Class MyApp Extends App
 		dwarf_one.OnUpdate();
 		dwarf_two.OnUpdate();
 		
+		Local keys:Int[] = [ KEY_O, KEY_P ]
+		Local dwarves:Dwarf[] = [ dwarf_one, dwarf_two ]
+		For Local n:Int = 0 To 1
+			If KeyHit( keys[n] )
+				universe.m_world.DestroyJoint( dwarves[n].neck )
+				dwarves[n].neck = Null
+				dwarves[n].headlessFacing = dwarves[n].facing
+				dwarves[n].head.SetBullet( True )
+			EndIf
+		Next
+		
 		Return 0
 	End
 	
 	Method OnRender:Int()
 		Cls()
 		
-		'universe.OnRender()
 		SetColor 255, 255, 255'GLITCH
 		dwarf_one.OnRender()
 		dwarf_two.OnRender()
 		For Local brick:Brick = EachIn bricks
 			brick.OnRender()
 		Next
+		
+		#If CONFIG = "debug"
+		universe.OnRender()
+		#End
 		
 		Return 0
 	End
