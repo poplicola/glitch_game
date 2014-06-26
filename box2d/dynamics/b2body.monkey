@@ -188,7 +188,6 @@ Class b2Body
     '*/
     #end
     Method CreateFixture2 : b2Fixture (shape:b2Shape, density:Float=0.0)
-        
         Local def :b2FixtureDef = New b2FixtureDef()
         def.shape = shape
         def.density = density

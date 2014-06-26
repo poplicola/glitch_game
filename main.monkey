@@ -2,11 +2,6 @@ Strict
 
 
 
-#REFLECTION_FILTER = "*"
-Import reflection
-
-
-
 Import mojo
 Import box2d.collision
 Import box2d.collision.shapes
@@ -25,6 +20,8 @@ Import glue
 Import physics
 Import world
 Import rubeloader
+Import abuanimation
+Import contact
 
 
 
@@ -57,7 +54,7 @@ Class MyApp Extends App
 		Dwarf.image.SetHandle( Dwarf.image.Width() / 2.0, Dwarf.image.Height() / 2.0 ) 'exclude for GLITCH
 		
 		Dwarf.sheet = LoadImage( "dwarves.png", 100, 80, 240 )
-		Dwarf.sheet.SetHandle( Dwarf.sheet.Width() / 2.0, Dwarf.sheet.Height() / 2.0 + 15 )
+		Dwarf.sheet.SetHandle( Dwarf.sheet.Width() / 2.0 + 2, Dwarf.sheet.Height() / 2.0 + 15 )
 		
 		universe = New Universe()
 		'universe.Initialize()
@@ -70,6 +67,9 @@ Class MyApp Extends App
 	End
 	
 	Method OnUpdate:Int()
+		Clock.Update()
+		animationJuggler.Update( Clock.Tick() )
+		
 		universe.OnUpdate()
 		dwarf_one.OnUpdate();
 		dwarf_two.OnUpdate();
@@ -80,12 +80,20 @@ Class MyApp Extends App
 	Method OnRender:Int()
 		Cls()
 		
+		universe.OnRender()
+		SetColor 255, 255, 255'GLITCH
 		dwarf_one.OnRender()
 		dwarf_two.OnRender()
-		universe.OnRender()
 		
 		Return 0
 	End
+End
+
+
+
+Function OtherDwarf:Dwarf( dwarf:Dwarf )
+	If dwarf = APP.dwarf_one Then Return APP.dwarf_two
+	Return APP.dwarf_one
 End
 
 

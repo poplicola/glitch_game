@@ -6,10 +6,10 @@ Import main
 
 
 
-Global CONTROL_SCHEME_WASD:Int[] = [KEY_W, KEY_D, KEY_S, KEY_A]
-Global CONTROL_SCHEME_ARROWS:Int[] = [KEY_UP, KEY_RIGHT, KEY_DOWN, KEY_LEFT]
+Global CONTROL_SCHEME_WASD:Int[] = [KEY_W, KEY_D, KEY_S, KEY_A, KEY_F]
+Global CONTROL_SCHEME_ARROWS:Int[] = [KEY_UP, KEY_RIGHT, KEY_DOWN, KEY_LEFT, KEY_SLASH]
 Global CONTROL_SCHEMES:Int[][] = [CONTROL_SCHEME_WASD, CONTROL_SCHEME_ARROWS]
-Const CONTROL_UP:Int = 0, CONTROL_RIGHT:Int = 1, CONTROL_DOWN:Int = 2, CONTROL_LEFT:Int = 3
+Const CONTROL_UP:Int = 0, CONTROL_RIGHT:Int = 1, CONTROL_DOWN:Int = 2, CONTROL_LEFT:Int = 3, CONTROL_ACTION:Int = 4
 
 
 
@@ -17,7 +17,7 @@ Const FACING_LEFT:Int = -1, FACING_RIGHT:Int = 1
 
 
 
-Class Dwarf
+Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	Const WIDTH:Int = 30, HEIGHT:Int = 50
 	Global FRAME_START:Int[] = [ 0, 3 * 20 ]
 	Global image:Image
@@ -25,9 +25,12 @@ Class Dwarf
 	
 	Field player:Int
 	Field x:Float, y:Float, facing:Int
-	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint, feet:b2Fixture
+	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint, feet:b2Fixture, bodyFixture:b2Fixture
 	Field feetTouching:Int, feetContactTime:Int, feetValid:Bool
 	Field jumpPressed:Int, jumpValid:Bool
+	Field animationDelegate:AnimationDelegate
+	Field attacking:Bool
+	Field hit:b2Fixture[2], others:List< b2Fixture >[2]
 
 	Method New( Player:Int, Start_x:Float, Start_y:Float )
 		Self.player = Player;
@@ -35,6 +38,20 @@ Class Dwarf
 		Self.y = Start_y;
 		facing = 1 - 2 * Player
 		CreateBody()
+		
+		animationDelegate = New AnimationDelegate( Self )
+		
+		animationJuggler.Add( animationDelegate )
+		
+		animationDelegate.AddAnimation( "idle", [ 0, 1, 2, 3 ], 120, True )
+		animationDelegate.AddAnimation( "run", [ 4, 5, 6, 7, 8 ], 60, True )
+		animationDelegate.AddAnimation( "attack", [ 10, 11, 12, 13 ], 60, False )
+		
+		animationDelegate.PlayAnimation( "idle" )
+		
+		For Local n:Int = 0 To 1
+			others[n] = New List< b2Fixture >()
+		Next
 	End
 	
 	Method OnBeginContact:Void()
@@ -43,6 +60,75 @@ Class Dwarf
 	End
 	
 	Method OnEndContact:Void(); feetTouching -= 1; End
+	
+	Method OnBeginHit:Void( which:Int, other:b2Fixture )
+		If Not others[which].Contains( other )
+			others[which].AddLast( other )
+		EndIf
+	End
+	
+	Method OnEndHit:Void( which:Int, other:b2Fixture )
+		others[which].RemoveEach( other )
+	End
+	
+	Method OnAnimationEnd:Void( name:String )
+		Select name
+			Case "attack"
+				attacking = False
+		End
+	End
+	
+	Method OnAnimationFrameChange:Void( name:String, frame:Int, framePrevious:Int )
+		If ( name = "attack" ) And ( frame = 12 )
+			Local rebound:Bool
+			
+			Local bodies:List< b2Body > = New List< b2Body >()
+			
+			For Local fixture:b2Fixture = EachIn others[ ( facing + 1 ) / 2 ]
+				Local dwarf:Dwarf = OtherDwarf( Self )
+				
+				Local okay:Bool = True
+				
+				For Local n:Int = 0 To 1
+					If ( fixture = dwarf.hit[n] )
+						If dwarf.animationDelegate.currentFrame <> 12 Then okay = False
+						If ( dwarf.facing + 1 ) / 2 <> n Then okay = False
+					EndIf
+				Next
+				
+				If okay = False Then Exit
+			
+				Local _body:b2Body = fixture.GetBody()
+				
+				If Not bodies.Contains( _body )
+					bodies.AddLast( _body )
+				End
+			Next
+			
+			For Local _body:b2Body = EachIn bodies
+				'GLITCH'APP.universe.m_world.DestroyBody( fixture.GetBody() )
+				If _body.GetType() = b2Body.b2_staticBody
+					rebound = True
+				Else
+					Local attackVector:b2Vec2 = New b2Vec2()
+					body.GetWorldVector( New b2Vec2( Physics.ATTACK_IMPULSE * facing, 0 ), attackVector )
+				
+					ApplyImpulseToBody( _body, attackVector.x, attackVector.y )
+				EndIf
+			Next
+			
+			If Not bodies.IsEmpty()
+				Local multiplier:Float = Physics.REBOUND_MULTIPLIER_SOFT
+			
+				If rebound = True Then multiplier = Physics.REBOUND_MULTIPLIER_HARD
+				'replace 'rebound = True' above with this code for glitch
+				Local attackVector:b2Vec2 = New b2Vec2()
+				body.GetWorldVector( New b2Vec2( -Physics.ATTACK_IMPULSE * facing * multiplier, 0 ), attackVector )
+				Local offcenter:b2Vec2 = New b2Vec2( body.GetWorldCenter().x, body.GetWorldCenter().y - 8 / Physics.SCALE )
+				body.ApplyImpulse( attackVector, offcenter )
+			EndIf
+		EndIf
+	End
 	
 	Method CreateBody:Void()
 		Local world:b2World = APP.universe.m_world
@@ -63,7 +149,7 @@ Class Dwarf
         fixtureDefinition.restitution = Physics.DWARF_RESTITUTION
         fixtureDefinition.shape = shapeDefinition
 		
-        body.CreateFixture( fixtureDefinition )
+        bodyFixture = body.CreateFixture( fixtureDefinition )
 		
 		
 		
@@ -109,6 +195,24 @@ Class Dwarf
 		feetFixtureDefinition.shape = feetDefinition
 				
 		feet = body.CreateFixture( feetFixtureDefinition )
+		
+		
+		
+		Local hitDefinition:b2PolygonShape = New b2PolygonShape()
+		Local vertices:b2Vec2[] = [ New b2Vec2( ( 13 - 52 ) / Physics.SCALE, ( 24 - 56 ) / Physics.SCALE ), New b2Vec2( ( 25 - 52 ) / Physics.SCALE, ( 34 - 56 ) / Physics.SCALE ), New b2Vec2( ( 8 - 52 ) / Physics.SCALE, ( 77 - 56 ) / Physics.SCALE ), New b2Vec2( ( 1 - 52 ) / Physics.SCALE, ( 52 - 56 ) / Physics.SCALE ) ]
+		hitDefinition.SetAsArray( vertices, 4 )
+		
+		Local hitFixtureDefinition:b2FixtureDef = New b2FixtureDef()
+		hitFixtureDefinition.isSensor = True
+		hitFixtureDefinition.shape = hitDefinition
+		
+		hit[0] = body.CreateFixture( hitFixtureDefinition )
+		
+		vertices = [ New b2Vec2( -( 13 - 52 ) / Physics.SCALE, ( 24 - 56 ) / Physics.SCALE ), New b2Vec2( -( 25 - 52 ) / Physics.SCALE, ( 34 - 56 ) / Physics.SCALE ), New b2Vec2( -( 8 - 52 ) / Physics.SCALE, ( 77 - 56 ) / Physics.SCALE ), New b2Vec2( -( 1 - 52 ) / Physics.SCALE, ( 52 - 56 ) / Physics.SCALE ) ]
+		hitDefinition.SetAsArray( vertices, 4 )
+		hitFixtureDefinition.shape = hitDefinition
+		
+		hit[1] = body.CreateFixture( hitFixtureDefinition )
 	End
 	
 	Method OnUpdate:Void()
@@ -119,6 +223,7 @@ Class Dwarf
 		Local keyLeft:Int = CONTROL_SCHEMES[player][CONTROL_LEFT]
 		Local keyUp:Int = CONTROL_SCHEMES[player][CONTROL_UP]
 		Local keyDown:Int = CONTROL_SCHEMES[player][CONTROL_DOWN]
+		Local keyAction:Int = CONTROL_SCHEMES[player][CONTROL_ACTION]	
 		
 		If KeyHit( keyRight ) Then facing = FACING_RIGHT
 		If KeyHit( keyLeft ) Then facing = FACING_LEFT
@@ -126,14 +231,14 @@ Class Dwarf
 		If KeyDown( keyLeft ) And Not KeyDown( keyRight ) Then facing = FACING_LEFT
 		
 		If KeyDown( keyRight) And ( facing = FACING_RIGHT ) And ( feetValid )
-			ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
+			If ( body.GetLinearVelocity().x < Physics.MAX_SPEED ) Then ApplyForceToBody( body, Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
 				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
 				body.ApplyTorque( torque )
 			EndIf
 		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT ) And ( feetValid )
-			ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
+			If ( body.GetLinearVelocity().x > - Physics.MAX_SPEED ) Then ApplyForceToBody( body, -Physics.WALK_FORCE, 0 )
 			
 			If ( feetValid )
 				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
@@ -157,6 +262,19 @@ Class Dwarf
 			Local torque:Float = AdjustTorque( 0.0 )
 			body.ApplyTorque( torque )
 		EndIf
+		
+		If KeyHit( keyAction ) And Not attacking
+			attacking = True
+			animationDelegate.PlayAnimation( "attack" )
+		EndIf
+		
+		If attacking = False
+			If ( KeyDown( keyRight ) Or KeyDown( keyLeft ) Or ( KeyDown( keyDown ) And ( Abs( body.GetAngle() ) > 0.1 ) ) ) And ( feetValid )
+				animationDelegate.PlayAnimation( "run" ) 
+			Else
+				animationDelegate.PlayAnimation( "idle" )
+			EndIf
+		EndIf
 	End
 	
 	Method AdjustTorque:Float( desiredAngle:FLoat )
@@ -176,41 +294,12 @@ Class Dwarf
 		'GLITCH Local orientation:Float = body.GetAngle()
 		'GLITCH Local orientation:Float = body.GetAngle() / 3.1415 * 180.0
 		Local orientation:Float = RadiansToDegrees( -body.GetAngle() )
-		Local frame:Int = FRAME_START[player]
-		DrawImage( image, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, facing, 1 )
+		Local frame:Int = FRAME_START[player] + animationDelegate.currentFrame
+		'DrawImage( image, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, facing, 1 )
 		DrawImage( sheet, center.x * Physics.SCALE, center.y * Physics.SCALE, orientation, -facing, 1, frame )
 		
-		DrawText( "#:" + feetTouching + "=" + BoolToString( feetValid ), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
+		'''DrawText( "#:" + feetTouching + "=" + BoolToString( feetValid ), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
 	End
-End
-
-
-
-
-Class DwarfFeetContactListener Implements b2ContactListenerInterface
-    Method BeginContact:Void( contact:b2Contact )
-		If contact.IsTouching()
-			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
-				If ( contact.GetFixtureA() = dwarf.feet ) Or ( contact.GetFixtureB() = dwarf.feet )
-					dwarf.OnBeginContact()
-				EndIf
-			Next
-		EndIf
-	End
-	
-    Method EndContact:Void(contact:b2Contact)
-		'If contact.IsTouching()
-			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
-				If ( contact.GetFixtureA() = dwarf.feet ) Or ( contact.GetFixtureB() = dwarf.feet )
-					dwarf.OnEndContact()
-				EndIf
-			Next
-		'EndIf
-	End
-	
-    Method PreSolve:Void( contact:b2Contact, oldManifold:b2Manifold ); End
-	
-    Method PostSolve:Void( contact:b2Contact, impulse:b2ContactImpulse ); End
 End
 
 
