@@ -45,7 +45,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		animationDelegate.AddAnimation( "idle", [ 0, 1, 2, 3 ], 120, True )
 		animationDelegate.AddAnimation( "run", [ 4, 5, 6, 7, 8 ], 60, True )
-		animationDelegate.AddAnimation( "attack", [ 10, 11, 12, 13 ], 60, False )
+		animationDelegate.AddAnimation( "attack", [ 10, 11, 12, 13 ], [ 100.0, 120, 60, 100 ], False )
 		
 		animationDelegate.PlayAnimation( "idle" )
 		
@@ -225,10 +225,12 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		Local keyDown:Int = CONTROL_SCHEMES[player][CONTROL_DOWN]
 		Local keyAction:Int = CONTROL_SCHEMES[player][CONTROL_ACTION]	
 		
-		If KeyHit( keyRight ) Then facing = FACING_RIGHT
-		If KeyHit( keyLeft ) Then facing = FACING_LEFT
-		If KeyDown( keyRight ) And Not KeyDown( keyLeft ) Then facing = FACING_RIGHT
-		If KeyDown( keyLeft ) And Not KeyDown( keyRight ) Then facing = FACING_LEFT
+		If Not attacking
+			If KeyHit( keyRight ) Then facing = FACING_RIGHT
+			If KeyHit( keyLeft ) Then facing = FACING_LEFT
+			If KeyDown( keyRight ) And Not KeyDown( keyLeft ) Then facing = FACING_RIGHT
+			If KeyDown( keyLeft ) And Not KeyDown( keyRight ) Then facing = FACING_LEFT
+		EndIf
 		
 		If KeyDown( keyRight) And ( facing = FACING_RIGHT ) And ( feetValid )
 			If ( body.GetLinearVelocity().x < Physics.MAX_SPEED ) Then ApplyForceToBody( body, Physics.WALK_FORCE, 0 )

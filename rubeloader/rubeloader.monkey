@@ -73,6 +73,16 @@ Function LoadRube:Void( path:String, _world:b2World )
 			fixtureDef.shape = shapeDef
 			
 			body.CreateFixture( fixtureDef )
+			
+			Local polygon:Float[] = New Float[ xArray.Length * 2 ]
+			For Local n:Int = 0 Until xArray.Length()
+				Local xCenter:Float = body.GetWorldCenter().x
+				Local yCenter:Float = body.GetWorldCenter().y
+				polygon[ n * 2 ] = ( xArray[n] - xCenter ) * Physics.SCALE
+				polygon[ n * 2 + 1 ] = ( yArray[n] - yCenter ) * Physics.SCALE
+			Next
+			
+			APP.bricks.AddLast( New Brick( body, polygon ) )
 		Next
 	Next
 End

@@ -22,6 +22,7 @@ Import world
 Import rubeloader
 Import abuanimation
 Import contact
+Import brick
 
 
 
@@ -46,6 +47,7 @@ End
 Class MyApp Extends App
 	Field universe:Universe
 	Field dwarf_one:Dwarf, dwarf_two:Dwarf
+	Field bricks:List< Brick > = New List< Brick >()
 	
 	Method OnCreate:Int()
 		SetUpdateRate( 60 )
@@ -55,6 +57,8 @@ Class MyApp Extends App
 		
 		Dwarf.sheet = LoadImage( "dwarves.png", 100, 80, 240 )
 		Dwarf.sheet.SetHandle( Dwarf.sheet.Width() / 2.0 + 2, Dwarf.sheet.Height() / 2.0 + 15 )
+		
+		Brick.image = LoadImage( "stone.png" )
 		
 		universe = New Universe()
 		'universe.Initialize()
@@ -80,10 +84,13 @@ Class MyApp Extends App
 	Method OnRender:Int()
 		Cls()
 		
-		universe.OnRender()
+		'universe.OnRender()
 		SetColor 255, 255, 255'GLITCH
 		dwarf_one.OnRender()
 		dwarf_two.OnRender()
+		For Local brick:Brick = EachIn bricks
+			brick.OnRender()
+		Next
 		
 		Return 0
 	End

@@ -72,6 +72,10 @@ Class AnimationDelegate Implements IAnimationObject
 		animations.Set( name, New AnimationInfo( name, sequence, Arrays<Float>.Fill( duration, sequence.Length ), loop ) )
 	End
 	
+	Method AddAnimation:Void( name:String, sequence:Int[], durationSequence:Float[], loop:Bool = True )
+		animations.Set( name, New AnimationInfo( name, sequence, durationSequence, loop ) )
+	End
+	
 	Method PlayAnimation:Void( name:String )
 		If ( _currentAnimation <> Null )
 			If ( _currentAnimation.name = name )	'rewrite this block
