@@ -2138,57 +2138,65 @@ function c_MyApp(){
 c_MyApp.prototype=extend_class(c_App);
 c_MyApp.m_new=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<44>";
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<46>";
 	c_App.m_new.call(this);
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<44>";
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<46>";
 	pop_err();
 	return this;
 }
 c_MyApp.prototype.p_OnCreate=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<49>";
-	bb_app_SetUpdateRate(60);
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<51>";
+	bb_app_SetUpdateRate(60);
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<53>";
 	c_Dwarf.m_image=bb_graphics_LoadImage("dwarf.png",1,c_Image.m_DefaultFlags);
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<52>";
-	c_Dwarf.m_image.p_SetHandle((c_Dwarf.m_image.p_Width())/2.0,(c_Dwarf.m_image.p_Height())/2.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<54>";
+	c_Dwarf.m_image.p_SetHandle((c_Dwarf.m_image.p_Width())/2.0,(c_Dwarf.m_image.p_Height())/2.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<56>";
 	c_Dwarf.m_sheet=bb_graphics_LoadImage2("dwarves.png",100,80,240,c_Image.m_DefaultFlags);
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<55>";
-	c_Dwarf.m_sheet.p_SetHandle((c_Dwarf.m_sheet.p_Width())/2.0,(c_Dwarf.m_sheet.p_Height())/2.0+15.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<57>";
+	c_Dwarf.m_sheet.p_SetHandle((c_Dwarf.m_sheet.p_Width())/2.0+2.0,(c_Dwarf.m_sheet.p_Height())/2.0+15.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<59>";
 	this.m_universe=c_Universe.m_new.call(new c_Universe);
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<62>";
-	this.m_dwarf_one=c_Dwarf.m_new.call(new c_Dwarf,0,30.0,454.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<61>";
+	this.m_universe.p_Load("delve_deeper_punchy_scene.txt");
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<63>";
+	this.m_dwarf_one=c_Dwarf.m_new.call(new c_Dwarf,0,30.0,454.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<64>";
 	this.m_dwarf_two=c_Dwarf.m_new.call(new c_Dwarf,1,400.0,454.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<65>";
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<66>";
 	pop_err();
 	return 0;
 }
 c_MyApp.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<69>";
-	this.m_universe.p_OnUpdate();
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<70>";
-	this.m_dwarf_one.p_OnUpdate();
+	c_Clock.m_Update();
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<71>";
-	this.m_dwarf_two.p_OnUpdate();
+	bb_abuanimation_animationJuggler.p_Update3(c_Clock.m_Tick());
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<73>";
+	this.m_universe.p_OnUpdate();
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<74>";
+	this.m_dwarf_one.p_OnUpdate();
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<75>";
+	this.m_dwarf_two.p_OnUpdate();
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<77>";
 	pop_err();
 	return 0;
 }
 c_MyApp.prototype.p_OnRender=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<77>";
-	bb_graphics_Cls(0.0,0.0,0.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<79>";
-	this.m_dwarf_one.p_OnRender();
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<80>";
-	this.m_dwarf_two.p_OnRender();
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<81>";
-	this.m_universe.p_OnRender();
+	bb_graphics_Cls(0.0,0.0,0.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<83>";
+	this.m_universe.p_OnRender();
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<84>";
+	bb_graphics_SetColor(255.0,255.0,255.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<85>";
+	this.m_dwarf_one.p_OnRender();
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<86>";
+	this.m_dwarf_two.p_OnRender();
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<88>";
 	pop_err();
 	return 0;
 }
@@ -2339,9 +2347,9 @@ var bb_app__game=null;
 var bb_main_APP=null;
 function bbMain(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<38>";
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<40>";
 	bb_main_APP=c_MyApp.m_new.call(new c_MyApp);
-	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<39>";
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<41>";
 	pop_err();
 	return 0;
 }
@@ -2510,13 +2518,6 @@ c_Image.prototype.p_Height=function(){
 	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<85>";
 	pop_err();
 	return this.m_height;
-}
-c_Image.prototype.p_Frames=function(){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<93>";
-	var t_=this.m_frames.length;
-	pop_err();
-	return t_;
 }
 function c_GraphicsContext(){
 	Object.call(this);
@@ -3534,102 +3535,147 @@ function c_Dwarf(){
 	this.m_y=.0;
 	this.m_facing=0;
 	this.m_body=null;
+	this.m_bodyFixture=null;
 	this.m_head=null;
 	this.m_feet=null;
+	this.m_hit=new_object_array(2);
+	this.m_animationDelegate=null;
+	this.m_others=new_object_array(2);
 	this.m_feetTouching=0;
 	this.m_feetContactTime=0;
 	this.m_feetValid=false;
 	this.m_jumpPressed=0;
 	this.m_jumpValid=false;
+	this.m_attacking=false;
+	this.implments={c_IOnAnimationEnd:1,c_IOnAnimationFrameChange:1};
 }
 c_Dwarf.m_image=null;
 c_Dwarf.m_sheet=null;
 c_Dwarf.prototype.p_CreateBody=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<48>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<134>";
 	var t_world=dbg_object(dbg_object(bb_main_APP).m_universe).m_m_world;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<50>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<136>";
 	var t_bodyDefinition=c_b2BodyDef.m_new.call(new c_b2BodyDef);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<51>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<137>";
 	dbg_object(t_bodyDefinition).m_type=2;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<52>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<138>";
 	dbg_object(t_bodyDefinition).m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<53>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<139>";
 	dbg_object(t_bodyDefinition).m_fixedRotation=false;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<55>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<141>";
 	this.m_body=t_world.p_CreateBody2(t_bodyDefinition);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<57>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<143>";
 	var t_shapeDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<58>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<144>";
 	t_shapeDefinition.p_SetAsBox(0.5,0.83333333333333337);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<60>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<146>";
 	var t_fixtureDefinition=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<61>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<147>";
 	dbg_object(t_fixtureDefinition).m_density=0.7;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<62>";
-	dbg_object(t_fixtureDefinition).m_friction=0.6;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<63>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<148>";
+	dbg_object(t_fixtureDefinition).m_friction=0.3;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<149>";
 	dbg_object(t_fixtureDefinition).m_restitution=0.6;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<64>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<150>";
 	dbg_object(t_fixtureDefinition).m_shape=(t_shapeDefinition);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<66>";
-	this.m_body.p_CreateFixture(t_fixtureDefinition);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<70>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<152>";
+	this.m_bodyFixture=this.m_body.p_CreateFixture(t_fixtureDefinition);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<156>";
 	var t_yNeck=-0.33333333333333337;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<74>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<160>";
 	var t_headDefinition=c_b2BodyDef.m_new.call(new c_b2BodyDef);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<75>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<161>";
 	dbg_object(t_headDefinition).m_type=2;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<76>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<162>";
 	dbg_object(t_headDefinition).m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<78>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<164>";
 	this.m_head=t_world.p_CreateBody2(t_headDefinition);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<80>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<166>";
 	var t_shapeDefinition2=c_b2CircleShape.m_new.call(new c_b2CircleShape,0.59999999999999998);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<81>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<167>";
 	t_shapeDefinition2.p_SetLocalPosition(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,t_yNeck));
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<83>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<169>";
 	dbg_object(t_fixtureDefinition).m_shape=(t_shapeDefinition2);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<100>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<186>";
 	var t_feetDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<101>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<187>";
 	t_feetDefinition.p_SetAsBox(0.59999999999999998,0.016666666666666666);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<103>";
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<103>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<189>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<189>";
 	var t_=t_feetDefinition.p_GetVertices();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<103>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<189>";
 	var t_2=0;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<103>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<189>";
 	while(t_2<t_.length){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<103>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<189>";
 		var t_vertex=dbg_array(t_,t_2)[dbg_index];
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<103>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<189>";
 		t_2=t_2+1;
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<104>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<190>";
 		dbg_object(t_vertex).m_y+=0.85000000000000009;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<107>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<193>";
 	var t_feetFixtureDefinition=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<108>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<194>";
 	dbg_object(t_feetFixtureDefinition).m_isSensor=true;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<109>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<195>";
 	dbg_object(t_feetFixtureDefinition).m_shape=(t_feetDefinition);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<111>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<197>";
 	this.m_feet=this.m_body.p_CreateFixture(t_feetFixtureDefinition);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<201>";
+	var t_hitDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<202>";
+	var t_vertices=[c_b2Vec2.m_new.call(new c_b2Vec2,-1.3,-1.0666666666666667),c_b2Vec2.m_new.call(new c_b2Vec2,-0.90000000000000002,-0.73333333333333328),c_b2Vec2.m_new.call(new c_b2Vec2,-1.4666666666666666,0.69999999999999996),c_b2Vec2.m_new.call(new c_b2Vec2,-1.7,-0.13333333333333333)];
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<203>";
+	t_hitDefinition.p_SetAsArray(t_vertices,4.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<205>";
+	var t_hitFixtureDefinition=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<206>";
+	dbg_object(t_hitFixtureDefinition).m_isSensor=true;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<207>";
+	dbg_object(t_hitFixtureDefinition).m_shape=(t_hitDefinition);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<209>";
+	dbg_array(this.m_hit,0)[dbg_index]=this.m_body.p_CreateFixture(t_hitFixtureDefinition);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<211>";
+	t_vertices=[c_b2Vec2.m_new.call(new c_b2Vec2,1.3,-1.0666666666666667),c_b2Vec2.m_new.call(new c_b2Vec2,0.90000000000000002,-0.73333333333333328),c_b2Vec2.m_new.call(new c_b2Vec2,1.4666666666666666,0.69999999999999996),c_b2Vec2.m_new.call(new c_b2Vec2,1.7,-0.13333333333333333)];
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<212>";
+	t_hitDefinition.p_SetAsArray(t_vertices,4.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<213>";
+	dbg_object(t_hitFixtureDefinition).m_shape=(t_hitDefinition);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<215>";
+	dbg_array(this.m_hit,1)[dbg_index]=this.m_body.p_CreateFixture(t_hitFixtureDefinition);
 	pop_err();
 }
 c_Dwarf.m_new=function(t_Player,t_Start_x,t_Start_y){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<33>";
-	dbg_object(this).m_player=t_Player;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<34>";
-	dbg_object(this).m_x=t_Start_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<35>";
-	dbg_object(this).m_y=t_Start_y;
 	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<36>";
-	this.m_facing=1-2*t_Player;
+	dbg_object(this).m_player=t_Player;
 	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<37>";
+	dbg_object(this).m_x=t_Start_x;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<38>";
+	dbg_object(this).m_y=t_Start_y;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<39>";
+	this.m_facing=1-2*t_Player;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<40>";
 	this.p_CreateBody();
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<42>";
+	this.m_animationDelegate=c_AnimationDelegate.m_new.call(new c_AnimationDelegate,(this));
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<44>";
+	bb_abuanimation_animationJuggler.p_Add2(this.m_animationDelegate);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<46>";
+	this.m_animationDelegate.p_AddAnimation("idle",[0,1,2,3],120.0,true);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<47>";
+	this.m_animationDelegate.p_AddAnimation("run",[4,5,6,7,8],60.0,true);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<48>";
+	this.m_animationDelegate.p_AddAnimation("attack",[10,11,12,13],60.0,false);
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<50>";
+	this.m_animationDelegate.p_PlayAnimation("idle");
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<52>";
+	for(var t_n=0;t_n<=1;t_n=t_n+1){
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<53>";
+		dbg_array(this.m_others,t_n)[dbg_index]=c_List4.m_new.call(new c_List4);
+	}
 	pop_err();
 	return this;
 }
@@ -3641,150 +3687,287 @@ c_Dwarf.m_new2=function(){
 }
 c_Dwarf.prototype.p_AdjustTorque=function(t_desiredAngle){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<163>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<281>";
 	var t_tick=10.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<164>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<282>";
 	var t_bodyAngle=this.m_body.p_GetAngle();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<166>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<284>";
 	var t_nextAngle=t_bodyAngle+this.m_body.p_GetAngularVelocity()/t_tick;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<167>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<285>";
 	var t_totalRotation=t_desiredAngle-t_nextAngle;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<168>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<286>";
 	while(t_totalRotation<bb_glue_DegreesToRadians(-180.0)){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<168>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<286>";
 		t_totalRotation+=bb_glue_DegreesToRadians(360.0);
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<169>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<287>";
 	while(t_totalRotation>bb_glue_DegreesToRadians(180.0)){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<169>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<287>";
 		t_totalRotation-=bb_glue_DegreesToRadians(360.0);
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<170>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<288>";
 	var t_desiredAngularVelocity=t_totalRotation*t_tick;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<171>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<289>";
 	var t_=this.m_body.p_GetInertia()*t_desiredAngularVelocity/(1.0/t_tick);
 	pop_err();
 	return t_;
 }
 c_Dwarf.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<115>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<219>";
 	if(this.m_feetTouching>0){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<115>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<219>";
 		this.m_feetContactTime=bb_app_Millisecs();
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<116>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<220>";
 	this.m_feetValid=bb_app_Millisecs()-this.m_feetContactTime<=100;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<118>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<222>";
 	var t_keyRight=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],1)[dbg_index];
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<119>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<223>";
 	var t_keyLeft=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],3)[dbg_index];
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<120>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<224>";
 	var t_keyUp=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],0)[dbg_index];
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<121>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<225>";
 	var t_keyDown=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],2)[dbg_index];
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<123>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<226>";
+	var t_keyAction=dbg_array(dbg_array(bb_dwarf_CONTROL_SCHEMES,this.m_player)[dbg_index],4)[dbg_index];
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<228>";
 	if((bb_input_KeyHit(t_keyRight))!=0){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<123>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<228>";
 		this.m_facing=1;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<124>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<229>";
 	if((bb_input_KeyHit(t_keyLeft))!=0){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<124>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<229>";
 		this.m_facing=-1;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<125>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<230>";
 	if(((bb_input_KeyDown(t_keyRight))!=0) && !((bb_input_KeyDown(t_keyLeft))!=0)){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<125>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<230>";
 		this.m_facing=1;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<126>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<231>";
 	if(((bb_input_KeyDown(t_keyLeft))!=0) && !((bb_input_KeyDown(t_keyRight))!=0)){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<126>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<231>";
 		this.m_facing=-1;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<128>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<233>";
 	if(((bb_input_KeyDown(t_keyRight))!=0) && this.m_facing==1 && this.m_feetValid){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<129>";
-		bb_glue_ApplyForceToBody(this.m_body,60.0,0.0);
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<131>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<234>";
+		if(dbg_object(this.m_body.p_GetLinearVelocity()).m_x<8.0){
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<234>";
+			bb_glue_ApplyForceToBody(this.m_body,60.0,0.0);
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<236>";
 		if(this.m_feetValid){
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<132>";
-			var t_torque=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(15.0)*(this.m_facing));
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<133>";
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<237>";
+			var t_torque=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(18.0)*(this.m_facing));
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<238>";
 			this.m_body.p_ApplyTorque(t_torque);
 		}
 	}else{
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<135>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<240>";
 		if(((bb_input_KeyDown(t_keyLeft))!=0) && this.m_facing==-1 && this.m_feetValid){
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<136>";
-			bb_glue_ApplyForceToBody(this.m_body,-60.0,0.0);
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<138>";
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<241>";
+			if(dbg_object(this.m_body.p_GetLinearVelocity()).m_x>-8.0){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<241>";
+				bb_glue_ApplyForceToBody(this.m_body,-60.0,0.0);
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<243>";
 			if(this.m_feetValid){
-				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<139>";
-				var t_torque2=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(15.0)*(this.m_facing));
-				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<140>";
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<244>";
+				var t_torque2=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(18.0)*(this.m_facing));
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<245>";
 				this.m_body.p_ApplyTorque(t_torque2);
 			}
 		}
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<144>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<249>";
 	if((bb_input_KeyHit(t_keyUp))!=0){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<145>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<250>";
 		this.m_jumpPressed=bb_app_Millisecs();
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<148>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<253>";
 	this.m_jumpValid=bb_app_Millisecs()-this.m_jumpPressed<=100;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<150>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<255>";
 	if(this.m_jumpValid && this.m_feetValid){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<151>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<256>";
 		this.m_body.p_SetLinearVelocity(c_b2Vec2.m_new.call(new c_b2Vec2,dbg_object(this.m_body.p_GetLinearVelocity()).m_x,0.0));
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<152>";
-		bb_glue_ApplyImpulseToBody2(this.m_body,-20.0,this.m_body.p_GetAngle());
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<153>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<257>";
+		bb_glue_ApplyImpulseToBody2(this.m_body,-15.0,this.m_body.p_GetAngle());
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<258>";
 		this.m_jumpPressed-=100;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<156>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<261>";
 	if(((bb_input_KeyDown(t_keyDown))!=0) && this.m_feetValid){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<157>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<262>";
 		var t_torque3=this.p_AdjustTorque(0.0);
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<158>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<263>";
 		this.m_body.p_ApplyTorque(t_torque3);
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<266>";
+	if(((bb_input_KeyHit(t_keyAction))!=0) && !this.m_attacking){
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<267>";
+		this.m_attacking=true;
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<268>";
+		this.m_animationDelegate.p_PlayAnimation("attack");
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<271>";
+	if(this.m_attacking==false){
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<272>";
+		if((((bb_input_KeyDown(t_keyRight))!=0) || ((bb_input_KeyDown(t_keyLeft))!=0) || ((bb_input_KeyDown(t_keyDown))!=0) && bb_math_Abs2(this.m_body.p_GetAngle())>0.1) && this.m_feetValid){
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<273>";
+			this.m_animationDelegate.p_PlayAnimation("run");
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<275>";
+			this.m_animationDelegate.p_PlayAnimation("idle");
+		}
 	}
 	pop_err();
 }
 c_Dwarf.m_FRAME_START=[];
 c_Dwarf.prototype.p_OnRender=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<175>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<293>";
 	var t_center=this.m_body.p_GetWorldCenter();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<178>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<296>";
 	var t_orientation=bb_glue_RadiansToDegrees(-this.m_body.p_GetAngle());
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<179>";
-	var t_frame=dbg_array(c_Dwarf.m_FRAME_START,this.m_player)[dbg_index];
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<180>";
-	bb_graphics_DrawImage2(c_Dwarf.m_image,dbg_object(t_center).m_x*30.0,dbg_object(t_center).m_y*30.0,t_orientation,(this.m_facing),1.0,0);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<181>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<297>";
+	var t_frame=dbg_array(c_Dwarf.m_FRAME_START,this.m_player)[dbg_index]+this.m_animationDelegate.p_currentFrame();
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<299>";
 	bb_graphics_DrawImage2(c_Dwarf.m_sheet,dbg_object(t_center).m_x*30.0,dbg_object(t_center).m_y*30.0,t_orientation,(-this.m_facing),1.0,t_frame);
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<183>";
-	bb_graphics_DrawText("#:"+String(this.m_feetTouching)+"="+bb_glue_BoolToString(this.m_feetValid),dbg_object(t_center).m_x*30.0-15.0,dbg_object(t_center).m_y*30.0-50.0,0.0,0.0);
+	pop_err();
+}
+c_Dwarf.prototype.p_OnBeginHit=function(t_which,t_other){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<65>";
+	if(!dbg_array(this.m_others,t_which)[dbg_index].p_Contains3(t_other)){
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<66>";
+		dbg_array(this.m_others,t_which)[dbg_index].p_AddLast5(t_other);
+	}
 	pop_err();
 }
 c_Dwarf.prototype.p_OnBeginContact=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<41>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<58>";
 	this.m_feetTouching+=1;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<42>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<59>";
 	if(this.m_feetTouching>0){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<42>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<59>";
 		this.m_feetContactTime=bb_app_Millisecs();
 	}
 	pop_err();
 }
+c_Dwarf.prototype.p_OnEndHit=function(t_which,t_other){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<71>";
+	dbg_array(this.m_others,t_which)[dbg_index].p_RemoveEach(t_other);
+	pop_err();
+}
 c_Dwarf.prototype.p_OnEndContact=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<45>";
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<62>";
 	this.m_feetTouching-=1;
+	pop_err();
+}
+c_Dwarf.prototype.p_OnAnimationEnd=function(t_name){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<75>";
+	var t_1=t_name;
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<76>";
+	if(t_1=="attack"){
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<77>";
+		this.m_attacking=false;
+	}
+	pop_err();
+}
+c_Dwarf.prototype.p_OnAnimationFrameChange=function(t_name,t_frame,t_framePrevious){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<82>";
+	if(t_name=="attack" && t_frame==12){
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<83>";
+		var t_rebound=false;
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<85>";
+		var t_bodies=c_List5.m_new.call(new c_List5);
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<87>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<87>";
+		var t_=dbg_array(this.m_others,(((this.m_facing+1)/2)|0))[dbg_index].p_ObjectEnumerator();
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<87>";
+		while(t_.p_HasNext()){
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<87>";
+			var t_fixture=t_.p_NextObject();
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<88>";
+			var t_dwarf=bb_main_OtherDwarf(this);
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<90>";
+			var t_okay=true;
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<92>";
+			for(var t_n=0;t_n<=1;t_n=t_n+1){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<93>";
+				if(t_fixture==dbg_array(dbg_object(t_dwarf).m_hit,t_n)[dbg_index]){
+					err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<94>";
+					if(dbg_object(t_dwarf).m_animationDelegate.p_currentFrame()!=12){
+						err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<94>";
+						t_okay=false;
+					}
+					err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<95>";
+					if((((dbg_object(t_dwarf).m_facing+1)/2)|0)!=t_n){
+						err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<95>";
+						t_okay=false;
+					}
+				}
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<99>";
+			if(t_okay==false){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<99>";
+				break;
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<101>";
+			var t__body=t_fixture.p_GetBody();
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<103>";
+			if(!t_bodies.p_Contains4(t__body)){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<104>";
+				t_bodies.p_AddLast6(t__body);
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<108>";
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<108>";
+		var t_2=t_bodies.p_ObjectEnumerator();
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<108>";
+		while(t_2.p_HasNext()){
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<108>";
+			var t__body2=t_2.p_NextObject();
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<110>";
+			if(t__body2.p_GetType()==0){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<111>";
+				t_rebound=true;
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<113>";
+				var t_attackVector=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<114>";
+				this.m_body.p_GetWorldVector(c_b2Vec2.m_new.call(new c_b2Vec2,30.0*(this.m_facing),0.0),t_attackVector);
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<116>";
+				bb_glue_ApplyImpulseToBody(t__body2,dbg_object(t_attackVector).m_x,dbg_object(t_attackVector).m_y);
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<120>";
+		if(!t_bodies.p_IsEmpty()){
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<121>";
+			var t_multiplier=0.2;
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<123>";
+			if(t_rebound==true){
+				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<123>";
+				t_multiplier=0.8;
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<125>";
+			var t_attackVector2=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<126>";
+			this.m_body.p_GetWorldVector(c_b2Vec2.m_new.call(new c_b2Vec2,-30.0*(this.m_facing)*t_multiplier,0.0),t_attackVector2);
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<127>";
+			var t_offcenter=c_b2Vec2.m_new.call(new c_b2Vec2,dbg_object(this.m_body.p_GetWorldCenter()).m_x,dbg_object(this.m_body.p_GetWorldCenter()).m_y-0.26666666666666666);
+			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<128>";
+			this.m_body.p_ApplyImpulse(t_attackVector2,t_offcenter);
+		}
+	}
 	pop_err();
 }
 function c_Universe(){
@@ -3845,44 +4028,46 @@ c_Universe.m_new=function(){
 	var t_wallBd=c_b2BodyDef.m_new.call(new c_b2BodyDef);
 	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<58>";
 	var t_wallB=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<60>";
-	var t_filterData=c_b2FilterData.m_new.call(new c_b2FilterData);
 	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<61>";
-	dbg_object(t_filterData).m_categoryBits=8;
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<64>";
 	dbg_object(t_wallBd).m_position.p_Set2(-3.1666666666666665,(this.m_height)/30.0/2.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<65>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<62>";
 	t_wall.p_SetAsBox(3.3333333333333335,(this.m_height)+1.6666666666666667);
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<63>";
+	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<64>";
+	t_wallB.p_CreateFixture2((t_wall),0.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<66>";
-	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<67>";
-	t_wallB.p_CreateFixture2((t_wall),0.0).p_SetFilterData(t_filterData);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<69>";
 	dbg_object(t_wallBd).m_position.p_Set2((this.m_width+95)/30.0,(this.m_height)/30.0/2.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<67>";
+	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<68>";
+	t_wallB.p_CreateFixture2((t_wall),0.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<70>";
-	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<71>";
-	t_wallB.p_CreateFixture2((t_wall),0.0).p_SetFilterData(t_filterData);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<73>";
 	dbg_object(t_wallBd).m_position.p_Set2((this.m_width)/30.0/2.0,-3.1666666666666665);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<74>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<71>";
 	t_wall.p_SetAsBox((this.m_width)+1.6666666666666667,3.3333333333333335);
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<72>";
+	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<73>";
+	t_wallB.p_CreateFixture2((t_wall),0.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<75>";
-	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<76>";
-	t_wallB.p_CreateFixture2((t_wall),0.0).p_SetFilterData(t_filterData);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<78>";
 	t_wall.p_SetAsBox((this.m_width)+1.6666666666666667,3.3333333333333335);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<79>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<76>";
 	dbg_object(t_wallBd).m_position.p_Set2((this.m_width)/30.0/2.0,(this.m_height+95)/30.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<80>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<77>";
 	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<81>";
-	t_wallB.p_CreateFixture2((t_wall),0.0).p_SetFilterData(t_filterData);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<83>";
-	this.m_m_world.p_SetContactListener(c_DwarfFeetContactListener.m_new.call(new c_DwarfFeetContactListener));
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<78>";
+	t_wallB.p_CreateFixture2((t_wall),0.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<80>";
+	this.m_m_world.p_SetContactListener(c_MyContactListener.m_new.call(new c_MyContactListener));
 	pop_err();
 	return this;
+}
+c_Universe.prototype.p_Load=function(t_path){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<84>";
+	bb_rubeloader_LoadRube(t_path,this.m_m_world);
+	pop_err();
 }
 c_Universe.m_mouseXWorldPhys=0;
 c_Universe.m_mouseYWorldPhys=0;
@@ -3890,45 +4075,45 @@ c_Universe.m_mouseXWorld=0;
 c_Universe.m_mouseYWorld=0;
 c_Universe.prototype.p_UpdateMouseWorld=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<132>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<129>";
 	c_Universe.m_mouseXWorldPhys=bb_input_MouseX()/30.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<133>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<130>";
 	c_Universe.m_mouseYWorldPhys=bb_input_MouseY()/30.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<134>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<131>";
 	c_Universe.m_mouseXWorld=bb_input_MouseX();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<135>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<132>";
 	c_Universe.m_mouseYWorld=bb_input_MouseY();
 	pop_err();
 }
 c_Universe.prototype.p_GetBodyAtMouse=function(t_includeStatic){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<196>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<193>";
 	this.m_mousePVec.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<197>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<194>";
 	var t_aabb=c_b2AABB.m_new.call(new c_b2AABB);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<199>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<196>";
 	dbg_object(t_aabb).m_lowerBound.p_Set2(c_Universe.m_mouseXWorldPhys-0.001,c_Universe.m_mouseYWorldPhys-0.001);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<200>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<197>";
 	dbg_object(t_aabb).m_upperBound.p_Set2(c_Universe.m_mouseXWorldPhys+0.001,c_Universe.m_mouseYWorldPhys+0.001);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<202>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<199>";
 	var t_callback=c_TestQueryAABBCallback.m_new.call(new c_TestQueryAABBCallback,t_includeStatic,this.m_mousePVec);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<203>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<200>";
 	var t_fixture=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<205>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<202>";
 	this.m_m_world.p_QueryAABB((t_callback),t_aabb);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<206>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<203>";
 	pop_err();
 	return dbg_object(t_callback).m_body;
 }
 c_Universe.prototype.p_MouseDestroy=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<179>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<176>";
 	if(!((bb_input_MouseDown(0))!=0) && bb_input_KeyHit(68)>0){
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<180>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<177>";
 		var t_body=this.p_GetBodyAtMouse(true);
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<181>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<178>";
 		if((t_body)!=null){
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<183>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<180>";
 			this.m_m_world.p_DestroyBody(t_body);
 			pop_err();
 			return;
@@ -3938,86 +4123,86 @@ c_Universe.prototype.p_MouseDestroy=function(){
 }
 c_Universe.prototype.p_MouseDrag=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<143>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<140>";
 	if(((bb_input_MouseDown(0))!=0) && !((this.m_m_mouseJoint)!=null)){
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<144>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<141>";
 		var t_body=this.p_GetBodyAtMouse(false);
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<145>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<142>";
 		if((t_body)!=null){
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<147>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<144>";
 			var t_md=c_b2MouseJointDef.m_new.call(new c_b2MouseJointDef);
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<148>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<145>";
 			dbg_object(t_md).m_bodyA=this.m_m_world.p_GetGroundBody();
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<149>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<146>";
 			dbg_object(t_md).m_bodyB=t_body;
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<150>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<147>";
 			dbg_object(t_md).m_target.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<151>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<148>";
 			dbg_object(t_md).m_collideConnected=true;
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<152>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<149>";
 			dbg_object(t_md).m_maxForce=300.0*t_body.p_GetMass();
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<153>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<150>";
 			this.m_m_mouseJoint=object_downcast((this.m_m_world.p_CreateJoint(t_md)),c_b2MouseJoint);
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<154>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<151>";
 			t_body.p_SetAwake(true);
 		}
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<158>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<155>";
 	if(!((bb_input_MouseDown(0))!=0)){
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<160>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<157>";
 		if((this.m_m_mouseJoint)!=null){
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<162>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<159>";
 			this.m_m_world.p_DestroyJoint(this.m_m_mouseJoint);
-			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<163>";
+			err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<160>";
 			this.m_m_mouseJoint=null;
 		}
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<167>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<164>";
 	if((this.m_m_mouseJoint)!=null){
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<169>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<166>";
 		var t_p2=c_b2Vec2.m_new.call(new c_b2Vec2,c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<170>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<167>";
 		this.m_m_mouseJoint.p_SetTarget(t_p2);
 	}
 	pop_err();
 }
 c_Universe.prototype.p_Update=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<111>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<108>";
 	this.p_UpdateMouseWorld();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<112>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<109>";
 	this.p_MouseDestroy();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<113>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<110>";
 	this.p_MouseDrag();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<115>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<112>";
 	this.m_m_world.p_TimeStep(this.m_m_timeStep,this.m_m_velocityIterations,this.m_m_positionIterations);
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<116>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<113>";
 	this.m_m_world.p_ClearForces();
 	pop_err();
 }
 c_Universe.prototype.p_OnUpdate=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<97>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<94>";
 	var t_ms=bb_app_Millisecs();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<99>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<96>";
 	if(this.m_nextFrame==0.0 || (t_ms)-this.m_nextFrame>33.333333333333336){
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<100>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<97>";
 		this.m_nextFrame=(t_ms)-33.333333333333336;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<103>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<100>";
 	while(this.m_nextFrame<(t_ms)){
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<105>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<102>";
 		this.p_Update();
-		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<106>";
+		err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<103>";
 		this.m_nextFrame+=16.666666666666668;
 	}
 	pop_err();
 }
 c_Universe.prototype.p_OnRender=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<92>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<89>";
 	this.m_m_world.p_DrawDebugData();
-	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<93>";
+	err_info="/Users/turing/Documents/projects/glitch_game/world.monkey<90>";
 	this.m_m_sprite.p_OnRender2(0,0);
 	pop_err();
 }
@@ -4098,7 +4283,7 @@ c_HaxeFastList.prototype.p_AddLast=function(t_data){
 c_HaxeFastList.prototype.p_ObjectEnumerator=function(){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<415>";
-	var t_=c_Enumerator.m_new.call(new c_Enumerator,this);
+	var t_=c_Enumerator4.m_new.call(new c_Enumerator4,this);
 	pop_err();
 	return t_;
 }
@@ -4298,33 +4483,12 @@ c_b2Vec2.prototype.p_Copy=function(){
 	pop_err();
 	return t_;
 }
-c_b2Vec2.prototype.p_Subtract=function(t_v){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<89>";
-	this.m_x-=dbg_object(t_v).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<90>";
-	this.m_y-=dbg_object(t_v).m_y;
-	pop_err();
-}
-c_b2Vec2.prototype.p_Length=function(){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<160>";
-	var t_=Math.sqrt(this.m_x*this.m_x+this.m_y*this.m_y);
-	pop_err();
-	return t_;
-}
 c_b2Vec2.prototype.p_LengthSquared=function(){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<164>";
 	var t_=this.m_x*this.m_x+this.m_y*this.m_y;
 	pop_err();
 	return t_;
-}
-c_b2Vec2.prototype.p_GetNegative=function(t_out){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<67>";
-	t_out.p_Set2(-this.m_x,-this.m_y);
-	pop_err();
 }
 c_b2Vec2.prototype.p_Normalize=function(){
 	push_err();
@@ -4345,6 +4509,27 @@ c_b2Vec2.prototype.p_Normalize=function(){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<176>";
 	pop_err();
 	return t_length;
+}
+c_b2Vec2.prototype.p_Subtract=function(t_v){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<89>";
+	this.m_x-=dbg_object(t_v).m_x;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<90>";
+	this.m_y-=dbg_object(t_v).m_y;
+	pop_err();
+}
+c_b2Vec2.prototype.p_Length=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<160>";
+	var t_=Math.sqrt(this.m_x*this.m_x+this.m_y*this.m_y);
+	pop_err();
+	return t_;
+}
+c_b2Vec2.prototype.p_GetNegative=function(t_out){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec2.monkey<67>";
+	t_out.p_Set2(-this.m_x,-this.m_y);
+	pop_err();
 }
 c_b2Vec2.prototype.p_Multiply=function(t_a){
 	push_err();
@@ -5656,33 +5841,33 @@ c_b2World.prototype.p_DrawDebugData=function(){
 				err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1559>";
 				if(t_b.p_IsActive()==false){
 					err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1561>";
-					t_color.p_Set9(0.5,0.5,0.3);
+					t_color.p_Set11(0.5,0.5,0.3);
 					err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1562>";
 					this.p_DrawShape(t_s,t_xf,t_color);
 				}else{
 					err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1563>";
 					if(t_b.p_GetType()==0){
 						err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1566>";
-						t_color.p_Set9(0.5,0.9,0.5);
+						t_color.p_Set11(0.5,0.9,0.5);
 						err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1567>";
 						this.p_DrawShape(t_s,t_xf,t_color);
 					}else{
 						err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1568>";
 						if(t_b.p_GetType()==1){
 							err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1571>";
-							t_color.p_Set9(0.5,0.5,0.9);
+							t_color.p_Set11(0.5,0.5,0.9);
 							err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1572>";
 							this.p_DrawShape(t_s,t_xf,t_color);
 						}else{
 							err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1573>";
 							if(t_b.p_IsAwake()==false){
 								err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1576>";
-								t_color.p_Set9(0.6,0.6,0.6);
+								t_color.p_Set11(0.6,0.6,0.6);
 								err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1577>";
 								this.p_DrawShape(t_s,t_xf,t_color);
 							}else{
 								err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1581>";
-								t_color.p_Set9(0.9,0.7,0.7);
+								t_color.p_Set11(0.9,0.7,0.7);
 								err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1582>";
 								this.p_DrawShape(t_s,t_xf,t_color);
 							}
@@ -5723,7 +5908,7 @@ c_b2World.prototype.p_DrawDebugData=function(){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1605>";
 	if((t_flags&c_b2DebugDraw.m_e_pairBit)!=0){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1607>";
-		t_color.p_Set9(0.3,0.9,0.9);
+		t_color.p_Set11(0.3,0.9,0.9);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1608>";
 		var t_contact=this.m_m_contactList;
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2world.monkey<1609>";
@@ -5992,112 +6177,112 @@ function c_b2Body(){
 }
 c_b2Body.m_new=function(t_bd,t_world){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1233>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1232>";
 	this.m_m_flags=0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1234>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1233>";
 	if(dbg_object(t_bd).m_bullet){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1236>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1235>";
 		this.m_m_flags|=8;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1239>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1238>";
 	if(dbg_object(t_bd).m_fixedRotation){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1241>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1240>";
 		this.m_m_flags|=16;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1244>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1243>";
 	if(dbg_object(t_bd).m_allowSleep){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1246>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1245>";
 		this.m_m_flags|=4;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1249>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1248>";
 	if(dbg_object(t_bd).m_awake){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1251>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1250>";
 		this.m_m_flags|=2;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1254>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1253>";
 	if(dbg_object(t_bd).m_active){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1256>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1255>";
 		this.m_m_flags|=32;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1258>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1257>";
 	this.m_m_world=t_world;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1259>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1258>";
 	dbg_object(this.m_m_xf).m_position.p_SetV(dbg_object(t_bd).m_position);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1260>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1259>";
 	dbg_object(this.m_m_xf).m_R.p_Set6(dbg_object(t_bd).m_angle);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1261>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1260>";
 	dbg_object(this.m_m_sweep).m_localCenter.p_SetZero();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1262>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1261>";
 	dbg_object(this.m_m_sweep).m_t0=1.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1263>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1262>";
 	dbg_object(this.m_m_sweep).m_a0=dbg_object(t_bd).m_angle;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1264>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1263>";
 	dbg_object(this.m_m_sweep).m_a=dbg_object(t_bd).m_angle;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1267>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1266>";
 	var t_tMat=dbg_object(this.m_m_xf).m_R;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1268>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1267>";
 	var t_tVec=dbg_object(this.m_m_sweep).m_localCenter;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1270>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1269>";
 	dbg_object(dbg_object(this.m_m_sweep).m_c).m_x=dbg_object(dbg_object(t_tMat).m_col1).m_x*dbg_object(t_tVec).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_x*dbg_object(t_tVec).m_y;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1272>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1271>";
 	dbg_object(dbg_object(this.m_m_sweep).m_c).m_y=dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(t_tVec).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(t_tVec).m_y;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1274>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1273>";
 	dbg_object(dbg_object(this.m_m_sweep).m_c).m_x+=dbg_object(dbg_object(this.m_m_xf).m_position).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1275>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1274>";
 	dbg_object(dbg_object(this.m_m_sweep).m_c).m_y+=dbg_object(dbg_object(this.m_m_xf).m_position).m_y;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1277>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1276>";
 	dbg_object(this.m_m_sweep).m_c0.p_SetV(dbg_object(this.m_m_sweep).m_c);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1278>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1277>";
 	this.m_m_jointList=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1279>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1278>";
 	this.m_m_controllerList=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1280>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1279>";
 	this.m_m_contactList=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1281>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1280>";
 	this.m_m_controllerCount=0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1282>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1281>";
 	this.m_m_prev=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1283>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1282>";
 	this.m_m_next=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1284>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1283>";
 	this.m_m_linearVelocity.p_SetV(dbg_object(t_bd).m_linearVelocity);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1285>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1284>";
 	this.m_m_angularVelocity=dbg_object(t_bd).m_angularVelocity;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1286>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1285>";
 	this.m_m_linearDamping=dbg_object(t_bd).m_linearDamping;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1287>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1286>";
 	this.m_m_angularDamping=dbg_object(t_bd).m_angularDamping;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1288>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1287>";
 	this.m_m_force.p_Set2(0.0,0.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1289>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1288>";
 	this.m_m_torque=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1290>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1289>";
 	this.m_m_sleepTime=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1291>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1290>";
 	this.m_m_type=dbg_object(t_bd).m_type;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1292>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1291>";
 	if(this.m_m_type==2){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1294>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1293>";
 		this.m_m_mass=1.0;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1295>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1294>";
 		this.m_m_invMass=1.0;
 	}else{
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1299>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1298>";
 		this.m_m_mass=0.0;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1300>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1299>";
 		this.m_m_invMass=0.0;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1302>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1301>";
 	this.m_m_I=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1303>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1302>";
 	this.m_m_invI=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1304>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1303>";
 	this.m_m_inertiaScale=dbg_object(t_bd).m_inertiaScale;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1305>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1304>";
 	this.m_m_userData=dbg_object(t_bd).m_userData;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1306>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1305>";
 	this.m_m_fixtureList=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1307>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1306>";
 	this.m_m_fixtureCount=0;
 	pop_err();
 	return this;
@@ -6110,88 +6295,88 @@ c_b2Body.m_new2=function(){
 }
 c_b2Body.prototype.p_ResetMassData=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<746>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<745>";
 	this.m_m_mass=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<747>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<746>";
 	this.m_m_invMass=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<748>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<747>";
 	this.m_m_I=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<749>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<748>";
 	this.m_m_invI=0.0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<750>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<749>";
 	dbg_object(this.m_m_sweep).m_localCenter.p_SetZero();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<752>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<751>";
 	if(this.m_m_type==0 || this.m_m_type==1){
 		pop_err();
 		return;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<758>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<757>";
 	var t_center=c_b2Vec2.m_Make(0.0,0.0);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<759>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<758>";
 	var t_f=this.m_m_fixtureList;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<760>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<759>";
 	while(t_f!=null){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<761>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<760>";
 		if(dbg_object(t_f).m_m_density==0.0){
-			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<762>";
+			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<761>";
 			t_f=dbg_object(t_f).m_m_next;
-			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<763>";
+			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<762>";
 			continue;
 		}
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<765>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<764>";
 		var t_massData=t_f.p_GetMassData(null);
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<766>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<765>";
 		this.m_m_mass+=dbg_object(t_massData).m_mass;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<767>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<766>";
 		dbg_object(t_center).m_x+=dbg_object(dbg_object(t_massData).m_center).m_x*dbg_object(t_massData).m_mass;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<768>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<767>";
 		dbg_object(t_center).m_y+=dbg_object(dbg_object(t_massData).m_center).m_y*dbg_object(t_massData).m_mass;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<769>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<768>";
 		this.m_m_I+=dbg_object(t_massData).m_I;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<770>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<769>";
 		t_f=dbg_object(t_f).m_m_next;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<774>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<773>";
 	if(this.m_m_mass>0.0){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<775>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<774>";
 		this.m_m_invMass=1.0/this.m_m_mass;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<776>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<775>";
 		dbg_object(t_center).m_x*=this.m_m_invMass;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<777>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<776>";
 		dbg_object(t_center).m_y*=this.m_m_invMass;
 	}else{
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<780>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<779>";
 		this.m_m_mass=1.0;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<781>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<780>";
 		this.m_m_invMass=1.0;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<784>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<783>";
 	if(this.m_m_I>0.0 && (this.m_m_flags&16)==0){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<786>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<785>";
 		this.m_m_I-=this.m_m_mass*(dbg_object(t_center).m_x*dbg_object(t_center).m_x+dbg_object(t_center).m_y*dbg_object(t_center).m_y);
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<787>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<786>";
 		this.m_m_I*=this.m_m_inertiaScale;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<789>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<788>";
 		c_b2Settings.m_B2Assert(this.m_m_I>0.0);
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<791>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<790>";
 		this.m_m_invI=1.0/this.m_m_I;
 	}else{
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<793>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<792>";
 		this.m_m_I=0.0;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<794>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<793>";
 		this.m_m_invI=0.0;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<798>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<797>";
 	var t_oldCenter=dbg_object(this.m_m_sweep).m_c.p_Copy();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<799>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<798>";
 	dbg_object(this.m_m_sweep).m_localCenter.p_SetV(t_center);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<800>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<799>";
 	c_b2Math.m_MulX(this.m_m_xf,dbg_object(this.m_m_sweep).m_localCenter,dbg_object(this.m_m_sweep).m_c0);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<801>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<800>";
 	dbg_object(this.m_m_sweep).m_c.p_SetV(dbg_object(this.m_m_sweep).m_c0);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<804>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<803>";
 	dbg_object(this.m_m_linearVelocity).m_x+=this.m_m_angularVelocity*-(dbg_object(dbg_object(this.m_m_sweep).m_c).m_y-dbg_object(t_oldCenter).m_y);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<805>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<804>";
 	dbg_object(this.m_m_linearVelocity).m_y+=this.m_m_angularVelocity*+(dbg_object(dbg_object(this.m_m_sweep).m_c).m_x-dbg_object(t_oldCenter).m_x);
 	pop_err();
 }
@@ -6235,307 +6420,307 @@ c_b2Body.prototype.p_CreateFixture=function(t_def){
 }
 c_b2Body.prototype.p_CreateFixture2=function(t_shape,t_density){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<192>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<191>";
 	var t_def=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<193>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<192>";
 	dbg_object(t_def).m_shape=t_shape;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<194>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<193>";
 	dbg_object(t_def).m_density=t_density;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<195>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<194>";
 	var t_=this.p_CreateFixture(t_def);
 	pop_err();
 	return t_;
 }
-c_b2Body.prototype.p_GetContactList=function(){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1178>";
-	pop_err();
-	return this.m_m_contactList;
-}
 c_b2Body.prototype.p_SetAwake=function(t_flag){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1013>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1012>";
 	if(t_flag){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1015>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1014>";
 		this.m_m_flags|=2;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1016>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1015>";
 		this.m_m_sleepTime=0.0;
 	}else{
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1020>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1019>";
 		this.m_m_flags&=-3;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1021>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1020>";
 		this.m_m_sleepTime=0.0;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1022>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1021>";
 		this.m_m_linearVelocity.p_SetZero();
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1023>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1022>";
 		this.m_m_angularVelocity=0.0;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1024>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1023>";
 		this.m_m_force.p_SetZero();
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1025>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1024>";
 		this.m_m_torque=0.0;
 	}
 	pop_err();
 }
+c_b2Body.prototype.p_GetContactList=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1177>";
+	pop_err();
+	return this.m_m_contactList;
+}
 c_b2Body.prototype.p_GetMass=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<662>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<661>";
 	pop_err();
 	return this.m_m_mass;
 }
 c_b2Body.prototype.p_GetWorldPoint=function(t_localPoint,t_out){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<816>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<815>";
 	var t_A=dbg_object(this.m_m_xf).m_R;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<817>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<816>";
 	var t_tmp=dbg_object(t_localPoint).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<819>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<818>";
 	t_out.p_Set2(dbg_object(dbg_object(t_A).m_col1).m_x*t_tmp+dbg_object(dbg_object(t_A).m_col2).m_x*dbg_object(t_localPoint).m_y,dbg_object(dbg_object(t_A).m_col1).m_y*t_tmp+dbg_object(dbg_object(t_A).m_col2).m_y*dbg_object(t_localPoint).m_y);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<820>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<819>";
 	dbg_object(t_out).m_x+=dbg_object(dbg_object(this.m_m_xf).m_position).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<821>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<820>";
 	dbg_object(t_out).m_y+=dbg_object(dbg_object(this.m_m_xf).m_position).m_y;
 	pop_err();
 }
 c_b2Body.prototype.p_GetWorldVector=function(t_localVector,t_out){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<832>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<831>";
 	c_b2Math.m_MulMV(dbg_object(this.m_m_xf).m_R,t_localVector,t_out);
 	pop_err();
 }
 c_b2Body.prototype.p_IsAwake=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1036>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1035>";
 	var t_=(this.m_m_flags&2)==2;
 	pop_err();
 	return t_;
 }
 c_b2Body.prototype.p_ShouldCollide=function(t_other){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1345>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1344>";
 	if(this.m_m_type!=2 && dbg_object(t_other).m_m_type!=2){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1347>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1346>";
 		pop_err();
 		return false;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1351>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1350>";
 	var t_jn=this.m_m_jointList;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1352>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1351>";
 	while(t_jn!=null){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1353>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1352>";
 		if(dbg_object(t_jn).m_other==t_other && dbg_object(dbg_object(t_jn).m_joint).m_m_collideConnected==false){
-			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1354>";
+			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1353>";
 			pop_err();
 			return false;
 		}
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1356>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1355>";
 		t_jn=dbg_object(t_jn).m_nextItem;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1358>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1357>";
 	pop_err();
 	return true;
 }
 c_b2Body.prototype.p_GetTransform=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<335>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<334>";
 	pop_err();
 	return this.m_m_xf;
 }
 c_b2Body.prototype.p_GetType=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<960>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<959>";
 	pop_err();
 	return this.m_m_type;
 }
 c_b2Body.prototype.p_IsBullet=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<985>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<984>";
 	var t_=(this.m_m_flags&8)==8;
 	pop_err();
 	return t_;
 }
 c_b2Body.prototype.p_SynchronizeTransform=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1333>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1332>";
 	var t_tMat=dbg_object(this.m_m_xf).m_R;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1334>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1333>";
 	t_tMat.p_Set6(dbg_object(this.m_m_sweep).m_a);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1336>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1335>";
 	var t_tVec=dbg_object(this.m_m_sweep).m_localCenter;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1337>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1336>";
 	dbg_object(dbg_object(this.m_m_xf).m_position).m_x=dbg_object(dbg_object(this.m_m_sweep).m_c).m_x-(dbg_object(dbg_object(t_tMat).m_col1).m_x*dbg_object(t_tVec).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_x*dbg_object(t_tVec).m_y);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1338>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1337>";
 	dbg_object(dbg_object(this.m_m_xf).m_position).m_y=dbg_object(dbg_object(this.m_m_sweep).m_c).m_y-(dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(t_tVec).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(t_tVec).m_y);
 	pop_err();
 }
 c_b2Body.m_s_xf1=null;
 c_b2Body.prototype.p_SynchronizeFixtures=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1315>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1314>";
 	var t_xf1=c_b2Body.m_s_xf1;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1316>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1315>";
 	dbg_object(t_xf1).m_R.p_Set6(dbg_object(this.m_m_sweep).m_a0);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1318>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1317>";
 	var t_tMat=dbg_object(t_xf1).m_R;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1319>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1318>";
 	var t_tVec=dbg_object(this.m_m_sweep).m_localCenter;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1320>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1319>";
 	dbg_object(dbg_object(t_xf1).m_position).m_x=dbg_object(dbg_object(this.m_m_sweep).m_c0).m_x-(dbg_object(dbg_object(t_tMat).m_col1).m_x*dbg_object(t_tVec).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_x*dbg_object(t_tVec).m_y);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1321>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1320>";
 	dbg_object(dbg_object(t_xf1).m_position).m_y=dbg_object(dbg_object(this.m_m_sweep).m_c0).m_y-(dbg_object(dbg_object(t_tMat).m_col1).m_y*dbg_object(t_tVec).m_x+dbg_object(dbg_object(t_tMat).m_col2).m_y*dbg_object(t_tVec).m_y);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1322>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1321>";
 	var t_f=null;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1323>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1322>";
 	var t_broadPhase=dbg_object(dbg_object(this.m_m_world).m_m_contactManager).m_m_broadPhase;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1324>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1323>";
 	t_f=this.m_m_fixtureList;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1325>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1324>";
 	while(t_f!=null){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1326>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1325>";
 		t_f.p_Synchronize(t_broadPhase,t_xf1,this.m_m_xf);
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1327>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1326>";
 		t_f=dbg_object(t_f).m_m_next;
 	}
 	pop_err();
 }
 c_b2Body.prototype.p_Advance=function(t_t){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1364>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1363>";
 	this.m_m_sweep.p_Advance(t_t);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1365>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1364>";
 	dbg_object(this.m_m_sweep).m_c.p_SetV(dbg_object(this.m_m_sweep).m_c0);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1366>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1365>";
 	dbg_object(this.m_m_sweep).m_a=dbg_object(this.m_m_sweep).m_a0;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1367>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1366>";
 	this.p_SynchronizeTransform();
 	pop_err();
 }
 c_b2Body.prototype.p_IsActive=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1133>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1132>";
 	var t_=(this.m_m_flags&32)==32;
 	pop_err();
 	return t_;
 }
+c_b2Body.prototype.p_GetLinearVelocity=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<417>";
+	pop_err();
+	return this.m_m_linearVelocity;
+}
 c_b2Body.prototype.p_GetWorldCenter=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<384>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<383>";
 	pop_err();
 	return dbg_object(this.m_m_sweep).m_c;
 }
 c_b2Body.prototype.p_ApplyForce=function(t_force,t_point){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<479>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<478>";
 	if(this.m_m_type!=2){
 		pop_err();
 		return;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<483>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<482>";
 	if(this.p_IsAwake()==false){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<485>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<484>";
 		this.p_SetAwake(true);
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<488>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<487>";
 	dbg_object(this.m_m_force).m_x+=dbg_object(t_force).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<489>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<488>";
 	dbg_object(this.m_m_force).m_y+=dbg_object(t_force).m_y;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<491>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<490>";
 	this.m_m_torque+=(dbg_object(t_point).m_x-dbg_object(dbg_object(this.m_m_sweep).m_c).m_x)*dbg_object(t_force).m_y-(dbg_object(t_point).m_y-dbg_object(dbg_object(this.m_m_sweep).m_c).m_y)*dbg_object(t_force).m_x;
 	pop_err();
 }
 c_b2Body.prototype.p_GetAngle=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<365>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<364>";
 	pop_err();
 	return dbg_object(this.m_m_sweep).m_a;
 }
 c_b2Body.prototype.p_GetAngularVelocity=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<443>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<442>";
 	pop_err();
 	return this.m_m_angularVelocity;
 }
 c_b2Body.prototype.p_GetInertia=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<672>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<671>";
 	pop_err();
 	return this.m_m_I;
 }
 c_b2Body.prototype.p_ApplyTorque=function(t_torque){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<503>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<502>";
 	if(this.m_m_type!=2){
 		pop_err();
 		return;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<507>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<506>";
 	if(this.p_IsAwake()==false){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<509>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<508>";
 		this.p_SetAwake(true);
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<512>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<511>";
 	this.m_m_torque+=t_torque;
 	pop_err();
 }
-c_b2Body.prototype.p_GetLinearVelocity=function(){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<418>";
-	pop_err();
-	return this.m_m_linearVelocity;
-}
 c_b2Body.prototype.p_SetLinearVelocity=function(t_v){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<403>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<402>";
 	if(this.m_m_type==0){
 		pop_err();
 		return;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<408>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<407>";
 	this.m_m_linearVelocity.p_SetV(t_v);
 	pop_err();
 }
 c_b2Body.prototype.p_ApplyImpulse=function(t_impulse,t_point){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<525>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<524>";
 	if(this.m_m_type!=2){
 		pop_err();
 		return;
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<529>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<528>";
 	if(this.p_IsAwake()==false){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<531>";
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<530>";
 		this.p_SetAwake(true);
 	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<535>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<534>";
 	dbg_object(this.m_m_linearVelocity).m_x+=this.m_m_invMass*dbg_object(t_impulse).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<536>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<535>";
 	dbg_object(this.m_m_linearVelocity).m_y+=this.m_m_invMass*dbg_object(t_impulse).m_y;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<538>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<537>";
 	this.m_m_angularVelocity+=this.m_m_invI*((dbg_object(t_point).m_x-dbg_object(dbg_object(this.m_m_sweep).m_c).m_x)*dbg_object(t_impulse).m_y-(dbg_object(t_point).m_y-dbg_object(dbg_object(this.m_m_sweep).m_c).m_y)*dbg_object(t_impulse).m_x);
 	pop_err();
 }
 c_b2Body.prototype.p_GetFixtureList=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1151>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1150>";
 	pop_err();
 	return this.m_m_fixtureList;
 }
 c_b2Body.prototype.p_GetNext=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1187>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<1186>";
 	pop_err();
 	return this.m_m_next;
 }
 c_b2Body.prototype.p_GetLocalCenter=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<393>";
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2body.monkey<392>";
 	pop_err();
 	return dbg_object(this.m_m_sweep).m_localCenter;
 }
 function c_b2Contact(){
 	Object.call(this);
+	this.m_m_flags=0;
 	this.m_m_fixtureA=null;
 	this.m_m_fixtureB=null;
-	this.m_m_flags=0;
 	this.m_m_prev=null;
 	this.m_m_next=null;
 	this.m_m_nodeA=c_b2ContactEdge.m_new.call(new c_b2ContactEdge);
@@ -6544,6 +6729,12 @@ function c_b2Contact(){
 	this.m_m_swapped=false;
 	this.m_m_oldManifold=c_b2Manifold.m_new.call(new c_b2Manifold);
 	this.m_m_toi=.0;
+}
+c_b2Contact.prototype.p_FlagForFiltering=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/contacts/b2contact.monkey<208>";
+	this.m_m_flags|=64;
+	pop_err();
 }
 c_b2Contact.prototype.p_GetFixtureA=function(){
 	push_err();
@@ -6556,12 +6747,6 @@ c_b2Contact.prototype.p_GetFixtureB=function(){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/contacts/b2contact.monkey<199>";
 	pop_err();
 	return this.m_m_fixtureB;
-}
-c_b2Contact.prototype.p_FlagForFiltering=function(){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/contacts/b2contact.monkey<208>";
-	this.m_m_flags|=64;
-	pop_err();
 }
 c_b2Contact.prototype.p_IsTouching=function(){
 	push_err();
@@ -7911,7 +8096,7 @@ c_b2DynamicTreeBroadPhase.m_new=function(){
 c_b2DynamicTreeBroadPhase.prototype.p_BufferMove=function(t_proxy){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<232>";
-	this.m_m_moveBuffer.p_Set12(this.m_m_moveBuffer.p_Length(),t_proxy);
+	this.m_m_moveBuffer.p_Set14(this.m_m_moveBuffer.p_Length(),t_proxy);
 	pop_err();
 }
 c_b2DynamicTreeBroadPhase.prototype.p_CreateProxy=function(t_aabb,t_userData){
@@ -8360,9 +8545,9 @@ function c_b2ControllerEdge(){
 }
 function c_b2ContactEdge(){
 	Object.call(this);
+	this.m_other=null;
 	this.m_contact=null;
 	this.m_nextItem=null;
-	this.m_other=null;
 	this.m_prevItem=null;
 }
 c_b2ContactEdge.m_new=function(){
@@ -8448,35 +8633,6 @@ c_b2Fixture.prototype.p_GetMassData=function(t_massData){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<221>";
 	pop_err();
 	return t_massData;
-}
-c_b2Fixture.prototype.p_SetFilterData=function(t_filter){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<117>";
-	this.m_m_filter=t_filter.p_Copy();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<118>";
-	if((this.m_m_body)!=null){
-		pop_err();
-		return;
-	}
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<121>";
-	var t_edge=this.m_m_body.p_GetContactList();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<122>";
-	while((t_edge)!=null){
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<124>";
-		var t_contact=dbg_object(t_edge).m_contact;
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<125>";
-		var t_fixtureA=t_contact.p_GetFixtureA();
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<126>";
-		var t_fixtureB=t_contact.p_GetFixtureB();
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<127>";
-		if(t_fixtureA==this || t_fixtureB==this){
-			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<128>";
-			t_contact.p_FlagForFiltering();
-		}
-		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2fixture.monkey<130>";
-		t_edge=dbg_object(t_edge).m_nextItem;
-	}
-	pop_err();
 }
 c_b2Fixture.prototype.p_GetBody=function(){
 	push_err();
@@ -8648,6 +8804,102 @@ c_b2PolygonShape.prototype.p_SetAsBox=function(t_hx,t_hy){
 	dbg_array(this.m_m_normals,3)[dbg_index].p_Set2(-1.0,0.0);
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<187>";
 	this.m_m_centroid.p_SetZero();
+	pop_err();
+}
+c_b2PolygonShape.m_ComputeCentroid=function(t_vs,t_count){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<798>";
+	var t_c=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<799>";
+	var t_area=0.0;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<803>";
+	var t_p1X=0.0;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<804>";
+	var t_p1Y=0.0;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<818>";
+	var t_inv3=0.33333333333333331;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<819>";
+	for(var t_i=0;t_i<t_count;t_i=t_i+1){
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<825>";
+		var t_p2=dbg_array(t_vs,t_i)[dbg_index];
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<827>";
+		var t_p3=dbg_array(t_vs,0)[dbg_index];
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<829>";
+		if(t_i+1<t_count){
+			err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<830>";
+			t_p3=dbg_array(t_vs,t_i+1)[dbg_index];
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<833>";
+		var t_e1X=dbg_object(t_p2).m_x-t_p1X;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<834>";
+		var t_e1Y=dbg_object(t_p2).m_y-t_p1Y;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<836>";
+		var t_e2X=dbg_object(t_p3).m_x-t_p1X;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<837>";
+		var t_e2Y=dbg_object(t_p3).m_y-t_p1Y;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<839>";
+		var t_D=t_e1X*t_e2Y-t_e1Y*t_e2X;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<841>";
+		var t_triangleArea=0.5*t_D;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<842>";
+		t_area+=t_triangleArea;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<845>";
+		dbg_object(t_c).m_x+=t_triangleArea*t_inv3*(t_p1X+dbg_object(t_p2).m_x+dbg_object(t_p3).m_x);
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<846>";
+		dbg_object(t_c).m_y+=t_triangleArea*t_inv3*(t_p1Y+dbg_object(t_p2).m_y+dbg_object(t_p3).m_y);
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<851>";
+	dbg_object(t_c).m_x*=1.0/t_area;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<852>";
+	dbg_object(t_c).m_y*=1.0/t_area;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<853>";
+	pop_err();
+	return t_c;
+}
+c_b2PolygonShape.prototype.p_SetAsArray=function(t_vertices,t_vertexCount){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<86>";
+	if(t_vertexCount==0.0){
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<87>";
+		t_vertexCount=(t_vertices.length);
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<89>";
+	c_b2Settings.m_B2Assert(2.0<=t_vertexCount);
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<90>";
+	this.m_m_vertexCount=((t_vertexCount)|0);
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<91>";
+	this.p_Reserve((t_vertexCount)|0);
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<92>";
+	var t_i=0;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<94>";
+	for(var t_i2=0;t_i2<this.m_m_vertexCount;t_i2=t_i2+1){
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<95>";
+		dbg_array(this.m_m_vertices,t_i2)[dbg_index].p_SetV(dbg_array(t_vertices,t_i2)[dbg_index]);
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<99>";
+	for(var t_i3=0;t_i3<this.m_m_vertexCount;t_i3=t_i3+1){
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<100>";
+		var t_i1=t_i3;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<101>";
+		var t_i22=0;
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<103>";
+		if(t_i3+1<this.m_m_vertexCount){
+			err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<104>";
+			t_i22=t_i3+1;
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<107>";
+		var t_edge=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<108>";
+		c_b2Math.m_SubtractVV(dbg_array(this.m_m_vertices,t_i22)[dbg_index],dbg_array(this.m_m_vertices,t_i1)[dbg_index],t_edge);
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<109>";
+		c_b2Settings.m_B2Assert(t_edge.p_LengthSquared()>1e-15);
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<110>";
+		c_b2Math.m_CrossVF(t_edge,1.0,dbg_array(this.m_m_normals,t_i3)[dbg_index]);
+		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<111>";
+		dbg_array(this.m_m_normals,t_i3)[dbg_index].p_Normalize();
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/shapes/b2polygonshape.monkey<115>";
+	this.m_m_centroid=c_b2PolygonShape.m_ComputeCentroid(this.m_m_vertices,this.m_m_vertexCount);
 	pop_err();
 }
 c_b2PolygonShape.prototype.p_GetVertices=function(){
@@ -8908,32 +9160,6 @@ c_b2Settings.m_B2MixRestitution=function(t_restitution1,t_restitution2){
 		return t_restitution2;
 	}
 }
-function c_b2FilterData(){
-	Object.call(this);
-	this.m_categoryBits=1;
-	this.m_maskBits=65535;
-	this.m_groupIndex=0;
-}
-c_b2FilterData.m_new=function(){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<42>";
-	pop_err();
-	return this;
-}
-c_b2FilterData.prototype.p_Copy=function(){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<46>";
-	var t_copy=c_b2FilterData.m_new.call(new c_b2FilterData);
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<47>";
-	dbg_object(t_copy).m_categoryBits=this.m_categoryBits;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<48>";
-	dbg_object(t_copy).m_maskBits=this.m_maskBits;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<49>";
-	dbg_object(t_copy).m_groupIndex=this.m_groupIndex;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<50>";
-	pop_err();
-	return t_copy;
-}
 function c_Physics(){
 	Object.call(this);
 }
@@ -8970,6 +9196,32 @@ c_b2FixtureDef.m_new=function(){
 	pop_err();
 	return this;
 }
+function c_b2FilterData(){
+	Object.call(this);
+	this.m_categoryBits=1;
+	this.m_maskBits=65535;
+	this.m_groupIndex=0;
+}
+c_b2FilterData.m_new=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<42>";
+	pop_err();
+	return this;
+}
+c_b2FilterData.prototype.p_Copy=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<46>";
+	var t_copy=c_b2FilterData.m_new.call(new c_b2FilterData);
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<47>";
+	dbg_object(t_copy).m_categoryBits=this.m_categoryBits;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<48>";
+	dbg_object(t_copy).m_maskBits=this.m_maskBits;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<49>";
+	dbg_object(t_copy).m_groupIndex=this.m_groupIndex;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2filterdata.monkey<50>";
+	pop_err();
+	return t_copy;
+}
 function c_b2MassData(){
 	Object.call(this);
 	this.m_mass=0.0;
@@ -9005,6 +9257,24 @@ c_b2Math.m_MulX=function(t_T,t_v,t_out){
 	dbg_object(t_out).m_y+=dbg_object(dbg_object(t_T).m_position).m_y;
 	pop_err();
 }
+c_b2Math.m_SubtractVV=function(t_a,t_b,t_out){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<122>";
+	dbg_object(t_out).m_x=dbg_object(t_a).m_x-dbg_object(t_b).m_x;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<123>";
+	dbg_object(t_out).m_y=dbg_object(t_a).m_y-dbg_object(t_b).m_y;
+	pop_err();
+}
+c_b2Math.m_CrossVF=function(t_a,t_s,t_out){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<79>";
+	var t_tmp=dbg_object(t_a).m_x;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<80>";
+	dbg_object(t_out).m_x=t_s*dbg_object(t_a).m_y;
+	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<81>";
+	dbg_object(t_out).m_y=-t_s*t_tmp;
+	pop_err();
+}
 c_b2Math.m_Min=function(t_a,t_b){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<195>";
@@ -9017,14 +9287,6 @@ c_b2Math.m_Min=function(t_a,t_b){
 		pop_err();
 		return t_b;
 	}
-}
-c_b2Math.m_SubtractVV=function(t_a,t_b,t_out){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<122>";
-	dbg_object(t_out).m_x=dbg_object(t_a).m_x-dbg_object(t_b).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<123>";
-	dbg_object(t_out).m_y=dbg_object(t_a).m_y-dbg_object(t_b).m_y;
-	pop_err();
 }
 c_b2Math.m_CrossVV=function(t_a,t_b){
 	push_err();
@@ -9048,16 +9310,6 @@ c_b2Math.m_CrossFV=function(t_s,t_a,t_out){
 	dbg_object(t_out).m_x=-t_s*dbg_object(t_a).m_y;
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<87>";
 	dbg_object(t_out).m_y=t_s*t_tmp;
-	pop_err();
-}
-c_b2Math.m_CrossVF=function(t_a,t_s,t_out){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<79>";
-	var t_tmp=dbg_object(t_a).m_x;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<80>";
-	dbg_object(t_out).m_x=t_s*dbg_object(t_a).m_y;
-	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2math.monkey<81>";
-	dbg_object(t_out).m_y=-t_s*t_tmp;
 	pop_err();
 }
 c_b2Math.m_MulTMV=function(t_A,t_v,t_out){
@@ -9125,67 +9377,2493 @@ c_b2Math.m_Abs=function(t_a){
 		return t_;
 	}
 }
-function c_DwarfFeetContactListener(){
+function c_MyContactListener(){
 	Object.call(this);
 	this.implments={c_b2ContactListenerInterface:1};
 }
-c_DwarfFeetContactListener.m_new=function(){
+c_MyContactListener.m_new=function(){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<190>";
+	err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<9>";
 	pop_err();
 	return this;
 }
-c_DwarfFeetContactListener.prototype.p_BeginContact=function(t_contact){
+c_MyContactListener.prototype.p_BeginContact=function(t_contact){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<192>";
+	err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<11>";
 	if(t_contact.p_IsTouching()){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<193>";
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<193>";
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<12>";
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<12>";
 		var t_=[dbg_object(bb_main_APP).m_dwarf_one,dbg_object(bb_main_APP).m_dwarf_two];
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<193>";
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<12>";
 		var t_2=0;
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<193>";
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<12>";
 		while(t_2<t_.length){
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<193>";
+			err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<12>";
 			var t_dwarf=dbg_array(t_,t_2)[dbg_index];
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<193>";
+			err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<12>";
 			t_2=t_2+1;
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<194>";
+			err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<13>";
+			for(var t_n=0;t_n<=1;t_n=t_n+1){
+				err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<14>";
+				if(t_contact.p_GetFixtureA()==dbg_array(dbg_object(t_dwarf).m_hit,t_n)[dbg_index]){
+					err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<15>";
+					t_dwarf.p_OnBeginHit(t_n,t_contact.p_GetFixtureB());
+				}else{
+					err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<16>";
+					if(t_contact.p_GetFixtureB()==dbg_array(dbg_object(t_dwarf).m_hit,t_n)[dbg_index]){
+						err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<17>";
+						t_dwarf.p_OnBeginHit(t_n,t_contact.p_GetFixtureA());
+					}
+				}
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<21>";
 			if(t_contact.p_GetFixtureA()==dbg_object(t_dwarf).m_feet || t_contact.p_GetFixtureB()==dbg_object(t_dwarf).m_feet){
-				err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<195>";
+				err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<22>";
 				t_dwarf.p_OnBeginContact();
 			}
 		}
 	}
 	pop_err();
 }
-c_DwarfFeetContactListener.prototype.p_EndContact=function(t_contact){
+c_MyContactListener.prototype.p_EndContact=function(t_contact){
 	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<203>";
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<203>";
+	err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<30>";
+	err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<30>";
 	var t_=[dbg_object(bb_main_APP).m_dwarf_one,dbg_object(bb_main_APP).m_dwarf_two];
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<203>";
+	err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<30>";
 	var t_2=0;
-	err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<203>";
+	err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<30>";
 	while(t_2<t_.length){
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<203>";
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<30>";
 		var t_dwarf=dbg_array(t_,t_2)[dbg_index];
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<203>";
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<30>";
 		t_2=t_2+1;
-		err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<204>";
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<31>";
+		for(var t_n=0;t_n<=1;t_n=t_n+1){
+			err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<32>";
+			if(t_contact.p_GetFixtureA()==dbg_array(dbg_object(t_dwarf).m_hit,t_n)[dbg_index]){
+				err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<33>";
+				t_dwarf.p_OnEndHit(t_n,t_contact.p_GetFixtureB());
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<34>";
+				if(t_contact.p_GetFixtureB()==dbg_array(dbg_object(t_dwarf).m_hit,t_n)[dbg_index]){
+					err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<35>";
+					t_dwarf.p_OnEndHit(t_n,t_contact.p_GetFixtureA());
+				}
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<39>";
 		if(t_contact.p_GetFixtureA()==dbg_object(t_dwarf).m_feet || t_contact.p_GetFixtureB()==dbg_object(t_dwarf).m_feet){
-			err_info="/Users/turing/Documents/projects/glitch_game/dwarf.monkey<205>";
+			err_info="/Users/turing/Documents/projects/glitch_game/contact.monkey<40>";
 			t_dwarf.p_OnEndContact();
 		}
 	}
 	pop_err();
 }
-c_DwarfFeetContactListener.prototype.p_PreSolve=function(t_contact,t_oldManifold){
+c_MyContactListener.prototype.p_PreSolve=function(t_contact,t_oldManifold){
 	push_err();
 	pop_err();
 }
-c_DwarfFeetContactListener.prototype.p_PostSolve=function(t_contact,t_impulse){
+c_MyContactListener.prototype.p_PostSolve=function(t_contact,t_impulse){
 	push_err();
+	pop_err();
+}
+function c_JSONDataItem(){
+	Object.call(this);
+	this.m_dataType=7;
+}
+c_JSONDataItem.m_new=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<366>";
+	pop_err();
+	return this;
+}
+c_JSONDataItem.prototype.p_ToString=function(){
+}
+c_JSONDataItem.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<371>";
+	print("Unsupported conversion to Int for "+this.p_ToString());
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<372>";
+	pop_err();
+	return -1;
+}
+c_JSONDataItem.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<376>";
+	print("Unsupported conversion to Float for "+this.p_ToString());
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<377>";
+	pop_err();
+	return -1.0;
+}
+c_JSONDataItem.prototype.p_ToBool=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<381>";
+	print("Unsupported conversion to Bool for "+this.p_ToString());
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<382>";
+	pop_err();
+	return false;
+}
+function c_JSONObject(){
+	c_JSONDataItem.call(this);
+	this.m_values=c_StringMap.m_new.call(new c_StringMap);
+}
+c_JSONObject.prototype=extend_class(c_JSONDataItem);
+c_JSONObject.m_new=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<663>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<664>";
+	this.m_dataType=1;
+	pop_err();
+	return this;
+}
+c_JSONObject.prototype.p_AddItem=function(t_name,t_dataItem){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<684>";
+	this.m_values.p_Set8(t_name,t_dataItem);
+	pop_err();
+}
+c_JSONObject.prototype.p_GetItem=function(t_name){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<692>";
+	var t_=this.m_values.p_Get2(t_name);
+	pop_err();
+	return t_;
+}
+c_JSONObject.prototype.p_GetItem2=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<696>";
+	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<697>";
+	if(t_item!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<698>";
+		var t_=(t_item.p_ToString());
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<700>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.prototype.p_GetItem3=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<704>";
+	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<705>";
+	if(t_item!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<706>";
+		var t_=(t_item.p_ToInt());
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<708>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.prototype.p_GetItem4=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<712>";
+	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<713>";
+	if(t_item!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<714>";
+		var t_=(t_item.p_ToFloat());
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<716>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.prototype.p_GetItem5=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<720>";
+	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<721>";
+	if(t_item!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<722>";
+		var t_=(t_item.p_ToBool());
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<724>";
+	pop_err();
+	return t_defaultValue;
+}
+c_JSONObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<750>";
+	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,this.m_values.p_Count()*5+5);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<751>";
+	var t_first=true;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<753>";
+	t_retString.p_AddString("{");
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<755>";
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<755>";
+	var t_=this.m_values.p_ObjectEnumerator();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<755>";
+	while(t_.p_HasNext()){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<755>";
+		var t_v=t_.p_NextObject();
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<756>";
+		if(t_first){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<757>";
+			t_first=false;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<759>";
+			t_retString.p_AddString(",");
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<761>";
+		t_retString.p_AddString("\"");
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<762>";
+		t_retString.p_AddString(t_v.p_Key());
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<763>";
+		t_retString.p_AddString("\":");
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<764>";
+		t_retString.p_AddString(t_v.p_Value().p_ToString());
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<766>";
+	t_retString.p_AddString("}");
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<767>";
+	var t_2=t_retString.p_ToString();
+	pop_err();
+	return t_2;
+}
+function bb_app_LoadString(t_path){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/app.monkey<220>";
+	var t_=bb_app__game.LoadString(bb_data_FixDataPath(t_path));
+	pop_err();
+	return t_;
+}
+function c_JSONData(){
+	Object.call(this);
+}
+c_JSONData.m_GetJSONObject=function(t_tokeniser){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<131>";
+	var t_jsonObject=c_JSONObject.m_new.call(new c_JSONObject);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<132>";
+	var t_data1=null;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<133>";
+	var t_data2=null;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<136>";
+	t_data1=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<137>";
+	if(dbg_object(t_data1).m_dataType==9 && dbg_object(dbg_object(object_downcast((t_data1),c_JSONNonData)).m_value).m_tokenType==2){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<139>";
+		var t_=(t_jsonObject);
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<142>";
+	do{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<143>";
+		if(dbg_object(t_data1).m_dataType!=5){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<144>";
+			var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item name, got "+(t_data1.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_2;
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<147>";
+		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<149>";
+		if(dbg_object(t_data2).m_dataType!=9){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<150>";
+			var t_3=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_3;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<152>";
+			if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType!=6){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<153>";
+				var t_4=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_4;
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<157>";
+		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<159>";
+		if(dbg_object(t_data2).m_dataType==-1){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<160>";
+			pop_err();
+			return t_data2;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<161>";
+			if(dbg_object(t_data2).m_dataType==9){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<162>";
+				var t_5=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item value, got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_5;
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<165>";
+		t_jsonObject.p_AddItem(dbg_object(object_downcast((t_data1),c_JSONString)).m_value,t_data2);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<166>";
+		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<168>";
+		if(dbg_object(t_data2).m_dataType!=9){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<169>";
+			var t_6=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_6;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<171>";
+			if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType==2){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<172>";
+				break;
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<173>";
+				if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType!=0){
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<174>";
+					var t_7=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+					pop_err();
+					return t_7;
+				}
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<177>";
+		t_data1=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	}while(!(false));
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<180>";
+	var t_8=(t_jsonObject);
+	pop_err();
+	return t_8;
+}
+c_JSONData.m_GetJSONArray=function(t_tokeniser){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<184>";
+	var t_jsonArray=c_JSONArray.m_new.call(new c_JSONArray);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<185>";
+	var t_data=null;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<188>";
+	t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<189>";
+	if(dbg_object(t_data).m_dataType==9 && dbg_object(dbg_object(object_downcast((t_data),c_JSONNonData)).m_value).m_tokenType==4){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<190>";
+		var t_=(t_jsonArray);
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<193>";
+	do{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<194>";
+		if(dbg_object(t_data).m_dataType==9){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<195>";
+			var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected data value, got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_2;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<196>";
+			if(dbg_object(t_data).m_dataType==-1){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<197>";
+				pop_err();
+				return t_data;
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<199>";
+		t_jsonArray.p_AddItem2(t_data);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<201>";
+		t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<203>";
+		if(dbg_object(t_data).m_dataType==9){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<204>";
+			var t_token=dbg_object(object_downcast((t_data),c_JSONNonData)).m_value;
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<205>";
+			if(dbg_object(t_token).m_tokenType==0){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<206>";
+				t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<207>";
+				continue;
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<208>";
+				if(dbg_object(t_token).m_tokenType==4){
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<209>";
+					break;
+				}else{
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<211>";
+					var t_3=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_token.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+					pop_err();
+					return t_3;
+				}
+			}
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<214>";
+			var t_4=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_4;
+		}
+	}while(!(false));
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<218>";
+	var t_5=(t_jsonArray);
+	pop_err();
+	return t_5;
+}
+c_JSONData.m_HexCharToInt=function(t_char){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<331>";
+	if(t_char>=48 && t_char<=57){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<332>";
+		var t_=t_char-48;
+		pop_err();
+		return t_;
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<333>";
+		if(t_char>=65 && t_char<=70){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<334>";
+			var t_2=t_char-55;
+			pop_err();
+			return t_2;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<335>";
+			if(t_char>=97 && t_char<=102){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<336>";
+				var t_3=t_char-87;
+				pop_err();
+				return t_3;
+			}
+		}
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<338>";
+	pop_err();
+	return 0;
+}
+c_JSONData.m_UnEscapeUnicode=function(t_hexString){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<342>";
+	var t_charCode=0;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<343>";
+	for(var t_i=0;t_i<4;t_i=t_i+1){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<344>";
+		t_charCode<<=4;
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<345>";
+		t_charCode+=c_JSONData.m_HexCharToInt(dbg_charCodeAt(t_hexString,t_i));
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<347>";
+	var t_=String.fromCharCode(t_charCode);
+	pop_err();
+	return t_;
+}
+c_JSONData.m_UnEscapeJSON=function(t_input){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<287>";
+	var t_escIndex=t_input.indexOf("\\",0);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<289>";
+	if(t_escIndex==-1){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<290>";
+		pop_err();
+		return t_input;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<293>";
+	var t_copyStartIndex=0;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<294>";
+	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,t_input.length);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<296>";
+	while(t_escIndex!=-1){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<297>";
+		t_retString.p_AddString(t_input.slice(t_copyStartIndex,t_escIndex));
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<298>";
+		var t_2=dbg_charCodeAt(t_input,t_escIndex+1);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<299>";
+		if(t_2==110){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<300>";
+			t_retString.p_AddString("\n");
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<301>";
+			if(t_2==34){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<302>";
+				t_retString.p_AddString("\"");
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<303>";
+				if(t_2==116){
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<304>";
+					t_retString.p_AddString("\t");
+				}else{
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<305>";
+					if(t_2==92){
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<306>";
+						t_retString.p_AddString("\\");
+					}else{
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<307>";
+						if(t_2==47){
+							err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<308>";
+							t_retString.p_AddString("/");
+						}else{
+							err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<309>";
+							if(t_2==114){
+								err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<310>";
+								t_retString.p_AddString("\r");
+							}else{
+								err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<311>";
+								if(t_2==102){
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<312>";
+									t_retString.p_AddString(String.fromCharCode(12));
+								}else{
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<313>";
+									if(t_2==98){
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<314>";
+										t_retString.p_AddString(String.fromCharCode(8));
+									}else{
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<315>";
+										if(t_2==117){
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<316>";
+											t_retString.p_AddString(c_JSONData.m_UnEscapeUnicode(t_input.slice(t_escIndex+2,t_escIndex+6)));
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<317>";
+											t_escIndex+=4;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<319>";
+		t_copyStartIndex=t_escIndex+2;
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<320>";
+		t_escIndex=t_input.indexOf("\\",t_copyStartIndex);
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<323>";
+	if(t_copyStartIndex<t_input.length){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<324>";
+		t_retString.p_AddString(t_input.slice(t_copyStartIndex));
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<327>";
+	var t_=t_retString.p_ToString();
+	pop_err();
+	return t_;
+}
+c_JSONData.m_GetJSONDataItem=function(t_tokeniser){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<104>";
+	var t_token=t_tokeniser.p_NextToken();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<106>";
+	var t_1=dbg_object(t_token).m_tokenType;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<107>";
+	if(t_1==1){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<108>";
+		var t_=c_JSONData.m_GetJSONObject(t_tokeniser);
+		pop_err();
+		return t_;
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<109>";
+		if(t_1==3){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<110>";
+			var t_2=c_JSONData.m_GetJSONArray(t_tokeniser);
+			pop_err();
+			return t_2;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<111>";
+			if(t_1==10){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<112>";
+				var t_3=(c_JSONString.m_new.call(new c_JSONString,(object_downcast((dbg_object(t_token).m_value),c_StringObject).p_ToString()),false));
+				pop_err();
+				return t_3;
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<113>";
+				if(t_1==11){
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<114>";
+					var t_4=(c_JSONFloat.m_new.call(new c_JSONFloat,object_downcast((dbg_object(t_token).m_value),c_FloatObject).p_ToFloat()));
+					pop_err();
+					return t_4;
+				}else{
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<115>";
+					if(t_1==12){
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<116>";
+						var t_5=(c_JSONFloat.m_new2.call(new c_JSONFloat,object_downcast((dbg_object(t_token).m_value),c_StringObject).p_ToString()));
+						pop_err();
+						return t_5;
+					}else{
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<117>";
+						if(t_1==13){
+							err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<118>";
+							var t_6=(c_JSONInteger.m_new.call(new c_JSONInteger,(object_downcast((dbg_object(t_token).m_value),c_IntObject).p_ToInt())));
+							pop_err();
+							return t_6;
+						}else{
+							err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<119>";
+							if(t_1==7){
+								err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<120>";
+								var t_7=(c_JSONBool.m_new.call(new c_JSONBool,true));
+								pop_err();
+								return t_7;
+							}else{
+								err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<121>";
+								if(t_1==8){
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<122>";
+									var t_8=(c_JSONBool.m_new.call(new c_JSONBool,false));
+									pop_err();
+									return t_8;
+								}else{
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<123>";
+									if(t_1==9){
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<124>";
+										var t_9=(c_JSONNull.m_new.call(new c_JSONNull));
+										pop_err();
+										return t_9;
+									}else{
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<126>";
+										var t_10=(c_JSONNonData.m_new.call(new c_JSONNonData,t_token));
+										pop_err();
+										return t_10;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+c_JSONData.m_ReadJSON=function(t_jsonString){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<71>";
+	var t_tokeniser=c_JSONTokeniser.m_new.call(new c_JSONTokeniser,t_jsonString,false);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<73>";
+	var t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<75>";
+	if(t_data==null){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<76>";
+		var t_=(c_JSONDataError.m_new.call(new c_JSONDataError,"Unknown JSON error.",t_tokeniser.p_GetCurrentSectionString(20,20)));
+		pop_err();
+		return t_;
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<77>";
+		if(dbg_object(t_data).m_dataType==-1){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<78>";
+			print(t_data.p_ToString());
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<79>";
+			if(dbg_object(t_data).m_dataType!=1 && dbg_object(t_data).m_dataType!=2){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<80>";
+				var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"JSON Document malformed. Root node is not an object or an array",t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_2;
+			}
+		}
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<83>";
+	pop_err();
+	return t_data;
+}
+function c_JSONTokeniser(){
+	Object.call(this);
+	this.m_silent=false;
+	this.m_jsonString="";
+	this.m_stringIndex=0;
+	this.m_char=0;
+}
+c_JSONTokeniser.prototype.p_NextChar=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<197>";
+	if(this.m_stringIndex>=this.m_jsonString.length){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<198>";
+		this.m_char=0;
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<199>";
+		pop_err();
+		return this.m_char;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<201>";
+	this.m_char=dbg_charCodeAt(this.m_jsonString,this.m_stringIndex);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<202>";
+	this.m_stringIndex+=1;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<203>";
+	pop_err();
+	return this.m_char;
+}
+c_JSONTokeniser.m_new=function(t_jsonString,t_silent){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<120>";
+	dbg_object(this).m_silent=t_silent;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<121>";
+	dbg_object(this).m_jsonString=t_jsonString;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<122>";
+	this.p_NextChar();
+	pop_err();
+	return this;
+}
+c_JSONTokeniser.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<108>";
+	pop_err();
+	return this;
+}
+c_JSONTokeniser.prototype.p_SkipWhitespace=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<252>";
+	var t_index=this.m_stringIndex;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<253>";
+	while(this.m_char<=32 && this.m_char!=0){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<254>";
+		this.p_NextChar();
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<256>";
+	var t_=this.m_stringIndex-t_index;
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_GetCurrentSectionString=function(t_backwards,t_forwards){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<126>";
+	var t_="Section: "+this.m_jsonString.slice(bb_math_Max(this.m_stringIndex-t_backwards,0),bb_math_Min(this.m_stringIndex+t_forwards,this.m_jsonString.length));
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_ParseFailure=function(t_description){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<290>";
+	if(this.m_silent){
+		pop_err();
+		return;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<293>";
+	print("JSON parse error at index: "+String(this.m_stringIndex));
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<294>";
+	print(t_description);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<295>";
+	print(this.p_GetCurrentSectionString(20,20));
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<296>";
+	this.m_stringIndex=this.m_jsonString.length;
+	pop_err();
+}
+c_JSONTokeniser.prototype.p_SkipComments=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<260>";
+	var t_index=this.m_stringIndex;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<261>";
+	if(this.m_char==47){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<262>";
+		this.p_NextChar();
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<263>";
+		if(this.m_char==47){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<264>";
+			while(this.m_char!=13 && this.m_char!=10 && this.m_char!=0){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<265>";
+				this.p_NextChar();
+			}
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<267>";
+			if(this.m_char==42){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<268>";
+				do{
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<269>";
+					this.p_NextChar();
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<270>";
+					if(this.m_char==42){
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<271>";
+						this.p_NextChar();
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<272>";
+						if(this.m_char==47){
+							err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<273>";
+							break;
+						}
+					}
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<276>";
+					if(this.m_char==0){
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<277>";
+						this.p_ParseFailure("Unterminated comment");
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<278>";
+						break;
+					}
+				}while(!(false));
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<282>";
+				this.p_ParseFailure("Unrecognised comment opening");
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<284>";
+		this.p_NextChar();
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<286>";
+	var t_=this.m_stringIndex-t_index;
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_SkipIgnored=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<243>";
+	var t_ignoredCount=0;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<244>";
+	do{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<245>";
+		t_ignoredCount=0;
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<246>";
+		t_ignoredCount+=this.p_SkipWhitespace();
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<247>";
+		t_ignoredCount+=this.p_SkipComments();
+	}while(!(t_ignoredCount==0));
+	pop_err();
+}
+c_JSONTokeniser.prototype.p_IsDigit=function(t_char){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<239>";
+	var t_=t_char>=48 && t_char<=58;
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_ParseInteger=function(t_str){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<230>";
+	var t_=parseInt((t_str),10);
+	pop_err();
+	return t_;
+}
+c_JSONTokeniser.prototype.p_ParseNumberToken=function(t_firstChar){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<207>";
+	var t_index=this.m_stringIndex-1;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<210>";
+	while(this.m_char!=32 && this.m_char!=44 && this.m_char!=125 && this.m_char!=93 && this.m_char!=0){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<211>";
+		this.p_NextChar();
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<213>";
+	if(this.m_char==0){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<214>";
+		this.p_ParseFailure("Unterminated Number");
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<215>";
+		var t_=c_JSONToken.m_CreateToken4(-1,null);
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<218>";
+	var t_numberString=this.m_jsonString.slice(t_index,this.m_stringIndex-1);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<220>";
+	if(t_numberString.indexOf(".",0)!=-1 || t_numberString.indexOf("e",0)!=-1 || t_numberString.indexOf("E",0)!=-1){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<221>";
+		var t_2=c_JSONToken.m_CreateToken3(12,t_numberString);
+		pop_err();
+		return t_2;
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<223>";
+		var t_value=this.p_ParseInteger(t_numberString);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<224>";
+		var t_3=c_JSONToken.m_CreateToken2(13,t_value);
+		pop_err();
+		return t_3;
+	}
+}
+c_JSONTokeniser.prototype.p_NextToken=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<130>";
+	var t_retToken=null;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<131>";
+	this.p_SkipIgnored();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<133>";
+	var t_2=this.m_char;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<135>";
+	if(t_2==123){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<136>";
+		t_retToken=c_JSONToken.m_CreateToken3(1,"{");
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<137>";
+		if(t_2==125){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<138>";
+			t_retToken=c_JSONToken.m_CreateToken3(2,"}");
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<139>";
+			if(t_2==91){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<140>";
+				t_retToken=c_JSONToken.m_CreateToken3(3,"[");
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<141>";
+				if(t_2==93){
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<142>";
+					t_retToken=c_JSONToken.m_CreateToken3(4,"]");
+				}else{
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<143>";
+					if(t_2==44){
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<144>";
+						t_retToken=c_JSONToken.m_CreateToken3(0,",");
+					}else{
+						err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<145>";
+						if(t_2==58){
+							err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<146>";
+							t_retToken=c_JSONToken.m_CreateToken3(6,":");
+						}else{
+							err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<147>";
+							if(t_2==116){
+								err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<148>";
+								if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+3),"rue")==0){
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<149>";
+									this.m_stringIndex+=3;
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<150>";
+									t_retToken=c_JSONToken.m_CreateToken3(7,"true");
+								}
+							}else{
+								err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<152>";
+								if(t_2==102){
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<153>";
+									if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+4),"alse")==0){
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<154>";
+										this.m_stringIndex+=4;
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<155>";
+										t_retToken=c_JSONToken.m_CreateToken3(8,"false");
+									}
+								}else{
+									err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<157>";
+									if(t_2==110){
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<158>";
+										if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+3),"ull")==0){
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<159>";
+											this.m_stringIndex+=3;
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<160>";
+											t_retToken=c_JSONToken.m_CreateToken3(9,"null");
+										}
+									}else{
+										err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<162>";
+										if(t_2==34){
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<163>";
+											var t_startIndex=this.m_stringIndex;
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<164>";
+											var t_endIndex=this.m_jsonString.indexOf("\"",this.m_stringIndex);
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<165>";
+											while(t_endIndex!=-1 && dbg_charCodeAt(this.m_jsonString,t_endIndex-1)==92){
+												err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<166>";
+												t_endIndex=this.m_jsonString.indexOf("\"",t_endIndex+1);
+											}
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<168>";
+											if(t_endIndex==-1){
+												err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<169>";
+												this.p_ParseFailure("Unterminated string");
+											}
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<172>";
+											t_retToken=c_JSONToken.m_CreateToken3(10,this.m_jsonString.slice(t_startIndex,t_endIndex));
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<173>";
+											this.m_stringIndex=t_endIndex+1;
+										}else{
+											err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<177>";
+											if(this.m_char==45 || this.p_IsDigit(this.m_char)){
+												err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<178>";
+												var t_=this.p_ParseNumberToken(this.m_char);
+												pop_err();
+												return t_;
+											}else{
+												err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<179>";
+												if(this.m_char==0){
+													err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<180>";
+													t_retToken=null;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<184>";
+	if(t_retToken==null){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<185>";
+		this.p_ParseFailure("Unknown token, char: "+String.fromCharCode(this.m_char));
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<186>";
+		t_retToken=c_JSONToken.m_CreateToken4(-1,null);
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<188>";
+		this.p_NextChar();
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<190>";
+	pop_err();
+	return t_retToken;
+}
+function c_ASCIICodes(){
+	Object.call(this);
+}
+function c_JSONToken(){
+	Object.call(this);
+	this.m_tokenType=0;
+	this.m_value=null;
+}
+c_JSONToken.m_new=function(t_tokenType,t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<54>";
+	dbg_object(this).m_tokenType=t_tokenType;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<55>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONToken.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<30>";
+	pop_err();
+	return this;
+}
+c_JSONToken.m_reusableToken=null;
+c_JSONToken.m_CreateToken=function(t_tokenType,t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<61>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<62>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_FloatObject.m_new2.call(new c_FloatObject,t_value));
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<63>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.m_CreateToken2=function(t_tokenType,t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<67>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<68>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_IntObject.m_new.call(new c_IntObject,t_value));
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<69>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.m_CreateToken3=function(t_tokenType,t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<73>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<74>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_StringObject.m_new3.call(new c_StringObject,t_value));
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<75>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.m_CreateToken4=function(t_tokenType,t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<79>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<80>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=t_value;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<81>";
+	pop_err();
+	return c_JSONToken.m_reusableToken;
+}
+c_JSONToken.prototype.p_GetValueString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<89>";
+	var t_1=this.m_tokenType;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<90>";
+	if(t_1==11){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<91>";
+		var t_=""+(object_downcast((this.m_value),c_FloatObject).p_ToString());
+		pop_err();
+		return t_;
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<92>";
+		if(t_1==13){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<93>";
+			var t_2=""+(object_downcast((this.m_value),c_IntObject).p_ToString());
+			pop_err();
+			return t_2;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<94>";
+			if(t_1==9){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<95>";
+				pop_err();
+				return "NULL";
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<97>";
+				if((this.m_value)!=null){
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<98>";
+					var t_3=(object_downcast((this.m_value),c_StringObject).p_ToString());
+					pop_err();
+					return t_3;
+				}else{
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<100>";
+					pop_err();
+					return "Null value";
+				}
+			}
+		}
+	}
+}
+c_JSONToken.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/tokeniser.monkey<85>";
+	var t_="JSONToken - type: "+String(this.m_tokenType)+", value: "+this.p_GetValueString();
+	pop_err();
+	return t_;
+}
+function bb_math_Max(t_x,t_y){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<56>";
+	if(t_x>t_y){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<56>";
+		pop_err();
+		return t_x;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<57>";
+	pop_err();
+	return t_y;
+}
+function bb_math_Max2(t_x,t_y){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<83>";
+	if(t_x>t_y){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<83>";
+		pop_err();
+		return t_x;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<84>";
+	pop_err();
+	return t_y;
+}
+function bb_math_Min(t_x,t_y){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<51>";
+	if(t_x<t_y){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<51>";
+		pop_err();
+		return t_x;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<52>";
+	pop_err();
+	return t_y;
+}
+function bb_math_Min2(t_x,t_y){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<78>";
+	if(t_x<t_y){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<78>";
+		pop_err();
+		return t_x;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<79>";
+	pop_err();
+	return t_y;
+}
+function c_FloatObject(){
+	Object.call(this);
+	this.m_value=.0;
+}
+c_FloatObject.m_new=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<59>";
+	dbg_object(this).m_value=(t_value);
+	pop_err();
+	return this;
+}
+c_FloatObject.m_new2=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<63>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_FloatObject.m_new3=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<55>";
+	pop_err();
+	return this;
+}
+c_FloatObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<75>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+c_FloatObject.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<71>";
+	pop_err();
+	return this.m_value;
+}
+function c_IntObject(){
+	Object.call(this);
+	this.m_value=0;
+}
+c_IntObject.m_new=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<27>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_IntObject.m_new2=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<31>";
+	dbg_object(this).m_value=((t_value)|0);
+	pop_err();
+	return this;
+}
+c_IntObject.m_new3=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<23>";
+	pop_err();
+	return this;
+}
+c_IntObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<43>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+c_IntObject.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<35>";
+	pop_err();
+	return this.m_value;
+}
+function c_StringObject(){
+	Object.call(this);
+	this.m_value="";
+}
+c_StringObject.m_new=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<92>";
+	dbg_object(this).m_value=String(t_value);
+	pop_err();
+	return this;
+}
+c_StringObject.m_new2=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<96>";
+	dbg_object(this).m_value=String(t_value);
+	pop_err();
+	return this;
+}
+c_StringObject.m_new3=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<100>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_StringObject.m_new4=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<88>";
+	pop_err();
+	return this;
+}
+c_StringObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/boxes.monkey<104>";
+	pop_err();
+	return this.m_value;
+}
+function c_JSONDataType(){
+	Object.call(this);
+}
+function c_JSONNonData(){
+	c_JSONDataItem.call(this);
+	this.m_value=null;
+}
+c_JSONNonData.prototype=extend_class(c_JSONDataItem);
+c_JSONNonData.m_new=function(t_token){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<408>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<409>";
+	this.m_dataType=9;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<410>";
+	this.m_value=t_token;
+	pop_err();
+	return this;
+}
+c_JSONNonData.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<405>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<405>";
+	pop_err();
+	return this;
+}
+c_JSONNonData.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<414>";
+	pop_err();
+	return "Non Data";
+}
+function c_JSONDataError(){
+	c_JSONDataItem.call(this);
+	this.m_value="";
+}
+c_JSONDataError.prototype=extend_class(c_JSONDataItem);
+c_JSONDataError.m_new=function(t_errorDescription,t_location){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<395>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<396>";
+	this.m_dataType=-1;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<397>";
+	this.m_value=t_errorDescription+"\nJSON Location: "+t_location;
+	pop_err();
+	return this;
+}
+c_JSONDataError.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<392>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<392>";
+	pop_err();
+	return this;
+}
+c_JSONDataError.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<401>";
+	pop_err();
+	return this.m_value;
+}
+function c_JSONString(){
+	c_JSONDataItem.call(this);
+	this.m_value="";
+	this.m_jsonReady="";
+}
+c_JSONString.prototype=extend_class(c_JSONDataItem);
+c_JSONString.m_new=function(t_value,t_isMonkeyString){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<489>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<490>";
+	this.m_dataType=5;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<491>";
+	if(!t_isMonkeyString){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<492>";
+		dbg_object(this).m_value=c_JSONData.m_UnEscapeJSON(t_value);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<493>";
+		this.m_jsonReady="\""+t_value+"\"";
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<495>";
+		dbg_object(this).m_value=t_value;
+	}
+	pop_err();
+	return this;
+}
+c_JSONString.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<481>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<481>";
+	pop_err();
+	return this;
+}
+c_JSONString.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<507>";
+	pop_err();
+	return this.m_value;
+}
+function c_Map2(){
+	Object.call(this);
+	this.m_root=null;
+}
+c_Map2.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<7>";
+	pop_err();
+	return this;
+}
+c_Map2.prototype.p_Compare2=function(t_lhs,t_rhs){
+}
+c_Map2.prototype.p_RotateLeft2=function(t_node){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<264>";
+		this.m_root=t_child;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_RotateRight2=function(t_node){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<284>";
+		this.m_root=t_child;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_InsertFixup2=function(t_node){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<223>";
+					this.p_RotateLeft2(t_node);
+				}
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<227>";
+				this.p_RotateRight2(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<239>";
+					this.p_RotateRight2(t_node);
+				}
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft2(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_Set8=function(t_key,t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<29>";
+	var t_node=this.m_root;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<30>";
+	var t_parent=null;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<30>";
+	var t_cmp=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<32>";
+	while((t_node)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<33>";
+		t_parent=t_node;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<35>";
+		if(t_cmp>0){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<37>";
+			if(t_cmp<0){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<41>";
+				pop_err();
+				return false;
+			}
+		}
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<45>";
+	t_node=c_Node2.m_new.call(new c_Node2,t_key,t_value,-1,t_parent);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<47>";
+	if((t_parent)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<48>";
+		if(t_cmp>0){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
+		}
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<53>";
+		this.p_InsertFixup2(t_node);
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<55>";
+		this.m_root=t_node;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<57>";
+	pop_err();
+	return true;
+}
+c_Map2.prototype.p_FindNode2=function(t_key){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<157>";
+	var t_node=this.m_root;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<159>";
+	while((t_node)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<161>";
+		if(t_cmp>0){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<163>";
+			if(t_cmp<0){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<166>";
+				pop_err();
+				return t_node;
+			}
+		}
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<169>";
+	pop_err();
+	return t_node;
+}
+c_Map2.prototype.p_Get2=function(t_key){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<101>";
+	var t_node=this.p_FindNode2(t_key);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<102>";
+	if((t_node)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
+	}
+	pop_err();
+	return null;
+}
+c_Map2.prototype.p_Count=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<17>";
+	if((this.m_root)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<17>";
+		var t_=this.m_root.p_Count2(0);
+		pop_err();
+		return t_;
+	}
+	pop_err();
+	return 0;
+}
+c_Map2.prototype.p_FirstNode=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<125>";
+	if(!((this.m_root)!=null)){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<125>";
+		pop_err();
+		return null;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<127>";
+	var t_node=this.m_root;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<128>";
+	while((dbg_object(t_node).m_left)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<129>";
+		t_node=dbg_object(t_node).m_left;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<131>";
+	pop_err();
+	return t_node;
+}
+c_Map2.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<121>";
+	var t_=c_NodeEnumerator.m_new.call(new c_NodeEnumerator,this.p_FirstNode());
+	pop_err();
+	return t_;
+}
+function c_StringMap(){
+	c_Map2.call(this);
+}
+c_StringMap.prototype=extend_class(c_Map2);
+c_StringMap.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<551>";
+	c_Map2.m_new.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<551>";
+	pop_err();
+	return this;
+}
+c_StringMap.prototype.p_Compare2=function(t_lhs,t_rhs){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
+}
+function c_Node2(){
+	Object.call(this);
+	this.m_key="";
+	this.m_right=null;
+	this.m_left=null;
+	this.m_value=null;
+	this.m_color=0;
+	this.m_parent=null;
+}
+c_Node2.m_new=function(t_key,t_value,t_color,t_parent){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
+	return this;
+}
+c_Node2.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<361>";
+	pop_err();
+	return this;
+}
+c_Node2.prototype.p_Count2=function(t_n){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<371>";
+	if((this.m_left)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<371>";
+		t_n=this.m_left.p_Count2(t_n);
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<372>";
+	if((this.m_right)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<372>";
+		t_n=this.m_right.p_Count2(t_n);
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<373>";
+	var t_=t_n+1;
+	pop_err();
+	return t_;
+}
+c_Node2.prototype.p_NextNode=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<385>";
+	var t_node=null;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<386>";
+	if((this.m_right)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<387>";
+		t_node=this.m_right;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<388>";
+		while((dbg_object(t_node).m_left)!=null){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<389>";
+			t_node=dbg_object(t_node).m_left;
+		}
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<391>";
+		pop_err();
+		return t_node;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<393>";
+	t_node=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<394>";
+	var t_parent=dbg_object(this).m_parent;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<395>";
+	while(((t_parent)!=null) && t_node==dbg_object(t_parent).m_right){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<396>";
+		t_node=t_parent;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<397>";
+		t_parent=dbg_object(t_parent).m_parent;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<399>";
+	pop_err();
+	return t_parent;
+}
+c_Node2.prototype.p_Key=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<377>";
+	pop_err();
+	return this.m_key;
+}
+c_Node2.prototype.p_Value=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<381>";
+	pop_err();
+	return this.m_value;
+}
+function c_JSONArray(){
+	c_JSONDataItem.call(this);
+	this.m_values=c_List.m_new.call(new c_List);
+}
+c_JSONArray.prototype=extend_class(c_JSONDataItem);
+c_JSONArray.m_new=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<554>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<555>";
+	this.m_dataType=2;
+	pop_err();
+	return this;
+}
+c_JSONArray.prototype.p_AddItem2=function(t_dataItem){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<575>";
+	this.m_values.p_AddLast2(t_dataItem);
+	pop_err();
+}
+c_JSONArray.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<621>";
+	var t_=this.m_values.p_ObjectEnumerator();
+	pop_err();
+	return t_;
+}
+c_JSONArray.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<601>";
+	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,this.m_values.p_Count()*2+5);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<602>";
+	var t_first=true;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<604>";
+	t_retString.p_AddString("[");
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<606>";
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<606>";
+	var t_=this.m_values.p_ObjectEnumerator();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<606>";
+	while(t_.p_HasNext()){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<606>";
+		var t_v=t_.p_NextObject();
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<607>";
+		if(t_first){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<608>";
+			t_first=false;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<610>";
+			t_retString.p_AddString(",");
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<612>";
+		t_retString.p_AddString(t_v.p_ToString());
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<615>";
+	t_retString.p_AddString("]");
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<617>";
+	var t_2=t_retString.p_ToString();
+	pop_err();
+	return t_2;
+}
+function c_List(){
+	Object.call(this);
+	this.m__head=(c_HeadNode.m_new.call(new c_HeadNode));
+}
+c_List.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_List.prototype.p_AddLast2=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<108>";
+	var t_=c_Node3.m_new.call(new c_Node3,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
+}
+c_List.m_new2=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_=t_data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_2=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	while(t_2<t_.length){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		t_2=t_2+1;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<14>";
+		this.p_AddLast2(t_t);
+	}
+	pop_err();
+	return this;
+}
+c_List.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator.m_new.call(new c_Enumerator,this);
+	pop_err();
+	return t_;
+}
+c_List.prototype.p_Count=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<41>";
+	var t_n=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<41>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<42>";
+	while(t_node!=this.m__head){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<43>";
+		t_node=dbg_object(t_node).m__succ;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<44>";
+		t_n+=1;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<46>";
+	pop_err();
+	return t_n;
+}
+function c_Node3(){
+	Object.call(this);
+	this.m__succ=null;
+	this.m__pred=null;
+	this.m__data=null;
+}
+c_Node3.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<261>";
+	this.m__succ=t_succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<262>";
+	this.m__pred=t_pred;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<265>";
+	this.m__data=t_data;
+	pop_err();
+	return this;
+}
+c_Node3.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<258>";
+	pop_err();
+	return this;
+}
+function c_HeadNode(){
+	c_Node3.call(this);
+}
+c_HeadNode.prototype=extend_class(c_Node3);
+c_HeadNode.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<310>";
+	c_Node3.m_new2.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<311>";
+	this.m__succ=(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<312>";
+	this.m__pred=(this);
+	pop_err();
+	return this;
+}
+function c_StringBuilder(){
+	Object.call(this);
+	this.m_retStrings=[];
+	this.m_index=0;
+}
+c_StringBuilder.m_new=function(t_initialSize){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<39>";
+	if(t_initialSize<1){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<40>";
+		t_initialSize=1;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<42>";
+	this.m_retStrings=new_string_array(t_initialSize);
+	pop_err();
+	return this;
+}
+c_StringBuilder.prototype.p_AddString=function(t_add){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<46>";
+	if(this.m_index==this.m_retStrings.length){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<47>";
+		this.m_retStrings=resize_string_array(this.m_retStrings,this.m_retStrings.length*2);
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<49>";
+	dbg_array(this.m_retStrings,this.m_index)[dbg_index]=t_add;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<50>";
+	this.m_index+=1;
+	pop_err();
+}
+c_StringBuilder.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<54>";
+	if(this.m_index<2){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<55>";
+		pop_err();
+		return dbg_array(this.m_retStrings,0)[dbg_index];
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<57>";
+		var t_=this.m_retStrings.slice(0,this.m_index).join("");
+		pop_err();
+		return t_;
+	}
+}
+function c_JSONFloat(){
+	c_JSONDataItem.call(this);
+	this.m_value=.0;
+	this.m_unparsedStr="";
+	this.m_unparsed=false;
+}
+c_JSONFloat.prototype=extend_class(c_JSONDataItem);
+c_JSONFloat.m_new=function(t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<423>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<424>";
+	this.m_dataType=3;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<425>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONFloat.m_new2=function(t_unparsedStr){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<431>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<432>";
+	this.m_dataType=3;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<433>";
+	dbg_object(this).m_unparsedStr=t_unparsedStr;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<434>";
+	dbg_object(this).m_unparsed=true;
+	pop_err();
+	return this;
+}
+c_JSONFloat.m_new3=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<418>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<418>";
+	pop_err();
+	return this;
+}
+c_JSONFloat.prototype.p_Parse=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<438>";
+	if(this.m_unparsed){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<439>";
+		this.m_value=parseFloat(this.m_unparsedStr);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<440>";
+		this.m_unparsed=false;
+	}
+	pop_err();
+}
+c_JSONFloat.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<445>";
+	this.p_Parse();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<446>";
+	var t_=((this.m_value)|0);
+	pop_err();
+	return t_;
+}
+c_JSONFloat.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<450>";
+	this.p_Parse();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<451>";
+	pop_err();
+	return this.m_value;
+}
+c_JSONFloat.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<455>";
+	this.p_Parse();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<456>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+function c_JSONInteger(){
+	c_JSONDataItem.call(this);
+	this.m_value=0;
+}
+c_JSONInteger.prototype=extend_class(c_JSONDataItem);
+c_JSONInteger.m_new=function(t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<463>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<464>";
+	this.m_dataType=4;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<465>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONInteger.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<460>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<460>";
+	pop_err();
+	return this;
+}
+c_JSONInteger.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<469>";
+	pop_err();
+	return this.m_value;
+}
+c_JSONInteger.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<473>";
+	var t_=(this.m_value);
+	pop_err();
+	return t_;
+}
+c_JSONInteger.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<477>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
+}
+function c_JSONBool(){
+	c_JSONDataItem.call(this);
+	this.m_value=false;
+}
+c_JSONBool.prototype=extend_class(c_JSONDataItem);
+c_JSONBool.m_new=function(t_value){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<515>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<516>";
+	this.m_dataType=6;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<517>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
+	return this;
+}
+c_JSONBool.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<512>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<512>";
+	pop_err();
+	return this;
+}
+c_JSONBool.prototype.p_ToBool=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<521>";
+	pop_err();
+	return this.m_value;
+}
+c_JSONBool.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<525>";
+	if(this.m_value){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<526>";
+		pop_err();
+		return "True";
+	}else{
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<528>";
+		pop_err();
+		return "False";
+	}
+}
+function c_JSONNull(){
+	c_JSONDataItem.call(this);
+}
+c_JSONNull.prototype=extend_class(c_JSONDataItem);
+c_JSONNull.m_new=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<542>";
+	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<542>";
+	pop_err();
+	return this;
+}
+c_JSONNull.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<546>";
+	this.m_dataType=7;
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/json/jsondata.monkey<547>";
+	pop_err();
+	return "NULL";
+}
+function c_Enumerator(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator.m_new=function(t_list){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<326>";
+	this.m__list=t_list;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
+	return this;
+}
+c_Enumerator.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<323>";
+	pop_err();
+	return this;
+}
+c_Enumerator.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
+}
+c_Enumerator.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<340>";
+	pop_err();
+	return t_data;
+}
+function c_List2(){
+	Object.call(this);
+	this.m__head=(c_HeadNode2.m_new.call(new c_HeadNode2));
+}
+c_List2.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_List2.prototype.p_AddLast3=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<108>";
+	var t_=c_Node4.m_new.call(new c_Node4,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
+}
+c_List2.m_new2=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_=t_data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_2=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	while(t_2<t_.length){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		t_2=t_2+1;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<14>";
+		this.p_AddLast3(t_t);
+	}
+	pop_err();
+	return this;
+}
+c_List2.prototype.p_Count=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<41>";
+	var t_n=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<41>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<42>";
+	while(t_node!=this.m__head){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<43>";
+		t_node=dbg_object(t_node).m__succ;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<44>";
+		t_n+=1;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<46>";
+	pop_err();
+	return t_n;
+}
+c_List2.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator2.m_new.call(new c_Enumerator2,this);
+	pop_err();
+	return t_;
+}
+c_List2.prototype.p_ToArray=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<19>";
+	var t_arr=new_number_array(this.p_Count());
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<19>";
+	var t_i=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<20>";
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<20>";
+	var t_=this.p_ObjectEnumerator();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<20>";
+	while(t_.p_HasNext()){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<20>";
+		var t_t=t_.p_NextObject();
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<21>";
+		dbg_array(t_arr,t_i)[dbg_index]=t_t;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<22>";
+		t_i+=1;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<24>";
+	pop_err();
+	return t_arr;
+}
+function c_FloatList(){
+	c_List2.call(this);
+}
+c_FloatList.prototype=extend_class(c_List2);
+c_FloatList.m_new=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<414>";
+	c_List2.m_new2.call(this,t_data);
+	pop_err();
+	return this;
+}
+c_FloatList.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<411>";
+	c_List2.m_new.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<411>";
+	pop_err();
+	return this;
+}
+function c_Node4(){
+	Object.call(this);
+	this.m__succ=null;
+	this.m__pred=null;
+	this.m__data=0;
+}
+c_Node4.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<261>";
+	this.m__succ=t_succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<262>";
+	this.m__pred=t_pred;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<265>";
+	this.m__data=t_data;
+	pop_err();
+	return this;
+}
+c_Node4.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<258>";
+	pop_err();
+	return this;
+}
+function c_HeadNode2(){
+	c_Node4.call(this);
+}
+c_HeadNode2.prototype=extend_class(c_Node4);
+c_HeadNode2.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<310>";
+	c_Node4.m_new2.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<311>";
+	this.m__succ=(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<312>";
+	this.m__pred=(this);
+	pop_err();
+	return this;
+}
+function c_Enumerator2(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator2.m_new=function(t_list){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<326>";
+	this.m__list=t_list;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
+	return this;
+}
+c_Enumerator2.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<323>";
+	pop_err();
+	return this;
+}
+c_Enumerator2.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
+}
+c_Enumerator2.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<340>";
+	pop_err();
+	return t_data;
+}
+function c_Constants(){
+	Object.call(this);
+}
+function bb_rubeloader_LoadRube(t_path,t__world){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<14>";
+	var t_data=object_downcast((c_JSONData.m_ReadJSON(bb_app_LoadString(t_path))),c_JSONObject);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<16>";
+	var t_bodies=object_downcast((t_data.p_GetItem("body")),c_JSONArray);
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<18>";
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<18>";
+	var t_=t_bodies.p_ObjectEnumerator();
+	err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<18>";
+	while(t_.p_HasNext()){
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<18>";
+		var t_datum=t_.p_NextObject();
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<19>";
+		print("body");
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<20>";
+		var t_bodyData=object_downcast((t_datum),c_JSONObject);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<21>";
+		var t_bodyDef=c_b2BodyDef.m_new.call(new c_b2BodyDef);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<23>";
+		var t_bodyType=t_bodyData.p_GetItem3("type",0);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<25>";
+		var t_1=t_bodyType;
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<26>";
+		if(t_1==0){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<27>";
+			dbg_object(t_bodyDef).m_type=0;
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<28>";
+			if(t_1==1){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<29>";
+				dbg_object(t_bodyDef).m_type=1;
+			}else{
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<30>";
+				if(t_1==2){
+					err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<31>";
+					dbg_object(t_bodyDef).m_type=2;
+				}
+			}
+		}
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<35>";
+		var t_body=t__world.p_CreateBody2(t_bodyDef);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<37>";
+		var t_fixtures=object_downcast((t_bodyData.p_GetItem("fixture")),c_JSONArray);
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<39>";
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<39>";
+		var t_2=t_fixtures.p_ObjectEnumerator();
+		err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<39>";
+		while(t_2.p_HasNext()){
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<39>";
+			var t_datum2=t_2.p_NextObject();
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<40>";
+			var t_fixtureData=object_downcast((t_datum2),c_JSONObject);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<41>";
+			var t_fixtureDef=c_b2FixtureDef.m_new.call(new c_b2FixtureDef);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<42>";
+			dbg_object(t_fixtureDef).m_density=0.5;
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<43>";
+			dbg_object(t_fixtureDef).m_friction=0.3;
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<44>";
+			dbg_object(t_fixtureDef).m_restitution=0.0;
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<46>";
+			var t_shapeData=object_downcast((t_fixtureData.p_GetItem("polygon")),c_JSONObject);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<47>";
+			var t_verticesData=object_downcast((t_shapeData.p_GetItem("vertices")),c_JSONObject);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<48>";
+			var t_xData=object_downcast((t_verticesData.p_GetItem("x")),c_JSONArray);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<49>";
+			var t_yData=object_downcast((t_verticesData.p_GetItem("y")),c_JSONArray);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<51>";
+			var t_xList=c_FloatList.m_new2.call(new c_FloatList);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<52>";
+			var t_yList=c_FloatList.m_new2.call(new c_FloatList);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<54>";
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<54>";
+			var t_3=t_xData.p_ObjectEnumerator();
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<54>";
+			while(t_3.p_HasNext()){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<54>";
+				var t_datum3=t_3.p_NextObject();
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<55>";
+				t_xList.p_AddLast3(t_datum3.p_ToFloat()+10.666666666666666);
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<58>";
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<58>";
+			var t_4=t_yData.p_ObjectEnumerator();
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<58>";
+			while(t_4.p_HasNext()){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<58>";
+				var t_datum32=t_4.p_NextObject();
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<59>";
+				t_yList.p_AddLast3(t_datum32.p_ToFloat()+16.0);
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<62>";
+			var t_xArray=t_xList.p_ToArray();
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<63>";
+			var t_yArray=t_yList.p_ToArray();
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<64>";
+			var t_b2Vec2Array=new_object_array(t_xArray.length);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<66>";
+			for(var t_n=0;t_n<t_xArray.length;t_n=t_n+1){
+				err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<67>";
+				dbg_array(t_b2Vec2Array,t_n)[dbg_index]=c_b2Vec2.m_new.call(new c_b2Vec2,dbg_array(t_xArray,t_n)[dbg_index],dbg_array(t_yArray,t_n)[dbg_index]);
+			}
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<70>";
+			var t_shapeDef=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<71>";
+			t_shapeDef.p_SetAsArray(t_b2Vec2Array,(t_xArray.length));
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<73>";
+			dbg_object(t_fixtureDef).m_shape=(t_shapeDef);
+			err_info="/Users/turing/Documents/projects/glitch_game/rubeloader/rubeloader.monkey<75>";
+			t_body.p_CreateFixture(t_fixtureDef);
+		}
+	}
 	pop_err();
 }
 function c_b2CircleShape(){
@@ -9274,12 +11952,867 @@ c_b2CircleShape.prototype.p_TestPoint=function(t_transform,t_p){
 	pop_err();
 	return t_;
 }
+function c_AnimationDelegate(){
+	Object.call(this);
+	this.m_parent=null;
+	this.m_link=null;
+	this.m_animations=null;
+	this.m__currentAnimation=null;
+	this.m_accumulation=.0;
+	this.m_index=0;
+	this.m_loopCount=0;
+	this.m_stopped=false;
+	this.implments={c_IAnimationObject:1};
+}
+c_AnimationDelegate.m_new=function(t_parent){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<61>";
+	dbg_object(this).m_parent=t_parent;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<62>";
+	if(bb_abuanimation_autoManageAnimations){
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<62>";
+		this.m_link=bb_abuanimation_animationJuggler.p_Add2(this);
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<64>";
+	this.m_animations=c_StringMap2.m_new.call(new c_StringMap2);
+	pop_err();
+	return this;
+}
+c_AnimationDelegate.prototype.p_AddAnimation=function(t_name,t_sequence,t_duration,t_loop){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<72>";
+	this.m_animations.p_Set9(t_name,c_AnimationInfo.m_new.call(new c_AnimationInfo,t_name,t_sequence,c_Arrays.m_Fill(t_duration,t_sequence.length),t_loop));
+	pop_err();
+}
+c_AnimationDelegate.prototype.p_ResetAnimation=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<94>";
+	this.m_accumulation=0.0;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<95>";
+	this.m_index=0;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<96>";
+	this.m_loopCount=0;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<97>";
+	this.m_stopped=false;
+	pop_err();
+}
+c_AnimationDelegate.prototype.p_PlayAnimation=function(t_name){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<76>";
+	if(this.m__currentAnimation!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<77>";
+		if(dbg_object(this.m__currentAnimation).m_name==t_name){
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<78>";
+			if(!dbg_object(this.m__currentAnimation).m_loop){
+				err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<79>";
+				this.p_ResetAnimation();
+			}
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<82>";
+			this.p_ResetAnimation();
+		}
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<86>";
+	this.m__currentAnimation=this.m_animations.p_Get2(t_name);
+	pop_err();
+}
+c_AnimationDelegate.prototype.p_currentFrame=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<58>";
+	pop_err();
+	return dbg_array(dbg_object(this.m__currentAnimation).m_sequence,this.m_index)[dbg_index];
+}
+c_AnimationDelegate.prototype.p__OnAnimationLoop=function(t_name){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<142>";
+	var t_iOnAnimationLoop=object_implements((this.m_parent),"c_IOnAnimationLoop");
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<143>";
+	if(t_iOnAnimationLoop!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<143>";
+		t_iOnAnimationLoop.p_OnAnimationLoop(t_name);
+	}
+	pop_err();
+}
+c_AnimationDelegate.prototype.p__OnAnimationEnd=function(t_name){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<147>";
+	var t_iOnAnimationEnd=object_implements((this.m_parent),"c_IOnAnimationEnd");
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<148>";
+	if(t_iOnAnimationEnd!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<148>";
+		t_iOnAnimationEnd.p_OnAnimationEnd(t_name);
+	}
+	pop_err();
+}
+c_AnimationDelegate.prototype.p__OnAnimationFrameChange=function(t_name,t_frame,t_framePrevious){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<137>";
+	var t_iOnAnimationFrameChange=object_implements((this.m_parent),"c_IOnAnimationFrameChange");
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<138>";
+	if(t_iOnAnimationFrameChange!=null){
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<138>";
+		t_iOnAnimationFrameChange.p_OnAnimationFrameChange(t_name,t_frame,t_framePrevious);
+	}
+	pop_err();
+}
+c_AnimationDelegate.prototype.p__IncrementIndex=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<113>";
+	var t_framePrevious=dbg_array(dbg_object(this.m__currentAnimation).m_sequence,this.m_index)[dbg_index];
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<115>";
+	this.m_index+=1;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<117>";
+	if(this.m_index==dbg_object(this.m__currentAnimation).m_sequence.length){
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<118>";
+		if(dbg_object(this.m__currentAnimation).m_loop){
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<119>";
+			this.m_index=0;
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<120>";
+			this.m_loopCount+=1;
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<121>";
+			this.p__OnAnimationLoop(dbg_object(this.m__currentAnimation).m_name);
+		}else{
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<123>";
+			this.m_index=dbg_object(this.m__currentAnimation).m_sequence.length-1;
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<124>";
+			this.m_loopCount=1;
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<125>";
+			this.m_stopped=true;
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<126>";
+			this.p__OnAnimationEnd(dbg_object(this.m__currentAnimation).m_name);
+			err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<127>";
+			pop_err();
+			return true;
+		}
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<131>";
+	this.p__OnAnimationFrameChange(dbg_object(this.m__currentAnimation).m_name,dbg_array(dbg_object(this.m__currentAnimation).m_sequence,this.m_index)[dbg_index],t_framePrevious);
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<133>";
+	pop_err();
+	return false;
+}
+c_AnimationDelegate.prototype.p_UpdateAnimation=function(t_timeElapsed){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<101>";
+	if(this.m__currentAnimation==null){
+		pop_err();
+		return;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<103>";
+	this.m_accumulation+=t_timeElapsed;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<105>";
+	while(this.m_accumulation>=dbg_array(dbg_object(this.m__currentAnimation).m_duration,this.m_index)[dbg_index]){
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<106>";
+		this.m_accumulation-=dbg_array(dbg_object(this.m__currentAnimation).m_duration,this.m_index)[dbg_index];
+		err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<108>";
+		if(this.p__IncrementIndex()){
+			pop_err();
+			return;
+		}
+	}
+	pop_err();
+}
+var bb_abuanimation_autoManageAnimations=false;
+function c_JugglerGeneric(){
+	Object.call(this);
+	this.m_pins=c_List3.m_new.call(new c_List3);
+	this.m_paused=false;
+}
+c_JugglerGeneric.m_new=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<38>";
+	pop_err();
+	return this;
+}
+c_JugglerGeneric.prototype.p_Add2=function(t_pin){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<46>";
+	var t_=this.m_pins.p_AddLast4(t_pin);
+	pop_err();
+	return t_;
+}
+c_JugglerGeneric.prototype.p_UpdatePin=function(t_pin,t_timeElapsed){
+}
+c_JugglerGeneric.prototype.p_Update3=function(t_timeElapsed){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<50>";
+	if(this.m_paused){
+		pop_err();
+		return;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<52>";
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<52>";
+	var t_=this.m_pins.p_ObjectEnumerator();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<52>";
+	while(t_.p_HasNext()){
+		err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<52>";
+		var t_pin=t_.p_NextObject();
+		err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<53>";
+		this.p_UpdatePin(t_pin,t_timeElapsed);
+	}
+	pop_err();
+}
+function c_AnimationJuggler(){
+	c_JugglerGeneric.call(this);
+}
+c_AnimationJuggler.prototype=extend_class(c_JugglerGeneric);
+c_AnimationJuggler.m_new=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<39>";
+	c_JugglerGeneric.m_new.call(this);
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<39>";
+	pop_err();
+	return this;
+}
+c_AnimationJuggler.prototype.p_UpdatePin=function(t_pin,t_timeElapsed){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<41>";
+	t_pin.p_UpdateAnimation(t_timeElapsed);
+	pop_err();
+}
+var bb_abuanimation_animationJuggler=null;
+function c_Node5(){
+	Object.call(this);
+	this.m__succ=null;
+	this.m__pred=null;
+	this.m__data=null;
+}
+c_Node5.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<261>";
+	this.m__succ=t_succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<262>";
+	this.m__pred=t_pred;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<265>";
+	this.m__data=t_data;
+	pop_err();
+	return this;
+}
+c_Node5.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<258>";
+	pop_err();
+	return this;
+}
+function c_List3(){
+	Object.call(this);
+	this.m__head=(c_HeadNode3.m_new.call(new c_HeadNode3));
+}
+c_List3.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_List3.prototype.p_AddLast4=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<108>";
+	var t_=c_Node5.m_new.call(new c_Node5,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
+}
+c_List3.m_new2=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_=t_data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_2=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	while(t_2<t_.length){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		t_2=t_2+1;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<14>";
+		this.p_AddLast4(t_t);
+	}
+	pop_err();
+	return this;
+}
+c_List3.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator3.m_new.call(new c_Enumerator3,this);
+	pop_err();
+	return t_;
+}
+function c_HeadNode3(){
+	c_Node5.call(this);
+}
+c_HeadNode3.prototype=extend_class(c_Node5);
+c_HeadNode3.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<310>";
+	c_Node5.m_new2.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<311>";
+	this.m__succ=(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<312>";
+	this.m__pred=(this);
+	pop_err();
+	return this;
+}
+function c_AnimationInfo(){
+	Object.call(this);
+	this.m_name="";
+	this.m_sequence=[];
+	this.m_duration=[];
+	this.m_loop=false;
+}
+c_AnimationInfo.m_new=function(t_name,t_sequence,t_duration,t_loop){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<161>";
+	dbg_object(this).m_name=t_name;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<162>";
+	dbg_object(this).m_sequence=t_sequence;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<163>";
+	dbg_object(this).m_duration=t_duration;
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<164>";
+	dbg_object(this).m_loop=t_loop;
+	pop_err();
+	return this;
+}
+c_AnimationInfo.m_new2=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abuanimation.monkey<154>";
+	pop_err();
+	return this;
+}
+function c_Map3(){
+	Object.call(this);
+	this.m_root=null;
+}
+c_Map3.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<7>";
+	pop_err();
+	return this;
+}
+c_Map3.prototype.p_Compare2=function(t_lhs,t_rhs){
+}
+c_Map3.prototype.p_RotateLeft3=function(t_node){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<264>";
+		this.m_root=t_child;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map3.prototype.p_RotateRight3=function(t_node){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
+		}
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<284>";
+		this.m_root=t_child;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
+	return 0;
+}
+c_Map3.prototype.p_InsertFixup3=function(t_node){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<223>";
+					this.p_RotateLeft3(t_node);
+				}
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<227>";
+				this.p_RotateRight3(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<239>";
+					this.p_RotateRight3(t_node);
+				}
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft3(dbg_object(dbg_object(t_node).m_parent).m_parent);
+			}
+		}
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
+	return 0;
+}
+c_Map3.prototype.p_Set9=function(t_key,t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<29>";
+	var t_node=this.m_root;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<30>";
+	var t_parent=null;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<30>";
+	var t_cmp=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<32>";
+	while((t_node)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<33>";
+		t_parent=t_node;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<35>";
+		if(t_cmp>0){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<37>";
+			if(t_cmp<0){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<41>";
+				pop_err();
+				return false;
+			}
+		}
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<45>";
+	t_node=c_Node6.m_new.call(new c_Node6,t_key,t_value,-1,t_parent);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<47>";
+	if((t_parent)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<48>";
+		if(t_cmp>0){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
+		}
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<53>";
+		this.p_InsertFixup3(t_node);
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<55>";
+		this.m_root=t_node;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<57>";
+	pop_err();
+	return true;
+}
+c_Map3.prototype.p_FindNode2=function(t_key){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<157>";
+	var t_node=this.m_root;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<159>";
+	while((t_node)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<161>";
+		if(t_cmp>0){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
+		}else{
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<163>";
+			if(t_cmp<0){
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
+			}else{
+				err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<166>";
+				pop_err();
+				return t_node;
+			}
+		}
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<169>";
+	pop_err();
+	return t_node;
+}
+c_Map3.prototype.p_Get2=function(t_key){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<101>";
+	var t_node=this.p_FindNode2(t_key);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<102>";
+	if((t_node)!=null){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
+	}
+	pop_err();
+	return null;
+}
+function c_StringMap2(){
+	c_Map3.call(this);
+}
+c_StringMap2.prototype=extend_class(c_Map3);
+c_StringMap2.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<551>";
+	c_Map3.m_new.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<551>";
+	pop_err();
+	return this;
+}
+c_StringMap2.prototype.p_Compare2=function(t_lhs,t_rhs){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
+}
+function c_Arrays(){
+	Object.call(this);
+}
+c_Arrays.m_Fill=function(t_value,t_length){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutoolbox.monkey<3>";
+	var t_arr=new_number_array(t_length);
+	err_info="/Users/turing/Documents/projects/glitch_game/abutoolbox.monkey<5>";
+	for(var t_n=0;t_n<t_length;t_n=t_n+1){
+		err_info="/Users/turing/Documents/projects/glitch_game/abutoolbox.monkey<6>";
+		dbg_array(t_arr,t_n)[dbg_index]=t_value;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abutoolbox.monkey<9>";
+	pop_err();
+	return t_arr;
+}
+function c_Node6(){
+	Object.call(this);
+	this.m_key="";
+	this.m_right=null;
+	this.m_left=null;
+	this.m_value=null;
+	this.m_color=0;
+	this.m_parent=null;
+}
+c_Node6.m_new=function(t_key,t_value,t_color,t_parent){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
+	return this;
+}
+c_Node6.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<361>";
+	pop_err();
+	return this;
+}
+function c_List4(){
+	Object.call(this);
+	this.m__head=(c_HeadNode4.m_new.call(new c_HeadNode4));
+}
+c_List4.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_List4.prototype.p_AddLast5=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<108>";
+	var t_=c_Node7.m_new.call(new c_Node7,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
+}
+c_List4.m_new2=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_=t_data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_2=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	while(t_2<t_.length){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		t_2=t_2+1;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<14>";
+		this.p_AddLast5(t_t);
+	}
+	pop_err();
+	return this;
+}
+c_List4.prototype.p_Equals=function(t_lhs,t_rhs){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<28>";
+	var t_=t_lhs==t_rhs;
+	pop_err();
+	return t_;
+}
+c_List4.prototype.p_Contains3=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<54>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<55>";
+	while(t_node!=this.m__head){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<56>";
+		if(this.p_Equals(dbg_object(t_node).m__data,t_value)){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<56>";
+			pop_err();
+			return true;
+		}
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<57>";
+		t_node=dbg_object(t_node).m__succ;
+	}
+	pop_err();
+	return false;
+}
+c_List4.prototype.p_RemoveEach=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<151>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<152>";
+	while(t_node!=this.m__head){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<153>";
+		var t_succ=dbg_object(t_node).m__succ;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<154>";
+		if(this.p_Equals(dbg_object(t_node).m__data,t_value)){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<154>";
+			t_node.p_Remove();
+		}
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<155>";
+		t_node=t_succ;
+	}
+	pop_err();
+	return 0;
+}
+c_List4.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator5.m_new.call(new c_Enumerator5,this);
+	pop_err();
+	return t_;
+}
+function c_Node7(){
+	Object.call(this);
+	this.m__succ=null;
+	this.m__pred=null;
+	this.m__data=null;
+}
+c_Node7.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<261>";
+	this.m__succ=t_succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<262>";
+	this.m__pred=t_pred;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<265>";
+	this.m__data=t_data;
+	pop_err();
+	return this;
+}
+c_Node7.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<258>";
+	pop_err();
+	return this;
+}
+c_Node7.prototype.p_Remove=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<274>";
+	if(dbg_object(this.m__succ).m__pred!=this){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<274>";
+		error("Illegal operation on removed node");
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<276>";
+	dbg_object(this.m__succ).m__pred=this.m__pred;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<277>";
+	dbg_object(this.m__pred).m__succ=this.m__succ;
+	pop_err();
+	return 0;
+}
+function c_HeadNode4(){
+	c_Node7.call(this);
+}
+c_HeadNode4.prototype=extend_class(c_Node7);
+c_HeadNode4.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<310>";
+	c_Node7.m_new2.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<311>";
+	this.m__succ=(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<312>";
+	this.m__pred=(this);
+	pop_err();
+	return this;
+}
+function c_Clock(){
+	Object.call(this);
+}
+c_Clock.m_timeCurrent=0;
+c_Clock.m_timePrevious=0;
+c_Clock.m_timeElapsed=0;
+c_Clock.m_Update=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<19>";
+	c_Clock.m_timeCurrent=bb_app_Millisecs();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<21>";
+	if(c_Clock.m_timePrevious==-1){
+		err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<22>";
+		c_Clock.m_timePrevious=c_Clock.m_timeCurrent;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<25>";
+	c_Clock.m_timeElapsed=c_Clock.m_timeCurrent-c_Clock.m_timePrevious;
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<27>";
+	c_Clock.m_timePrevious=c_Clock.m_timeCurrent;
+	pop_err();
+}
+c_Clock.m_timeStep=0;
+c_Clock.m_Tick=function(){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<31>";
+	if(c_Clock.m_timeStep!=-1){
+		err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<31>";
+		var t_=(c_Clock.m_timeStep);
+		pop_err();
+		return t_;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/abutime.monkey<32>";
+	var t_2=(c_Clock.m_timeElapsed);
+	pop_err();
+	return t_2;
+}
 function bb_app_Millisecs(){
 	push_err();
 	err_info="/Applications/MonkeyXPro78h/modules/mojo/app.monkey<233>";
 	var t_=bb_app__game.Millisecs();
 	pop_err();
 	return t_;
+}
+function c_Enumerator3(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator3.m_new=function(t_list){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<326>";
+	this.m__list=t_list;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
+	return this;
+}
+c_Enumerator3.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<323>";
+	pop_err();
+	return this;
+}
+c_Enumerator3.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
+}
+c_Enumerator3.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<340>";
+	pop_err();
+	return t_data;
 }
 function bb_input_MouseX(){
 	push_err();
@@ -9513,7 +13046,7 @@ c_b2ContactID.prototype.p_Key2=function(t_value){
 	dbg_object(this.m_features).m__flip=(this.m__key&-16777216)>>24&255;
 	pop_err();
 }
-c_b2ContactID.prototype.p_Set8=function(t_id){
+c_b2ContactID.prototype.p_Set10=function(t_id){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2contactid.monkey<52>";
 	this.p_Key2(dbg_object(t_id).m__key);
@@ -10576,7 +14109,7 @@ c_b2PrismaticJoint.prototype.p_SolveVelocityConstraints=function(t_timeStep){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<517>";
 		var t_df=this.m_m_K.p_Solve33(c_b2Vec3.m_new.call(new c_b2Vec3,0.0,0.0,0.0),-t_Cdot1X,-t_Cdot1Y,-t_Cdot2);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<518>";
-		this.m_m_impulse.p_Add2(t_df);
+		this.m_m_impulse.p_Add3(t_df);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<519>";
 		if(this.m_m_limitState==1){
 			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<521>";
@@ -10838,9 +14371,9 @@ c_b2PrismaticJoint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<677>";
 		var t_k22=t_i1+t_i2;
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<678>";
-		dbg_object(this.m_m_K).m_col1.p_Set9(t_k11,t_k12,0.0);
+		dbg_object(this.m_m_K).m_col1.p_Set11(t_k11,t_k12,0.0);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<679>";
-		dbg_object(this.m_m_K).m_col2.p_Set9(t_k12,t_k22,0.0);
+		dbg_object(this.m_m_K).m_col2.p_Set11(t_k12,t_k22,0.0);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<680>";
 		var t_impulse1=this.m_m_K.p_Solve22(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0),-t_C1X,-t_C1Y);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2prismaticjoint.monkey<681>";
@@ -10941,7 +14474,7 @@ c_b2Vec3.prototype.p_Copy=function(){
 	pop_err();
 	return t_;
 }
-c_b2Vec3.prototype.p_Add2=function(t_v){
+c_b2Vec3.prototype.p_Add3=function(t_v){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec3.monkey<99>";
 	this.m_x+=dbg_object(t_v).m_x;
@@ -10951,7 +14484,7 @@ c_b2Vec3.prototype.p_Add2=function(t_v){
 	this.m_z+=dbg_object(t_v).m_z;
 	pop_err();
 }
-c_b2Vec3.prototype.p_Set9=function(t_x,t_y,t_z){
+c_b2Vec3.prototype.p_Set11=function(t_x,t_y,t_z){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/math/b2vec3.monkey<70>";
 	dbg_object(this).m_x=t_x;
@@ -11278,7 +14811,7 @@ c_b2RevoluteJoint.prototype.p_SolveVelocityConstraints=function(t_timeStep){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2revolutejoint.monkey<421>";
 		if(this.m_m_limitState==3){
 			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2revolutejoint.monkey<423>";
-			this.m_m_impulse.p_Add2(this.m_impulse3);
+			this.m_m_impulse.p_Add3(this.m_impulse3);
 		}else{
 			err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2revolutejoint.monkey<424>";
 			if(this.m_m_limitState==1){
@@ -13449,7 +16982,7 @@ c_b2WeldJoint.prototype.p_SolveVelocityConstraints=function(t_timeStep){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2weldjoint.monkey<179>";
 	this.m_m_mass.p_Solve33(t_impulse,-t_Cdot1X,-t_Cdot1Y,-t_Cdot2);
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2weldjoint.monkey<180>";
-	this.m_m_impulse.p_Add2(t_impulse);
+	this.m_m_impulse.p_Add3(t_impulse);
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2weldjoint.monkey<181>";
 	dbg_object(t_vA).m_x-=t_mA*dbg_object(t_impulse).m_x;
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/joints/b2weldjoint.monkey<182>";
@@ -14290,7 +17823,7 @@ c_b2TimeStep.m_new=function(){
 	pop_err();
 	return this;
 }
-c_b2TimeStep.prototype.p_Set10=function(t_timeStep){
+c_b2TimeStep.prototype.p_Set12=function(t_timeStep){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/b2timestep.monkey<46>";
 	this.m_dt=dbg_object(t_timeStep).m_dt;
@@ -14847,7 +18380,7 @@ c_b2Simplex.prototype.p_Solve23=function(){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<254>";
 		this.m_m_count=1;
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<255>";
-		this.m_m_v1.p_Set11(this.m_m_v2);
+		this.m_m_v1.p_Set13(this.m_m_v2);
 		pop_err();
 		return;
 	}
@@ -14947,7 +18480,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<326>";
 		this.m_m_count=2;
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<327>";
-		this.m_m_v2.p_Set11(this.m_m_v3);
+		this.m_m_v2.p_Set13(this.m_m_v3);
 		pop_err();
 		return;
 	}
@@ -14958,7 +18491,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<334>";
 		this.m_m_count=1;
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<335>";
-		this.m_m_v1.p_Set11(this.m_m_v2);
+		this.m_m_v1.p_Set13(this.m_m_v2);
 		pop_err();
 		return;
 	}
@@ -14969,7 +18502,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<342>";
 		this.m_m_count=1;
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<343>";
-		this.m_m_v1.p_Set11(this.m_m_v3);
+		this.m_m_v1.p_Set13(this.m_m_v3);
 		pop_err();
 		return;
 	}
@@ -14984,7 +18517,7 @@ c_b2Simplex.prototype.p_Solve3=function(){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<352>";
 		this.m_m_count=2;
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplex.monkey<353>";
-		this.m_m_v1.p_Set11(this.m_m_v3);
+		this.m_m_v1.p_Set13(this.m_m_v3);
 		pop_err();
 		return;
 	}
@@ -15112,7 +18645,7 @@ c_b2SimplexVertex.m_new=function(){
 	pop_err();
 	return this;
 }
-c_b2SimplexVertex.prototype.p_Set11=function(t_other){
+c_b2SimplexVertex.prototype.p_Set13=function(t_other){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplexvertex.monkey<43>";
 	this.m_wA.p_SetV(dbg_object(t_other).m_wA);
@@ -15127,9 +18660,6 @@ c_b2SimplexVertex.prototype.p_Set11=function(t_other){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2simplexvertex.monkey<48>";
 	this.m_indexB=dbg_object(t_other).m_indexB;
 	pop_err();
-}
-function c_Constants(){
-	Object.call(this);
 }
 function c_b2Island(){
 	Object.call(this);
@@ -15576,7 +19106,7 @@ c_b2ContactSolver.prototype.p_Initialize2=function(t_timeStep,t_contacts,t_conta
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<68>";
 	var t_contact=null;
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<70>";
-	this.m_m_step.p_Set10(t_timeStep);
+	this.m_m_step.p_Set12(t_timeStep);
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<71>";
 	this.m_m_allocator=t_allocator;
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/dynamics/contacts/b2contactsolver.monkey<73>";
@@ -17453,6 +20983,32 @@ function bb_glue_ApplyImpulseToBody2(t_body,t_magnitude,t_angle){
 	t_body.p_ApplyImpulse(c_b2Vec2.m_new.call(new c_b2Vec2,t_x,t_y),t_body.p_GetWorldCenter());
 	pop_err();
 }
+function bb_math_Abs(t_x){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<46>";
+	if(t_x>=0){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<46>";
+		pop_err();
+		return t_x;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<47>";
+	var t_=-t_x;
+	pop_err();
+	return t_;
+}
+function bb_math_Abs2(t_x){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<73>";
+	if(t_x>=0.0){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<73>";
+		pop_err();
+		return t_x;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/math.monkey<74>";
+	var t_=-t_x;
+	pop_err();
+	return t_;
+}
 function bb_graphics_DebugRenderDevice(){
 	push_err();
 	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<53>";
@@ -17469,193 +21025,6 @@ function bb_graphics_Cls(t_r,t_g,t_b){
 	bb_graphics_DebugRenderDevice();
 	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<385>";
 	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
-	pop_err();
-	return 0;
-}
-function bb_graphics_DrawImage(t_image,t_x,t_y,t_frame){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<456>";
-	bb_graphics_DebugRenderDevice();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<457>";
-	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<457>";
-		error("Invalid image frame");
-	}
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<460>";
-	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<462>";
-	bb_graphics_context.p_Validate();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<464>";
-	if((dbg_object(t_image).m_flags&65536)!=0){
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<465>";
-		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty);
-	}else{
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<467>";
-		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
-	}
-	pop_err();
-	return 0;
-}
-function bb_graphics_PushMatrix(){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<338>";
-	var t_sp=dbg_object(bb_graphics_context).m_matrixSp;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<339>";
-	if(t_sp==dbg_object(bb_graphics_context).m_matrixStack.length){
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<339>";
-		dbg_object(bb_graphics_context).m_matrixStack=resize_number_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp*2);
-	}
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<340>";
-	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index]=dbg_object(bb_graphics_context).m_ix;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<341>";
-	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index]=dbg_object(bb_graphics_context).m_iy;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<342>";
-	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index]=dbg_object(bb_graphics_context).m_jx;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<343>";
-	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index]=dbg_object(bb_graphics_context).m_jy;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<344>";
-	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index]=dbg_object(bb_graphics_context).m_tx;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<345>";
-	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]=dbg_object(bb_graphics_context).m_ty;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<346>";
-	dbg_object(bb_graphics_context).m_matrixSp=t_sp+6;
-	pop_err();
-	return 0;
-}
-function bb_graphics_Transform(t_ix,t_iy,t_jx,t_jy,t_tx,t_ty){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<360>";
-	var t_ix2=t_ix*dbg_object(bb_graphics_context).m_ix+t_iy*dbg_object(bb_graphics_context).m_jx;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<361>";
-	var t_iy2=t_ix*dbg_object(bb_graphics_context).m_iy+t_iy*dbg_object(bb_graphics_context).m_jy;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<362>";
-	var t_jx2=t_jx*dbg_object(bb_graphics_context).m_ix+t_jy*dbg_object(bb_graphics_context).m_jx;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<363>";
-	var t_jy2=t_jx*dbg_object(bb_graphics_context).m_iy+t_jy*dbg_object(bb_graphics_context).m_jy;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<364>";
-	var t_tx2=t_tx*dbg_object(bb_graphics_context).m_ix+t_ty*dbg_object(bb_graphics_context).m_jx+dbg_object(bb_graphics_context).m_tx;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<365>";
-	var t_ty2=t_tx*dbg_object(bb_graphics_context).m_iy+t_ty*dbg_object(bb_graphics_context).m_jy+dbg_object(bb_graphics_context).m_ty;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<366>";
-	bb_graphics_SetMatrix(t_ix2,t_iy2,t_jx2,t_jy2,t_tx2,t_ty2);
-	pop_err();
-	return 0;
-}
-function bb_graphics_Transform2(t_m){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<356>";
-	bb_graphics_Transform(dbg_array(t_m,0)[dbg_index],dbg_array(t_m,1)[dbg_index],dbg_array(t_m,2)[dbg_index],dbg_array(t_m,3)[dbg_index],dbg_array(t_m,4)[dbg_index],dbg_array(t_m,5)[dbg_index]);
-	pop_err();
-	return 0;
-}
-function bb_graphics_Translate(t_x,t_y){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<370>";
-	bb_graphics_Transform(1.0,0.0,0.0,1.0,t_x,t_y);
-	pop_err();
-	return 0;
-}
-function bb_graphics_Rotate(t_angle){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<378>";
-	bb_graphics_Transform(Math.cos((t_angle)*D2R),-Math.sin((t_angle)*D2R),Math.sin((t_angle)*D2R),Math.cos((t_angle)*D2R),0.0,0.0);
-	pop_err();
-	return 0;
-}
-function bb_graphics_Scale(t_x,t_y){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<374>";
-	bb_graphics_Transform(t_x,0.0,0.0,t_y,0.0,0.0);
-	pop_err();
-	return 0;
-}
-function bb_graphics_PopMatrix(){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<350>";
-	var t_sp=dbg_object(bb_graphics_context).m_matrixSp-6;
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<351>";
-	bb_graphics_SetMatrix(dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]);
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<352>";
-	dbg_object(bb_graphics_context).m_matrixSp=t_sp;
-	pop_err();
-	return 0;
-}
-function bb_graphics_DrawImage2(t_image,t_x,t_y,t_rotation,t_scaleX,t_scaleY,t_frame){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<474>";
-	bb_graphics_DebugRenderDevice();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<475>";
-	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<475>";
-		error("Invalid image frame");
-	}
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<478>";
-	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<480>";
-	bb_graphics_PushMatrix();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<482>";
-	bb_graphics_Translate(t_x,t_y);
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<483>";
-	bb_graphics_Rotate(t_rotation);
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<484>";
-	bb_graphics_Scale(t_scaleX,t_scaleY);
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<486>";
-	bb_graphics_Translate(-dbg_object(t_image).m_tx,-dbg_object(t_image).m_ty);
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<488>";
-	bb_graphics_context.p_Validate();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<490>";
-	if((dbg_object(t_image).m_flags&65536)!=0){
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<491>";
-		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,0.0,0.0);
-	}else{
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<493>";
-		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,0.0,0.0,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
-	}
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<496>";
-	bb_graphics_PopMatrix();
-	pop_err();
-	return 0;
-}
-function bb_glue_BoolToString(t_tf){
-	push_err();
-	err_info="/Users/turing/Documents/projects/glitch_game/glue.monkey<41>";
-	if(t_tf){
-		err_info="/Users/turing/Documents/projects/glitch_game/glue.monkey<41>";
-		pop_err();
-		return "T";
-	}
-	err_info="/Users/turing/Documents/projects/glitch_game/glue.monkey<42>";
-	pop_err();
-	return "F";
-}
-function bb_graphics_DrawText(t_text,t_x,t_y,t_xalign,t_yalign){
-	push_err();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<581>";
-	bb_graphics_DebugRenderDevice();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<583>";
-	if(!((dbg_object(bb_graphics_context).m_font)!=null)){
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<583>";
-		pop_err();
-		return 0;
-	}
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<585>";
-	var t_w=dbg_object(bb_graphics_context).m_font.p_Width();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<586>";
-	var t_h=dbg_object(bb_graphics_context).m_font.p_Height();
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<588>";
-	t_x-=Math.floor((t_w*t_text.length)*t_xalign);
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<589>";
-	t_y-=Math.floor((t_h)*t_yalign);
-	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<591>";
-	for(var t_i=0;t_i<t_text.length;t_i=t_i+1){
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<592>";
-		var t_ch=dbg_charCodeAt(t_text,t_i)-dbg_object(bb_graphics_context).m_firstChar;
-		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<593>";
-		if(t_ch>=0 && t_ch<dbg_object(bb_graphics_context).m_font.p_Frames()){
-			err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<594>";
-			bb_graphics_DrawImage(dbg_object(bb_graphics_context).m_font,t_x+(t_i*t_w),t_y,t_ch);
-		}
-	}
 	pop_err();
 	return 0;
 }
@@ -17682,7 +21051,7 @@ c_b2Color.m_new2=function(){
 	pop_err();
 	return this;
 }
-c_b2Color.prototype.p_Set9=function(t_rr,t_gg,t_bb){
+c_b2Color.prototype.p_Set11=function(t_rr,t_gg,t_bb){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/common/b2color.monkey<50>";
 	this.m__r=((255.0*c_b2Math.m_Clamp(t_rr,0.0,1.0))|0);
@@ -17874,12 +21243,12 @@ c_b2PolyAndCircleContact.m_new=function(){
 	pop_err();
 	return this;
 }
-function c_Enumerator(){
+function c_Enumerator4(){
 	Object.call(this);
 	this.m__list=null;
 	this.m__curr=null;
 }
-c_Enumerator.m_new=function(t_list){
+c_Enumerator4.m_new=function(t_list){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<471>";
 	this.m__list=t_list;
@@ -17888,20 +21257,20 @@ c_Enumerator.m_new=function(t_list){
 	pop_err();
 	return this;
 }
-c_Enumerator.m_new2=function(){
+c_Enumerator4.m_new2=function(){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<468>";
 	pop_err();
 	return this;
 }
-c_Enumerator.prototype.p_HasNext=function(){
+c_Enumerator4.prototype.p_HasNext=function(){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<476>";
 	var t_=this.m__curr!=null;
 	pop_err();
 	return t_;
 }
-c_Enumerator.prototype.p_NextObject=function(){
+c_Enumerator4.prototype.p_NextObject=function(){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<480>";
 	var t_data=dbg_object(this.m__curr).m_elt;
@@ -17910,6 +21279,150 @@ c_Enumerator.prototype.p_NextObject=function(){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<482>";
 	pop_err();
 	return t_data;
+}
+function bb_graphics_DrawImage(t_image,t_x,t_y,t_frame){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<456>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<457>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<457>";
+		error("Invalid image frame");
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<460>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<462>";
+	bb_graphics_context.p_Validate();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<464>";
+	if((dbg_object(t_image).m_flags&65536)!=0){
+		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<465>";
+		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty);
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<467>";
+		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
+	}
+	pop_err();
+	return 0;
+}
+function bb_graphics_PushMatrix(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<338>";
+	var t_sp=dbg_object(bb_graphics_context).m_matrixSp;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<339>";
+	if(t_sp==dbg_object(bb_graphics_context).m_matrixStack.length){
+		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<339>";
+		dbg_object(bb_graphics_context).m_matrixStack=resize_number_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp*2);
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<340>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index]=dbg_object(bb_graphics_context).m_ix;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<341>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index]=dbg_object(bb_graphics_context).m_iy;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<342>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index]=dbg_object(bb_graphics_context).m_jx;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<343>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index]=dbg_object(bb_graphics_context).m_jy;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<344>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index]=dbg_object(bb_graphics_context).m_tx;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<345>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]=dbg_object(bb_graphics_context).m_ty;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<346>";
+	dbg_object(bb_graphics_context).m_matrixSp=t_sp+6;
+	pop_err();
+	return 0;
+}
+function bb_graphics_Transform(t_ix,t_iy,t_jx,t_jy,t_tx,t_ty){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<360>";
+	var t_ix2=t_ix*dbg_object(bb_graphics_context).m_ix+t_iy*dbg_object(bb_graphics_context).m_jx;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<361>";
+	var t_iy2=t_ix*dbg_object(bb_graphics_context).m_iy+t_iy*dbg_object(bb_graphics_context).m_jy;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<362>";
+	var t_jx2=t_jx*dbg_object(bb_graphics_context).m_ix+t_jy*dbg_object(bb_graphics_context).m_jx;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<363>";
+	var t_jy2=t_jx*dbg_object(bb_graphics_context).m_iy+t_jy*dbg_object(bb_graphics_context).m_jy;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<364>";
+	var t_tx2=t_tx*dbg_object(bb_graphics_context).m_ix+t_ty*dbg_object(bb_graphics_context).m_jx+dbg_object(bb_graphics_context).m_tx;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<365>";
+	var t_ty2=t_tx*dbg_object(bb_graphics_context).m_iy+t_ty*dbg_object(bb_graphics_context).m_jy+dbg_object(bb_graphics_context).m_ty;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<366>";
+	bb_graphics_SetMatrix(t_ix2,t_iy2,t_jx2,t_jy2,t_tx2,t_ty2);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Transform2(t_m){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<356>";
+	bb_graphics_Transform(dbg_array(t_m,0)[dbg_index],dbg_array(t_m,1)[dbg_index],dbg_array(t_m,2)[dbg_index],dbg_array(t_m,3)[dbg_index],dbg_array(t_m,4)[dbg_index],dbg_array(t_m,5)[dbg_index]);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Translate(t_x,t_y){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<370>";
+	bb_graphics_Transform(1.0,0.0,0.0,1.0,t_x,t_y);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Rotate(t_angle){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<378>";
+	bb_graphics_Transform(Math.cos((t_angle)*D2R),-Math.sin((t_angle)*D2R),Math.sin((t_angle)*D2R),Math.cos((t_angle)*D2R),0.0,0.0);
+	pop_err();
+	return 0;
+}
+function bb_graphics_Scale(t_x,t_y){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<374>";
+	bb_graphics_Transform(t_x,0.0,0.0,t_y,0.0,0.0);
+	pop_err();
+	return 0;
+}
+function bb_graphics_PopMatrix(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<350>";
+	var t_sp=dbg_object(bb_graphics_context).m_matrixSp-6;
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<351>";
+	bb_graphics_SetMatrix(dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]);
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<352>";
+	dbg_object(bb_graphics_context).m_matrixSp=t_sp;
+	pop_err();
+	return 0;
+}
+function bb_graphics_DrawImage2(t_image,t_x,t_y,t_rotation,t_scaleX,t_scaleY,t_frame){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<474>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<475>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<475>";
+		error("Invalid image frame");
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<478>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<480>";
+	bb_graphics_PushMatrix();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<482>";
+	bb_graphics_Translate(t_x,t_y);
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<483>";
+	bb_graphics_Rotate(t_rotation);
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<484>";
+	bb_graphics_Scale(t_scaleX,t_scaleY);
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<486>";
+	bb_graphics_Translate(-dbg_object(t_image).m_tx,-dbg_object(t_image).m_ty);
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<488>";
+	bb_graphics_context.p_Validate();
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<490>";
+	if((dbg_object(t_image).m_flags&65536)!=0){
+		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<491>";
+		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,0.0,0.0);
+	}else{
+		err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<493>";
+		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,0.0,0.0,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/mojo/graphics.monkey<496>";
+	bb_graphics_PopMatrix();
+	pop_err();
+	return 0;
 }
 function c_b2DynamicTreeNode(){
 	Object.call(this);
@@ -18418,7 +21931,7 @@ c_FlashArray3.m_new3=function(){
 	pop_err();
 	return this;
 }
-c_FlashArray3.prototype.p_Set12=function(t_index,t_item){
+c_FlashArray3.prototype.p_Set14=function(t_index,t_item){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<135>";
 	if(t_index>=this.m_arrLength){
@@ -18579,7 +22092,7 @@ c_DTQueryCallback.prototype.p_Callback3=function(t_a){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<54>";
 	if(this.m_m_pairCount==this.m_m_pairBuffer.p_Length()){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<55>";
-		this.m_m_pairBuffer.p_Set13(this.m_m_pairCount,c_b2DynamicTreePair.m_new.call(new c_b2DynamicTreePair));
+		this.m_m_pairBuffer.p_Set15(this.m_m_pairCount,c_b2DynamicTreePair.m_new.call(new c_b2DynamicTreePair));
 	}
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2dynamictreebroadphase.monkey<58>";
 	var t_pair=this.m_m_pairBuffer.p_Get(this.m_m_pairCount);
@@ -18674,7 +22187,7 @@ c_FlashArray4.prototype.p_Get=function(t_index){
 		return null;
 	}
 }
-c_FlashArray4.prototype.p_Set13=function(t_index,t_item){
+c_FlashArray4.prototype.p_Set15=function(t_index,t_item){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/flash/flashtypes.monkey<135>";
 	if(t_index>=this.m_arrLength){
@@ -18691,6 +22204,40 @@ c_FlashArray4.prototype.p_Set13=function(t_index,t_item){
 		this.m_length=t_index+1;
 	}
 	pop_err();
+}
+function c_NodeEnumerator(){
+	Object.call(this);
+	this.m_node=null;
+}
+c_NodeEnumerator.m_new=function(t_node){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<437>";
+	dbg_object(this).m_node=t_node;
+	pop_err();
+	return this;
+}
+c_NodeEnumerator.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<434>";
+	pop_err();
+	return this;
+}
+c_NodeEnumerator.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<441>";
+	var t_=this.m_node!=null;
+	pop_err();
+	return t_;
+}
+c_NodeEnumerator.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<445>";
+	var t_t=this.m_node;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<446>";
+	this.m_node=this.m_node.p_NextNode();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/map.monkey<447>";
+	pop_err();
+	return t_t;
 }
 function c_b2Jacobian(){
 	Object.call(this);
@@ -19318,14 +22865,14 @@ c_b2Collision.m_ClipSegmentToLine=function(t_vOut,t_vIn,t_normal,t_offset){
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<63>";
 	if(t_distance0<=0.0){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<64>";
-		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set14(dbg_array(t_vIn,0)[dbg_index]);
+		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set16(dbg_array(t_vIn,0)[dbg_index]);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<65>";
 		t_numOut+=1;
 	}
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<67>";
 	if(t_distance1<=0.0){
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<68>";
-		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set14(dbg_array(t_vIn,1)[dbg_index]);
+		dbg_array(t_vOut,t_numOut)[dbg_index].p_Set16(dbg_array(t_vIn,1)[dbg_index]);
 		err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<69>";
 		t_numOut+=1;
 	}
@@ -19571,7 +23118,7 @@ c_b2Collision.m_CollidePolygons=function(t_manifold,t_polyA,t_xfA,t_polyB,t_xfB)
 			err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<473>";
 			dbg_object(dbg_object(t_cp).m_m_localPoint).m_y=t_tX*dbg_object(dbg_object(t_tMat).m_col2).m_x+t_tY*dbg_object(dbg_object(t_tMat).m_col2).m_y;
 			err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<474>";
-			dbg_object(t_cp).m_m_id.p_Set8(dbg_object(t_cv).m_id);
+			dbg_object(t_cp).m_m_id.p_Set10(dbg_object(t_cv).m_id);
 			err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<475>";
 			dbg_object(dbg_object(t_cp).m_m_id).m_features.p_Flip2(t_flip);
 			err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/b2collision.monkey<476>";
@@ -19713,14 +23260,232 @@ c_ClipVertex.m_new=function(){
 	pop_err();
 	return this;
 }
-c_ClipVertex.prototype.p_Set14=function(t_other){
+c_ClipVertex.prototype.p_Set16=function(t_other){
 	push_err();
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/clipvertex.monkey<46>";
 	dbg_object(this.m_v).m_x=dbg_object(dbg_object(t_other).m_v).m_x;
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/clipvertex.monkey<47>";
 	dbg_object(this.m_v).m_y=dbg_object(dbg_object(t_other).m_v).m_y;
 	err_info="/Users/turing/Documents/projects/glitch_game/box2d/collision/clipvertex.monkey<48>";
-	this.m_id.p_Set8(dbg_object(t_other).m_id);
+	this.m_id.p_Set10(dbg_object(t_other).m_id);
+	pop_err();
+}
+function c_List5(){
+	Object.call(this);
+	this.m__head=(c_HeadNode5.m_new.call(new c_HeadNode5));
+}
+c_List5.m_new=function(){
+	push_err();
+	pop_err();
+	return this;
+}
+c_List5.prototype.p_AddLast6=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<108>";
+	var t_=c_Node8.m_new.call(new c_Node8,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
+}
+c_List5.m_new2=function(t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_=t_data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	var t_2=0;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+	while(t_2<t_.length){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<13>";
+		t_2=t_2+1;
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<14>";
+		this.p_AddLast6(t_t);
+	}
+	pop_err();
+	return this;
+}
+c_List5.prototype.p_Equals2=function(t_lhs,t_rhs){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<28>";
+	var t_=t_lhs==t_rhs;
+	pop_err();
+	return t_;
+}
+c_List5.prototype.p_Contains4=function(t_value){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<54>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<55>";
+	while(t_node!=this.m__head){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<56>";
+		if(this.p_Equals2(dbg_object(t_node).m__data,t_value)){
+			err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<56>";
+			pop_err();
+			return true;
+		}
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<57>";
+		t_node=dbg_object(t_node).m__succ;
+	}
+	pop_err();
+	return false;
+}
+c_List5.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator6.m_new.call(new c_Enumerator6,this);
+	pop_err();
+	return t_;
+}
+c_List5.prototype.p_IsEmpty=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<50>";
+	var t_=dbg_object(this.m__head).m__succ==this.m__head;
+	pop_err();
+	return t_;
+}
+function c_Node8(){
+	Object.call(this);
+	this.m__succ=null;
+	this.m__pred=null;
+	this.m__data=null;
+}
+c_Node8.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<261>";
+	this.m__succ=t_succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<262>";
+	this.m__pred=t_pred;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<265>";
+	this.m__data=t_data;
+	pop_err();
+	return this;
+}
+c_Node8.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<258>";
+	pop_err();
+	return this;
+}
+function c_HeadNode5(){
+	c_Node8.call(this);
+}
+c_HeadNode5.prototype=extend_class(c_Node8);
+c_HeadNode5.m_new=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<310>";
+	c_Node8.m_new2.call(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<311>";
+	this.m__succ=(this);
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<312>";
+	this.m__pred=(this);
+	pop_err();
+	return this;
+}
+function c_Enumerator5(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator5.m_new=function(t_list){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<326>";
+	this.m__list=t_list;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
+	return this;
+}
+c_Enumerator5.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<323>";
+	pop_err();
+	return this;
+}
+c_Enumerator5.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
+}
+c_Enumerator5.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<340>";
+	pop_err();
+	return t_data;
+}
+function bb_main_OtherDwarf(t_dwarf){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<95>";
+	if(t_dwarf==dbg_object(bb_main_APP).m_dwarf_one){
+		err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<95>";
+		pop_err();
+		return dbg_object(bb_main_APP).m_dwarf_two;
+	}
+	err_info="/Users/turing/Documents/projects/glitch_game/main.monkey<96>";
+	pop_err();
+	return dbg_object(bb_main_APP).m_dwarf_one;
+}
+function c_Enumerator6(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator6.m_new=function(t_list){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<326>";
+	this.m__list=t_list;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
+	return this;
+}
+c_Enumerator6.m_new2=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<323>";
+	pop_err();
+	return this;
+}
+c_Enumerator6.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
+	}
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
+}
+c_Enumerator6.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Applications/MonkeyXPro78h/modules/monkey/list.monkey<340>";
+	pop_err();
+	return t_data;
+}
+function bb_glue_ApplyImpulseToBody(t_body,t_x,t_y){
+	push_err();
+	err_info="/Users/turing/Documents/projects/glitch_game/glue.monkey<28>";
+	t_body.p_ApplyImpulse(c_b2Vec2.m_new.call(new c_b2Vec2,t_x,t_y),t_body.p_GetWorldCenter());
 	pop_err();
 }
 function bbInit(){
@@ -19747,6 +23512,13 @@ function bbInit(){
 	c_b2ContactListener.m_b2_defaultListener=(c_b2ContactListener.m_new.call(new c_b2ContactListener));
 	c_b2DebugDraw.m_e_shapeBit=1;
 	c_b2DebugDraw.m_e_jointBit=2;
+	c_JSONToken.m_reusableToken=c_JSONToken.m_new.call(new c_JSONToken,-1,null);
+	bb_abuanimation_autoManageAnimations=false;
+	bb_abuanimation_animationJuggler=c_AnimationJuggler.m_new.call(new c_AnimationJuggler);
+	c_Clock.m_timeCurrent=0;
+	c_Clock.m_timePrevious=-1;
+	c_Clock.m_timeElapsed=0;
+	c_Clock.m_timeStep=-1;
 	c_Universe.m_mouseXWorldPhys=.0;
 	c_Universe.m_mouseYWorldPhys=.0;
 	c_Universe.m_mouseXWorld=.0;
@@ -19791,16 +23563,16 @@ function bbInit(){
 	c_b2World.m_s_backupA=c_b2Sweep.m_new.call(new c_b2Sweep);
 	c_b2World.m_s_backupB=c_b2Sweep.m_new.call(new c_b2Sweep);
 	c_b2World.m_s_timestep=c_b2TimeStep.m_new.call(new c_b2TimeStep);
-	bb_dwarf_CONTROL_SCHEME_WASD=[87,68,83,65];
-	bb_dwarf_CONTROL_SCHEME_ARROWS=[38,39,40,37];
+	bb_dwarf_CONTROL_SCHEME_WASD=[87,68,83,65,70];
+	bb_dwarf_CONTROL_SCHEME_ARROWS=[38,39,40,37,191];
 	bb_dwarf_CONTROL_SCHEMES=[bb_dwarf_CONTROL_SCHEME_WASD,bb_dwarf_CONTROL_SCHEME_ARROWS];
-	c_Dwarf.m_FRAME_START=[0,60];
 	c_b2World.m_s_jointColor=c_b2Color.m_new.call(new c_b2Color,0.5,0.8,0.8);
 	c_b2DebugDraw.m_e_controllerBit=32;
 	c_b2DebugDraw.m_e_pairBit=8;
 	c_b2DebugDraw.m_e_aabbBit=4;
 	c_b2DebugDraw.m_e_centerOfMassBit=16;
 	c_b2World.m_s_xf=c_b2Transform.m_new.call(new c_b2Transform,null,null);
+	c_Dwarf.m_FRAME_START=[0,60];
 	c_b2DynamicTreeNode.m_idCount=0;
 	c_b2DynamicTree.m_shared_aabbCenter=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
 	c_b2RevoluteJoint.m_tImpulse=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
