@@ -1742,8 +1742,7 @@ function c_MyApp(){
 	c_App.call(this);
 	this.m_universe=null;
 	this.m_bricks=c_List3.m_new.call(new c_List3);
-	this.m_dwarf_one=null;
-	this.m_dwarf_two=null;
+	this.m_dwarves=new_object_array(2);
 	this.m_hud=c_Hud.m_new.call(new c_Hud);
 }
 c_MyApp.prototype=extend_class(c_App);
@@ -1761,24 +1760,20 @@ c_MyApp.prototype.p_OnCreate=function(){
 	c_Dwarf.m_sheet2.p_SetHandle((c_Dwarf.m_sheet.p_Width())/2.0+2.0,(c_Dwarf.m_sheet.p_Height())/2.0-2.0);
 	this.m_universe=c_Universe.m_new.call(new c_Universe);
 	this.m_universe.p_Load("delve_deeper_punchy_scene.txt");
-	this.m_dwarf_one=c_Dwarf.m_new.call(new c_Dwarf,0,30.0,454.0);
-	this.m_dwarf_two=c_Dwarf.m_new.call(new c_Dwarf,1,400.0,454.0);
+	this.m_dwarves[0]=c_Dwarf.m_new.call(new c_Dwarf,0,30.0,454.0);
+	this.m_dwarves[1]=c_Dwarf.m_new.call(new c_Dwarf,1,400.0,454.0);
 	return 0;
 }
 c_MyApp.prototype.p_OnUpdate=function(){
 	c_Clock.m_Update();
 	this.m_universe.p_OnUpdate();
 	bb_abuanimation_animationJuggler.p_Update3(c_Clock.m_Tick());
-	this.m_dwarf_one.p_OnUpdate();
-	this.m_dwarf_two.p_OnUpdate();
-	var t_keys=[79,80];
-	var t_dwarves=[this.m_dwarf_one,this.m_dwarf_two];
-	for(var t_n=0;t_n<=1;t_n=t_n+1){
+	this.m_dwarves[0].p_OnUpdate();
+	this.m_dwarves[1].p_OnUpdate();
+	var t_keys=[49,50,51,52,53,54,55,56,57,48];
+	for(var t_n=0;t_n<c_Glitch.m_ALL.length;t_n=t_n+1){
 		if((bb_input_KeyHit(t_keys[t_n]))!=0){
-			this.m_universe.m_m_world.p_DestroyJoint(t_dwarves[t_n].m_neck);
-			t_dwarves[t_n].m_neck=null;
-			t_dwarves[t_n].m_headlessFacing=(t_dwarves[t_n].m_facing);
-			t_dwarves[t_n].m_head.p_SetBullet(true);
+			c_Glitch.m_SetGlitch(c_Glitch.m_ALL[t_n]);
 		}
 	}
 	return 0;
@@ -1786,8 +1781,8 @@ c_MyApp.prototype.p_OnUpdate=function(){
 c_MyApp.prototype.p_OnRender=function(){
 	bb_graphics_Cls(0.0,0.0,0.0);
 	bb_graphics_SetColor(255.0,255.0,255.0);
-	this.m_dwarf_one.p_OnRender();
-	this.m_dwarf_two.p_OnRender();
+	this.m_dwarves[0].p_OnRender();
+	this.m_dwarves[1].p_OnRender();
 	var t_=this.m_bricks.p_ObjectEnumerator();
 	while(t_.p_HasNext()){
 		var t_brick=t_.p_NextObject();
@@ -2607,6 +2602,24 @@ function c_Dwarf(){
 c_Dwarf.m_image=null;
 c_Dwarf.m_sheet=null;
 c_Dwarf.m_sheet2=null;
+c_Dwarf.prototype.p_CreateNeck=function(){
+	var t_world=bb_main_APP.m_universe.m_m_world;
+	var t_yNeck2=-0.43333333333333335;
+	var t_neckDefinition=c_b2RevoluteJointDef.m_new.call(new c_b2RevoluteJointDef);
+	t_neckDefinition.m_bodyA=this.m_body;
+	t_neckDefinition.m_bodyB=this.m_head;
+	t_neckDefinition.m_collideConnected=false;
+	t_neckDefinition.m_localAnchorA.m_x=0.0;
+	t_neckDefinition.m_localAnchorA.m_y=t_yNeck2;
+	t_neckDefinition.m_localAnchorB.m_x=0.0;
+	t_neckDefinition.m_localAnchorB.m_y=t_yNeck2;
+	t_neckDefinition.m_enableLimit=true;
+	t_neckDefinition.m_lowerAngle=bb_glue_DegreesToRadians(-50.0);
+	t_neckDefinition.m_upperAngle=bb_glue_DegreesToRadians(50.0);
+	t_neckDefinition.m_enableMotor=true;
+	t_neckDefinition.m_maxMotorTorque=3.0;
+	this.m_neck=object_downcast((t_world.p_CreateJoint(t_neckDefinition)),c_b2RevoluteJoint);
+}
 c_Dwarf.prototype.p__center=function(){
 	var t_xCenter=(this.m_body.p_GetWorldCenter().m_x*this.m_body.p_GetMass()+this.m_head.p_GetWorldCenter().m_x*this.m_head.p_GetMass())/(this.m_body.p_GetMass()+this.m_head.p_GetMass());
 	var t_yCenter=(this.m_body.p_GetWorldCenter().m_y*this.m_body.p_GetMass()+this.m_head.p_GetWorldCenter().m_y*this.m_head.p_GetMass())/(this.m_body.p_GetMass()+this.m_head.p_GetMass());
@@ -2640,21 +2653,7 @@ c_Dwarf.prototype.p_CreateBody=function(){
 	t_fixtureDefinition.m_friction=2.0;
 	t_fixtureDefinition.m_shape=(t_shapeDefinition2);
 	this.m_head.p_CreateFixture(t_fixtureDefinition);
-	var t_yNeck2=-0.43333333333333335;
-	var t_neckDefinition=c_b2RevoluteJointDef.m_new.call(new c_b2RevoluteJointDef);
-	t_neckDefinition.m_bodyA=this.m_body;
-	t_neckDefinition.m_bodyB=this.m_head;
-	t_neckDefinition.m_collideConnected=false;
-	t_neckDefinition.m_localAnchorA.m_x=0.0;
-	t_neckDefinition.m_localAnchorA.m_y=t_yNeck2;
-	t_neckDefinition.m_localAnchorB.m_x=0.0;
-	t_neckDefinition.m_localAnchorB.m_y=t_yNeck2;
-	t_neckDefinition.m_enableLimit=true;
-	t_neckDefinition.m_lowerAngle=bb_glue_DegreesToRadians(-50.0);
-	t_neckDefinition.m_upperAngle=bb_glue_DegreesToRadians(50.0);
-	t_neckDefinition.m_enableMotor=true;
-	t_neckDefinition.m_maxMotorTorque=3.0;
-	this.m_neck=object_downcast((t_world.p_CreateJoint(t_neckDefinition)),c_b2RevoluteJoint);
+	this.p_CreateNeck();
 	var t_feetDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
 	t_feetDefinition.p_SetAsBox(0.59999999999999998,0.016666666666666666);
 	var t_=t_feetDefinition.p_GetVertices();
@@ -2710,7 +2709,10 @@ c_Dwarf.prototype.p_center=function(){
 c_Dwarf.prototype.p_headCenter=function(){
 	return this.m_head.p_GetWorldCenter();
 }
-c_Dwarf.prototype.p_AdjustTorque=function(t_desiredAngle){
+c_Dwarf.prototype.p_AdjustTorque=function(t_desiredAngle,t_facing){
+	if(c_Glitch.m_current==c_Glitch.m_TUMBLEWEED && !(t_facing==0.0)){
+		return 35.0*t_facing;
+	}
 	var t_tick=15.0;
 	var t_bodyAngle=this.m_body.p_GetAngle();
 	var t_nextAngle=t_bodyAngle+this.m_body.p_GetAngularVelocity()/t_tick;
@@ -2765,7 +2767,8 @@ c_Dwarf.prototype.p_OnUpdate=function(){
 	if(this.m_feetTouching>0){
 		this.m_feetContactTime=bb_app_Millisecs();
 	}
-	this.m_feetValid=bb_app_Millisecs()-this.m_feetContactTime<=100;
+	var t__feetValid=bb_app_Millisecs()-this.m_feetContactTime<=100;
+	this.m_feetValid=t__feetValid || c_Glitch.m_current==c_Glitch.m_JETPACK;
 	var t_keyRight=bb_dwarf_CONTROL_SCHEMES[this.m_player][1];
 	var t_keyLeft=bb_dwarf_CONTROL_SCHEMES[this.m_player][3];
 	var t_keyUp=bb_dwarf_CONTROL_SCHEMES[this.m_player][0];
@@ -2785,27 +2788,27 @@ c_Dwarf.prototype.p_OnUpdate=function(){
 			this.m_facing=-1;
 		}
 	}
-	if(((bb_input_KeyDown(t_keyRight))!=0) && this.m_facing==1 && this.m_feetValid){
-		if(this.m_body.p_GetLinearVelocity().m_x<8.0){
-			this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,42.857142857142861,0.0),this.p_center());
-			if(this.m_neck!=null){
-				this.m_head.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,17.142857142857146,0.0),this.p_headCenter());
+	if(((bb_input_KeyDown(t_keyRight))!=0) && this.m_facing==1){
+		if(this.m_feetValid || c_Glitch.m_current==c_Glitch.m_TUMBLEWEED){
+			if(this.m_body.p_GetLinearVelocity().m_x<8.0){
+				this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,42.857142857142861,0.0),this.p_center());
+				if(this.m_neck!=null){
+					this.m_head.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,17.142857142857146,0.0),this.p_headCenter());
+				}
 			}
-		}
-		if(this.m_feetValid){
-			var t_torque=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(18.0)*(this.m_facing));
+			var t_torque=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(18.0)*(this.m_facing),(this.m_facing));
 			this.m_body.p_ApplyTorque(t_torque);
 		}
 	}else{
-		if(((bb_input_KeyDown(t_keyLeft))!=0) && this.m_facing==-1 && this.m_feetValid){
-			if(this.m_body.p_GetLinearVelocity().m_x>-8.0){
-				this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,-42.857142857142861,0.0),this.p_center());
-				if(this.m_neck!=null){
-					this.m_head.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,-17.142857142857146,0.0),this.p_headCenter());
+		if(((bb_input_KeyDown(t_keyLeft))!=0) && this.m_facing==-1){
+			if(this.m_feetValid || c_Glitch.m_current==c_Glitch.m_TUMBLEWEED){
+				if(this.m_body.p_GetLinearVelocity().m_x>-8.0){
+					this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,-42.857142857142861,0.0),this.p_center());
+					if(this.m_neck!=null){
+						this.m_head.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,-17.142857142857146,0.0),this.p_headCenter());
+					}
 				}
-			}
-			if(this.m_feetValid){
-				var t_torque2=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(18.0)*(this.m_facing));
+				var t_torque2=this.p_AdjustTorque(0.0+bb_glue_DegreesToRadians(18.0)*(this.m_facing),(this.m_facing));
 				this.m_body.p_ApplyTorque(t_torque2);
 			}
 		}
@@ -2820,7 +2823,7 @@ c_Dwarf.prototype.p_OnUpdate=function(){
 		this.m_jumpPressed-=100;
 	}
 	if(((bb_input_KeyDown(t_keyDown))!=0) && this.m_feetValid){
-		var t_torque3=this.p_AdjustTorque(0.0);
+		var t_torque3=this.p_AdjustTorque(0.0,0.0);
 		this.m_body.p_ApplyTorque(t_torque3);
 	}
 	this.p_UpdateNeck();
@@ -3846,6 +3849,9 @@ c_b2World.prototype.p_ClearForces=function(){
 		t_body=t_body.m_m_next;
 	}
 }
+c_b2World.prototype.p_SetGravity=function(t_gravity){
+	this.m_m_gravity=t_gravity;
+}
 function c_b2DestructionListener(){
 	Object.call(this);
 }
@@ -4218,15 +4224,15 @@ c_b2Body.prototype.p_ApplyImpulse=function(t_impulse,t_point){
 	this.m_m_linearVelocity.m_y+=this.m_m_invMass*t_impulse.m_y;
 	this.m_m_angularVelocity+=this.m_m_invI*((t_point.m_x-this.m_m_sweep.m_c.m_x)*t_impulse.m_y-(t_point.m_y-this.m_m_sweep.m_c.m_y)*t_impulse.m_x);
 }
+c_b2Body.prototype.p_GetLocalCenter=function(){
+	return this.m_m_sweep.m_localCenter;
+}
 c_b2Body.prototype.p_SetBullet=function(t_flag){
 	if(t_flag){
 		this.m_m_flags|=8;
 	}else{
 		this.m_m_flags&=-9;
 	}
-}
-c_b2Body.prototype.p_GetLocalCenter=function(){
-	return this.m_m_sweep.m_localCenter;
 }
 function c_b2Contact(){
 	Object.call(this);
@@ -5746,7 +5752,7 @@ c_MyContactListener.m_new=function(){
 }
 c_MyContactListener.prototype.p_BeginContact=function(t_contact){
 	if(t_contact.p_IsTouching()){
-		var t_=[bb_main_APP.m_dwarf_one,bb_main_APP.m_dwarf_two];
+		var t_=bb_main_APP.m_dwarves;
 		var t_2=0;
 		while(t_2<t_.length){
 			var t_dwarf=t_[t_2];
@@ -5767,7 +5773,7 @@ c_MyContactListener.prototype.p_BeginContact=function(t_contact){
 	}
 }
 c_MyContactListener.prototype.p_EndContact=function(t_contact){
-	var t_=[bb_main_APP.m_dwarf_one,bb_main_APP.m_dwarf_two];
+	var t_=bb_main_APP.m_dwarves;
 	var t_2=0;
 	while(t_2<t_.length){
 		var t_dwarf=t_[t_2];
@@ -7083,6 +7089,12 @@ c_Brick.prototype.p_OnRender=function(){
 	bb_graphics_Translate(this.m_body.p_GetWorldCenter().m_x*30.0,this.m_body.p_GetWorldCenter().m_y*30.0);
 	bb_graphics_Rotate(-bb_glue_RadiansToDegrees(this.m_body.p_GetAngle()));
 	bb_graphics_DrawPoly(this.m_polygon);
+	if(this.m_body.p_GetType()!=0){
+		bb_graphics_Scale(0.9,0.9);
+		bb_graphics_SetColor(100.0,60.0,10.0);
+		bb_graphics_DrawPoly(this.m_polygon);
+		bb_graphics_SetColor(255.0,255.0,255.0);
+	}
 	bb_graphics_PopMatrix();
 }
 function c_List3(){
@@ -12236,11 +12248,68 @@ c_Enumerator3.prototype.p_NextObject=function(){
 	this.m__curr=this.m__curr.m__succ;
 	return t_data;
 }
+function c_Glitch(){
+	Object.call(this);
+	this.m_name="";
+	this.m_sound=null;
+}
+c_Glitch.m_current=null;
+c_Glitch.m_new=function(){
+	return this;
+}
+c_Glitch.m_JETPACK=null;
+c_Glitch.m_TUMBLEWEED=null;
+c_Glitch.m_HEADLESS=null;
+c_Glitch.m_SPACE=null;
+c_Glitch.m_ALL=[];
+c_Glitch.prototype.p_OnFinish=function(){
+}
+c_Glitch.prototype.p_OnStart=function(){
+}
+c_Glitch.m_SetGlitch=function(t_glitch){
+	if(c_Glitch.m_current!=null){
+		c_Glitch.m_current.p_OnFinish();
+	}
+	c_Glitch.m_current=t_glitch;
+	c_Glitch.m_current.p_OnStart();
+	if(c_Glitch.m_current.m_name!=""){
+		print(c_Glitch.m_current.m_name);
+	}
+	if(c_Glitch.m_current.m_sound!=null){
+		bb_audio_PlaySound(c_Glitch.m_current.m_sound,0,0);
+	}
+}
+function c_JetpackGlitch(){
+	c_Glitch.call(this);
+}
+c_JetpackGlitch.prototype=extend_class(c_Glitch);
+c_JetpackGlitch.m_new=function(){
+	c_Glitch.m_new.call(this);
+	this.m_name="JETPACK";
+	return this;
+}
+c_JetpackGlitch.prototype.p_OnStart=function(){
+}
+c_JetpackGlitch.prototype.p_OnFinish=function(){
+}
 var bb_dwarf_CONTROL_SCHEME_WASD=[];
 var bb_dwarf_CONTROL_SCHEME_ARROWS=[];
 var bb_dwarf_CONTROL_SCHEMES=[];
 function bb_input_KeyDown(t_key){
 	return ((bb_input_device.p_KeyDown(t_key))?1:0);
+}
+function c_TumbleweedGlitch(){
+	c_Glitch.call(this);
+}
+c_TumbleweedGlitch.prototype=extend_class(c_Glitch);
+c_TumbleweedGlitch.m_new=function(){
+	c_Glitch.m_new.call(this);
+	this.m_name="TUMBLEWEED";
+	return this;
+}
+c_TumbleweedGlitch.prototype.p_OnStart=function(){
+}
+c_TumbleweedGlitch.prototype.p_OnFinish=function(){
 }
 function bb_glue_RadiansToDegrees(t_radians){
 	return t_radians/3.1415*180.0;
@@ -12310,6 +12379,61 @@ function bb_math_Abs2(t_x){
 		return t_x;
 	}
 	return -t_x;
+}
+function c_HeadlessGlitch(){
+	c_Glitch.call(this);
+}
+c_HeadlessGlitch.prototype=extend_class(c_Glitch);
+c_HeadlessGlitch.m_new=function(){
+	c_Glitch.m_new.call(this);
+	this.m_name="HEADLESS";
+	return this;
+}
+c_HeadlessGlitch.prototype.p_OnStart=function(){
+	var t_=bb_main_APP.m_dwarves;
+	var t_2=0;
+	while(t_2<t_.length){
+		var t_dwarf=t_[t_2];
+		t_2=t_2+1;
+		bb_main_APP.m_universe.m_m_world.p_DestroyJoint(t_dwarf.m_neck);
+		t_dwarf.m_neck=null;
+		t_dwarf.m_headlessFacing=(t_dwarf.m_facing);
+		t_dwarf.m_head.p_SetBullet(true);
+	}
+}
+c_HeadlessGlitch.prototype.p_OnFinish=function(){
+	var t_=bb_main_APP.m_dwarves;
+	var t_2=0;
+	while(t_2<t_.length){
+		var t_dwarf=t_[t_2];
+		t_2=t_2+1;
+		t_dwarf.p_CreateNeck();
+	}
+}
+function c_SpaceGlitch(){
+	c_Glitch.call(this);
+}
+c_SpaceGlitch.prototype=extend_class(c_Glitch);
+c_SpaceGlitch.m_new=function(){
+	c_Glitch.m_new.call(this);
+	this.m_name="SPACE";
+	return this;
+}
+c_SpaceGlitch.prototype.p_OnStart=function(){
+	bb_main_APP.m_universe.m_m_world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0));
+}
+c_SpaceGlitch.prototype.p_OnFinish=function(){
+	bb_main_APP.m_universe.m_m_world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,30.0));
+}
+function c_Sound(){
+	Object.call(this);
+	this.m_sample=null;
+}
+function bb_audio_PlaySound(t_sound,t_channel,t_flags){
+	if(((t_sound)!=null) && ((t_sound.m_sample)!=null)){
+		bb_audio_device.PlaySample(t_sound.m_sample,t_channel,t_flags);
+	}
+	return 0;
 }
 function bb_graphics_Cls(t_r,t_g,t_b){
 	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
@@ -13624,10 +13748,7 @@ c_Enumerator5.prototype.p_NextObject=function(){
 	return t_data;
 }
 function bb_main_OtherDwarf(t_dwarf){
-	if(t_dwarf==bb_main_APP.m_dwarf_one){
-		return bb_main_APP.m_dwarf_two;
-	}
-	return bb_main_APP.m_dwarf_one;
+	return bb_main_APP.m_dwarves[1-t_dwarf.m_player];
 }
 function c_Enumerator6(){
 	Object.call(this);
@@ -13730,9 +13851,15 @@ function bbInit(){
 	c_b2World.m_s_backupB=c_b2Sweep.m_new.call(new c_b2Sweep);
 	c_b2World.m_s_timestep=c_b2TimeStep.m_new.call(new c_b2TimeStep);
 	c_Clock.m_timeStep=-1;
+	c_Glitch.m_current=null;
+	c_Glitch.m_JETPACK=(c_JetpackGlitch.m_new.call(new c_JetpackGlitch));
 	bb_dwarf_CONTROL_SCHEME_WASD=[87,68,83,65,84];
 	bb_dwarf_CONTROL_SCHEME_ARROWS=[38,39,40,37,188];
 	bb_dwarf_CONTROL_SCHEMES=[bb_dwarf_CONTROL_SCHEME_WASD,bb_dwarf_CONTROL_SCHEME_ARROWS];
+	c_Glitch.m_TUMBLEWEED=(c_TumbleweedGlitch.m_new.call(new c_TumbleweedGlitch));
+	c_Glitch.m_HEADLESS=(c_HeadlessGlitch.m_new.call(new c_HeadlessGlitch));
+	c_Glitch.m_SPACE=(c_SpaceGlitch.m_new.call(new c_SpaceGlitch));
+	c_Glitch.m_ALL=[c_Glitch.m_HEADLESS,c_Glitch.m_JETPACK,c_Glitch.m_SPACE,c_Glitch.m_TUMBLEWEED];
 	c_Dwarf.m_FRAME_START=[0,60];
 	c_b2DynamicTreeNode.m_idCount=0;
 	c_b2DynamicTree.m_shared_aabbCenter=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);

@@ -22,6 +22,7 @@ Class Physics
 	Const WALK_FORCE_HEAD_MULTIPLIER:Float = 0.4
 	Const WALK_FORCE:Float = 60.0 / ( 1 + WALK_FORCE_HEAD_MULTIPLIER )
 	Const WALK_TORQUE_TICK:Float = 15
+	Const TUMBLE_TORQUE:Float = 35
 	Const JUMP_IMPULSE:Float = 20
 	
 	Const NECK_TORQUE:Float = 3

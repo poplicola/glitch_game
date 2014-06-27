@@ -24,6 +24,7 @@ Import abuanimation
 Import contact
 Import brick
 Import hud
+Import glitches
 
 
 
@@ -47,7 +48,7 @@ End
 
 Class MyApp Extends App
 	Field universe:Universe
-	Field dwarf_one:Dwarf, dwarf_two:Dwarf
+	Field dwarves:Dwarf[2]
 	Field bricks:List< Brick > = New List< Brick >()
 	Field hud:Hud = New Hud()
 	
@@ -66,8 +67,8 @@ Class MyApp Extends App
 		'universe.Initialize()
 		universe.Load( "delve_deeper_punchy_scene.txt" )
 		
-		dwarf_one = New Dwarf( 0, 30, 454 )
-		dwarf_two = New Dwarf( 1, 400, 454 )
+		dwarves[0] = New Dwarf( 0, 30, 454 )
+		dwarves[1] = New Dwarf( 1, 400, 454 )
 		
 		Return 0
 	End
@@ -79,17 +80,14 @@ Class MyApp Extends App
 		
 		animationJuggler.Update( Clock.Tick() )
 		
-		dwarf_one.OnUpdate();
-		dwarf_two.OnUpdate();
+		dwarves[0].OnUpdate();
+		dwarves[1].OnUpdate();
 		
-		Local keys:Int[] = [ KEY_O, KEY_P ]
-		Local dwarves:Dwarf[] = [ dwarf_one, dwarf_two ]
-		For Local n:Int = 0 To 1
+		Local keys:Int[] = [ KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9, KEY_0 ]
+		
+		For Local n:Int = 0 Until Glitch.ALL.Length
 			If KeyHit( keys[n] )
-				universe.m_world.DestroyJoint( dwarves[n].neck )
-				dwarves[n].neck = Null
-				dwarves[n].headlessFacing = dwarves[n].facing
-				dwarves[n].head.SetBullet( True )
+				Glitch.SetGlitch( Glitch.ALL[n] )
 			EndIf
 		Next
 		
@@ -100,8 +98,8 @@ Class MyApp Extends App
 		Cls()
 		
 		SetColor 255, 255, 255'GLITCH
-		dwarf_one.OnRender()
-		dwarf_two.OnRender()
+		dwarves[0].OnRender()
+		dwarves[1].OnRender()
 		For Local brick:Brick = EachIn bricks
 			brick.OnRender()
 		Next
@@ -119,8 +117,7 @@ End
 
 
 Function OtherDwarf:Dwarf( dwarf:Dwarf )
-	If dwarf = APP.dwarf_one Then Return APP.dwarf_two
-	Return APP.dwarf_one
+	Return APP.dwarves[ 1 - dwarf.player ]
 End
 
 

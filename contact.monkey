@@ -9,7 +9,7 @@ Import main
 Class MyContactListener Implements b2ContactListenerInterface
     Method BeginContact:Void( contact:b2Contact )
 		If contact.IsTouching()
-			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
+			For Local dwarf:Dwarf = EachIn APP.dwarves
 				For Local n:Int = 0 To 1
 					If ( contact.GetFixtureA() = dwarf.hit[n] )' And Not ( contact.GetFixtureB().GetBody() = dwarf.head )
 						dwarf.OnBeginHit( n, contact.GetFixtureB() )
@@ -27,7 +27,7 @@ Class MyContactListener Implements b2ContactListenerInterface
 	
     Method EndContact:Void(contact:b2Contact)
 		'If contact.IsTouching()
-			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
+			For Local dwarf:Dwarf = EachIn APP.dwarves
 				For Local n:Int = 0 To 1
 					If ( contact.GetFixtureA() = dwarf.hit[n] )' And Not ( contact.GetFixtureB().GetBody() = dwarf.head )
 						dwarf.OnEndHit( n, contact.GetFixtureB() )
