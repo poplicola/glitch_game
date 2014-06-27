@@ -23,6 +23,7 @@ Import rubeloader
 Import abuanimation
 Import contact
 Import brick
+Import hud
 
 
 
@@ -48,6 +49,7 @@ Class MyApp Extends App
 	Field universe:Universe
 	Field dwarf_one:Dwarf, dwarf_two:Dwarf
 	Field bricks:List< Brick > = New List< Brick >()
+	Field hud:Hud = New Hud()
 	
 	Method OnCreate:Int()
 		SetUpdateRate( 60 )
@@ -72,9 +74,11 @@ Class MyApp Extends App
 	
 	Method OnUpdate:Int()
 		Clock.Update()
-		animationJuggler.Update( Clock.Tick() )
 		
 		universe.OnUpdate()
+		
+		animationJuggler.Update( Clock.Tick() )
+		
 		dwarf_one.OnUpdate();
 		dwarf_two.OnUpdate();
 		
@@ -105,6 +109,8 @@ Class MyApp Extends App
 		#If CONFIG = "debug"
 		universe.OnRender()
 		#End
+		
+		hud.OnRender()
 		
 		Return 0
 	End

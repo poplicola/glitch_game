@@ -110,13 +110,13 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 					EndIf
 				Next
 				
-				If okay = False Then Exit
-			
-				Local _body:b2Body = fixture.GetBody()
-				
-				If Not bodies.Contains( _body )
-					bodies.AddLast( _body )
-				End
+				If okay = True
+					Local body:b2Body = fixture.GetBody()
+					
+					If Not bodies.Contains( body )
+						bodies.AddLast( fixture.GetBody() )
+					EndIf
+				EndIf
 			Next
 			
 			For Local _body:b2Body = EachIn bodies
@@ -319,7 +319,41 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 	End
 	
+	Field v:Float, velocityPrevious:b2Vec2
+	
+	Field a:Float
+	
 	Method UpdateNeck:Void()
+		#Rem
+		If v = 0.0 Then v = ( player * 2 - 1 ) * 0.005
+		APP.hud.sticker[player] += v
+		If APP.hud.sticker[player] > 1.0
+			APP.hud.sticker[player] = 1.0
+			v = -v
+		EndIf
+		If APP.hud.sticker[player] < 0.0
+			APP.hud.sticker[player] = 0.0
+			v = -v
+		EndIf
+		#End
+		
+		APP.hud.sticker[player] = Max( 0.0, APP.hud.sticker[player] - Physics.HEALING )
+		
+		Local velocity:b2Vec2 = head.GetLinearVelocity()
+		If velocityPrevious = Null Then velocityPrevious = velocity.Copy()
+		Local velocityTemp:b2Vec2 = velocity.Copy()
+		velocityTemp.Subtract( velocityPrevious )
+		Local acceleration:Float = velocityTemp.Length()
+		acceleration = Abs( acceleration )
+		a = acceleration
+		If acceleration > Physics.DAMAGE_ACCELERATION_LOW
+			Local damage:Float = ( acceleration - Physics.DAMAGE_ACCELERATION_LOW ) / ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW )
+			If damage > APP.hud.sticker[player] Then APP.hud.sticker[player] = Min( damage, Physics.DAMAGE_ACCELERATION_CAP / ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW ) )
+		EndIf
+		velocityPrevious = velocity.Copy()
+		
+		APP.hud.health[player] -= APP.hud.sticker[player]
+	
 		If neck = Null Then Return
 		
 		Local tick:Float = Physics.NECK_TICK
@@ -369,6 +403,8 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 		DrawImage( sheet2, center2.x * Physics.SCALE, center2.y * Physics.SCALE, orientation2, -facing2, 1, frame2 )
 		
+		'DrawText( "#:" + others[ ( facing + 1 ) / 2 ].Count(), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
+	'DrawText( "#:" + Int( a ), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
 		'''DrawText( "#:" + feetTouching + "=" + BoolToString( feetValid ), center.x * Physics.SCALE - 15, center.y * Physics.SCALE - 50 )
 	End
 End
