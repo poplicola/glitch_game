@@ -255,7 +255,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	Method OnUpdate:Void()		
 		If ( feetTouching > 0 ) Then feetContactTime = Millisecs()
 		Local _feetValid:Bool = ( ( Millisecs() - feetContactTime ) <= Physics.JUMP_FORGIVENESS  )
-		feetValid = ( _feetValid Or ( Glitch.current = Glitch.JETPACK ) )
+		feetValid = ( _feetValid Or ( Glitch.JETPACK.state = True ) )
 		
 		Local keyRight:Int = CONTROL_SCHEMES[player][CONTROL_RIGHT]
 		Local keyLeft:Int = CONTROL_SCHEMES[player][CONTROL_LEFT]
@@ -271,7 +271,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 		
 		If KeyDown( keyRight) And ( facing = FACING_RIGHT )
-			If ( feetValid ) Or ( Glitch.current = Glitch.TUMBLEWEED )
+			If ( feetValid ) Or ( Glitch.TUMBLEWEED.state = True )
 				If ( body.GetLinearVelocity().x < Physics.MAX_SPEED )
 					body.ApplyForce( New b2Vec2( Physics.WALK_FORCE, 0 ), center )
 					If neck <> Null Then head.ApplyForce( New b2Vec2( Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
@@ -281,7 +281,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 				body.ApplyTorque( torque )
 			EndIf
 		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT )
-			If ( feetValid ) Or ( Glitch.current = Glitch.TUMBLEWEED )
+			If ( feetValid ) Or ( Glitch.TUMBLEWEED.state = True )
 				If ( body.GetLinearVelocity().x > - Physics.MAX_SPEED )
 					body.ApplyForce( New b2Vec2( -Physics.WALK_FORCE, 0 ), center )
 					If neck <> Null Then head.ApplyForce( New b2Vec2( -Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
@@ -378,7 +378,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	End
 	
 	Method AdjustTorque:Float( desiredAngle:Float, facing:Float )
-		If ( Glitch.current = Glitch.TUMBLEWEED ) And Not ( facing = 0.0 ) Then Return Physics.TUMBLE_TORQUE * facing
+		If ( Glitch.TUMBLEWEED.state = True ) And Not ( facing = 0.0 ) Then Return Physics.TUMBLE_TORQUE * facing
 	
 		Local tick:Float = Physics.WALK_TORQUE_TICK
 		Local bodyAngle:Float = body.GetAngle()

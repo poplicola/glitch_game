@@ -87,7 +87,7 @@ Class MyApp Extends App
 		
 		For Local n:Int = 0 Until Glitch.ALL.Length
 			If KeyHit( keys[n] )
-				Glitch.SetGlitch( Glitch.ALL[n] )
+				Glitch.ToggleGlitchById( n )
 			EndIf
 		Next
 		

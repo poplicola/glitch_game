@@ -1773,7 +1773,7 @@ c_MyApp.prototype.p_OnUpdate=function(){
 	var t_keys=[49,50,51,52,53,54,55,56,57,48];
 	for(var t_n=0;t_n<c_Glitch.m_ALL.length;t_n=t_n+1){
 		if((bb_input_KeyHit(t_keys[t_n]))!=0){
-			c_Glitch.m_SetGlitch(c_Glitch.m_ALL[t_n]);
+			c_Glitch.m_ToggleGlitchById(t_n);
 		}
 	}
 	return 0;
@@ -2710,7 +2710,7 @@ c_Dwarf.prototype.p_headCenter=function(){
 	return this.m_head.p_GetWorldCenter();
 }
 c_Dwarf.prototype.p_AdjustTorque=function(t_desiredAngle,t_facing){
-	if(c_Glitch.m_current==c_Glitch.m_TUMBLEWEED && !(t_facing==0.0)){
+	if(c_Glitch.m_TUMBLEWEED.m_state==true && !(t_facing==0.0)){
 		return 35.0*t_facing;
 	}
 	var t_tick=15.0;
@@ -2768,7 +2768,7 @@ c_Dwarf.prototype.p_OnUpdate=function(){
 		this.m_feetContactTime=bb_app_Millisecs();
 	}
 	var t__feetValid=bb_app_Millisecs()-this.m_feetContactTime<=100;
-	this.m_feetValid=t__feetValid || c_Glitch.m_current==c_Glitch.m_JETPACK;
+	this.m_feetValid=t__feetValid || c_Glitch.m_JETPACK.m_state==true;
 	var t_keyRight=bb_dwarf_CONTROL_SCHEMES[this.m_player][1];
 	var t_keyLeft=bb_dwarf_CONTROL_SCHEMES[this.m_player][3];
 	var t_keyUp=bb_dwarf_CONTROL_SCHEMES[this.m_player][0];
@@ -2789,7 +2789,7 @@ c_Dwarf.prototype.p_OnUpdate=function(){
 		}
 	}
 	if(((bb_input_KeyDown(t_keyRight))!=0) && this.m_facing==1){
-		if(this.m_feetValid || c_Glitch.m_current==c_Glitch.m_TUMBLEWEED){
+		if(this.m_feetValid || c_Glitch.m_TUMBLEWEED.m_state==true){
 			if(this.m_body.p_GetLinearVelocity().m_x<8.0){
 				this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,42.857142857142861,0.0),this.p_center());
 				if(this.m_neck!=null){
@@ -2801,7 +2801,7 @@ c_Dwarf.prototype.p_OnUpdate=function(){
 		}
 	}else{
 		if(((bb_input_KeyDown(t_keyLeft))!=0) && this.m_facing==-1){
-			if(this.m_feetValid || c_Glitch.m_current==c_Glitch.m_TUMBLEWEED){
+			if(this.m_feetValid || c_Glitch.m_TUMBLEWEED.m_state==true){
 				if(this.m_body.p_GetLinearVelocity().m_x>-8.0){
 					this.m_body.p_ApplyForce(c_b2Vec2.m_new.call(new c_b2Vec2,-42.857142857142861,0.0),this.p_center());
 					if(this.m_neck!=null){
@@ -12251,9 +12251,9 @@ c_Enumerator3.prototype.p_NextObject=function(){
 function c_Glitch(){
 	Object.call(this);
 	this.m_name="";
+	this.m_state=false;
 	this.m_sound=null;
 }
-c_Glitch.m_current=null;
 c_Glitch.m_new=function(){
 	return this;
 }
@@ -12262,21 +12262,21 @@ c_Glitch.m_TUMBLEWEED=null;
 c_Glitch.m_HEADLESS=null;
 c_Glitch.m_SPACE=null;
 c_Glitch.m_ALL=[];
-c_Glitch.prototype.p_OnFinish=function(){
-}
 c_Glitch.prototype.p_OnStart=function(){
 }
-c_Glitch.m_SetGlitch=function(t_glitch){
-	if(c_Glitch.m_current!=null){
-		c_Glitch.m_current.p_OnFinish();
-	}
-	c_Glitch.m_current=t_glitch;
-	c_Glitch.m_current.p_OnStart();
-	if(c_Glitch.m_current.m_name!=""){
-		print(c_Glitch.m_current.m_name);
-	}
-	if(c_Glitch.m_current.m_sound!=null){
-		bb_audio_PlaySound(c_Glitch.m_current.m_sound,0,0);
+c_Glitch.prototype.p_OnFinish=function(){
+}
+c_Glitch.m_ToggleGlitchById=function(t_id){
+	c_Glitch.m_ALL[t_id].m_state=!c_Glitch.m_ALL[t_id].m_state;
+	if(c_Glitch.m_ALL[t_id].m_state==true){
+		c_Glitch.m_ALL[t_id].p_OnStart();
+		if(c_Glitch.m_ALL[t_id].m_sound!=null){
+			bb_audio_PlaySound(c_Glitch.m_ALL[t_id].m_sound,0,0);
+		}
+		print(c_Glitch.m_ALL[t_id].m_name+" ON");
+	}else{
+		c_Glitch.m_ALL[t_id].p_OnFinish();
+		print(c_Glitch.m_ALL[t_id].m_name+" OFF");
 	}
 }
 function c_JetpackGlitch(){
@@ -13851,7 +13851,6 @@ function bbInit(){
 	c_b2World.m_s_backupB=c_b2Sweep.m_new.call(new c_b2Sweep);
 	c_b2World.m_s_timestep=c_b2TimeStep.m_new.call(new c_b2TimeStep);
 	c_Clock.m_timeStep=-1;
-	c_Glitch.m_current=null;
 	c_Glitch.m_JETPACK=(c_JetpackGlitch.m_new.call(new c_JetpackGlitch));
 	bb_dwarf_CONTROL_SCHEME_WASD=[87,68,83,65,84];
 	bb_dwarf_CONTROL_SCHEME_ARROWS=[38,39,40,37,188];

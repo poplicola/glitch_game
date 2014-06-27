@@ -13,17 +13,22 @@ Class Glitch
 	Global TUMBLEWEED:Glitch = New TumbleweedGlitch()
 	
 	Global ALL:Glitch[] = [ HEADLESS, JETPACK, SPACE, TUMBLEWEED ]
+	Global STATE:Bool[ ALL.Length ]
 	
-	Global current:Glitch
-	
-	Function SetGlitch:Void( glitch:Glitch )
-		If current <> Null Then current.OnFinish()
-		current = glitch
-		current.OnStart()
-		If ( current.name <> "" ) Then Print( current.name )
-		If ( current.sound <> Null ) Then PlaySound( current.sound )
+	Function ToggleGlitchById:Void( id:Int )
+		ALL[ id ].state = Not ALL[ id ].state
+		
+		If ALL[ id ].state = True
+			ALL[ id ].OnStart()
+			If ( ALL[ id ].sound <> Null ) Then PlaySound( ALL[ id ].sound )
+			Print( ALL[ id ].name + " ON" )
+		Else
+			ALL[ id ].OnFinish()
+			Print( ALL[ id ].name + " OFF" )
+		EndIf
 	End
 	
+	Field state:Bool
 	Field name:String
 	Field sound:Sound
 	
