@@ -1752,6 +1752,7 @@ c_MyApp.m_new=function(){
 }
 c_MyApp.prototype.p_OnCreate=function(){
 	bb_app_SetUpdateRate(60);
+	bb_random_Seed=bb_app_Millisecs();
 	c_Dwarf.m_sheet=bb_graphics_LoadImage2("bodies.png",100,80,240,c_Image.m_DefaultFlags);
 	var t_xCenter=(c_Dwarf.m_sheet.p_Width())/2.0;
 	var t_yCenter=(c_Dwarf.m_sheet.p_Height())/2.0;
@@ -2598,6 +2599,10 @@ function bb_app_SetUpdateRate(t_hertz){
 	bb_app__updateRate=t_hertz;
 	bb_app__game.SetUpdateRate(t_hertz);
 }
+function bb_app_Millisecs(){
+	return bb_app__game.Millisecs();
+}
+var bb_random_Seed=0;
 function c_Dwarf(){
 	Object.call(this);
 	this.m_player=0;
@@ -10170,9 +10175,6 @@ c_Clock.m_Tick=function(){
 	}
 	return (c_Clock.m_timeElapsed);
 }
-function bb_app_Millisecs(){
-	return bb_app__game.Millisecs();
-}
 function c_b2TimeStep(){
 	Object.call(this);
 	this.m_dt=.0;
@@ -12084,29 +12086,46 @@ c_Glitch.m_Update=function(){
 		}
 	}
 	if(t_severity>c_Glitch.m_severityPrevious){
-		var t_which=c_IntList.m_new2.call(new c_IntList);
+		var t_which=null;
 		var t_valid=false;
+		var t_iterations2=0;
 		do{
+			var t_iterations=0;
+			t_which=c_IntList.m_new2.call(new c_IntList);
 			do{
 				var t_choice=((bb_random_Rnd3(4.0))|0);
 				if(!t_which.p_Contains(t_choice)){
 					t_which.p_AddLast7(t_choice);
 				}
-			}while(!(t_which.p_Count()==c_Glitch.m_COUNT[t_severity]));
-			if(c_Glitch.m_whichPrevious==null){
-				t_valid=true;
-			}else{
+				t_iterations+=1;
+			}while(!(t_which.p_Count()==c_Glitch.m_COUNT[t_severity] || t_iterations==99));
+			if(t_iterations==99){
+				var t_out="Should have: "+String(c_Glitch.m_COUNT[t_severity])+" actually has: ";
 				var t_=t_which.p_ObjectEnumerator();
 				while(t_.p_HasNext()){
 					var t_i=t_.p_NextObject();
-					if(!c_Glitch.m_whichPrevious.p_Contains(t_i)){
+					t_out=t_out+(String(t_i)+", ");
+				}
+				print(t_out);
+			}
+			if(c_Glitch.m_whichPrevious==null){
+				t_valid=true;
+			}else{
+				var t_2=t_which.p_ObjectEnumerator();
+				while(t_2.p_HasNext()){
+					var t_i2=t_2.p_NextObject();
+					if(!c_Glitch.m_whichPrevious.p_Contains(t_i2)){
 						t_valid=true;
 					}
 				}
 			}
-			c_Glitch.m_whichPrevious=t_which;
-		}while(!(t_valid==true));
-		for(var t_n2=0;t_n2<c_Glitch.m_ALL.length;t_n2=t_n2+1){
+			t_iterations2+=1;
+		}while(!(t_valid==true || t_iterations2==99));
+		c_Glitch.m_whichPrevious=t_which;
+		if(t_iterations2==99){
+			print("something went wrong part 2");
+		}
+		for(var t_n2=0;t_n2<=3;t_n2=t_n2+1){
 			if(t_which.p_Contains(t_n2)){
 				c_Glitch.m_ToggleGlitchById(t_n2,true);
 			}else{
@@ -12314,7 +12333,6 @@ c_HeadNode6.m_new=function(){
 	this.m__pred=(this);
 	return this;
 }
-var bb_random_Seed=0;
 function bb_random_Rnd(){
 	bb_random_Seed=bb_random_Seed*1664525+1013904223|0;
 	return (bb_random_Seed>>8&16777215)/16777216.0;
@@ -13701,6 +13719,7 @@ function bbInit(){
 	bb_app__desktopMode=null;
 	bb_graphics_renderDevice=null;
 	bb_app__updateRate=0;
+	bb_random_Seed=1234;
 	c_Dwarf.m_sheet=null;
 	c_Dwarf.m_sheet2=null;
 	c_b2World.m_m_warmStarting=false;
@@ -13769,7 +13788,6 @@ function bbInit(){
 	c_Glitch.m_ALL=[c_Glitch.m_HEADLESS,c_Glitch.m_JETPACK,c_Glitch.m_SPACE,c_Glitch.m_TUMBLEWEED];
 	c_Glitch.m_SEVERITY_PHASES=[0,25,40,50,60,100,125,140,150,160,180,190,200];
 	c_Glitch.m_severityPrevious=0;
-	bb_random_Seed=1234;
 	c_Glitch.m_COUNT=[0,1,1,1,1,2,2,2,2,3,3,3,4];
 	c_Glitch.m_whichPrevious=null;
 	c_Dwarf.m_FRAME_START=[0,60];

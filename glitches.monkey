@@ -70,13 +70,27 @@ Class Glitch
 		Next
 		
 		If severity > severityPrevious
-			Local which:IntList = New IntList, valid:Bool = False
+			Local which:IntList, valid:Bool = False, iterations2:Int = 0
 			
 			Repeat
+				Local iterations:Int = 0
+				which = New IntList()
+				
 				Repeat
 					Local choice:Int = Rnd( 4 )
 					If Not which.Contains( choice ) Then which.AddLast( choice )
-				Until which.Count() = COUNT[ severity ]
+					iterations += 1
+				Until which.Count() = COUNT[ severity ] Or iterations = 99
+				
+				If iterations = 99
+					Local out:String = "Should have: " + COUNT[ severity ] + " actually has: "
+					
+					For Local i:Int = EachIn which
+						out += i + ", "
+					Next
+					
+					Print out	
+				EndIf
 				
 				If whichPrevious = Null
 					valid = True
@@ -86,8 +100,14 @@ Class Glitch
 					Next
 				EndIf
 				
-				whichPrevious = which
-			Until valid = True 
+				iterations2 += 1
+			Until valid = True Or iterations2 = 99
+			
+			whichPrevious = which
+			
+			If iterations2 = 99
+				Print "something went wrong part 2"
+			EndIf
 			
 			For Local n:Int = 0 To 3
 				If which.Contains( n )
