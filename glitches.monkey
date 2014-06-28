@@ -70,6 +70,8 @@ Class Glitch
 		Next
 		
 		If severity > severityPrevious
+			Seed = Millisecs()
+		
 			Local which:IntList, valid:Bool = False, iterations2:Int = 0
 			
 			Repeat

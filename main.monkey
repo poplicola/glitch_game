@@ -54,8 +54,6 @@ Class MyApp Extends App
 	Method OnCreate:Int()
 		SetUpdateRate( 60 )
 		
-		Seed = Millisecs()
-		
 		Dwarf.sheet = LoadImage( "bodies.png", 100, 80, 240 )
 		Local xCenter:Float = Dwarf.sheet.Width() / 2.0
 		Local yCenter:Float = Dwarf.sheet.Height() / 2.0

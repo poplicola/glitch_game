@@ -1752,7 +1752,6 @@ c_MyApp.m_new=function(){
 }
 c_MyApp.prototype.p_OnCreate=function(){
 	bb_app_SetUpdateRate(60);
-	bb_random_Seed=bb_app_Millisecs();
 	c_Dwarf.m_sheet=bb_graphics_LoadImage2("bodies.png",100,80,240,c_Image.m_DefaultFlags);
 	var t_xCenter=(c_Dwarf.m_sheet.p_Width())/2.0;
 	var t_yCenter=(c_Dwarf.m_sheet.p_Height())/2.0;
@@ -2599,10 +2598,6 @@ function bb_app_SetUpdateRate(t_hertz){
 	bb_app__updateRate=t_hertz;
 	bb_app__game.SetUpdateRate(t_hertz);
 }
-function bb_app_Millisecs(){
-	return bb_app__game.Millisecs();
-}
-var bb_random_Seed=0;
 function c_Dwarf(){
 	Object.call(this);
 	this.m_player=0;
@@ -10175,6 +10170,9 @@ c_Clock.m_Tick=function(){
 	}
 	return (c_Clock.m_timeElapsed);
 }
+function bb_app_Millisecs(){
+	return bb_app__game.Millisecs();
+}
 function c_b2TimeStep(){
 	Object.call(this);
 	this.m_dt=.0;
@@ -12086,6 +12084,7 @@ c_Glitch.m_Update=function(){
 		}
 	}
 	if(t_severity>c_Glitch.m_severityPrevious){
+		bb_random_Seed=bb_app_Millisecs();
 		var t_which=null;
 		var t_valid=false;
 		var t_iterations2=0;
@@ -12246,6 +12245,7 @@ function bb_audio_PlaySound(t_sound,t_channel,t_flags){
 	}
 	return 0;
 }
+var bb_random_Seed=0;
 function c_List6(){
 	Object.call(this);
 	this.m__head=(c_HeadNode6.m_new.call(new c_HeadNode6));
@@ -13719,7 +13719,6 @@ function bbInit(){
 	bb_app__desktopMode=null;
 	bb_graphics_renderDevice=null;
 	bb_app__updateRate=0;
-	bb_random_Seed=1234;
 	c_Dwarf.m_sheet=null;
 	c_Dwarf.m_sheet2=null;
 	c_b2World.m_m_warmStarting=false;
@@ -13788,6 +13787,7 @@ function bbInit(){
 	c_Glitch.m_ALL=[c_Glitch.m_HEADLESS,c_Glitch.m_JETPACK,c_Glitch.m_SPACE,c_Glitch.m_TUMBLEWEED];
 	c_Glitch.m_SEVERITY_PHASES=[0,25,40,50,60,100,125,140,150,160,180,190,200];
 	c_Glitch.m_severityPrevious=0;
+	bb_random_Seed=1234;
 	c_Glitch.m_COUNT=[0,1,1,1,1,2,2,2,2,3,3,3,4];
 	c_Glitch.m_whichPrevious=null;
 	c_Dwarf.m_FRAME_START=[0,60];
