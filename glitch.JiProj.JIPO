@@ -33257,8 +33257,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\dwarf.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>31</X>
-        <Y>358</Y>
+        <X>29</X>
+        <Y>347</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
@@ -35189,8 +35189,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\glitches.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>68</X>
-        <Y>64</Y>
+        <X>49</X>
+        <Y>193</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
@@ -36844,8 +36844,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\main.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>16</X>
-        <Y>114</Y>
+        <X>7</X>
+        <Y>106</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
@@ -37306,8 +37306,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\physics.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>27</X>
-        <Y>28</Y>
+        <X>37</X>
+        <Y>17</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
@@ -37611,70 +37611,6 @@
     <FolderStatus NodePath="glitch\box2d\dynamics\controllers" Expanded="false" />
     <FolderStatus NodePath="glitch\box2d\dynamics\joints" Expanded="false" />
     <FolderStatus NodePath="glitch\box2d\flash" Expanded="false" />
-    <FolderStatus NodePath="glitch\box2ddemo.buildv78h" Expanded="false" />
-    <FolderStatus NodePath="glitch\box2ddemo.buildv78h\html5" Expanded="false" />
-    <FolderStatus NodePath="glitch\box2ddemo.buildv78h\html5\data" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_linux" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_winnt" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_winnt\build" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_winnt\build\debug" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_winnt\Debug" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_winnt\Debug\data" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_winnt\Debug\external" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\gcc_winnt\Debug\internal" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw\include" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw\include\GL" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw\lib" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw\lib\carbon" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw\lib\cocoa" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw\lib\win32" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\glfw\lib\x11" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\include" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\libs" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\libs\Win32" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\libs\Win32\EFX-Util_MT" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\libs\Win32\EFX-Util_MTDLL" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\libs\Win64" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\libs\Win64\EFX-Util_MT" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\openal\libs\Win64\EFX-Util_MTDLL" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\stb" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\vc2010" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\xcode" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\xcode\data" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\xcode\English.lproj" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\xcode\external" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\xcode\internal" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\glfw\xcode\MonkeyGame.xcodeproj" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\html5" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\html5\data" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\bin" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\bin\x86" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\bin\x86\Debug" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\obj" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\obj\Windows Phone" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\obj\Windows Phone\Debug" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\obj\x86" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\obj\x86\Debug" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\obj\Xbox 360" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\obj\Xbox 360\Debug" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGame\Properties" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent\bin" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent\bin\x86" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent\bin\x86\Debug" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent\monkey" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent\obj" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent\obj\x86" Expanded="false" />
-    <FolderStatus NodePath="glitch\main.buildv77f\xna\MonkeyGame\MonkeyGameContent\obj\x86\Debug" Expanded="false" />
     <FolderStatus NodePath="glitch\main.buildv78h" Expanded="false" />
     <FolderStatus NodePath="glitch\main.buildv78h\html5" Expanded="false" />
     <FolderStatus NodePath="glitch\main.buildv78h\html5\data" Expanded="false" />

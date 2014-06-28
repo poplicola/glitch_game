@@ -191,7 +191,7 @@ Class SpaceGlitch Extends Glitch
 	End
 	
 	Method OnStart:Void()
-		APP.world._world.SetGravity( New b2Vec2( 0.0, 0.0 ) )
+		APP.world._world.SetGravity( New b2Vec2( 0.0, 3.0 ) )
 	End
 	
 	Method OnFinish:Void()
