@@ -61,11 +61,15 @@ Class MyApp Extends App
 		Dwarf.sheet2 = LoadImage( "heads.png", 100, 80, 240 )
 		Dwarf.sheet2.SetHandle( xCenter + 2, yCenter - 2 )
 		
+		hud.popup = LoadImage( "glitch.png" )
+		
 		world = New World()
 		world.Load( "delve_deeper_punchy_scene.txt" )
 		
 		dwarves[0] = New Dwarf( 0, 30, 454 )
 		dwarves[1] = New Dwarf( 1, 400, 454 )
+		
+		'Glitch.Initialize()
 		
 		Return 0
 	End
@@ -84,10 +88,18 @@ Class MyApp Extends App
 		
 		For Local n:Int = 0 Until Glitch.ALL.Length
 			If KeyHit( glitchKeys[n] )
-				Glitch.ToggleGlitchById( n )
+				Glitch.ToggleGlitchById( n, Not Glitch.ALL[n].state )
 			EndIf
 		Next
 		
+		If KeyHit( KEY_TAB )
+			For Local dwarf:Dwarf = EachIn dwarves
+				APP.hud.health[ dwarf.player ] -= 5
+			Next
+		EndIf
+
+		Glitch.Update()
+				
 		Return 0
 	End
 	
@@ -96,6 +108,8 @@ Class MyApp Extends App
 		
 		SetColor( 255, 255, 255 )
 		
+		hud.OnRender()
+		
 		RenderWalls()
 		RenderDwarves()
 		RenderBricks()
@@ -103,8 +117,6 @@ Class MyApp Extends App
 		#If CONFIG = "debug"
 		world.OnRender()
 		#End
-		
-		hud.OnRender()
 		
 		Return 0
 	End

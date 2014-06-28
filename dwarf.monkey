@@ -355,10 +355,12 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		If acceleration > Physics.DAMAGE_ACCELERATION_LOW
 			Local damage:Float = ( acceleration - Physics.DAMAGE_ACCELERATION_LOW ) / ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW )
 			If damage > APP.hud.sticker[player] Then APP.hud.sticker[player] = Min( damage, Physics.DAMAGE_ACCELERATION_CAP / ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW ) )
+			If APP.hud.sticker[player] * ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW ) >= Physics.DAMAGE_ACCELERATION_HIGH
+				APP.hud.health[player] -= 1
+			EndIf
 		EndIf
 		velocityPrevious = velocity.Copy()
-		
-		APP.hud.health[player] -= APP.hud.sticker[player]
+
 	
 		If neck = Null Then Return
 		

@@ -13,10 +13,100 @@ Class Glitch
 	Global TUMBLEWEED:Glitch = New TumbleweedGlitch()
 	
 	Global ALL:Glitch[] = [ HEADLESS, JETPACK, SPACE, TUMBLEWEED ]
+	Global SEVERITY_PHASES:Int[] = [ 0, 25, 40, 50, 60, 100, 125, 140, 150, 160, 180, 190, 200 ]
+									'0,  1,  2,  3,  4,   5,   6,   7,   8,   9,  10,  11,  12 ]
+	Global COUNT:Int[] =		   [ 0,  1,  1,  1,  1,   2,   2,   2,   2,   3,   3,   3,   4 ]
+	'Global WHICH:IntList[12]
+	Global whichPrevious:IntList
+	Global severityPrevious:Int
 	Global STATE:Bool[ ALL.Length ]
 	
-	Function ToggleGlitchById:Void( id:Int )
-		ALL[ id ].state = Not ALL[ id ].state
+	#Rem
+	Function Initialize:Void()
+		Local options:IntList[ 4 ]
+		
+		For Local n:Int = 0 To 3
+			options[n] = New IntList()
+			
+			For Local w:Int = 0 To n
+				For Local m:Int = 0 To 3
+					options[n].AddLast( m )
+				Next
+			Next
+		Next
+		
+		
+		For Local n:Int = 0 Until WHICH.Length()
+			WHICH[n] = New IntList()
+			
+			For Local m:Int = 0 To COUNT[n]
+				If m <> 0
+					Local valid:Bool = True, choice:Int, iterations:Int
+					
+					Repeat
+						choice = Rnd( ALL.Length + 1 )
+						If WHICH[n].Contains( choice ) Or Not options[ COUNT[n] ].Contains( choice )
+							valid = False
+							'Print "WHICH[" + n + "] already contains " + choice
+						EndIf
+						
+						iterations += 1
+					Until ( valid = True ) Or ( iterations = 99 )
+					
+					WHICH[n].AddLast( choice )
+					options[ COUNT[n] ].RemoveEach( choice )
+				EndIf
+			Next
+		Next
+	End
+	#End
+	
+	Function Update:Void()
+		Local damageTotal:Int = 200 - APP.hud.health[0] - APP.hud.health[0]
+		Local severity:Int
+		
+		For Local n:Int = 0 Until SEVERITY_PHASES.Length()
+			If  damageTotal > SEVERITY_PHASES[ n ] Then severity = n
+		Next
+		
+		If severity > severityPrevious
+			Local which:IntList = New IntList, valid:Bool = False
+			
+			Repeat
+				Repeat
+					Local choice:Int = Rnd( 4 )
+					If Not which.Contains( choice ) Then which.AddLast( choice )
+				Until which.Count() = COUNT[ severity ]
+				
+				If whichPrevious = Null
+					valid = True
+				Else
+					For Local i:Int = EachIn which
+						If Not whichPrevious.Contains( i ) Then valid = True
+					Next
+				EndIf
+				
+				whichPrevious = which
+			Until valid = True 
+			
+			For Local n:Int = 0 To 3
+				If which.Contains( n )
+				'If WHICH[ severity ].Contains( n )
+					ToggleGlitchById( n, True )
+				Else
+					ToggleGlitchById( n, False )
+				EndIf
+			Next
+			
+			APP.hud.EnablePopup()
+		EndIf
+		
+		severityPrevious = severity
+	End
+	
+	Function ToggleGlitchById:Void( id:Int, state:bool )
+		If ALL[ id ].state = state Then Return
+		ALL[ id ].state = state
 		
 		If ALL[ id ].state = True
 			ALL[ id ].OnStart()
