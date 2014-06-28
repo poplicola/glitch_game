@@ -1798,10 +1798,6 @@ c_MyApp.prototype.p_RenderWalls=function(){
 		bb_graphics_DrawRect((t_x[t_n]),(t_y[t_n]),(t_w[t_n]),(t_h[t_n]));
 	}
 }
-c_MyApp.prototype.p_RenderDwarves=function(){
-	this.m_dwarves[0].p_OnRender();
-	this.m_dwarves[1].p_OnRender();
-}
 c_MyApp.prototype.p_RenderBricks=function(){
 	var t_=this.m_bricks.p_ObjectEnumerator();
 	while(t_.p_HasNext()){
@@ -1809,13 +1805,17 @@ c_MyApp.prototype.p_RenderBricks=function(){
 		t_brick.p_OnRender();
 	}
 }
+c_MyApp.prototype.p_RenderDwarves=function(){
+	this.m_dwarves[0].p_OnRender();
+	this.m_dwarves[1].p_OnRender();
+}
 c_MyApp.prototype.p_OnRender=function(){
 	bb_graphics_Cls(0.0,0.0,0.0);
 	bb_graphics_SetColor(255.0,255.0,255.0);
-	this.m_hud.p_OnRender();
 	this.p_RenderWalls();
-	this.p_RenderDwarves();
 	this.p_RenderBricks();
+	this.m_hud.p_OnRender();
+	this.p_RenderDwarves();
 	return 0;
 }
 var bb_app__app=null;
@@ -12371,6 +12371,91 @@ function bb_graphics_Cls(t_r,t_g,t_b){
 	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
 	return 0;
 }
+function bb_graphics_DrawRect(t_x,t_y,t_w,t_h){
+	bb_graphics_context.p_Validate();
+	bb_graphics_renderDevice.DrawRect(t_x,t_y,t_w,t_h);
+	return 0;
+}
+function c_Enumerator5(){
+	Object.call(this);
+	this.m__list=null;
+	this.m__curr=null;
+}
+c_Enumerator5.m_new=function(t_list){
+	this.m__list=t_list;
+	this.m__curr=t_list.m__head.m__succ;
+	return this;
+}
+c_Enumerator5.m_new2=function(){
+	return this;
+}
+c_Enumerator5.prototype.p_HasNext=function(){
+	while(this.m__curr.m__succ.m__pred!=this.m__curr){
+		this.m__curr=this.m__curr.m__succ;
+	}
+	return this.m__curr!=this.m__list.m__head;
+}
+c_Enumerator5.prototype.p_NextObject=function(){
+	var t_data=this.m__curr.m__data;
+	this.m__curr=this.m__curr.m__succ;
+	return t_data;
+}
+function bb_graphics_PushMatrix(){
+	var t_sp=bb_graphics_context.m_matrixSp;
+	bb_graphics_context.m_matrixStack[t_sp+0]=bb_graphics_context.m_ix;
+	bb_graphics_context.m_matrixStack[t_sp+1]=bb_graphics_context.m_iy;
+	bb_graphics_context.m_matrixStack[t_sp+2]=bb_graphics_context.m_jx;
+	bb_graphics_context.m_matrixStack[t_sp+3]=bb_graphics_context.m_jy;
+	bb_graphics_context.m_matrixStack[t_sp+4]=bb_graphics_context.m_tx;
+	bb_graphics_context.m_matrixStack[t_sp+5]=bb_graphics_context.m_ty;
+	bb_graphics_context.m_matrixSp=t_sp+6;
+	return 0;
+}
+function bb_glue_MetersToPixels(t_meters){
+	return t_meters*30.0;
+}
+function bb_graphics_Transform(t_ix,t_iy,t_jx,t_jy,t_tx,t_ty){
+	var t_ix2=t_ix*bb_graphics_context.m_ix+t_iy*bb_graphics_context.m_jx;
+	var t_iy2=t_ix*bb_graphics_context.m_iy+t_iy*bb_graphics_context.m_jy;
+	var t_jx2=t_jx*bb_graphics_context.m_ix+t_jy*bb_graphics_context.m_jx;
+	var t_jy2=t_jx*bb_graphics_context.m_iy+t_jy*bb_graphics_context.m_jy;
+	var t_tx2=t_tx*bb_graphics_context.m_ix+t_ty*bb_graphics_context.m_jx+bb_graphics_context.m_tx;
+	var t_ty2=t_tx*bb_graphics_context.m_iy+t_ty*bb_graphics_context.m_jy+bb_graphics_context.m_ty;
+	bb_graphics_SetMatrix(t_ix2,t_iy2,t_jx2,t_jy2,t_tx2,t_ty2);
+	return 0;
+}
+function bb_graphics_Transform2(t_m){
+	bb_graphics_Transform(t_m[0],t_m[1],t_m[2],t_m[3],t_m[4],t_m[5]);
+	return 0;
+}
+function bb_graphics_Translate(t_x,t_y){
+	bb_graphics_Transform(1.0,0.0,0.0,1.0,t_x,t_y);
+	return 0;
+}
+function bb_graphics_Rotate(t_angle){
+	bb_graphics_Transform(Math.cos((t_angle)*D2R),-Math.sin((t_angle)*D2R),Math.sin((t_angle)*D2R),Math.cos((t_angle)*D2R),0.0,0.0);
+	return 0;
+}
+function bb_graphics_DrawPoly(t_verts){
+	bb_graphics_context.p_Validate();
+	bb_graphics_renderDevice.DrawPoly(t_verts);
+	return 0;
+}
+function bb_graphics_DrawPoly2(t_verts,t_image,t_frame){
+	var t_f=t_image.m_frames[t_frame];
+	bb_graphics_renderDevice.DrawPoly2(t_verts,t_image.m_surface,t_f.m_x,t_f.m_y);
+	return 0;
+}
+function bb_graphics_Scale(t_x,t_y){
+	bb_graphics_Transform(t_x,0.0,0.0,t_y,0.0,0.0);
+	return 0;
+}
+function bb_graphics_PopMatrix(){
+	var t_sp=bb_graphics_context.m_matrixSp-6;
+	bb_graphics_SetMatrix(bb_graphics_context.m_matrixStack[t_sp+0],bb_graphics_context.m_matrixStack[t_sp+1],bb_graphics_context.m_matrixStack[t_sp+2],bb_graphics_context.m_matrixStack[t_sp+3],bb_graphics_context.m_matrixStack[t_sp+4],bb_graphics_context.m_matrixStack[t_sp+5]);
+	bb_graphics_context.m_matrixSp=t_sp;
+	return 0;
+}
 function bb_graphics_DrawOval(t_x,t_y,t_w,t_h){
 	bb_graphics_context.p_Validate();
 	bb_graphics_renderDevice.DrawOval(t_x,t_y,t_w,t_h);
@@ -12395,49 +12480,6 @@ function bb_graphics_DrawImage(t_image,t_x,t_y,t_frame){
 	}else{
 		bb_graphics_renderDevice.DrawSurface2(t_image.m_surface,t_x-t_image.m_tx,t_y-t_image.m_ty,t_f.m_x,t_f.m_y,t_image.m_width,t_image.m_height);
 	}
-	return 0;
-}
-function bb_graphics_PushMatrix(){
-	var t_sp=bb_graphics_context.m_matrixSp;
-	bb_graphics_context.m_matrixStack[t_sp+0]=bb_graphics_context.m_ix;
-	bb_graphics_context.m_matrixStack[t_sp+1]=bb_graphics_context.m_iy;
-	bb_graphics_context.m_matrixStack[t_sp+2]=bb_graphics_context.m_jx;
-	bb_graphics_context.m_matrixStack[t_sp+3]=bb_graphics_context.m_jy;
-	bb_graphics_context.m_matrixStack[t_sp+4]=bb_graphics_context.m_tx;
-	bb_graphics_context.m_matrixStack[t_sp+5]=bb_graphics_context.m_ty;
-	bb_graphics_context.m_matrixSp=t_sp+6;
-	return 0;
-}
-function bb_graphics_Transform(t_ix,t_iy,t_jx,t_jy,t_tx,t_ty){
-	var t_ix2=t_ix*bb_graphics_context.m_ix+t_iy*bb_graphics_context.m_jx;
-	var t_iy2=t_ix*bb_graphics_context.m_iy+t_iy*bb_graphics_context.m_jy;
-	var t_jx2=t_jx*bb_graphics_context.m_ix+t_jy*bb_graphics_context.m_jx;
-	var t_jy2=t_jx*bb_graphics_context.m_iy+t_jy*bb_graphics_context.m_jy;
-	var t_tx2=t_tx*bb_graphics_context.m_ix+t_ty*bb_graphics_context.m_jx+bb_graphics_context.m_tx;
-	var t_ty2=t_tx*bb_graphics_context.m_iy+t_ty*bb_graphics_context.m_jy+bb_graphics_context.m_ty;
-	bb_graphics_SetMatrix(t_ix2,t_iy2,t_jx2,t_jy2,t_tx2,t_ty2);
-	return 0;
-}
-function bb_graphics_Transform2(t_m){
-	bb_graphics_Transform(t_m[0],t_m[1],t_m[2],t_m[3],t_m[4],t_m[5]);
-	return 0;
-}
-function bb_graphics_Translate(t_x,t_y){
-	bb_graphics_Transform(1.0,0.0,0.0,1.0,t_x,t_y);
-	return 0;
-}
-function bb_graphics_Rotate(t_angle){
-	bb_graphics_Transform(Math.cos((t_angle)*D2R),-Math.sin((t_angle)*D2R),Math.sin((t_angle)*D2R),Math.cos((t_angle)*D2R),0.0,0.0);
-	return 0;
-}
-function bb_graphics_Scale(t_x,t_y){
-	bb_graphics_Transform(t_x,0.0,0.0,t_y,0.0,0.0);
-	return 0;
-}
-function bb_graphics_PopMatrix(){
-	var t_sp=bb_graphics_context.m_matrixSp-6;
-	bb_graphics_SetMatrix(bb_graphics_context.m_matrixStack[t_sp+0],bb_graphics_context.m_matrixStack[t_sp+1],bb_graphics_context.m_matrixStack[t_sp+2],bb_graphics_context.m_matrixStack[t_sp+3],bb_graphics_context.m_matrixStack[t_sp+4],bb_graphics_context.m_matrixStack[t_sp+5]);
-	bb_graphics_context.m_matrixSp=t_sp;
 	return 0;
 }
 function bb_graphics_DrawImage2(t_image,t_x,t_y,t_rotation,t_scaleX,t_scaleY,t_frame){
@@ -12488,48 +12530,6 @@ function bb_graphics_DrawImageRect2(t_image,t_x,t_y,t_srcX,t_srcY,t_srcWidth,t_s
 	bb_graphics_context.p_Validate();
 	bb_graphics_renderDevice.DrawSurface2(t_image.m_surface,0.0,0.0,t_srcX+t_f.m_x,t_srcY+t_f.m_y,t_srcWidth,t_srcHeight);
 	bb_graphics_PopMatrix();
-	return 0;
-}
-function bb_graphics_DrawRect(t_x,t_y,t_w,t_h){
-	bb_graphics_context.p_Validate();
-	bb_graphics_renderDevice.DrawRect(t_x,t_y,t_w,t_h);
-	return 0;
-}
-function c_Enumerator5(){
-	Object.call(this);
-	this.m__list=null;
-	this.m__curr=null;
-}
-c_Enumerator5.m_new=function(t_list){
-	this.m__list=t_list;
-	this.m__curr=t_list.m__head.m__succ;
-	return this;
-}
-c_Enumerator5.m_new2=function(){
-	return this;
-}
-c_Enumerator5.prototype.p_HasNext=function(){
-	while(this.m__curr.m__succ.m__pred!=this.m__curr){
-		this.m__curr=this.m__curr.m__succ;
-	}
-	return this.m__curr!=this.m__list.m__head;
-}
-c_Enumerator5.prototype.p_NextObject=function(){
-	var t_data=this.m__curr.m__data;
-	this.m__curr=this.m__curr.m__succ;
-	return t_data;
-}
-function bb_glue_MetersToPixels(t_meters){
-	return t_meters*30.0;
-}
-function bb_graphics_DrawPoly(t_verts){
-	bb_graphics_context.p_Validate();
-	bb_graphics_renderDevice.DrawPoly(t_verts);
-	return 0;
-}
-function bb_graphics_DrawPoly2(t_verts,t_image,t_frame){
-	var t_f=t_image.m_frames[t_frame];
-	bb_graphics_renderDevice.DrawPoly2(t_verts,t_image.m_surface,t_f.m_x,t_f.m_y);
 	return 0;
 }
 function c_b2DynamicTreeNode(){

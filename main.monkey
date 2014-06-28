@@ -108,11 +108,13 @@ Class MyApp Extends App
 		
 		SetColor( 255, 255, 255 )
 		
-		hud.OnRender()
+		
 		
 		RenderWalls()
-		RenderDwarves()
 		RenderBricks()
+		hud.OnRender()
+		RenderDwarves()
+		
 		
 		#If CONFIG = "debug"
 		world.OnRender()
