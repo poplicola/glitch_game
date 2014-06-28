@@ -39,7 +39,6 @@ Class Physics
 	
 	Const HEALING:Float = 0.05
 	
-	
 	Const DAMAGE_ACCELERATION_LOW:Float = 10
 	Const DAMAGE_ACCELERATION_HIGH:Float = 30
 	Const DAMAGE_ACCELERATION_CAP:Float = 30

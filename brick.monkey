@@ -17,15 +17,16 @@ Class Brick
 	
 	Method OnRender:Void()
 		PushMatrix()
-		Translate( body.GetWorldCenter().x * Physics.SCALE, body.GetWorldCenter().y * Physics.SCALE )
+		
+		Translate( MetersToPixels( body.GetWorldCenter().x ), MetersToPixels( body.GetWorldCenter().y ) )
 		Rotate( -RadiansToDegrees( body.GetAngle() ) )
 		DrawPoly( polygon )
 		
-		If body.GetType() <> b2Body.b2_staticBody
-		Scale( 0.9, 0.9 )
-		SetColor( 100, 60, 10 )
-		DrawPoly( polygon )
-		SetColor( 255, 255, 255 )
+		If ( body.GetType() <> b2Body.b2_staticBody )
+			Scale( 0.9, 0.9 )
+			SetColor( 100, 60, 10 )
+			DrawPoly( polygon )
+			SetColor( 255, 255, 255 )
 		EndIf
 		
 		PopMatrix()

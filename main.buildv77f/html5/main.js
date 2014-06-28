@@ -1740,7 +1740,7 @@ c_App.prototype.p_OnBack=function(){
 }
 function c_MyApp(){
 	c_App.call(this);
-	this.m_universe=null;
+	this.m_world=null;
 	this.m_bricks=c_List3.m_new.call(new c_List3);
 	this.m_dwarves=new_object_array(2);
 	this.m_hud=c_Hud.m_new.call(new c_Hud);
@@ -1752,35 +1752,33 @@ c_MyApp.m_new=function(){
 }
 c_MyApp.prototype.p_OnCreate=function(){
 	bb_app_SetUpdateRate(60);
-	c_Dwarf.m_image=bb_graphics_LoadImage("dwarf.png",1,c_Image.m_DefaultFlags);
-	c_Dwarf.m_image.p_SetHandle((c_Dwarf.m_image.p_Width())/2.0,(c_Dwarf.m_image.p_Height())/2.0);
 	c_Dwarf.m_sheet=bb_graphics_LoadImage2("bodies.png",100,80,240,c_Image.m_DefaultFlags);
-	c_Dwarf.m_sheet.p_SetHandle((c_Dwarf.m_sheet.p_Width())/2.0+2.0,(c_Dwarf.m_sheet.p_Height())/2.0+24.0);
+	var t_xCenter=(c_Dwarf.m_sheet.p_Width())/2.0;
+	var t_yCenter=(c_Dwarf.m_sheet.p_Height())/2.0;
+	c_Dwarf.m_sheet.p_SetHandle(t_xCenter+2.0,t_yCenter+24.0);
 	c_Dwarf.m_sheet2=bb_graphics_LoadImage2("heads.png",100,80,240,c_Image.m_DefaultFlags);
-	c_Dwarf.m_sheet2.p_SetHandle((c_Dwarf.m_sheet.p_Width())/2.0+2.0,(c_Dwarf.m_sheet.p_Height())/2.0-2.0);
-	this.m_universe=c_Universe.m_new.call(new c_Universe);
-	this.m_universe.p_Load("delve_deeper_punchy_scene.txt");
+	c_Dwarf.m_sheet2.p_SetHandle(t_xCenter+2.0,t_yCenter-2.0);
+	this.m_world=c_World.m_new.call(new c_World);
+	this.m_world.p_Load("delve_deeper_punchy_scene.txt");
 	this.m_dwarves[0]=c_Dwarf.m_new.call(new c_Dwarf,0,30.0,454.0);
 	this.m_dwarves[1]=c_Dwarf.m_new.call(new c_Dwarf,1,400.0,454.0);
 	return 0;
 }
 c_MyApp.prototype.p_OnUpdate=function(){
 	c_Clock.m_Update();
-	this.m_universe.p_OnUpdate();
-	bb_abuanimation_animationJuggler.p_Update3(c_Clock.m_Tick());
+	this.m_world.p_OnUpdate();
+	bb_abuanimation_animationJuggler.p_Update2(c_Clock.m_Tick());
 	this.m_dwarves[0].p_OnUpdate();
 	this.m_dwarves[1].p_OnUpdate();
-	var t_keys=[49,50,51,52,53,54,55,56,57,48];
+	var t_glitchKeys=[49,50,51,52,53,54,55,56,57,48];
 	for(var t_n=0;t_n<c_Glitch.m_ALL.length;t_n=t_n+1){
-		if((bb_input_KeyHit(t_keys[t_n]))!=0){
+		if((bb_input_KeyHit(t_glitchKeys[t_n]))!=0){
 			c_Glitch.m_ToggleGlitchById(t_n);
 		}
 	}
 	return 0;
 }
-c_MyApp.prototype.p_OnRender=function(){
-	bb_graphics_Cls(0.0,0.0,0.0);
-	bb_graphics_SetColor(255.0,255.0,255.0);
+c_MyApp.prototype.p_RenderWalls=function(){
 	var t_x=[0,635,0,0];
 	var t_y=[0,0,475,0];
 	var t_w=[640,5,640,5];
@@ -1788,13 +1786,24 @@ c_MyApp.prototype.p_OnRender=function(){
 	for(var t_n=0;t_n<=3;t_n=t_n+1){
 		bb_graphics_DrawRect((t_x[t_n]),(t_y[t_n]),(t_w[t_n]),(t_h[t_n]));
 	}
+}
+c_MyApp.prototype.p_RenderDwarves=function(){
 	this.m_dwarves[0].p_OnRender();
 	this.m_dwarves[1].p_OnRender();
+}
+c_MyApp.prototype.p_RenderBricks=function(){
 	var t_=this.m_bricks.p_ObjectEnumerator();
 	while(t_.p_HasNext()){
 		var t_brick=t_.p_NextObject();
 		t_brick.p_OnRender();
 	}
+}
+c_MyApp.prototype.p_OnRender=function(){
+	bb_graphics_Cls(0.0,0.0,0.0);
+	bb_graphics_SetColor(255.0,255.0,255.0);
+	this.p_RenderWalls();
+	this.p_RenderDwarves();
+	this.p_RenderBricks();
 	this.m_hud.p_OnRender();
 	return 0;
 }
@@ -2218,23 +2227,17 @@ c_InputDevice.prototype.p_MotionEvent=function(t_event,t_data,t_x,t_y,t_z){
 	this.m__accelY=t_y;
 	this.m__accelZ=t_z;
 }
-c_InputDevice.prototype.p_MouseX=function(){
-	return this.m__mouseX;
-}
-c_InputDevice.prototype.p_MouseY=function(){
-	return this.m__mouseY;
+c_InputDevice.prototype.p_KeyHit=function(t_key){
+	if(t_key>0 && t_key<512){
+		return this.m__keyHit[t_key];
+	}
+	return 0;
 }
 c_InputDevice.prototype.p_KeyDown=function(t_key){
 	if(t_key>0 && t_key<512){
 		return this.m__keyDown[t_key];
 	}
 	return false;
-}
-c_InputDevice.prototype.p_KeyHit=function(t_key){
-	if(t_key>0 && t_key<512){
-		return this.m__keyHit[t_key];
-	}
-	return 0;
 }
 function c_JoyState(){
 	Object.call(this);
@@ -2584,8 +2587,6 @@ function bb_app_SetUpdateRate(t_hertz){
 function c_Dwarf(){
 	Object.call(this);
 	this.m_player=0;
-	this.m_x=.0;
-	this.m_y=.0;
 	this.m_facing=0;
 	this.m_body=null;
 	this.m_bodyFixture=null;
@@ -2606,11 +2607,10 @@ function c_Dwarf(){
 	this.m_headlessFacing=.0;
 	this.implments={c_IOnAnimationEnd:1,c_IOnAnimationFrameChange:1};
 }
-c_Dwarf.m_image=null;
 c_Dwarf.m_sheet=null;
 c_Dwarf.m_sheet2=null;
 c_Dwarf.prototype.p_CreateNeck=function(){
-	var t_world=bb_main_APP.m_universe.m_m_world;
+	var t_world=bb_main_APP.m_world.m__world;
 	var t_yNeck2=-0.43333333333333335;
 	var t_neckDefinition=c_b2RevoluteJointDef.m_new.call(new c_b2RevoluteJointDef);
 	t_neckDefinition.m_bodyA=this.m_body;
@@ -2632,11 +2632,11 @@ c_Dwarf.prototype.p__center=function(){
 	var t_yCenter=(this.m_body.p_GetWorldCenter().m_y*this.m_body.p_GetMass()+this.m_head.p_GetWorldCenter().m_y*this.m_head.p_GetMass())/(this.m_body.p_GetMass()+this.m_head.p_GetMass());
 	return c_b2Vec2.m_new.call(new c_b2Vec2,t_xCenter,t_yCenter);
 }
-c_Dwarf.prototype.p_CreateBody=function(){
-	var t_world=bb_main_APP.m_universe.m_m_world;
+c_Dwarf.prototype.p_CreateBody=function(t_xStart,t_yStart){
+	var t_world=bb_main_APP.m_world.m__world;
 	var t_bodyDefinition=c_b2BodyDef.m_new.call(new c_b2BodyDef);
 	t_bodyDefinition.m_type=2;
-	t_bodyDefinition.m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
+	t_bodyDefinition.m_position.p_Set2(t_xStart/30.0,t_yStart/30.0);
 	t_bodyDefinition.m_fixedRotation=false;
 	this.m_body=t_world.p_CreateBody2(t_bodyDefinition);
 	var t_shapeDefinition=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
@@ -2652,7 +2652,7 @@ c_Dwarf.prototype.p_CreateBody=function(){
 	var t_yNeck=-0.8666666666666667;
 	var t_headDefinition=c_b2BodyDef.m_new.call(new c_b2BodyDef);
 	t_headDefinition.m_type=2;
-	t_headDefinition.m_position.p_Set2(this.m_x/30.0,this.m_y/30.0);
+	t_headDefinition.m_position.p_Set2(t_xStart/30.0,t_yStart/30.0);
 	this.m_head=t_world.p_CreateBody2(t_headDefinition);
 	var t_shapeDefinition2=c_b2CircleShape.m_new.call(new c_b2CircleShape,0.43333333333333335);
 	t_shapeDefinition2.p_SetLocalPosition(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,t_yNeck));
@@ -2690,12 +2690,10 @@ c_Dwarf.prototype.p_CreateBody=function(){
 	t_massData.m_center=c_b2Vec2.m_new.call(new c_b2Vec2,this.p__center().m_x-this.m_body.p_GetWorldCenter().m_x,this.p__center().m_y-this.m_body.p_GetWorldCenter().m_y);
 	this.m_body.p_SetMassData(t_massData);
 }
-c_Dwarf.m_new=function(t_Player,t_Start_x,t_Start_y){
-	this.m_player=t_Player;
-	this.m_x=t_Start_x;
-	this.m_y=t_Start_y;
-	this.m_facing=1-2*t_Player;
-	this.p_CreateBody();
+c_Dwarf.m_new=function(t_player,t_xStart,t_yStart){
+	this.m_player=t_player;
+	this.m_facing=1-2*t_player;
+	this.p_CreateBody(t_xStart,t_yStart);
 	this.m_animationDelegate=c_AnimationDelegate.m_new.call(new c_AnimationDelegate,(this));
 	bb_abuanimation_animationJuggler.p_Add3(this.m_animationDelegate);
 	this.m_animationDelegate.p_AddAnimation("idle",[0,1,2,3],120.0,true);
@@ -2935,131 +2933,70 @@ c_Dwarf.prototype.p_OnAnimationFrameChange=function(t_name,t_frame,t_framePrevio
 		}
 	}
 }
-function c_Universe(){
+function c_World(){
 	Object.call(this);
-	this.m_m_display=null;
-	this.m_m_sprite=null;
-	this.m_m_world=null;
-	this.m_height=480;
-	this.m_width=640;
+	this.m__display=null;
+	this.m__sprite=null;
+	this.m__world=null;
 	this.m_nextFrame=0.0;
-	this.m_mousePVec=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
-	this.m_m_mouseJoint=null;
 	this.m_m_timeStep=0.016666666666666666;
 	this.m_m_velocityIterations=10;
 	this.m_m_positionIterations=10;
 }
-c_Universe.m_new=function(){
-	this.m_m_display=c_FlashSprite.m_new.call(new c_FlashSprite);
-	this.m_m_sprite=c_FlashSprite.m_new.call(new c_FlashSprite);
-	this.m_m_display.p_AddChild(this.m_m_sprite);
-	var t_m_sprite=this.m_m_display;
+c_World.prototype.p_CreateWalls=function(){
+	var t_width=bb_main_WORLD_WIDTH;
+	var t_height=(bb_main_WORLD_HEIGHT);
+	var t_wall=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
+	var t_wallBd=c_b2BodyDef.m_new.call(new c_b2BodyDef);
+	var t_wallB=null;
+	t_wallBd.m_position.p_Set2(-3.1666666666666665,t_height/30.0/2.0);
+	t_wall.p_SetAsBox(3.3333333333333335,(t_height+100.0)/30.0/2.0);
+	t_wallB=this.m__world.p_CreateBody2(t_wallBd);
+	t_wallB.p_CreateFixture2((t_wall),0.0);
+	t_wallBd.m_position.p_Set2((t_width+95.0)/30.0,t_height/30.0/2.0);
+	t_wallB=this.m__world.p_CreateBody2(t_wallBd);
+	t_wallB.p_CreateFixture2((t_wall),0.0);
+	t_wallBd.m_position.p_Set2(t_width/30.0/2.0,-3.1666666666666665);
+	t_wall.p_SetAsBox((t_width+100.0)/30.0/2.0,3.3333333333333335);
+	t_wallB=this.m__world.p_CreateBody2(t_wallBd);
+	t_wallB.p_CreateFixture2((t_wall),0.0);
+	t_wall.p_SetAsBox((t_width+100.0)/30.0/2.0,3.3333333333333335);
+	t_wallBd.m_position.p_Set2(t_width/30.0/2.0,(t_height+95.0)/30.0);
+	t_wallB=this.m__world.p_CreateBody2(t_wallBd);
+	t_wallB.p_CreateFixture2((t_wall),0.0);
+}
+c_World.m_new=function(){
+	this.m__display=c_FlashSprite.m_new.call(new c_FlashSprite);
+	this.m__sprite=c_FlashSprite.m_new.call(new c_FlashSprite);
+	this.m__display.p_AddChild(this.m__sprite);
 	var t_worldAABB=c_b2AABB.m_new.call(new c_b2AABB);
 	t_worldAABB.m_lowerBound.p_Set2(-1000.0,-1000.0);
 	t_worldAABB.m_upperBound.p_Set2(1000.0,1000.0);
 	var t_gravity=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,30.0);
-	var t_doSleep=false;
-	this.m_m_world=c_b2World.m_new.call(new c_b2World,t_gravity,true);
-	this.m_m_world.p_SetWarmStarting(true);
+	this.m__world=c_b2World.m_new.call(new c_b2World,t_gravity,true);
+	this.m__world.p_SetWarmStarting(true);
 	var t_dbgDraw=c_b2DebugDraw.m_new.call(new c_b2DebugDraw);
-	t_dbgDraw.p_SetSprite(t_m_sprite);
+	t_dbgDraw.p_SetSprite(this.m__display);
 	t_dbgDraw.p_SetDrawScale(30.0);
 	t_dbgDraw.p_SetFillAlpha(0.3);
 	t_dbgDraw.p_SetLineThickness(1.0);
 	t_dbgDraw.p_SetFlags(c_b2DebugDraw.m_e_shapeBit|c_b2DebugDraw.m_e_jointBit);
-	this.m_m_world.p_SetDebugDraw(t_dbgDraw);
-	var t_wall=c_b2PolygonShape.m_new.call(new c_b2PolygonShape);
-	var t_wallBd=c_b2BodyDef.m_new.call(new c_b2BodyDef);
-	var t_wallB=null;
-	t_wallBd.m_position.p_Set2(-3.1666666666666665,(this.m_height)/30.0/2.0);
-	t_wall.p_SetAsBox(3.3333333333333335,((this.m_height)+100.0)/30.0/2.0);
-	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	t_wallB.p_CreateFixture2((t_wall),0.0);
-	t_wallBd.m_position.p_Set2(((this.m_width)+95.0)/30.0,(this.m_height)/30.0/2.0);
-	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	t_wallB.p_CreateFixture2((t_wall),0.0);
-	t_wallBd.m_position.p_Set2((this.m_width)/30.0/2.0,-3.1666666666666665);
-	t_wall.p_SetAsBox(((this.m_width)+100.0)/30.0/2.0,3.3333333333333335);
-	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	t_wallB.p_CreateFixture2((t_wall),0.0);
-	t_wall.p_SetAsBox(((this.m_width)+100.0)/30.0/2.0,3.3333333333333335);
-	t_wallBd.m_position.p_Set2((this.m_width)/30.0/2.0,((this.m_height)+95.0)/30.0);
-	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
-	t_wallB.p_CreateFixture2((t_wall),0.0);
-	this.m_m_world.p_SetContactListener(c_MyContactListener.m_new.call(new c_MyContactListener));
+	this.m__world.p_SetDebugDraw(t_dbgDraw);
+	this.p_CreateWalls();
+	this.m__world.p_SetContactListener(c_MyContactListener.m_new.call(new c_MyContactListener));
 	return this;
 }
-c_Universe.prototype.p_Load=function(t_path){
-	bb_rubeloader_LoadRube(t_path,this.m_m_world);
+c_World.prototype.p_Load=function(t_path){
+	bb_rubeloader_LoadRube(t_path,this.m__world);
 }
-c_Universe.m_mouseXWorldPhys=0;
-c_Universe.m_mouseYWorldPhys=0;
-c_Universe.m_mouseXWorld=0;
-c_Universe.m_mouseYWorld=0;
-c_Universe.prototype.p_UpdateMouseWorld=function(){
-	c_Universe.m_mouseXWorldPhys=bb_input_MouseX()/30.0;
-	c_Universe.m_mouseYWorldPhys=bb_input_MouseY()/30.0;
-	c_Universe.m_mouseXWorld=bb_input_MouseX();
-	c_Universe.m_mouseYWorld=bb_input_MouseY();
-}
-c_Universe.prototype.p_GetBodyAtMouse=function(t_includeStatic){
-	this.m_mousePVec.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-	var t_aabb=c_b2AABB.m_new.call(new c_b2AABB);
-	t_aabb.m_lowerBound.p_Set2(c_Universe.m_mouseXWorldPhys-0.001,c_Universe.m_mouseYWorldPhys-0.001);
-	t_aabb.m_upperBound.p_Set2(c_Universe.m_mouseXWorldPhys+0.001,c_Universe.m_mouseYWorldPhys+0.001);
-	var t_callback=c_TestQueryAABBCallback.m_new.call(new c_TestQueryAABBCallback,t_includeStatic,this.m_mousePVec);
-	var t_fixture=null;
-	this.m_m_world.p_QueryAABB((t_callback),t_aabb);
-	return t_callback.m_body;
-}
-c_Universe.prototype.p_MouseDestroy=function(){
-	if(!((bb_input_MouseDown(0))!=0) && bb_input_KeyHit(68)>0){
-		var t_body=this.p_GetBodyAtMouse(true);
-		if((t_body)!=null){
-			this.m_m_world.p_DestroyBody(t_body);
-			return;
-		}
-	}
-}
-c_Universe.prototype.p_MouseDrag=function(){
-	if(((bb_input_MouseDown(0))!=0) && !((this.m_m_mouseJoint)!=null)){
-		var t_body=this.p_GetBodyAtMouse(false);
-		if((t_body)!=null){
-			var t_md=c_b2MouseJointDef.m_new.call(new c_b2MouseJointDef);
-			t_md.m_bodyA=this.m_m_world.p_GetGroundBody();
-			t_md.m_bodyB=t_body;
-			t_md.m_target.p_Set2(c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-			t_md.m_collideConnected=true;
-			t_md.m_maxForce=300.0*t_body.p_GetMass();
-			this.m_m_mouseJoint=object_downcast((this.m_m_world.p_CreateJoint(t_md)),c_b2MouseJoint);
-			t_body.p_SetAwake(true);
-		}
-	}
-	if(!((bb_input_MouseDown(0))!=0)){
-		if((this.m_m_mouseJoint)!=null){
-			this.m_m_world.p_DestroyJoint(this.m_m_mouseJoint);
-			this.m_m_mouseJoint=null;
-		}
-	}
-	if((this.m_m_mouseJoint)!=null){
-		var t_p2=c_b2Vec2.m_new.call(new c_b2Vec2,c_Universe.m_mouseXWorldPhys,c_Universe.m_mouseYWorldPhys);
-		this.m_m_mouseJoint.p_SetTarget(t_p2);
-	}
-}
-c_Universe.prototype.p_Update=function(){
-	this.p_UpdateMouseWorld();
-	this.p_MouseDestroy();
-	this.p_MouseDrag();
-	this.m_m_world.p_TimeStep(this.m_m_timeStep,this.m_m_velocityIterations,this.m_m_positionIterations);
-	this.m_m_world.p_ClearForces();
-}
-c_Universe.prototype.p_OnUpdate=function(){
+c_World.prototype.p_OnUpdate=function(){
 	var t_ms=bb_app_Millisecs();
 	if(this.m_nextFrame==0.0 || (t_ms)-this.m_nextFrame>33.333333333333336){
 		this.m_nextFrame=(t_ms)-33.333333333333336;
 	}
 	while(this.m_nextFrame<(t_ms)){
-		this.p_Update();
+		this.m__world.p_TimeStep(this.m_m_timeStep,this.m_m_velocityIterations,this.m_m_positionIterations);
+		this.m__world.p_ClearForces();
 		this.m_nextFrame+=16.666666666666668;
 	}
 }
@@ -3355,111 +3292,6 @@ c_b2World.prototype.p_CreateJoint=function(t_def){
 	}
 	return t_j;
 }
-c_b2World.prototype.p_QueryAABB=function(t_callback,t_aabb){
-	var t_broadPhase=this.m_m_contactManager.m_m_broadPhase;
-	t_broadPhase.p_Query((c_WorldQueryAABBCallback.m_new.call(new c_WorldQueryAABBCallback,t_broadPhase,t_callback)),t_aabb);
-}
-c_b2World.prototype.p_DestroyJoint=function(t_j){
-	var t_collideConnected=t_j.m_m_collideConnected;
-	if((t_j.m_m_prev)!=null){
-		t_j.m_m_prev.m_m_next=t_j.m_m_next;
-	}
-	if((t_j.m_m_next)!=null){
-		t_j.m_m_next.m_m_prev=t_j.m_m_prev;
-	}
-	if(t_j==this.m_m_jointList){
-		this.m_m_jointList=t_j.m_m_next;
-	}
-	var t_bodyA=t_j.m_m_bodyA;
-	var t_bodyB=t_j.m_m_bodyB;
-	t_bodyA.p_SetAwake(true);
-	t_bodyB.p_SetAwake(true);
-	if((t_j.m_m_edgeA.m_prevItem)!=null){
-		t_j.m_m_edgeA.m_prevItem.m_nextItem=t_j.m_m_edgeA.m_nextItem;
-	}
-	if((t_j.m_m_edgeA.m_nextItem)!=null){
-		t_j.m_m_edgeA.m_nextItem.m_prevItem=t_j.m_m_edgeA.m_prevItem;
-	}
-	if(t_j.m_m_edgeA==t_bodyA.m_m_jointList){
-		t_bodyA.m_m_jointList=t_j.m_m_edgeA.m_nextItem;
-	}
-	t_j.m_m_edgeA.m_prevItem=null;
-	t_j.m_m_edgeA.m_nextItem=null;
-	if((t_j.m_m_edgeB.m_prevItem)!=null){
-		t_j.m_m_edgeB.m_prevItem.m_nextItem=t_j.m_m_edgeB.m_nextItem;
-	}
-	if((t_j.m_m_edgeB.m_nextItem)!=null){
-		t_j.m_m_edgeB.m_nextItem.m_prevItem=t_j.m_m_edgeB.m_prevItem;
-	}
-	if(t_j.m_m_edgeB==t_bodyB.m_m_jointList){
-		t_bodyB.m_m_jointList=t_j.m_m_edgeB.m_nextItem;
-	}
-	t_j.m_m_edgeB.m_prevItem=null;
-	t_j.m_m_edgeB.m_nextItem=null;
-	c_b2Joint.m_Destroy(t_j,null);
-	this.m_m_jointCount-=1;
-	if(t_collideConnected==false){
-		var t_edge=t_bodyB.p_GetContactList();
-		while((t_edge)!=null){
-			if(t_edge.m_other==t_bodyA){
-				t_edge.m_contact.p_FlagForFiltering();
-			}
-			t_edge=t_edge.m_nextItem;
-		}
-	}
-}
-c_b2World.prototype.p_DestroyBody=function(t_b){
-	if(this.p_IsLocked()==true){
-		return;
-	}
-	var t_jn=t_b.m_m_jointList;
-	while((t_jn)!=null){
-		var t_jn0=t_jn;
-		t_jn=t_jn.m_nextItem;
-		if((this.m_m_destructionListener)!=null){
-			this.m_m_destructionListener.p_SayGoodbyeJoint(t_jn0.m_joint);
-		}
-		this.p_DestroyJoint(t_jn0.m_joint);
-	}
-	var t_coe=t_b.m_m_controllerList;
-	while((t_coe)!=null){
-		var t_coe0=t_coe;
-		t_coe=t_coe.m_nextController;
-		t_coe0.m_controller.p_RemoveBody(t_b);
-	}
-	var t_ce=t_b.m_m_contactList;
-	while((t_ce)!=null){
-		var t_ce0=t_ce;
-		t_ce=t_ce.m_nextItem;
-		this.m_m_contactManager.p_Destroy(t_ce0.m_contact);
-	}
-	t_b.m_m_contactList=null;
-	var t_f=t_b.m_m_fixtureList;
-	while((t_f)!=null){
-		var t_f0=t_f;
-		t_f=t_f.m_m_next;
-		if((this.m_m_destructionListener)!=null){
-			this.m_m_destructionListener.p_SayGoodbyeFixture(t_f0);
-		}
-		t_f0.p_DestroyProxy2(this.m_m_contactManager.m_m_broadPhase);
-		t_f0.p_Destroy3();
-	}
-	t_b.m_m_fixtureList=null;
-	t_b.m_m_fixtureCount=0;
-	if((t_b.m_m_prev)!=null){
-		t_b.m_m_prev.m_m_next=t_b.m_m_next;
-	}
-	if((t_b.m_m_next)!=null){
-		t_b.m_m_next.m_m_prev=t_b.m_m_prev;
-	}
-	if(t_b==this.m_m_bodyList){
-		this.m_m_bodyList=t_b.m_m_next;
-	}
-	this.m_m_bodyCount-=1;
-}
-c_b2World.prototype.p_GetGroundBody=function(){
-	return this.m_m_groundBody;
-}
 c_b2World.m_s_timestep2=null;
 c_b2World.prototype.p_Solve=function(t_timeStep){
 	var t_b=null;
@@ -3690,7 +3522,7 @@ c_b2World.prototype.p_SolveTOI=function(t_timeStep){
 		c_b2World.m_s_backupB.p_Set7(t_bB.m_m_sweep);
 		t_bA.p_Advance(t_minTOI);
 		t_bB.p_Advance(t_minTOI);
-		t_minContact.p_Update2(this.m_m_contactManager.m_m_contactListener);
+		t_minContact.p_Update(this.m_m_contactManager.m_m_contactListener);
 		t_minContact.m_m_flags&=-9;
 		if(((t_minContact.m_m_flags&1)!=0) || !((t_minContact.m_m_flags&32)!=0)){
 			t_bA.m_m_sweep.p_Set7(c_b2World.m_s_backupA);
@@ -3856,15 +3688,60 @@ c_b2World.prototype.p_ClearForces=function(){
 		t_body=t_body.m_m_next;
 	}
 }
+c_b2World.prototype.p_DestroyJoint=function(t_j){
+	var t_collideConnected=t_j.m_m_collideConnected;
+	if((t_j.m_m_prev)!=null){
+		t_j.m_m_prev.m_m_next=t_j.m_m_next;
+	}
+	if((t_j.m_m_next)!=null){
+		t_j.m_m_next.m_m_prev=t_j.m_m_prev;
+	}
+	if(t_j==this.m_m_jointList){
+		this.m_m_jointList=t_j.m_m_next;
+	}
+	var t_bodyA=t_j.m_m_bodyA;
+	var t_bodyB=t_j.m_m_bodyB;
+	t_bodyA.p_SetAwake(true);
+	t_bodyB.p_SetAwake(true);
+	if((t_j.m_m_edgeA.m_prevItem)!=null){
+		t_j.m_m_edgeA.m_prevItem.m_nextItem=t_j.m_m_edgeA.m_nextItem;
+	}
+	if((t_j.m_m_edgeA.m_nextItem)!=null){
+		t_j.m_m_edgeA.m_nextItem.m_prevItem=t_j.m_m_edgeA.m_prevItem;
+	}
+	if(t_j.m_m_edgeA==t_bodyA.m_m_jointList){
+		t_bodyA.m_m_jointList=t_j.m_m_edgeA.m_nextItem;
+	}
+	t_j.m_m_edgeA.m_prevItem=null;
+	t_j.m_m_edgeA.m_nextItem=null;
+	if((t_j.m_m_edgeB.m_prevItem)!=null){
+		t_j.m_m_edgeB.m_prevItem.m_nextItem=t_j.m_m_edgeB.m_nextItem;
+	}
+	if((t_j.m_m_edgeB.m_nextItem)!=null){
+		t_j.m_m_edgeB.m_nextItem.m_prevItem=t_j.m_m_edgeB.m_prevItem;
+	}
+	if(t_j.m_m_edgeB==t_bodyB.m_m_jointList){
+		t_bodyB.m_m_jointList=t_j.m_m_edgeB.m_nextItem;
+	}
+	t_j.m_m_edgeB.m_prevItem=null;
+	t_j.m_m_edgeB.m_nextItem=null;
+	c_b2Joint.m_Destroy(t_j,null);
+	this.m_m_jointCount-=1;
+	if(t_collideConnected==false){
+		var t_edge=t_bodyB.p_GetContactList();
+		while((t_edge)!=null){
+			if(t_edge.m_other==t_bodyA){
+				t_edge.m_contact.p_FlagForFiltering();
+			}
+			t_edge=t_edge.m_nextItem;
+		}
+	}
+}
 c_b2World.prototype.p_SetGravity=function(t_gravity){
 	this.m_m_gravity=t_gravity;
 }
 function c_b2DestructionListener(){
 	Object.call(this);
-}
-c_b2DestructionListener.prototype.p_SayGoodbyeJoint=function(t_joint){
-}
-c_b2DestructionListener.prototype.p_SayGoodbyeFixture=function(t_fixture){
 }
 function c_b2DebugDraw(){
 	Object.call(this);
@@ -4112,19 +3989,6 @@ c_b2Body.prototype.p_SetMassData=function(t_massData){
 	this.m_m_linearVelocity.m_x+=this.m_m_angularVelocity*-(this.m_m_sweep.m_c.m_y-t_oldCenter.m_y);
 	this.m_m_linearVelocity.m_y+=this.m_m_angularVelocity*+(this.m_m_sweep.m_c.m_x-t_oldCenter.m_x);
 }
-c_b2Body.prototype.p_SetAwake=function(t_flag){
-	if(t_flag){
-		this.m_m_flags|=2;
-		this.m_m_sleepTime=0.0;
-	}else{
-		this.m_m_flags&=-3;
-		this.m_m_sleepTime=0.0;
-		this.m_m_linearVelocity.p_SetZero();
-		this.m_m_angularVelocity=0.0;
-		this.m_m_force.p_SetZero();
-		this.m_m_torque=0.0;
-	}
-}
 c_b2Body.prototype.p_IsAwake=function(){
 	return (this.m_m_flags&2)==2;
 }
@@ -4140,6 +4004,19 @@ c_b2Body.prototype.p_ShouldCollide=function(t_other){
 		t_jn=t_jn.m_nextItem;
 	}
 	return true;
+}
+c_b2Body.prototype.p_SetAwake=function(t_flag){
+	if(t_flag){
+		this.m_m_flags|=2;
+		this.m_m_sleepTime=0.0;
+	}else{
+		this.m_m_flags&=-3;
+		this.m_m_sleepTime=0.0;
+		this.m_m_linearVelocity.p_SetZero();
+		this.m_m_angularVelocity=0.0;
+		this.m_m_force.p_SetZero();
+		this.m_m_torque=0.0;
+	}
 }
 c_b2Body.prototype.p_GetTransform=function(){
 	return this.m_m_xf;
@@ -4246,8 +4123,8 @@ function c_b2Contact(){
 	this.m_m_flags=0;
 	this.m_m_fixtureA=null;
 	this.m_m_fixtureB=null;
-	this.m_m_prev=null;
 	this.m_m_next=null;
+	this.m_m_prev=null;
 	this.m_m_nodeA=c_b2ContactEdge.m_new.call(new c_b2ContactEdge);
 	this.m_m_nodeB=c_b2ContactEdge.m_new.call(new c_b2ContactEdge);
 	this.m_m_manifold=c_b2Manifold.m_new.call(new c_b2Manifold);
@@ -4264,15 +4141,15 @@ c_b2Contact.prototype.p_GetFixtureA=function(){
 c_b2Contact.prototype.p_GetFixtureB=function(){
 	return this.m_m_fixtureB;
 }
-c_b2Contact.prototype.p_IsTouching=function(){
-	return (this.m_m_flags&16)==16;
-}
 c_b2Contact.prototype.p_GetNext=function(){
 	return this.m_m_next;
 }
+c_b2Contact.prototype.p_IsTouching=function(){
+	return (this.m_m_flags&16)==16;
+}
 c_b2Contact.prototype.p_Evaluate=function(){
 }
-c_b2Contact.prototype.p_Update2=function(t_listener){
+c_b2Contact.prototype.p_Update=function(t_listener){
 	var t_tManifold=this.m_m_oldManifold;
 	this.m_m_oldManifold=this.m_m_manifold;
 	this.m_m_manifold=t_tManifold;
@@ -4464,8 +4341,6 @@ c_b2Joint.m_Create=function(t_def,t_allocator){
 	}
 	return t_joint;
 }
-c_b2Joint.m_Destroy=function(t_joint,t_allocator){
-}
 c_b2Joint.prototype.p_InitVelocityConstraints=function(t_timeStep){
 }
 c_b2Joint.prototype.p_SolveVelocityConstraints=function(t_timeStep){
@@ -4475,37 +4350,11 @@ c_b2Joint.prototype.p_FinalizeVelocityConstraints=function(){
 c_b2Joint.prototype.p_SolvePositionConstraints=function(t_baumgarte){
 	return false;
 }
+c_b2Joint.m_Destroy=function(t_joint,t_allocator){
+}
 function c_b2Controller(){
 	Object.call(this);
-	this.m_m_bodyList=null;
-	this.m_m_bodyCount=0;
 	this.m_m_next=null;
-}
-c_b2Controller.prototype.p_RemoveBody=function(t_body){
-	var t_edge=t_body.m_m_controllerList;
-	while(((t_edge)!=null) && t_edge.m_controller!=this){
-		t_edge=t_edge.m_nextController;
-	}
-	if((t_edge.m_prevBody)!=null){
-		t_edge.m_prevBody.m_nextBody=t_edge.m_nextBody;
-	}
-	if((t_edge.m_nextBody)!=null){
-		t_edge.m_nextBody.m_prevBody=t_edge.m_prevBody;
-	}
-	if((t_edge.m_nextController)!=null){
-		t_edge.m_nextController.m_prevController=t_edge.m_prevController;
-	}
-	if((t_edge.m_prevController)!=null){
-		t_edge.m_prevController.m_nextController=t_edge.m_nextController;
-	}
-	if(this.m_m_bodyList==t_edge){
-		this.m_m_bodyList=t_edge.m_nextBody;
-	}
-	if(t_body.m_m_controllerList==t_edge){
-		t_body.m_m_controllerList=t_edge.m_nextController;
-	}
-	t_body.m_m_controllerCount-=1;
-	this.m_m_bodyCount-=1;
 }
 c_b2Controller.prototype.p_TimeStep2=function(t_timeStep){
 }
@@ -4529,6 +4378,9 @@ c_b2ContactManager.m_new=function(){
 	this.m_m_broadPhase=(c_b2DynamicTreeBroadPhase.m_new.call(new c_b2DynamicTreeBroadPhase));
 	this.m_pairsCallback=(c_CMUpdatePairsCallback.m_new.call(new c_CMUpdatePairsCallback,this));
 	return this;
+}
+c_b2ContactManager.prototype.p_FindNewContacts=function(){
+	this.m_m_broadPhase.p_UpdatePairs(this.m_pairsCallback);
 }
 c_b2ContactManager.prototype.p_Destroy=function(t_c){
 	var t_fixtureA=t_c.p_GetFixtureA();
@@ -4568,9 +4420,6 @@ c_b2ContactManager.prototype.p_Destroy=function(t_c){
 	this.m_m_contactFactory.p_Destroy(t_c);
 	this.m_m_world.m_m_contactCount-=1;
 }
-c_b2ContactManager.prototype.p_FindNewContacts=function(){
-	this.m_m_broadPhase.p_UpdatePairs(this.m_pairsCallback);
-}
 c_b2ContactManager.prototype.p_Collide=function(){
 	var t_c=this.m_m_world.m_m_contactList;
 	while(t_c!=null){
@@ -4607,7 +4456,7 @@ c_b2ContactManager.prototype.p_Collide=function(){
 			this.p_Destroy(t_cNuke);
 			continue;
 		}
-		t_c.p_Update2(this.m_m_contactListener);
+		t_c.p_Update(this.m_m_contactListener);
 		t_c=t_c.p_GetNext();
 	}
 }
@@ -4927,9 +4776,6 @@ c_b2Shape.m_TestOverlap=function(t_shape1,t_transform1,t_shape2,t_transform2){
 c_b2Shape.prototype.p_Set5=function(t_other){
 	this.m_m_radius=t_other.m_m_radius;
 }
-c_b2Shape.prototype.p_TestPoint=function(t_xf,t_p){
-	return false;
-}
 function c_ContactTypeFactory(){
 	Object.call(this);
 }
@@ -5013,17 +4859,11 @@ c_IBroadPhase.m_new=function(){
 }
 c_IBroadPhase.prototype.p_CreateProxy=function(t_aabb,t_userData){
 }
-c_IBroadPhase.prototype.p_Query=function(t_callback,t_aabb){
-}
-c_IBroadPhase.prototype.p_DestroyProxy=function(t_proxy){
-}
 c_IBroadPhase.prototype.p_UpdatePairs=function(t_callback){
 }
 c_IBroadPhase.prototype.p_TestOverlap2=function(t_proxyA,t_proxyB){
 }
 c_IBroadPhase.prototype.p_MoveProxy=function(t_proxy,t_aabb,t_displacement){
-}
-c_IBroadPhase.prototype.p_GetUserData=function(t_proxy){
 }
 function c_b2DynamicTreeBroadPhase(){
 	c_IBroadPhase.call(this);
@@ -5045,15 +4885,6 @@ c_b2DynamicTreeBroadPhase.prototype.p_CreateProxy=function(t_aabb,t_userData){
 	this.m_m_proxyCount+=1;
 	this.p_BufferMove(t_proxy);
 	return (t_proxy);
-}
-c_b2DynamicTreeBroadPhase.prototype.p_UnBufferMove=function(t_proxy){
-	var t_i=this.m_m_moveBuffer.p_IndexOf(t_proxy);
-	this.m_m_moveBuffer.p_Splice3(t_i,1);
-}
-c_b2DynamicTreeBroadPhase.prototype.p_DestroyProxy=function(t_proxy){
-	this.p_UnBufferMove(object_downcast((t_proxy),c_b2DynamicTreeNode));
-	this.m_m_proxyCount-=1;
-	this.m_m_tree.p_DestroyProxy3(object_downcast((t_proxy),c_b2DynamicTreeNode));
 }
 c_b2DynamicTreeBroadPhase.prototype.p_MoveProxy=function(t_proxy,t_aabb,t_displacement){
 	var t_buffer=this.m_m_tree.p_MoveProxy2(object_downcast((t_proxy),c_b2DynamicTreeNode),t_aabb,t_displacement);
@@ -5079,8 +4910,8 @@ c_b2DynamicTreeBroadPhase.prototype.p_UpdatePairs=function(t_callback){
 	var t_i2=0;
 	while(t_i2<this.m_dtQueryCallBack.m_m_pairCount){
 		var t_primaryPair=this.m_dtQueryCallBack.m_m_pairBuffer.p_Get(t_i2);
-		var t_userDataA=this.m_m_tree.p_GetUserData2(t_primaryPair.m_proxyA);
-		var t_userDataB=this.m_m_tree.p_GetUserData2(t_primaryPair.m_proxyB);
+		var t_userDataA=this.m_m_tree.p_GetUserData(t_primaryPair.m_proxyA);
+		var t_userDataB=this.m_m_tree.p_GetUserData(t_primaryPair.m_proxyB);
 		t_callback.p_Callback(t_userDataA,t_userDataB);
 		t_i2+=1;
 		while(t_i2<this.m_dtQueryCallBack.m_m_pairCount){
@@ -5091,12 +4922,6 @@ c_b2DynamicTreeBroadPhase.prototype.p_UpdatePairs=function(t_callback){
 			t_i2+=1;
 		}
 	}
-}
-c_b2DynamicTreeBroadPhase.prototype.p_Query=function(t_callback,t_aabb){
-	this.m_m_tree.p_Query(t_callback,t_aabb);
-}
-c_b2DynamicTreeBroadPhase.prototype.p_GetUserData=function(t_proxy){
-	return this.m_m_tree.p_GetUserData2(object_downcast((t_proxy),c_b2DynamicTreeNode));
 }
 function c_UpdatePairsCallback(){
 	Object.call(this);
@@ -5288,11 +5113,6 @@ c_b2JointEdge.m_new=function(){
 }
 function c_b2ControllerEdge(){
 	Object.call(this);
-	this.m_nextController=null;
-	this.m_controller=null;
-	this.m_prevBody=null;
-	this.m_nextBody=null;
-	this.m_prevController=null;
 }
 function c_b2ContactEdge(){
 	Object.call(this);
@@ -5357,16 +5177,6 @@ c_b2Fixture.prototype.p_GetBody=function(){
 c_b2Fixture.prototype.p_GetType=function(){
 	return this.m_m_shape.p_GetType();
 }
-c_b2Fixture.prototype.p_DestroyProxy2=function(t_broadPhase){
-	if(this.m_m_proxy==null){
-		return;
-	}
-	t_broadPhase.p_DestroyProxy(this.m_m_proxy);
-	this.m_m_proxy=null;
-}
-c_b2Fixture.prototype.p_Destroy3=function(){
-	this.m_m_shape=null;
-}
 c_b2Fixture.prototype.p_GetFilterData=function(){
 	return this.m_m_filter.p_Copy();
 }
@@ -5398,6 +5208,8 @@ c_b2Fixture.prototype.p_GetAABB=function(){
 c_b2Fixture.prototype.p_IsSensor=function(){
 	return this.m_m_isSensor;
 }
+var bb_main_WORLD_WIDTH=0;
+var bb_main_WORLD_HEIGHT=0;
 function c_b2PolygonShape(){
 	c_b2Shape.call(this);
 	this.m_m_centroid=null;
@@ -5588,25 +5400,6 @@ c_b2PolygonShape.prototype.p_ComputeMass=function(t_massData,t_density){
 	t_centerY*=1.0/t_area;
 	t_massData.m_center.p_Set2(t_centerX,t_centerY);
 	t_massData.m_I=t_density*t_I;
-}
-c_b2PolygonShape.prototype.p_TestPoint=function(t_xf,t_p){
-	var t_tVec=null;
-	var t_tMat=t_xf.m_R;
-	var t_tX=t_p.m_x-t_xf.m_position.m_x;
-	var t_tY=t_p.m_y-t_xf.m_position.m_y;
-	var t_pLocalX=t_tX*t_tMat.m_col1.m_x+t_tY*t_tMat.m_col1.m_y;
-	var t_pLocalY=t_tX*t_tMat.m_col2.m_x+t_tY*t_tMat.m_col2.m_y;
-	for(var t_i=0;t_i<this.m_m_vertexCount;t_i=t_i+1){
-		t_tVec=this.m_m_vertices[t_i];
-		t_tX=t_pLocalX-t_tVec.m_x;
-		t_tY=t_pLocalY-t_tVec.m_y;
-		t_tVec=this.m_m_normals[t_i];
-		var t_dot=t_tVec.m_x*t_tX+t_tVec.m_y*t_tY;
-		if(t_dot>0.0){
-			return false;
-		}
-	}
-	return true;
 }
 function c_b2Settings(){
 	Object.call(this);
@@ -7093,7 +6886,7 @@ c_Brick.m_new2=function(){
 }
 c_Brick.prototype.p_OnRender=function(){
 	bb_graphics_PushMatrix();
-	bb_graphics_Translate(this.m_body.p_GetWorldCenter().m_x*30.0,this.m_body.p_GetWorldCenter().m_y*30.0);
+	bb_graphics_Translate(bb_glue_MetersToPixels(this.m_body.p_GetWorldCenter().m_x),bb_glue_MetersToPixels(this.m_body.p_GetWorldCenter().m_y));
 	bb_graphics_Rotate(-bb_glue_RadiansToDegrees(this.m_body.p_GetAngle()));
 	bb_graphics_DrawPoly(this.m_polygon);
 	if(this.m_body.p_GetType()!=0){
@@ -7259,14 +7052,6 @@ c_b2CircleShape.prototype.p_ComputeMass=function(t_massData,t_density){
 	t_massData.m_mass=t_density*3.14159265*this.m_m_radius*this.m_m_radius;
 	t_massData.m_center.p_SetV(this.m_m_p);
 	t_massData.m_I=t_massData.m_mass*(0.5*this.m_m_radius*this.m_m_radius+(this.m_m_p.m_x*this.m_m_p.m_x+this.m_m_p.m_y*this.m_m_p.m_y));
-}
-c_b2CircleShape.prototype.p_TestPoint=function(t_transform,t_p){
-	var t_tMat=t_transform.m_R;
-	var t_dX=t_transform.m_position.m_x+(t_tMat.m_col1.m_x*this.m_m_p.m_x+t_tMat.m_col2.m_x*this.m_m_p.m_y);
-	var t_dY=t_transform.m_position.m_y+(t_tMat.m_col1.m_y*this.m_m_p.m_x+t_tMat.m_col2.m_y*this.m_m_p.m_y);
-	t_dX=t_p.m_x-t_dX;
-	t_dY=t_p.m_y-t_dY;
-	return t_dX*t_dX+t_dY*t_dY<=this.m_m_radius*this.m_m_radius;
 }
 function c_b2JointDef(){
 	Object.call(this);
@@ -7531,12 +7316,6 @@ c_b2MouseJoint.m_new2=function(){
 	c_b2Joint.m_new2.call(this);
 	return this;
 }
-c_b2MouseJoint.prototype.p_SetTarget=function(t_target){
-	if(this.m_m_bodyB.p_IsAwake()==false){
-		this.m_m_bodyB.p_SetAwake(true);
-	}
-	this.m_m_target=t_target;
-}
 c_b2MouseJoint.prototype.p_InitVelocityConstraints=function(t_timeStep){
 	var t_b=this.m_m_bodyB;
 	var t_mass=t_b.p_GetMass();
@@ -7624,14 +7403,6 @@ function c_b2MouseJointDef(){
 	this.m_dampingRatio=.0;
 }
 c_b2MouseJointDef.prototype=extend_class(c_b2JointDef);
-c_b2MouseJointDef.m_new=function(){
-	c_b2JointDef.m_new.call(this);
-	this.m_type=5;
-	this.m_maxForce=0.0;
-	this.m_frequencyHz=5.0;
-	this.m_dampingRatio=0.7;
-	return this;
-}
 function c_b2PrismaticJoint(){
 	c_b2Joint.call(this);
 	this.m_m_localAnchor1=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
@@ -9928,7 +9699,7 @@ c_JugglerGeneric.prototype.p_Add3=function(t_pin){
 }
 c_JugglerGeneric.prototype.p_UpdatePin=function(t_pin,t_timeElapsed){
 }
-c_JugglerGeneric.prototype.p_Update3=function(t_timeElapsed){
+c_JugglerGeneric.prototype.p_Update2=function(t_timeElapsed){
 	if(this.m_paused){
 		return;
 	}
@@ -10302,94 +10073,24 @@ c_Clock.m_Tick=function(){
 function bb_app_Millisecs(){
 	return bb_app__game.Millisecs();
 }
-function bb_input_MouseX(){
-	return bb_input_device.p_MouseX();
-}
-function bb_input_MouseY(){
-	return bb_input_device.p_MouseY();
-}
-function bb_input_MouseDown(t_button){
-	return ((bb_input_device.p_KeyDown(1+t_button))?1:0);
-}
-function bb_input_KeyHit(t_key){
-	return bb_input_device.p_KeyHit(t_key);
-}
-function c_QueryFixtureCallback(){
+function c_b2TimeStep(){
 	Object.call(this);
+	this.m_dt=.0;
+	this.m_velocityIterations=0;
+	this.m_positionIterations=0;
+	this.m_inv_dt=.0;
+	this.m_dtRatio=.0;
+	this.m_warmStarting=false;
 }
-c_QueryFixtureCallback.m_new=function(){
+c_b2TimeStep.m_new=function(){
 	return this;
 }
-c_QueryFixtureCallback.prototype.p_Callback2=function(t_fixture){
-}
-function c_TestQueryAABBCallback(){
-	c_QueryFixtureCallback.call(this);
-	this.m_includeStatic=false;
-	this.m_mousePVec=null;
-	this.m_body=null;
-}
-c_TestQueryAABBCallback.prototype=extend_class(c_QueryFixtureCallback);
-c_TestQueryAABBCallback.m_new=function(t_includeStatic,t_mousePVec){
-	c_QueryFixtureCallback.m_new.call(this);
-	this.m_includeStatic=t_includeStatic;
-	this.m_mousePVec=t_mousePVec;
-	return this;
-}
-c_TestQueryAABBCallback.m_new2=function(){
-	c_QueryFixtureCallback.m_new.call(this);
-	return this;
-}
-c_TestQueryAABBCallback.prototype.p_Callback2=function(t_fixture){
-	var t_shape=t_fixture.p_GetShape();
-	if(t_fixture.p_GetBody().p_GetType()!=0 || this.m_includeStatic){
-		var t_inside=t_shape.p_TestPoint(t_fixture.p_GetBody().p_GetTransform(),this.m_mousePVec);
-		if(t_inside){
-			this.m_body=t_fixture.p_GetBody();
-			return false;
-		}
-	}
-	return true;
-}
-function c_QueryCallback(){
-	Object.call(this);
-}
-c_QueryCallback.m_new=function(){
-	return this;
-}
-c_QueryCallback.prototype.p_Callback3=function(t_a){
-}
-function c_WorldQueryCallback(){
-	c_QueryCallback.call(this);
-	this.m_broadPhase=null;
-	this.m_callback=null;
-}
-c_WorldQueryCallback.prototype=extend_class(c_QueryCallback);
-c_WorldQueryCallback.m_new=function(t_broadPhase,t_callback){
-	c_QueryCallback.m_new.call(this);
-	this.m_broadPhase=t_broadPhase;
-	this.m_callback=t_callback;
-	return this;
-}
-c_WorldQueryCallback.m_new2=function(){
-	c_QueryCallback.m_new.call(this);
-	return this;
-}
-c_WorldQueryCallback.prototype.p_Callback3=function(t_a){
-}
-function c_WorldQueryAABBCallback(){
-	c_WorldQueryCallback.call(this);
-}
-c_WorldQueryAABBCallback.prototype=extend_class(c_WorldQueryCallback);
-c_WorldQueryAABBCallback.m_new=function(t_broadPhase,t_callback){
-	c_WorldQueryCallback.m_new.call(this,t_broadPhase,t_callback);
-	return this;
-}
-c_WorldQueryAABBCallback.m_new2=function(){
-	c_WorldQueryCallback.m_new2.call(this);
-	return this;
-}
-c_WorldQueryAABBCallback.prototype.p_Callback3=function(t_a){
-	return this.m_callback.p_Callback2(object_downcast((this.m_broadPhase.p_GetUserData(t_a)),c_b2Fixture));
+c_b2TimeStep.prototype.p_Set11=function(t_timeStep){
+	this.m_dt=t_timeStep.m_dt;
+	this.m_inv_dt=t_timeStep.m_inv_dt;
+	this.m_positionIterations=t_timeStep.m_positionIterations;
+	this.m_velocityIterations=t_timeStep.m_velocityIterations;
+	this.m_warmStarting=t_timeStep.m_warmStarting;
 }
 function c_b2Manifold(){
 	Object.call(this);
@@ -10444,7 +10145,7 @@ c_b2ContactID.prototype.p_Key2=function(t_value){
 	this.m_features.m__incidentVertex=(this.m__key&16711680)>>16&255;
 	this.m_features.m__flip=(this.m__key&-16777216)>>24&255;
 }
-c_b2ContactID.prototype.p_Set11=function(t_id){
+c_b2ContactID.prototype.p_Set12=function(t_id){
 	this.p_Key2(t_id.m__key);
 }
 function c_Features(){
@@ -10485,25 +10186,6 @@ c_Features.prototype.p_Flip=function(){
 c_Features.prototype.p_Flip2=function(t_value){
 	this.m__flip=t_value;
 	this.m__m_id.m__key=this.m__m_id.m__key&16777215|this.m__flip<<24&-16777216;
-}
-function c_b2TimeStep(){
-	Object.call(this);
-	this.m_dt=.0;
-	this.m_velocityIterations=0;
-	this.m_positionIterations=0;
-	this.m_inv_dt=.0;
-	this.m_dtRatio=.0;
-	this.m_warmStarting=false;
-}
-c_b2TimeStep.m_new=function(){
-	return this;
-}
-c_b2TimeStep.prototype.p_Set12=function(t_timeStep){
-	this.m_dt=t_timeStep.m_dt;
-	this.m_inv_dt=t_timeStep.m_inv_dt;
-	this.m_positionIterations=t_timeStep.m_positionIterations;
-	this.m_velocityIterations=t_timeStep.m_velocityIterations;
-	this.m_warmStarting=t_timeStep.m_warmStarting;
 }
 function c_b2DistanceInput(){
 	Object.call(this);
@@ -11233,7 +10915,7 @@ c_b2ContactSolver.m_new=function(){
 c_b2ContactSolver.m_s_worldManifold=null;
 c_b2ContactSolver.prototype.p_Initialize2=function(t_timeStep,t_contacts,t_contactCount,t_allocator){
 	var t_contact=null;
-	this.m_m_step.p_Set12(t_timeStep);
+	this.m_m_step.p_Set11(t_timeStep);
 	this.m_m_allocator=t_allocator;
 	var t_i=0;
 	var t_tVec=null;
@@ -12302,6 +11984,9 @@ c_JetpackGlitch.prototype.p_OnFinish=function(){
 var bb_dwarf_CONTROL_SCHEME_WASD=[];
 var bb_dwarf_CONTROL_SCHEME_ARROWS=[];
 var bb_dwarf_CONTROL_SCHEMES=[];
+function bb_input_KeyHit(t_key){
+	return bb_input_device.p_KeyHit(t_key);
+}
 function bb_input_KeyDown(t_key){
 	return ((bb_input_device.p_KeyDown(t_key))?1:0);
 }
@@ -12335,8 +12020,8 @@ c_Hud.m_new=function(){
 	return this;
 }
 c_Hud.prototype.p_OnRender=function(){
-	var t_X=[10,600];
-	var t_Y=[10,10];
+	var t_X=[25,615];
+	var t_Y=[25,25];
 	var t_S=30;
 	for(var t_n=0;t_n<=1;t_n=t_n+1){
 		var t_value=this.m_sticker[t_n];
@@ -12360,7 +12045,7 @@ c_Hud.prototype.p_OnRender=function(){
 			}
 		}
 		bb_graphics_SetColor(t_r,t_g,0.0);
-		bb_graphics_DrawOval((t_X[t_n]),(t_Y[t_n]),(t_S),(t_S));
+		bb_graphics_DrawOval((t_X[t_n]-((t_S/2)|0)),(t_Y[t_n]-((t_S/2)|0)),(t_S),(t_S));
 		bb_graphics_SetColor(255.0,255.0,255.0);
 		bb_graphics_DrawLine((t_X[t_n]),50.0,(t_X[1-t_n]),50.0);
 		var t_x2=.0;
@@ -12402,7 +12087,7 @@ c_HeadlessGlitch.prototype.p_OnStart=function(){
 	while(t_2<t_.length){
 		var t_dwarf=t_[t_2];
 		t_2=t_2+1;
-		bb_main_APP.m_universe.m_m_world.p_DestroyJoint(t_dwarf.m_neck);
+		bb_main_APP.m_world.m__world.p_DestroyJoint(t_dwarf.m_neck);
 		t_dwarf.m_neck=null;
 		t_dwarf.m_headlessFacing=(t_dwarf.m_facing);
 		t_dwarf.m_head.p_SetBullet(true);
@@ -12427,10 +12112,10 @@ c_SpaceGlitch.m_new=function(){
 	return this;
 }
 c_SpaceGlitch.prototype.p_OnStart=function(){
-	bb_main_APP.m_universe.m_m_world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0));
+	bb_main_APP.m_world.m__world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0));
 }
 c_SpaceGlitch.prototype.p_OnFinish=function(){
-	bb_main_APP.m_universe.m_m_world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,30.0));
+	bb_main_APP.m_world.m__world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,30.0));
 }
 function c_Sound(){
 	Object.call(this);
@@ -12543,6 +12228,9 @@ c_Enumerator4.prototype.p_NextObject=function(){
 	var t_data=this.m__curr.m__data;
 	this.m__curr=this.m__curr.m__succ;
 	return t_data;
+}
+function bb_glue_MetersToPixels(t_meters){
+	return t_meters*30.0;
 }
 function bb_graphics_DrawPoly(t_verts){
 	bb_graphics_context.p_Validate();
@@ -12734,10 +12422,6 @@ c_b2DynamicTree.prototype.p_RemoveLeaf=function(t_leaf){
 		this.p_FreeNode(t_node2);
 	}
 }
-c_b2DynamicTree.prototype.p_DestroyProxy3=function(t_proxy){
-	this.p_RemoveLeaf(t_proxy);
-	this.p_FreeNode(t_proxy);
-}
 c_b2DynamicTree.prototype.p_MoveProxy2=function(t_proxy,t_aabb,t_displacement){
 	if(t_proxy.m_aabb.p_Contains2(t_aabb)){
 		return false;
@@ -12798,7 +12482,7 @@ c_b2DynamicTree.prototype.p_Query=function(t_callback,t_aabb){
 		}
 		if(t_overlap){
 			if(t_node.m_child1==null){
-				var t_proceed=t_callback.p_Callback3(t_node);
+				var t_proceed=t_callback.p_Callback2(t_node);
 				if(!t_proceed){
 					return;
 				}
@@ -12815,7 +12499,7 @@ c_b2DynamicTree.prototype.p_Query=function(t_callback,t_aabb){
 		}
 	}
 }
-c_b2DynamicTree.prototype.p_GetUserData2=function(t_proxy){
+c_b2DynamicTree.prototype.p_GetUserData=function(t_proxy){
 	return t_proxy.m_userData;
 }
 function c_FlashArray3(){
@@ -12823,7 +12507,6 @@ function c_FlashArray3(){
 	this.m_length=0;
 	this.m_arrLength=100;
 	this.m_arr=new_object_array(100);
-	this.m_EmptyArr=new_object_array(0);
 }
 c_FlashArray3.prototype.p_Length=function(){
 	return this.m_length;
@@ -12858,59 +12541,16 @@ c_FlashArray3.prototype.p_Set14=function(t_index,t_item){
 		this.m_length=t_index+1;
 	}
 }
-c_FlashArray3.prototype.p_IndexOf=function(t_element){
-	for(var t_index=0;t_index<this.m_length;t_index=t_index+1){
-		var t_check=this.m_arr[t_index];
-		if(t_check==t_element){
-			return t_index;
-		}
-	}
-	return -1;
-}
-c_FlashArray3.prototype.p_Splice=function(t_index,t_deletes,t_insert){
-	if(t_deletes==-1){
-		t_deletes=this.m_length-t_index;
-	}
-	var t_newLength=this.m_length-t_deletes;
-	if(t_newLength<0){
-		t_newLength=0;
-	}
-	t_newLength+=t_insert.length;
-	var t_newArr=[];
-	if(t_index>0){
-		t_newArr=this.m_arr.slice(0,t_index-1);
-		t_newArr=resize_object_array(t_newArr,t_newLength);
-	}else{
-		t_index=0;
-		t_newArr=new_object_array(t_newLength);
-	}
-	var t_copyInd=t_index;
-	if((t_insert).length!=0){
-		var t_=t_insert;
-		var t_2=0;
-		while(t_2<t_.length){
-			var t_val=t_[t_2];
-			t_2=t_2+1;
-			t_newArr[t_copyInd]=t_val;
-			t_copyInd+=1;
-		}
-	}
-	for(var t_i=t_index+t_deletes;t_i<this.p_Length();t_i=t_i+1){
-		t_newArr[t_copyInd]=this.m_arr[t_i];
-		t_copyInd+=1;
-	}
-	this.m_arr=t_newArr;
-	this.m_arrLength=t_newLength;
-	this.m_length=t_newLength;
-}
-c_FlashArray3.prototype.p_Splice2=function(t_index,t_deletes,t_insert){
-	this.p_Splice(t_index,t_deletes,[t_insert]);
-}
-c_FlashArray3.prototype.p_Splice3=function(t_index,t_deletes){
-	this.p_Splice(t_index,t_deletes,this.m_EmptyArr);
-}
 c_FlashArray3.prototype.p_BackingArray=function(){
 	return this.m_arr;
+}
+function c_QueryCallback(){
+	Object.call(this);
+}
+c_QueryCallback.m_new=function(){
+	return this;
+}
+c_QueryCallback.prototype.p_Callback2=function(t_a){
 }
 function c_TreeQueryCallback(){
 	c_QueryCallback.call(this);
@@ -12920,7 +12560,7 @@ c_TreeQueryCallback.m_new=function(){
 	c_QueryCallback.m_new.call(this);
 	return this;
 }
-c_TreeQueryCallback.prototype.p_Callback3=function(t_proxy){
+c_TreeQueryCallback.prototype.p_Callback2=function(t_proxy){
 }
 function c_DTQueryCallback(){
 	c_TreeQueryCallback.call(this);
@@ -12933,7 +12573,7 @@ c_DTQueryCallback.m_new=function(){
 	c_TreeQueryCallback.m_new.call(this);
 	return this;
 }
-c_DTQueryCallback.prototype.p_Callback3=function(t_a){
+c_DTQueryCallback.prototype.p_Callback2=function(t_a){
 	var t_proxy=object_downcast((t_a),c_b2DynamicTreeNode);
 	if(t_proxy==this.m_queryProxy){
 		return true;
@@ -13581,7 +13221,7 @@ c_b2Collision.m_CollidePolygons=function(t_manifold,t_polyA,t_xfA,t_polyB,t_xfB)
 			var t_tY=t_cv.m_v.m_y-t_xf2.m_position.m_y;
 			t_cp.m_m_localPoint.m_x=t_tX*t_tMat.m_col1.m_x+t_tY*t_tMat.m_col1.m_y;
 			t_cp.m_m_localPoint.m_y=t_tX*t_tMat.m_col2.m_x+t_tY*t_tMat.m_col2.m_y;
-			t_cp.m_m_id.p_Set11(t_cv.m_id);
+			t_cp.m_m_id.p_Set12(t_cv.m_id);
 			t_cp.m_m_id.m_features.p_Flip2(t_flip);
 			t_pointCount+=1;
 		}
@@ -13599,7 +13239,7 @@ c_ClipVertex.m_new=function(){
 c_ClipVertex.prototype.p_Set16=function(t_other){
 	this.m_v.m_x=t_other.m_v.m_x;
 	this.m_v.m_y=t_other.m_v.m_y;
-	this.m_id.p_Set11(t_other.m_id);
+	this.m_id.p_Set12(t_other.m_id);
 }
 function c_b2EdgeShape(){
 	c_b2Shape.call(this);
@@ -13616,9 +13256,6 @@ function c_b2EdgeShape(){
 	this.m_m_cornerDir2=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
 }
 c_b2EdgeShape.prototype=extend_class(c_b2Shape);
-c_b2EdgeShape.prototype.p_TestPoint=function(t_transform,t_p){
-	return false;
-}
 c_b2EdgeShape.prototype.p_ComputeAABB=function(t_aabb,t_transform){
 	var t_tMat=t_transform.m_R;
 	var t_v1X=t_transform.m_position.m_x+(t_tMat.m_col1.m_x*this.m_m_v1.m_x+t_tMat.m_col2.m_x*this.m_m_v1.m_y);
@@ -13802,7 +13439,6 @@ function bbInit(){
 	bb_app__desktopMode=null;
 	bb_graphics_renderDevice=null;
 	bb_app__updateRate=0;
-	c_Dwarf.m_image=null;
 	c_Dwarf.m_sheet=null;
 	c_Dwarf.m_sheet2=null;
 	c_b2World.m_m_warmStarting=false;
@@ -13811,6 +13447,8 @@ function bbInit(){
 	c_b2ContactListener.m_b2_defaultListener=(c_b2ContactListener.m_new.call(new c_b2ContactListener));
 	c_b2DebugDraw.m_e_shapeBit=1;
 	c_b2DebugDraw.m_e_jointBit=2;
+	bb_main_WORLD_WIDTH=640.0;
+	bb_main_WORLD_HEIGHT=480;
 	c_JSONToken.m_reusableToken=c_JSONToken.m_new.call(new c_JSONToken,-1,null);
 	c_b2Body.m_tmpVec1=c_b2Vec2.m_new.call(new c_b2Vec2,0.0,0.0);
 	bb_abuanimation_autoManageAnimations=false;
@@ -13818,10 +13456,6 @@ function bbInit(){
 	c_Clock.m_timeCurrent=0;
 	c_Clock.m_timePrevious=-1;
 	c_Clock.m_timeElapsed=0;
-	c_Universe.m_mouseXWorldPhys=.0;
-	c_Universe.m_mouseYWorldPhys=.0;
-	c_Universe.m_mouseXWorld=.0;
-	c_Universe.m_mouseYWorld=.0;
 	c_b2World.m_s_timestep2=c_b2TimeStep.m_new.call(new c_b2TimeStep);
 	c_b2Distance.m_b2_gjkCalls=0;
 	c_b2Distance.m_s_simplex=c_b2Simplex.m_new.call(new c_b2Simplex);

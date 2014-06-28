@@ -19,17 +19,19 @@ Const FACING_LEFT:Int = -1, FACING_RIGHT:Int = 1
 
 Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	Global FRAME_START:Int[] = [ 0, 3 * 20 ]
-	Global image:Image
 	Global sheet:Image, sheet2:Image
 	
 	Field player:Int
-	Field x:Float, y:Float, facing:Int
+	Field facing:Int
+	Field animationDelegate:AnimationDelegate
+	
 	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint, feet:b2Fixture, bodyFixture:b2Fixture
 	Field feetTouching:Int, feetContactTime:Int, feetValid:Bool
 	Field jumpPressed:Int, jumpValid:Bool
-	Field animationDelegate:AnimationDelegate
+	
 	Field attacking:Bool
 	Field hit:b2Fixture[2], others:List< b2Fixture >[2]
+	
 	Field headlessFacing:Float
 	
 	Method _center:b2Vec2() Property
@@ -46,12 +48,10 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		Return head.GetWorldCenter()
 	End
 
-	Method New( Player:Int, Start_x:Float, Start_y:Float )
-		Self.player = Player;
-		Self.x = Start_x;
-		Self.y = Start_y;
-		facing = 1 - 2 * Player
-		CreateBody()
+	Method New( player:Int, xStart:Float, yStart:Float )
+		Self.player = player;
+		facing = 1 - 2 * player
+		CreateBody( xStart, yStart )
 		
 		animationDelegate = New AnimationDelegate( Self )
 		
@@ -142,12 +142,12 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 	End
 	
-	Method CreateBody:Void()
-		Local world:b2World = APP.universe.m_world
+	Method CreateBody:Void( xStart:Float, yStart:Float )
+		Local world:b2World = APP.world._world
 		
 		Local bodyDefinition:b2BodyDef = New b2BodyDef()
         bodyDefinition.type = b2Body.b2_Body
-		bodyDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
+		bodyDefinition.position.Set( xStart / Physics.SCALE, yStart / Physics.SCALE )
 		bodyDefinition.fixedRotation = False
 		
         body = world.CreateBody( bodyDefinition )
@@ -173,7 +173,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		Local headDefinition:b2BodyDef = New b2BodyDef()
 		headDefinition.type = b2Body.b2_Body
-		headDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
+		headDefinition.position.Set( xStart / Physics.SCALE, yStart / Physics.SCALE )
 		
 		head = world.CreateBody( headDefinition )
 		
@@ -230,7 +230,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	End
 	
 	Method CreateNeck:Void()
-		Local world:b2World = APP.universe.m_world
+		Local world:b2World = APP.world._world
 		
 		Local yNeck2:Float = -13 / Physics.SCALE
 		

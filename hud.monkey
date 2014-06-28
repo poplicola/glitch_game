@@ -11,7 +11,7 @@ Class Hud
 	Field health:Float[] = [ 320.0, 320.0 ]
 	
 	Method OnRender:Void()
-		Local X:Int[] = [10, 600], Y:Int[] = [10, 10]
+		Local X:Int[] = [25, 615], Y:Int[] = [25, 25]
 		Local S:Int = 30
 		
 		For Local n:Int = 0 To 1
@@ -31,7 +31,7 @@ Class Hud
 			End
 			
 			SetColor( r, g, 0 )
-			DrawOval( X[n], Y[n], S, S )
+			DrawOval( X[n] - S / 2, Y[n] - S / 2, S, S )
 			
 			SetColor( 255, 255, 255)
 			DrawLine( X[n], 50, X[1 - n], 50 )

@@ -45,7 +45,7 @@ Class HeadlessGlitch Extends Glitch
 	
 	Method OnStart:Void()
 		For Local dwarf:Dwarf = EachIn APP.dwarves
-			APP.universe.m_world.DestroyJoint( dwarf.neck )
+			APP.world._world.DestroyJoint( dwarf.neck )
 			dwarf.neck = Null
 			dwarf.headlessFacing = dwarf.facing
 			dwarf.head.SetBullet( True )
@@ -79,11 +79,11 @@ Class SpaceGlitch Extends Glitch
 	End
 	
 	Method OnStart:Void()
-		APP.universe.m_world.SetGravity( New b2Vec2( 0.0, 0.0 ) )
+		APP.world._world.SetGravity( New b2Vec2( 0.0, 0.0 ) )
 	End
 	
 	Method OnFinish:Void()
-		APP.universe.m_world.SetGravity( New b2Vec2( 0.0, 30.0 ) )
+		APP.world._world.SetGravity( New b2Vec2( 0.0, 30.0 ) )
 	End
 End
 
