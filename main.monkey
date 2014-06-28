@@ -97,9 +97,20 @@ Class MyApp Extends App
 	Method OnRender:Int()
 		Cls()
 		
-		SetColor 255, 255, 255'GLITCH
+		SetColor 255, 255, 255
+		
+		Local x:Int[] = [ 0, 640 - 5, 0, 0 ]
+		Local y:Int[] = [ 0, 0, 480 - 5, 0 ]
+		Local w:Int[] = [ 640, 5, 640, 5 ]
+		Local h:Int[] = [ 5, 480, 5, 480 ]
+		
+		For Local n:Int = 0 To 3
+			DrawRect( x[n], y[n], w[n], h[n] )
+		Next
+		
 		dwarves[0].OnRender()
 		dwarves[1].OnRender()
+		
 		For Local brick:Brick = EachIn bricks
 			brick.OnRender()
 		Next

@@ -1781,6 +1781,13 @@ c_MyApp.prototype.p_OnUpdate=function(){
 c_MyApp.prototype.p_OnRender=function(){
 	bb_graphics_Cls(0.0,0.0,0.0);
 	bb_graphics_SetColor(255.0,255.0,255.0);
+	var t_x=[0,635,0,0];
+	var t_y=[0,0,475,0];
+	var t_w=[640,5,640,5];
+	var t_h=[5,480,5,480];
+	for(var t_n=0;t_n<=3;t_n=t_n+1){
+		bb_graphics_DrawRect((t_x[t_n]),(t_y[t_n]),(t_w[t_n]),(t_h[t_n]));
+	}
 	this.m_dwarves[0].p_OnRender();
 	this.m_dwarves[1].p_OnRender();
 	var t_=this.m_bricks.p_ObjectEnumerator();
@@ -2737,10 +2744,10 @@ c_Dwarf.prototype.p_UpdateNeck=function(){
 	var t_acceleration=t_velocityTemp.p_Length();
 	t_acceleration=bb_math_Abs2(t_acceleration);
 	this.m_a=t_acceleration;
-	if(t_acceleration>15.0){
-		var t_damage=(t_acceleration-15.0)/15.0;
+	if(t_acceleration>10.0){
+		var t_damage=(t_acceleration-10.0)/20.0;
 		if(t_damage>bb_main_APP.m_hud.m_sticker[this.m_player]){
-			bb_main_APP.m_hud.m_sticker[this.m_player]=bb_math_Min2(t_damage,2.0);
+			bb_main_APP.m_hud.m_sticker[this.m_player]=bb_math_Min2(t_damage,1.5);
 		}
 	}
 	this.m_velocityPrevious=t_velocity.p_Copy();
@@ -2965,18 +2972,18 @@ c_Universe.m_new=function(){
 	var t_wallBd=c_b2BodyDef.m_new.call(new c_b2BodyDef);
 	var t_wallB=null;
 	t_wallBd.m_position.p_Set2(-3.1666666666666665,(this.m_height)/30.0/2.0);
-	t_wall.p_SetAsBox(3.3333333333333335,(this.m_height)+1.6666666666666667);
+	t_wall.p_SetAsBox(3.3333333333333335,((this.m_height)+100.0)/30.0/2.0);
 	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
 	t_wallB.p_CreateFixture2((t_wall),0.0);
-	t_wallBd.m_position.p_Set2((this.m_width+95)/30.0,(this.m_height)/30.0/2.0);
+	t_wallBd.m_position.p_Set2(((this.m_width)+95.0)/30.0,(this.m_height)/30.0/2.0);
 	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
 	t_wallB.p_CreateFixture2((t_wall),0.0);
 	t_wallBd.m_position.p_Set2((this.m_width)/30.0/2.0,-3.1666666666666665);
-	t_wall.p_SetAsBox((this.m_width)+1.6666666666666667,3.3333333333333335);
+	t_wall.p_SetAsBox(((this.m_width)+100.0)/30.0/2.0,3.3333333333333335);
 	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
 	t_wallB.p_CreateFixture2((t_wall),0.0);
-	t_wall.p_SetAsBox((this.m_width)+1.6666666666666667,3.3333333333333335);
-	t_wallBd.m_position.p_Set2((this.m_width)/30.0/2.0,(this.m_height+95)/30.0);
+	t_wall.p_SetAsBox(((this.m_width)+100.0)/30.0/2.0,3.3333333333333335);
+	t_wallBd.m_position.p_Set2((this.m_width)/30.0/2.0,((this.m_height)+95.0)/30.0);
 	t_wallB=this.m_m_world.p_CreateBody2(t_wallBd);
 	t_wallB.p_CreateFixture2((t_wall),0.0);
 	this.m_m_world.p_SetContactListener(c_MyContactListener.m_new.call(new c_MyContactListener));
@@ -12437,6 +12444,11 @@ function bb_audio_PlaySound(t_sound,t_channel,t_flags){
 }
 function bb_graphics_Cls(t_r,t_g,t_b){
 	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
+	return 0;
+}
+function bb_graphics_DrawRect(t_x,t_y,t_w,t_h){
+	bb_graphics_context.p_Validate();
+	bb_graphics_renderDevice.DrawRect(t_x,t_y,t_w,t_h);
 	return 0;
 }
 function bb_graphics_DrawImage(t_image,t_x,t_y,t_frame){

@@ -58,24 +58,24 @@ Class Universe
         Local wallB :b2Body
         
         '// Left
-        wallBd.position.Set( -95 / Physics.SCALE, height / Physics.SCALE / 2)
-        wall.SetAsBox(100/Physics.SCALE, height+100/Physics.SCALE/2)
-        wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wallBd.position.Set( -95.0 / Physics.SCALE, height / Physics.SCALE / 2.0 )
+        wall.SetAsBox( 100.0 / Physics.SCALE, ( height + 100.0 ) / Physics.SCALE / 2.0 )
+        wallB = m_world.CreateBody( wallBd )
+        wallB.CreateFixture2( wall )
         '// Right
-        wallBd.position.Set((width+95) / Physics.SCALE, height / Physics.SCALE / 2)
-        wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wallBd.position.Set( ( width + 95.0 ) / Physics.SCALE, height / Physics.SCALE / 2.0 )
+        wallB = m_world.CreateBody( wallBd )
+        wallB.CreateFixture2( wall )
         '// Top
-        wallBd.position.Set(width / Physics.SCALE / 2, -95 / Physics.SCALE)
-        wall.SetAsBox(width+100/Physics.SCALE/2, 100/Physics.SCALE)
-        wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wallBd.position.Set( width / Physics.SCALE / 2, -95.0 / Physics.SCALE)
+        wall.SetAsBox( ( width + 100.0 ) / Physics.SCALE / 2.0, 100.0 / Physics.SCALE )
+        wallB = m_world.CreateBody( wallBd )
+        wallB.CreateFixture2( wall )
         '// Bottom
-        wall.SetAsBox(width+100/Physics.SCALE/2, 100/Physics.SCALE)
-        wallBd.position.Set(width / Physics.SCALE / 2, (height + 95) / Physics.SCALE)
-        wallB = m_world.CreateBody(wallBd)
-        wallB.CreateFixture2(wall)
+        wall.SetAsBox( ( width + 100.0 ) / Physics.SCALE / 2.0, 100.0 / Physics.SCALE )
+        wallBd.position.Set( width / Physics.SCALE / 2.0, ( height + 95.0 ) / Physics.SCALE )
+        wallB = m_world.CreateBody( wallBd )
+        wallB.CreateFixture2( wall )
 		
 		m_world.SetContactListener( New MyContactListener() )
 	End
