@@ -12076,7 +12076,7 @@ c_Glitch.m_severityPrevious=0;
 c_Glitch.m_COUNT=[];
 c_Glitch.m_whichPrevious=null;
 c_Glitch.m_Update=function(){
-	var t_damageTotal=200-bb_main_APP.m_hud.m_health[0]-bb_main_APP.m_hud.m_health[0];
+	var t_damageTotal=200-bb_main_APP.m_hud.m_health[0]-bb_main_APP.m_hud.m_health[1];
 	var t_severity=0;
 	for(var t_n=0;t_n<c_Glitch.m_SEVERITY_PHASES.length;t_n=t_n+1){
 		if(t_damageTotal>c_Glitch.m_SEVERITY_PHASES[t_n]){

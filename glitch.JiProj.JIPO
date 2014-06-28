@@ -35189,8 +35189,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\glitches.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>2</X>
-        <Y>72</Y>
+        <X>68</X>
+        <Y>64</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
@@ -36844,8 +36844,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\main.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="179">
       <CursorPos>
-        <X>21</X>
-        <Y>54</Y>
+        <X>0</X>
+        <Y>44</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>

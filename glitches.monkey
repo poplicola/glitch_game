@@ -62,7 +62,7 @@ Class Glitch
 	#End
 	
 	Function Update:Void()
-		Local damageTotal:Int = 200 - APP.hud.health[0] - APP.hud.health[0]
+		Local damageTotal:Int = 200 - APP.hud.health[0] - APP.hud.health[1]
 		Local severity:Int
 		
 		For Local n:Int = 0 Until SEVERITY_PHASES.Length()
