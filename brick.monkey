@@ -16,6 +16,7 @@ Class Brick
 	End
 	
 	Method OnRender:Void()
+		If body.GetType() = b2Body.b2_staticBody Then Return
 		PushMatrix()
 		
 		Translate( MetersToPixels( body.GetWorldCenter().x ), MetersToPixels( body.GetWorldCenter().y ) )

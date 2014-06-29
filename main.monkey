@@ -46,6 +46,8 @@ End
 
 
 Class MyApp Extends App
+	Field background:Image
+	
 	Field world:World
 	Field dwarves:Dwarf[2]
 	Field bricks:List< Brick > = New List< Brick >()
@@ -53,6 +55,8 @@ Class MyApp Extends App
 	
 	Method OnCreate:Int()
 		SetUpdateRate( 60 )
+		
+		background = LoadImage( "background.png" )
 		
 		Dwarf.sheet = LoadImage( "bodies.png", 100, 80, 240 )
 		Local xCenter:Float = Dwarf.sheet.Width() / 2.0
@@ -109,8 +113,8 @@ Class MyApp Extends App
 		SetColor( 255, 255, 255 )
 		
 		
-		
-		RenderWalls()
+		DrawImage( background, 0, 0 )
+		'RenderWalls()
 		RenderBricks()
 		hud.OnRender()
 		RenderDwarves()
