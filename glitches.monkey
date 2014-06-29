@@ -14,85 +14,29 @@ Class Glitch
 	
 	Global ALL:Glitch[] = [ HEADLESS, JETPACK, SPACE, TUMBLEWEED ]
 	Global SEVERITY_PHASES:Int[] = [ 0, 25, 40, 50, 60, 100, 125, 140, 150, 160, 180, 190, 200 ]
-									'0,  1,  2,  3,  4,   5,   6,   7,   8,   9,  10,  11,  12 ]
 	Global COUNT:Int[] =		   [ 0,  1,  1,  1,  1,   2,   2,   2,   2,   3,   3,   3,   4 ]
-	'Global WHICH:IntList[12]
-	Global whichPrevious:IntList
-	Global severityPrevious:Int
-	Global STATE:Bool[ ALL.Length ]
-	
-	#Rem
-	Function Initialize:Void()
-		Local options:IntList[ 4 ]
-		
-		For Local n:Int = 0 To 3
-			options[n] = New IntList()
-			
-			For Local w:Int = 0 To n
-				For Local m:Int = 0 To 3
-					options[n].AddLast( m )
-				Next
-			Next
-		Next
-		
-		
-		For Local n:Int = 0 Until WHICH.Length()
-			WHICH[n] = New IntList()
-			
-			For Local m:Int = 0 To COUNT[n]
-				If m <> 0
-					Local valid:Bool = True, choice:Int, iterations:Int
-					
-					Repeat
-						choice = Rnd( ALL.Length + 1 )
-						If WHICH[n].Contains( choice ) Or Not options[ COUNT[n] ].Contains( choice )
-							valid = False
-							'Print "WHICH[" + n + "] already contains " + choice
-						EndIf
-						
-						iterations += 1
-					Until ( valid = True ) Or ( iterations = 99 )
-					
-					WHICH[n].AddLast( choice )
-					options[ COUNT[n] ].RemoveEach( choice )
-				EndIf
-			Next
-		Next
-	End
-	#End
+	Global whichPrevious:IntList, severityPrevious:Int
 	
 	Function Update:Void()
-		Local damageTotal:Int = 200 - APP.hud.health[0] - APP.hud.health[1]
+		Local damageTotal:Int = 200 - APP.hud.health[ 0 ] - APP.hud.health[ 1 ]
 		Local severity:Int
 		
 		For Local n:Int = 0 Until SEVERITY_PHASES.Length()
-			If  damageTotal > SEVERITY_PHASES[ n ] Then severity = n
+			If ( damageTotal > SEVERITY_PHASES[ n ] ) Then severity = n
 		Next
 		
-		If severity > severityPrevious
+		If ( severity > severityPrevious )
 			Seed = Millisecs()
 		
-			Local which:IntList, valid:Bool = False, iterations2:Int = 0
+			Local which:IntList = New IntList(), valid:Bool = False
 			
 			Repeat
-				Local iterations:Int = 0
-				which = New IntList()
+				which.Clear()
 				
 				Repeat
-					Local choice:Int = Rnd( 4 )
+					Local choice:Int = Rnd( ALL.Length )
 					If Not which.Contains( choice ) Then which.AddLast( choice )
-					iterations += 1
-				Until which.Count() = COUNT[ severity ] Or iterations = 99
-				
-				If iterations = 99
-					Local out:String = "Should have: " + COUNT[ severity ] + " actually has: "
-					
-					For Local i:Int = EachIn which
-						out += i + ", "
-					Next
-					
-					Print out	
-				EndIf
+				Until which.Count() = COUNT[ severity ]
 				
 				If whichPrevious = Null
 					valid = True
@@ -101,23 +45,12 @@ Class Glitch
 						If Not whichPrevious.Contains( i ) Then valid = True
 					Next
 				EndIf
-				
-				iterations2 += 1
-			Until valid = True Or iterations2 = 99
+			Until valid = True
 			
 			whichPrevious = which
 			
-			If iterations2 = 99
-				Print "something went wrong part 2"
-			EndIf
-			
-			For Local n:Int = 0 To 3
-				If which.Contains( n )
-				'If WHICH[ severity ].Contains( n )
-					ToggleGlitchById( n, True )
-				Else
-					ToggleGlitchById( n, False )
-				EndIf
+			For Local n:Int = 0 Until ALL.Length
+				ToggleGlitchById( n, which.Contains( n ) )
 			Next
 			
 			APP.hud.EnablePopup()
@@ -127,7 +60,7 @@ Class Glitch
 	End
 	
 	Function ToggleGlitchById:Void( id:Int, state:bool )
-		If ALL[ id ].state = state Then Return
+		If ( ALL[ id ].state = state ) Then Return
 		ALL[ id ].state = state
 		
 		If ALL[ id ].state = True
