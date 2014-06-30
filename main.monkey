@@ -88,6 +88,7 @@ Class MyApp Extends App
 		dwarves[0].OnUpdate()
 		dwarves[1].OnUpdate()
 		
+		#Rem
 		Local glitchKeys:Int[] = [ KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9, KEY_0 ]
 		
 		For Local n:Int = 0 Until Glitch.ALL.Length
@@ -101,7 +102,8 @@ Class MyApp Extends App
 				APP.hud.health[ dwarf.player ] -= 5
 			Next
 		EndIf
-
+		#End
+		
 		Glitch.Update()
 				
 		Return 0

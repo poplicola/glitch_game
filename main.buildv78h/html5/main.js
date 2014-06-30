@@ -2137,21 +2137,6 @@ c_MyApp.prototype.p_OnUpdate=function(){
 	bb_abuanimation_animationJuggler.p_Update2(c_Clock.m_Tick());
 	this.m_dwarves[0].p_OnUpdate();
 	this.m_dwarves[1].p_OnUpdate();
-	var t_glitchKeys=[49,50,51,52,53,54,55,56,57,48];
-	for(var t_n=0;t_n<c_Glitch.m_ALL.length;t_n=t_n+1){
-		if((bb_input_KeyHit(t_glitchKeys[t_n]))!=0){
-			c_Glitch.m_ToggleGlitchById(t_n,!c_Glitch.m_ALL[t_n].m_state);
-		}
-	}
-	if((bb_input_KeyHit(9))!=0){
-		var t_=this.m_dwarves;
-		var t_2=0;
-		while(t_2<t_.length){
-			var t_dwarf=t_[t_2];
-			t_2=t_2+1;
-			bb_main_APP.m_hud.m_health[t_dwarf.m_player]-=5;
-		}
-	}
 	c_Glitch.m_Update();
 	return 0;
 }
@@ -12409,9 +12394,13 @@ c_Glitch.m_new=function(){
 }
 c_Glitch.m_JETPACK=null;
 c_Glitch.m_TUMBLEWEED=null;
+c_Glitch.m_SEVERITY_PHASES=[];
+c_Glitch.m_severityPrevious=0;
 c_Glitch.m_HEADLESS=null;
 c_Glitch.m_SPACE=null;
 c_Glitch.m_ALL=[];
+c_Glitch.m_COUNT=[];
+c_Glitch.m_whichPrevious=null;
 c_Glitch.prototype.p_OnStart=function(){
 }
 c_Glitch.prototype.p_OnFinish=function(){
@@ -12432,10 +12421,6 @@ c_Glitch.m_ToggleGlitchById=function(t_id,t_state){
 		print(c_Glitch.m_ALL[t_id].m_name+" OFF");
 	}
 }
-c_Glitch.m_SEVERITY_PHASES=[];
-c_Glitch.m_severityPrevious=0;
-c_Glitch.m_COUNT=[];
-c_Glitch.m_whichPrevious=null;
 c_Glitch.m_Update=function(){
 	var t_damageTotal=200-bb_main_APP.m_hud.m_health[0]-bb_main_APP.m_hud.m_health[1];
 	var t_severity=0;
@@ -12531,61 +12516,6 @@ function bb_math_Abs2(t_x){
 	}
 	return -t_x;
 }
-function c_HeadlessGlitch(){
-	c_Glitch.call(this);
-}
-c_HeadlessGlitch.prototype=extend_class(c_Glitch);
-c_HeadlessGlitch.m_new=function(){
-	c_Glitch.m_new.call(this);
-	this.m_name="HEADLESS";
-	return this;
-}
-c_HeadlessGlitch.prototype.p_OnStart=function(){
-	var t_=bb_main_APP.m_dwarves;
-	var t_2=0;
-	while(t_2<t_.length){
-		var t_dwarf=t_[t_2];
-		t_2=t_2+1;
-		bb_main_APP.m_world.m__world.p_DestroyJoint(t_dwarf.m_neck);
-		t_dwarf.m_neck=null;
-		t_dwarf.m_headlessFacing=(t_dwarf.m_facing);
-		t_dwarf.m_head.p_SetBullet(true);
-	}
-}
-c_HeadlessGlitch.prototype.p_OnFinish=function(){
-	var t_=bb_main_APP.m_dwarves;
-	var t_2=0;
-	while(t_2<t_.length){
-		var t_dwarf=t_[t_2];
-		t_2=t_2+1;
-		t_dwarf.p_CreateNeck();
-	}
-}
-function c_SpaceGlitch(){
-	c_Glitch.call(this);
-}
-c_SpaceGlitch.prototype=extend_class(c_Glitch);
-c_SpaceGlitch.m_new=function(){
-	c_Glitch.m_new.call(this);
-	this.m_name="SPACE";
-	return this;
-}
-c_SpaceGlitch.prototype.p_OnStart=function(){
-	bb_main_APP.m_world.m__world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,3.0));
-}
-c_SpaceGlitch.prototype.p_OnFinish=function(){
-	bb_main_APP.m_world.m__world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,30.0));
-}
-function c_Sound(){
-	Object.call(this);
-	this.m_sample=null;
-}
-function bb_audio_PlaySound(t_sound,t_channel,t_flags){
-	if(((t_sound)!=null) && ((t_sound.m_sample)!=null)){
-		bb_audio_device.PlaySample(t_sound.m_sample,t_channel,t_flags);
-	}
-	return 0;
-}
 var bb_random_Seed=0;
 function c_List6(){
 	Object.call(this);
@@ -12679,6 +12609,51 @@ c_HeadNode6.m_new=function(){
 	this.m__pred=(this);
 	return this;
 }
+function c_HeadlessGlitch(){
+	c_Glitch.call(this);
+}
+c_HeadlessGlitch.prototype=extend_class(c_Glitch);
+c_HeadlessGlitch.m_new=function(){
+	c_Glitch.m_new.call(this);
+	this.m_name="HEADLESS";
+	return this;
+}
+c_HeadlessGlitch.prototype.p_OnStart=function(){
+	var t_=bb_main_APP.m_dwarves;
+	var t_2=0;
+	while(t_2<t_.length){
+		var t_dwarf=t_[t_2];
+		t_2=t_2+1;
+		bb_main_APP.m_world.m__world.p_DestroyJoint(t_dwarf.m_neck);
+		t_dwarf.m_neck=null;
+		t_dwarf.m_headlessFacing=(t_dwarf.m_facing);
+		t_dwarf.m_head.p_SetBullet(true);
+	}
+}
+c_HeadlessGlitch.prototype.p_OnFinish=function(){
+	var t_=bb_main_APP.m_dwarves;
+	var t_2=0;
+	while(t_2<t_.length){
+		var t_dwarf=t_[t_2];
+		t_2=t_2+1;
+		t_dwarf.p_CreateNeck();
+	}
+}
+function c_SpaceGlitch(){
+	c_Glitch.call(this);
+}
+c_SpaceGlitch.prototype=extend_class(c_Glitch);
+c_SpaceGlitch.m_new=function(){
+	c_Glitch.m_new.call(this);
+	this.m_name="SPACE";
+	return this;
+}
+c_SpaceGlitch.prototype.p_OnStart=function(){
+	bb_main_APP.m_world.m__world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,3.0));
+}
+c_SpaceGlitch.prototype.p_OnFinish=function(){
+	bb_main_APP.m_world.m__world.p_SetGravity(c_b2Vec2.m_new.call(new c_b2Vec2,0.0,30.0));
+}
 function bb_random_Rnd(){
 	bb_random_Seed=bb_random_Seed*1664525+1013904223|0;
 	return (bb_random_Seed>>8&16777215)/16777216.0;
@@ -12712,6 +12687,16 @@ c_Enumerator4.prototype.p_NextObject=function(){
 	var t_data=this.m__curr.m__data;
 	this.m__curr=this.m__curr.m__succ;
 	return t_data;
+}
+function c_Sound(){
+	Object.call(this);
+	this.m_sample=null;
+}
+function bb_audio_PlaySound(t_sound,t_channel,t_flags){
+	if(((t_sound)!=null) && ((t_sound.m_sample)!=null)){
+		bb_audio_device.PlaySample(t_sound.m_sample,t_channel,t_flags);
+	}
+	return 0;
 }
 function bb_graphics_Cls(t_r,t_g,t_b){
 	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
@@ -14126,12 +14111,12 @@ function bbInit(){
 	bb_dwarf_CONTROL_SCHEME_ARROWS=[38,39,40,37,188];
 	bb_dwarf_CONTROL_SCHEMES=[bb_dwarf_CONTROL_SCHEME_WASD,bb_dwarf_CONTROL_SCHEME_ARROWS];
 	c_Glitch.m_TUMBLEWEED=(c_TumbleweedGlitch.m_new.call(new c_TumbleweedGlitch));
-	c_Glitch.m_HEADLESS=(c_HeadlessGlitch.m_new.call(new c_HeadlessGlitch));
-	c_Glitch.m_SPACE=(c_SpaceGlitch.m_new.call(new c_SpaceGlitch));
-	c_Glitch.m_ALL=[c_Glitch.m_HEADLESS,c_Glitch.m_JETPACK,c_Glitch.m_SPACE,c_Glitch.m_TUMBLEWEED];
 	c_Glitch.m_SEVERITY_PHASES=[0,25,40,50,60,100,125,140,150,160,180,190,200];
 	c_Glitch.m_severityPrevious=0;
 	bb_random_Seed=1234;
+	c_Glitch.m_HEADLESS=(c_HeadlessGlitch.m_new.call(new c_HeadlessGlitch));
+	c_Glitch.m_SPACE=(c_SpaceGlitch.m_new.call(new c_SpaceGlitch));
+	c_Glitch.m_ALL=[c_Glitch.m_HEADLESS,c_Glitch.m_JETPACK,c_Glitch.m_SPACE,c_Glitch.m_TUMBLEWEED];
 	c_Glitch.m_COUNT=[0,1,1,1,1,2,2,2,2,3,3,3,4];
 	c_Glitch.m_whichPrevious=null;
 	c_Dwarf.m_FRAME_START=[0,60];
