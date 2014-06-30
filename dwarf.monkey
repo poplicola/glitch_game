@@ -302,6 +302,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 			body.SetLinearVelocity( New b2Vec2( body.GetLinearVelocity().x, 0 ) )
 			ApplyImpulseToBody3( body, center, -Physics.JUMP_IMPULSE, body.GetAngle() )
 			jumpPressed -= Physics.JUMP_FORGIVENESS
+			jumpValid = False
 		EndIf
 		
 		If KeyDown( keyDown ) And ( feetValid )
