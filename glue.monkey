@@ -18,6 +18,17 @@ End
 
 
 
+Function MetersToPixels:Float( meters:Float )
+	Return meters * Physics.SCALE
+End
+
+
+
+Function PixelsToMeters:Float( pixels:Float )
+	Return pixels / Physics.SCALE
+End
+
+
 
 Function ApplyImpulseToBody3:Void( body:b2Body, point:b2Vec2, magnitude:Float, angle:Float )
 	Local x:Float = Cos( RadiansToDegrees( angle ) + 90 ) * magnitude

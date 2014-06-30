@@ -19,17 +19,19 @@ Const FACING_LEFT:Int = -1, FACING_RIGHT:Int = 1
 
 Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 	Global FRAME_START:Int[] = [ 0, 3 * 20 ]
-	Global image:Image
 	Global sheet:Image, sheet2:Image
 	
 	Field player:Int
-	Field x:Float, y:Float, facing:Int
+	Field facing:Int
+	Field animationDelegate:AnimationDelegate
+	
 	Field body:b2Body, head:b2Body, neck:b2RevoluteJoint, feet:b2Fixture, bodyFixture:b2Fixture
 	Field feetTouching:Int, feetContactTime:Int, feetValid:Bool
 	Field jumpPressed:Int, jumpValid:Bool
-	Field animationDelegate:AnimationDelegate
+	
 	Field attacking:Bool
 	Field hit:b2Fixture[2], others:List< b2Fixture >[2]
+	
 	Field headlessFacing:Float
 	
 	Method _center:b2Vec2() Property
@@ -46,12 +48,10 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		Return head.GetWorldCenter()
 	End
 
-	Method New( Player:Int, Start_x:Float, Start_y:Float )
-		Self.player = Player;
-		Self.x = Start_x;
-		Self.y = Start_y;
-		facing = 1 - 2 * Player
-		CreateBody()
+	Method New( player:Int, xStart:Float, yStart:Float )
+		Self.player = player;
+		facing = 1 - 2 * player
+		CreateBody( xStart, yStart )
 		
 		animationDelegate = New AnimationDelegate( Self )
 		
@@ -120,7 +120,6 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 			Next
 			
 			For Local _body:b2Body = EachIn bodies
-				'GLITCH'APP.universe.m_world.DestroyBody( fixture.GetBody() )
 				If _body.GetType() = b2Body.b2_staticBody
 					rebound = True
 				Else
@@ -143,12 +142,12 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 	End
 	
-	Method CreateBody:Void()
-		Local world:b2World = APP.universe.m_world
+	Method CreateBody:Void( xStart:Float, yStart:Float )
+		Local world:b2World = APP.world._world
 		
 		Local bodyDefinition:b2BodyDef = New b2BodyDef()
         bodyDefinition.type = b2Body.b2_Body
-		bodyDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
+		bodyDefinition.position.Set( xStart / Physics.SCALE, yStart / Physics.SCALE )
 		bodyDefinition.fixedRotation = False
 		
         body = world.CreateBody( bodyDefinition )
@@ -174,7 +173,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		Local headDefinition:b2BodyDef = New b2BodyDef()
 		headDefinition.type = b2Body.b2_Body
-		headDefinition.position.Set( x / Physics.SCALE, y / Physics.SCALE )
+		headDefinition.position.Set( xStart / Physics.SCALE, yStart / Physics.SCALE )
 		
 		head = world.CreateBody( headDefinition )
 		
@@ -189,25 +188,8 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		
 		
 		
-		Local yNeck2:Float = -13 / Physics.SCALE
 		
-		
-		Local neckDefinition:b2RevoluteJointDef = New b2RevoluteJointDef()
-		neckDefinition.bodyA = body
-		neckDefinition.bodyB = head
-		neckDefinition.collideConnected = False
-		neckDefinition.localAnchorA.x = 0; neckDefinition.localAnchorA.y = yNeck2
-		neckDefinition.localAnchorB.x = 0; neckDefinition.localAnchorB.y = yNeck2
-		
-		'exclude this for GLITCH
-		neckDefinition.enableLimit = True
-		neckDefinition.lowerAngle = DegreesToRadians( -Physics.NECK_ANGLE )
-		neckDefinition.upperAngle = DegreesToRadians( Physics.NECK_ANGLE )
-		
-		neckDefinition.enableMotor = True
-		neckDefinition.maxMotorTorque = Physics.NECK_TORQUE
-		
-		neck = b2RevoluteJoint( world.CreateJoint( neckDefinition ) )
+		CreateNeck()
 		
 		
 		Local feetDefinition:b2PolygonShape = New b2PolygonShape()
@@ -247,9 +229,33 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 			body.SetMassData( massData )
 	End
 	
+	Method CreateNeck:Void()
+		Local world:b2World = APP.world._world
+		
+		Local yNeck2:Float = -13 / Physics.SCALE
+		
+		Local neckDefinition:b2RevoluteJointDef = New b2RevoluteJointDef()
+		neckDefinition.bodyA = body
+		neckDefinition.bodyB = head
+		neckDefinition.collideConnected = False
+		neckDefinition.localAnchorA.x = 0; neckDefinition.localAnchorA.y = yNeck2
+		neckDefinition.localAnchorB.x = 0; neckDefinition.localAnchorB.y = yNeck2
+		
+		'exclude this for GLITCH
+		neckDefinition.enableLimit = True
+		neckDefinition.lowerAngle = DegreesToRadians( -Physics.NECK_ANGLE )
+		neckDefinition.upperAngle = DegreesToRadians( Physics.NECK_ANGLE )
+		
+		neckDefinition.enableMotor = True
+		neckDefinition.maxMotorTorque = Physics.NECK_TORQUE
+		
+		neck = b2RevoluteJoint( world.CreateJoint( neckDefinition ) )
+	End
+	
 	Method OnUpdate:Void()		
 		If ( feetTouching > 0 ) Then feetContactTime = Millisecs()
-		feetValid = ( ( Millisecs() - feetContactTime ) <= Physics.JUMP_FORGIVENESS  )
+		Local _feetValid:Bool = ( ( Millisecs() - feetContactTime ) <= Physics.JUMP_FORGIVENESS  )
+		feetValid = ( _feetValid Or ( Glitch.JETPACK.state = True ) )
 		
 		Local keyRight:Int = CONTROL_SCHEMES[player][CONTROL_RIGHT]
 		Local keyLeft:Int = CONTROL_SCHEMES[player][CONTROL_LEFT]
@@ -264,24 +270,24 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 			If KeyDown( keyLeft ) And Not KeyDown( keyRight ) Then facing = FACING_LEFT
 		EndIf
 		
-		If KeyDown( keyRight) And ( facing = FACING_RIGHT ) And ( feetValid )
-			If ( body.GetLinearVelocity().x < Physics.MAX_SPEED )
-				body.ApplyForce( New b2Vec2( Physics.WALK_FORCE, 0 ), center )
-				If neck <> Null Then head.ApplyForce( New b2Vec2( Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
-			EndIf
-			
-			If ( feetValid )
-				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
+		If KeyDown( keyRight) And ( facing = FACING_RIGHT )
+			If ( feetValid ) Or ( Glitch.TUMBLEWEED.state = True )
+				If ( body.GetLinearVelocity().x < Physics.MAX_SPEED )
+					body.ApplyForce( New b2Vec2( Physics.WALK_FORCE, 0 ), center )
+					If neck <> Null Then head.ApplyForce( New b2Vec2( Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
+				EndIf
+		
+				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing, facing )
 				body.ApplyTorque( torque )
 			EndIf
-		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT ) And ( feetValid )
-			If ( body.GetLinearVelocity().x > - Physics.MAX_SPEED )
-				body.ApplyForce( New b2Vec2( -Physics.WALK_FORCE, 0 ), center )
-				If neck <> Null Then head.ApplyForce( New b2Vec2( -Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
-			EndIf
+		ElseIf KeyDown( keyLeft ) And ( facing = FACING_LEFT )
+			If ( feetValid ) Or ( Glitch.TUMBLEWEED.state = True )
+				If ( body.GetLinearVelocity().x > - Physics.MAX_SPEED )
+					body.ApplyForce( New b2Vec2( -Physics.WALK_FORCE, 0 ), center )
+					If neck <> Null Then head.ApplyForce( New b2Vec2( -Physics.WALK_FORCE * Physics.WALK_FORCE_HEAD_MULTIPLIER, 0 ), headCenter )
+				EndIf
 			
-			If ( feetValid )
-				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing )
+				Local torque:Float = AdjustTorque( 0.0 + DegreesToRadians( Physics.LEAN ) * facing, facing )
 				body.ApplyTorque( torque )
 			EndIf
 		Endif
@@ -299,7 +305,7 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		EndIf
 		
 		If KeyDown( keyDown ) And ( feetValid )
-			Local torque:Float = AdjustTorque( 0.0 )
+			Local torque:Float = AdjustTorque( 0.0, 0.0 )
 			body.ApplyTorque( torque )
 		EndIf
 		
@@ -349,10 +355,12 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		If acceleration > Physics.DAMAGE_ACCELERATION_LOW
 			Local damage:Float = ( acceleration - Physics.DAMAGE_ACCELERATION_LOW ) / ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW )
 			If damage > APP.hud.sticker[player] Then APP.hud.sticker[player] = Min( damage, Physics.DAMAGE_ACCELERATION_CAP / ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW ) )
+			If APP.hud.sticker[player] * ( Physics.DAMAGE_ACCELERATION_HIGH - Physics.DAMAGE_ACCELERATION_LOW ) >= Physics.DAMAGE_ACCELERATION_HIGH
+				APP.hud.health[player] -= 1
+			EndIf
 		EndIf
 		velocityPrevious = velocity.Copy()
-		
-		APP.hud.health[player] -= APP.hud.sticker[player]
+
 	
 		If neck = Null Then Return
 		
@@ -371,7 +379,9 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		neck.SetMotorSpeed( desiredAngularVelocity )
 	End
 	
-	Method AdjustTorque:Float( desiredAngle:FLoat )
+	Method AdjustTorque:Float( desiredAngle:Float, facing:Float )
+		If ( Glitch.TUMBLEWEED.state = True ) And Not ( facing = 0.0 ) Then Return Physics.TUMBLE_TORQUE * facing
+	
 		Local tick:Float = Physics.WALK_TORQUE_TICK
 		Local bodyAngle:Float = body.GetAngle()
 		

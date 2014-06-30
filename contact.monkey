@@ -9,11 +9,11 @@ Import main
 Class MyContactListener Implements b2ContactListenerInterface
     Method BeginContact:Void( contact:b2Contact )
 		If contact.IsTouching()
-			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
+			For Local dwarf:Dwarf = EachIn APP.dwarves
 				For Local n:Int = 0 To 1
-					If ( contact.GetFixtureA() = dwarf.hit[n] )' And Not ( contact.GetFixtureB().GetBody() = dwarf.head )
+					If ( contact.GetFixtureA() = dwarf.hit[n] )
 						dwarf.OnBeginHit( n, contact.GetFixtureB() )
-					ElseIf ( contact.GetFixtureB() = dwarf.hit[n] )' And Not ( contact.GetFixtureA().GetBody() = dwarf.head )
+					ElseIf ( contact.GetFixtureB() = dwarf.hit[n] )
 						dwarf.OnBeginHit( n, contact.GetFixtureA() )
 					EndIf
 				Next	
@@ -27,11 +27,11 @@ Class MyContactListener Implements b2ContactListenerInterface
 	
     Method EndContact:Void(contact:b2Contact)
 		'If contact.IsTouching()
-			For Local dwarf:Dwarf = EachIn [ APP.dwarf_one, APP.dwarf_two ]
+			For Local dwarf:Dwarf = EachIn APP.dwarves
 				For Local n:Int = 0 To 1
-					If ( contact.GetFixtureA() = dwarf.hit[n] )' And Not ( contact.GetFixtureB().GetBody() = dwarf.head )
+					If ( contact.GetFixtureA() = dwarf.hit[n] )
 						dwarf.OnEndHit( n, contact.GetFixtureB() )
-					ElseIf ( contact.GetFixtureB() = dwarf.hit[n] )' And Not ( contact.GetFixtureA().GetBody() = dwarf.head )
+					ElseIf ( contact.GetFixtureB() = dwarf.hit[n] )
 						dwarf.OnEndHit( n, contact.GetFixtureA() )
 					EndIf
 				Next

@@ -1,1 +1,0 @@
-mserver_winnt.exe MonkeyGame.html
