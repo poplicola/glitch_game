@@ -99,24 +99,26 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 			Local bodies:List< b2Body > = New List< b2Body >()
 			
 			For Local fixture:b2Fixture = EachIn others[ ( facing + 1 ) / 2 ]
-				Local dwarf:Dwarf = OtherDwarf( Self )
-				
-				Local okay:Bool = True
-				
-				For Local n:Int = 0 To 1
-					If ( fixture = dwarf.hit[n] )
-						If dwarf.animationDelegate.currentFrame <> 12 Then okay = False
-						If ( dwarf.facing + 1 ) / 2 <> n Then okay = False
+				For Local dwarf:Dwarf = EachIn APP.dwarves
+					If ( dwarf <> Self )
+						Local okay:Bool = True
+						
+						For Local n:Int = 0 To 1
+							If ( fixture = dwarf.hit[n] )
+								If dwarf.animationDelegate.currentFrame <> 12 Then okay = False
+								If ( dwarf.facing + 1 ) / 2 <> n Then okay = False
+							EndIf
+						Next
+						
+						If okay = True
+							Local body:b2Body = fixture.GetBody()
+							
+							If Not bodies.Contains( body )
+								bodies.AddLast( fixture.GetBody() )
+							EndIf
+						EndIf
 					EndIf
 				Next
-				
-				If okay = True
-					Local body:b2Body = fixture.GetBody()
-					
-					If Not bodies.Contains( body )
-						bodies.AddLast( fixture.GetBody() )
-					EndIf
-				EndIf
 			Next
 			
 			For Local _body:b2Body = EachIn bodies
@@ -261,9 +263,15 @@ Class Dwarf Implements IOnAnimationEnd, IOnAnimationFrameChange
 		Local keyLeft:Int = CONTROL_SCHEMES[player][CONTROL_LEFT]
 		Local keyUp:Int = CONTROL_SCHEMES[player][CONTROL_UP]
 		Local keyDown:Int = CONTROL_SCHEMES[player][CONTROL_DOWN]
-		Local keyAction:Int = CONTROL_SCHEMES[player][CONTROL_ACTION]	
+		Local keyAction:Int = CONTROL_SCHEMES[player][CONTROL_ACTION]
 		
-		If Not attacking
+		keyRight = [ KEY_JOY0_RIGHT, KEY_JOY1_RIGHT, KEY_JOY2_RIGHT, KEY_JOY3_RIGHT ][ player ]
+		keyLeft = [ KEY_JOY0_LEFT, KEY_JOY1_LEFT, KEY_JOY2_LEFT, KEY_JOY3_LEFT ][ player ]
+		keyUp = [ KEY_JOY0_UP, KEY_JOY1_UP, KEY_JOY2_UP, KEY_JOY3_UP ][ player ]
+		keyDown = [ KEY_JOY0_DOWN, KEY_JOY1_DOWN, KEY_JOY2_DOWN, KEY_JOY3_DOWN ][ player ]
+		keyAction = [ KEY_JOY0_A, KEY_JOY1_A, KEY_JOY2_A, KEY_JOY3_A ][ player ]
+		
+		If ( Not attacking ) And feetValid
 			If KeyHit( keyRight ) Then facing = FACING_RIGHT
 			If KeyHit( keyLeft ) Then facing = FACING_LEFT
 			If KeyDown( keyRight ) And Not KeyDown( keyLeft ) Then facing = FACING_RIGHT

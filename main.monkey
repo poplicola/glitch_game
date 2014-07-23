@@ -53,6 +53,14 @@ Class MyApp Extends App
 	Field bricks:List< Brick > = New List< Brick >()
 	Field hud:Hud = New Hud()
 	
+	Field CombatAttackFighter:Sound
+	Field CombatHurtFighter1:Sound
+	Field CombatHurtFighter2:Sound
+	Field CombatHurtFighter3:Sound
+	Field DwarfMoveDeep1:Sound
+	Field DwarfMoveDeep2:Sound
+	Field WarHornLow:Sound
+	
 	Method OnCreate:Int()
 		SetUpdateRate( 60 )
 		
@@ -67,6 +75,14 @@ Class MyApp Extends App
 		
 		hud.popup = LoadImage( "glitch.png" )
 		
+		CombatAttackFighter = LoadSound( "CombatAttackFighter.wav" )
+		CombatHurtFighter1 = LoadSound( "CombatHurtFighter1.wav" )
+		CombatHurtFighter2 = LoadSound( "CombatHurtFighter2.wav" )
+		CombatHurtFighter3 = LoadSound( "CombatHurtFighter3.wav" )
+		DwarfMoveDeep1 = LoadSound( "DwarfMoveDeep1.wav" )
+		DwarfMoveDeep2 = LoadSound( "DwarfMoveDeep2.wav" )
+		WarHornLow = LoadSound( "WarHornLow.wav" )
+		
 		world = New World()
 		world.Load( "delve_deeper_punchy_scene.txt" )
 		
@@ -74,6 +90,8 @@ Class MyApp Extends App
 		dwarves[1] = New Dwarf( 1, 400, 454 )
 		
 		'Glitch.Initialize()
+		
+		PlaySound( WarHornLow )
 		
 		Return 0
 	End
@@ -115,7 +133,7 @@ Class MyApp Extends App
 		SetColor( 255, 255, 255 )
 		
 		
-		DrawImage( background, 0, 0 )
+		'DrawImage( background, 0, 0 )
 		'RenderWalls()
 		RenderBricks()
 		hud.OnRender()
